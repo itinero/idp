@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDP", "IDP\IDP.csproj", "{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDP.Tests", "IDP.Tests\IDP.Tests.csproj", "{2071D30D-C58A-4EFA-879B-229C81014DDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = OsmSharp.vsmdi
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Osm.Routing.Test\Osm.Routing.Test.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+	EndGlobalSection
+EndGlobal
