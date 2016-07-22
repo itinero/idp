@@ -114,6 +114,7 @@
     <Compile Include="Switches\Osm\SwitchFilterProgress.cs" />
     <Compile Include="Switches\Osm\SwitchReadPBF.cs" />
     <Compile Include="Switches\Osm\SwitchWritePBF.cs" />
+    <Compile Include="Switches\RouterDb\SwitchContractRouterDb.cs" />
     <Compile Include="Switches\RouterDb\SwitchCreateRouterDb.cs" />
     <Compile Include="Switches\RouterDb\SwitchWriteRouterDb.cs" />
     <Compile Include="Switches\Switch.cs" />

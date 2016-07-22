@@ -44,6 +44,7 @@ namespace IDP.Switches
             Register(Osm.SwitchFilterProgress.Names, (a) => new Osm.SwitchFilterProgress(a));
             Register(RouterDb.SwitchCreateRouterDb.Names, (a) => new RouterDb.SwitchCreateRouterDb(a));
             Register(RouterDb.SwitchWriteRouterDb.Names, (a) => new RouterDb.SwitchWriteRouterDb(a));
+            Register(RouterDb.SwitchContractRouterDb.Names, (a) => new RouterDb.SwitchContractRouterDb(a));
         }
 
         /// <summary>
