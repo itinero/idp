@@ -20,12 +20,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace IDP
 {
     class Program
     {
         static void Main(string[] args)
         {
+            // enable logging.
+            OsmSharp.Logging.Logger.LogAction = (origin, level, message, parameters) =>
+            {
+                Console.WriteLine(string.Format("[{0}] {1} - {2}", origin, level, message));
+            };
+            Itinero.Logging.Logger.LogAction = (origin, level, message, parameters) =>
+            {
+                Console.WriteLine(string.Format("[{0}] {1} - {2}", origin, level, message));
+            };
+
             // register vehicles.
             Itinero.Osm.Vehicles.Vehicle.RegisterVehicles();
 
