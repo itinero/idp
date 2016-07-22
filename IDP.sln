@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDP", "IDP\IDP.csproj", "{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}"
 EndProject
@@ -10,17 +10,27 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Debug|x64.ActiveCfg = Debug|x64
+		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Debug|x64.Build.0 = Debug|x64
 		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Release|x64.ActiveCfg = Release|x64
+		{CDC6CC89-8D35-415C-9951-090C8FF1E7D2}.Release|x64.Build.0 = Release|x64
 		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Debug|x64.ActiveCfg = Debug|x64
+		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Debug|x64.Build.0 = Debug|x64
 		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Release|x64.ActiveCfg = Release|x64
+		{2071D30D-C58A-4EFA-879B-229C81014DDD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
