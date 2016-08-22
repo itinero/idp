@@ -82,8 +82,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Itinero.Transit, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\transit\Output\Itinero.Transit.dll</HintPath>
+      <HintPath>..\packages\Itinero.Transit.0.1.1-alpha\lib\net45\Itinero.Transit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NetTopologySuite, Version=1.14.0.0, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
       <HintPath>..\packages\NetTopologySuite.1.14\lib\net45\NetTopologySuite.dll</HintPath>
