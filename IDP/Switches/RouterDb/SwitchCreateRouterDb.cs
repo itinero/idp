@@ -23,9 +23,7 @@
 using System;
 using System.Collections.Generic;
 using IDP.Processors;
-using IDP.Processors.RouterDb;
 using Itinero.Osm.Vehicles;
-using IDP.Processors.Osm;
 using Itinero.Algorithms.Search.Hilbert;
 
 namespace IDP.Switches.RouterDb
