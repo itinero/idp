@@ -69,20 +69,24 @@
       <HintPath>..\packages\GTFS.1.7.1\lib\net40\GTFS.IO.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Itinero, Version=0.19.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Itinero.0.19.1-rc1\lib\net45\Itinero.dll</HintPath>
+    <Reference Include="Itinero, Version=0.23.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Itinero.0.23.1-rc1\lib\net45\Itinero.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Itinero.Geo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Itinero.Geo.0.19.1-rc1\lib\net45\Itinero.Geo.dll</HintPath>
+    <Reference Include="Itinero.Geo, Version=0.23.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Itinero.Geo.0.23.1-rc1\lib\net45\Itinero.Geo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Itinero.IO.Osm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Itinero.IO.Osm.0.19.1-rc1\lib\net45\Itinero.IO.Osm.dll</HintPath>
+    <Reference Include="Itinero.IO.Osm, Version=0.23.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Itinero.IO.Osm.0.23.1-rc1\lib\net45\Itinero.IO.Osm.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Itinero.Transit, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Itinero.Transit.0.1.1-alpha\lib\net45\Itinero.Transit.dll</HintPath>
+    <Reference Include="Itinero.Transit, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Itinero.Transit.0.1.2-alpha\lib\net45\Itinero.Transit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Itinero.Transit.Geo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Itinero.Transit.0.1.2-alpha\lib\net45\Itinero.Transit.Geo.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NetTopologySuite, Version=1.14.0.0, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
@@ -121,6 +125,8 @@
   <ItemGroup>
     <Compile Include="Processors\GTFS\IProcessorGTFSSource.cs" />
     <Compile Include="Processors\GTFS\ProcessorGTFSSource.cs" />
+    <Compile Include="Processors\MultimodalDb\IProcessorMultimodalDbSource.cs" />
+    <Compile Include="Processors\MultimodalDb\ProcessorMultimodalDbSource.cs" />
     <Compile Include="Processors\Osm\IProcessorOsmStreamSource.cs" />
     <Compile Include="Processors\Osm\ProcessorOsmStreamSource.cs" />
     <Compile Include="Processors\Osm\ProcessorOsmStreamTarget.cs" />
@@ -132,6 +138,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Switches\GTFS\SwitchReadGTFS.cs" />
+    <Compile Include="Switches\MultimodalDb\SwitchCreateMultimodalDb.cs" />
+    <Compile Include="Switches\MultimodalDb\SwitchWriteMultimodalDb.cs" />
     <Compile Include="Switches\Osm\SwitchFilterProgress.cs" />
     <Compile Include="Switches\Osm\SwitchReadPBF.cs" />
     <Compile Include="Switches\Osm\SwitchWritePBF.cs" />
