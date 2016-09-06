@@ -48,6 +48,7 @@ namespace IDP.Switches
             Register(GTFS.SwitchReadGTFS.Names, (a) => new GTFS.SwitchReadGTFS(a));
             Register(TransitDb.SwitchCreateTransitDb.Names, (a) => new TransitDb.SwitchCreateTransitDb(a));
             Register(TransitDb.SwitchWriteTransitDb.Names, (a) => new TransitDb.SwitchWriteTransitDb(a));
+            Register(TransitDb.SwitchAddTransfersDb.Names, (a) => new TransitDb.SwitchAddTransfersDb(a));
             Register(MultimodalDb.SwitchCreateMultimodalDb.Names, (a) => new MultimodalDb.SwitchCreateMultimodalDb(a));
             Register(MultimodalDb.SwitchAddStopLinks.Names, (a) => new MultimodalDb.SwitchAddStopLinks(a));
             Register(MultimodalDb.SwitchWriteMultimodalDb.Names, (a) => new MultimodalDb.SwitchWriteMultimodalDb(a));

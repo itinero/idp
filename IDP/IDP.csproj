@@ -150,6 +150,7 @@
     <Compile Include="Switches\Switch.cs" />
     <Compile Include="Switches\SwitchParserException.cs" />
     <Compile Include="Switches\SwitchParsers.cs" />
+    <Compile Include="Switches\TransitDb\SwitchAddTransfersDb.cs" />
     <Compile Include="Switches\TransitDb\SwitchCreateTransitDb.cs" />
     <Compile Include="Switches\TransitDb\SwitchWriteTransitDb.cs" />
   </ItemGroup>
