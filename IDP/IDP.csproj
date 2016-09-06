@@ -138,6 +138,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Switches\GTFS\SwitchReadGTFS.cs" />
+    <Compile Include="Switches\MultimodalDb\SwitchAddStopLinks.cs" />
     <Compile Include="Switches\MultimodalDb\SwitchCreateMultimodalDb.cs" />
     <Compile Include="Switches\MultimodalDb\SwitchWriteMultimodalDb.cs" />
     <Compile Include="Switches\Osm\SwitchFilterProgress.cs" />
