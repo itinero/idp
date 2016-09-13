@@ -69,16 +69,16 @@
       <HintPath>..\packages\GTFS.1.7.1\lib\net40\GTFS.IO.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Itinero, Version=0.23.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Itinero.0.23.1-rc1\lib\net45\Itinero.dll</HintPath>
+    <Reference Include="Itinero, Version=0.24.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Itinero.0.24.0-rc1\lib\net45\Itinero.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Itinero.Geo, Version=0.23.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Itinero.Geo.0.23.1-rc1\lib\net45\Itinero.Geo.dll</HintPath>
+    <Reference Include="Itinero.Geo, Version=0.24.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Itinero.Geo.0.24.0-rc1\lib\net45\Itinero.Geo.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Itinero.IO.Osm, Version=0.23.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Itinero.IO.Osm.0.23.1-rc1\lib\net45\Itinero.IO.Osm.dll</HintPath>
+    <Reference Include="Itinero.IO.Osm, Version=0.24.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Itinero.IO.Osm.0.24.0-rc1\lib\net45\Itinero.IO.Osm.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Itinero.Transit, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -106,7 +106,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Reminiscence, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Reminiscence.1.0.5-rc1\lib\net45\Reminiscence.dll</HintPath>
+      <HintPath>..\packages\Reminiscence.1.0.5\lib\net45\Reminiscence.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
