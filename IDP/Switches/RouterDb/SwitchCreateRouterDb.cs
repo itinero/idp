@@ -23,7 +23,7 @@
 using System;
 using System.Collections.Generic;
 using IDP.Processors;
-using Itinero.Osm.Vehicles;
+using Itinero.Profiles;
 using Itinero.Algorithms.Search.Hilbert;
 
 namespace IDP.Switches.RouterDb
@@ -60,7 +60,7 @@ namespace IDP.Switches.RouterDb
         {
             var vehicles = new List<Vehicle>(new Vehicle[]
             {
-                Vehicle.Car
+                Itinero.Osm.Vehicles.Vehicle.Car
             });
             var allCore = false;
             var keepWayIds = false;
@@ -81,27 +81,27 @@ namespace IDP.Switches.RouterDb
                                 for (int v = 0; v < vehicleValues.Length; v++)
                                 {
                                     Vehicle vehicle;
-                                    if (!Vehicle.TryGetByUniqueName(vehicleValues[v], out vehicle))
+                                    if (!Vehicle.TryGet(vehicleValues[v], out vehicle))
                                     {
                                         if (vehicleValues[v] == "all")
                                         { // all vehicles.
-                                            vehicles.Add(Vehicle.Bicycle);
-                                            vehicles.Add(Vehicle.BigTruck);
-                                            vehicles.Add(Vehicle.Bus);
-                                            vehicles.Add(Vehicle.Car);
-                                            vehicles.Add(Vehicle.Moped);
-                                            vehicles.Add(Vehicle.MotorCycle);
-                                            vehicles.Add(Vehicle.Pedestrian);
-                                            vehicles.Add(Vehicle.SmallTruck);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bicycle);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.BigTruck);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bus);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Car);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Moped);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.MotorCycle);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Pedestrian);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.SmallTruck);
                                         }
                                         else if (vehicleValues[v] == "motorvehicle" ||
                                             vehicleValues[v] == "motorvehicles")
                                         { // all motor vehicles.
-                                            vehicles.Add(Vehicle.BigTruck);
-                                            vehicles.Add(Vehicle.Bus);
-                                            vehicles.Add(Vehicle.Car);
-                                            vehicles.Add(Vehicle.MotorCycle);
-                                            vehicles.Add(Vehicle.SmallTruck);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.BigTruck);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bus);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Car);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.MotorCycle);
+                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.SmallTruck);
                                         }
                                         else
                                         {
@@ -177,27 +177,6 @@ namespace IDP.Switches.RouterDb
         {
             if (osmGeo.Type == OsmSharp.OsmGeoType.Way)
             {
-                var tags = new OsmSharp.Tags.TagsCollection(osmGeo.Tags);
-                foreach (var tag in tags)
-                {
-                    if (tag.Key == "bridge")
-                    {
-                        continue;
-                    }
-                    if (tag.Key == "tunnel")
-                    {
-                        continue;
-                    }
-                    if (tag.Key == "lanes")
-                    {
-                        continue;
-                    }
-                    if (!Vehicle.Car.IsRelevant(tag.Key, tag.Value))
-                    {
-                        osmGeo.Tags.RemoveKeyValue(tag);
-                    }
-                }
-
                 osmGeo.Tags.Add("way_id", osmGeo.Id.ToString());
             }
             return osmGeo;

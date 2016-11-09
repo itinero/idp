@@ -44,7 +44,7 @@ namespace IDP.Switches.RouterDb
                 throw new Exception("Expected a router db source.");
             }
 
-            var profile = Itinero.Profiles.Profile.Get(this.Arguments[0]);
+            var profile = Itinero.Profiles.Profile.GetRegistered(this.Arguments[0]);
             if (profile == null)
             {
                 throw new Exception(string.Format("Cannot find profile {0}.", this.Arguments[0]));
