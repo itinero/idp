@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "IDP": {
+      "commandName": "Project",
+      "commandLineArgs": "--read-pbf C:\\work\\data\\OSM\\antwerp.osm.pbf --pr --create-routerdb vehicles=car --write-routerdb antwerp.routerdb"
+    }
+  }
+}
