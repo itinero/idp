@@ -117,6 +117,7 @@ namespace IDP.Switches.RouterDb
                                             {
                                                 vehicle = DynamicVehicle.LoadFromStream(stream);
                                                 vehicle.Register();
+                                                vehicles.Add(vehicle);
                                             }
                                         }
                                     }

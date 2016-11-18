@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.0": {
-      "Itinero/0.31.0-rc1": {
+      "Itinero/0.31.2-rc1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -19,10 +19,10 @@
           "lib/netstandard1.3/Itinero.dll": {}
         }
       },
-      "Itinero.IO.Osm/0.31.0-rc1": {
+      "Itinero.IO.Osm/0.31.2-rc1": {
         "type": "package",
         "dependencies": {
-          "Itinero": "0.31.0-rc1",
+          "Itinero": "0.31.2-rc1",
           "OsmSharp": "[5.0.2-rc1, 6.0.0)"
         },
         "compile": {
@@ -2257,7 +2257,7 @@
       }
     },
     ".NETCoreApp,Version=v1.0/osx.10.10-x64": {
-      "Itinero/0.31.0-rc1": {
+      "Itinero/0.31.2-rc1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -2273,10 +2273,10 @@
           "lib/netstandard1.3/Itinero.dll": {}
         }
       },
-      "Itinero.IO.Osm/0.31.0-rc1": {
+      "Itinero.IO.Osm/0.31.2-rc1": {
         "type": "package",
         "dependencies": {
-          "Itinero": "0.31.0-rc1",
+          "Itinero": "0.31.2-rc1",
           "OsmSharp": "[5.0.2-rc1, 6.0.0)"
         },
         "compile": {
@@ -4767,7 +4767,7 @@
       }
     },
     ".NETCoreApp,Version=v1.0/ubuntu.14.04-x64": {
-      "Itinero/0.31.0-rc1": {
+      "Itinero/0.31.2-rc1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -4783,10 +4783,10 @@
           "lib/netstandard1.3/Itinero.dll": {}
         }
       },
-      "Itinero.IO.Osm/0.31.0-rc1": {
+      "Itinero.IO.Osm/0.31.2-rc1": {
         "type": "package",
         "dependencies": {
-          "Itinero": "0.31.0-rc1",
+          "Itinero": "0.31.2-rc1",
           "OsmSharp": "[5.0.2-rc1, 6.0.0)"
         },
         "compile": {
@@ -7279,7 +7279,7 @@
       }
     },
     ".NETCoreApp,Version=v1.0/win10-x64": {
-      "Itinero/0.31.0-rc1": {
+      "Itinero/0.31.2-rc1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -7295,10 +7295,10 @@
           "lib/netstandard1.3/Itinero.dll": {}
         }
       },
-      "Itinero.IO.Osm/0.31.0-rc1": {
+      "Itinero.IO.Osm/0.31.2-rc1": {
         "type": "package",
         "dependencies": {
-          "Itinero": "0.31.0-rc1",
+          "Itinero": "0.31.2-rc1",
           "OsmSharp": "[5.0.2-rc1, 6.0.0)"
         },
         "compile": {
@@ -9748,12 +9748,12 @@
     }
   },
   "libraries": {
-    "Itinero/0.31.0-rc1": {
-      "sha512": "wODmdDIF3fIoWbDVCpkQ5ff98R8Ila3/7K0CvO1nWh8XOIfq+b6N+tdg8cIoxOcSiP11LwSp+Ue2vByTwF+8Gw==",
+    "Itinero/0.31.2-rc1": {
+      "sha512": "DPzPu79LCvvZsumQnC6v5k+Gxuc2d7uwBIlP/VDUHNGNaU46hX7Le7fxyQmPmejsp6X6vYcFx315vXO0l98E5Q==",
       "type": "package",
-      "path": "Itinero/0.31.0-rc1",
+      "path": "Itinero/0.31.2-rc1",
       "files": [
-        "Itinero.0.31.0-rc1.nupkg.sha512",
+        "Itinero.0.31.2-rc1.nupkg.sha512",
         "Itinero.nuspec",
         "lib/net40/Itinero.dll",
         "lib/net45/Itinero.dll",
@@ -9761,12 +9761,12 @@
         "lib/portable-net40+sl4+win8+wp7/Itinero.dll"
       ]
     },
-    "Itinero.IO.Osm/0.31.0-rc1": {
-      "sha512": "5inuTPNwm3LY/iP5w/2hyNFR442hq8ai7hZzbiWmyhlHoutm0rGIjoRbXNsfh+3lIvT/aj9hda/wN0NuByvv8w==",
+    "Itinero.IO.Osm/0.31.2-rc1": {
+      "sha512": "nmYKiC72J+WBSyldwgTgmGA+Kr6wgxABPr1yrXjFLRYGiBnm6mdNUjepG2D18AXkyMSguXosySw3BeKtuMBPRQ==",
       "type": "package",
-      "path": "Itinero.IO.Osm/0.31.0-rc1",
+      "path": "Itinero.IO.Osm/0.31.2-rc1",
       "files": [
-        "Itinero.IO.Osm.0.31.0-rc1.nupkg.sha512",
+        "Itinero.IO.Osm.0.31.2-rc1.nupkg.sha512",
         "Itinero.IO.Osm.nuspec",
         "lib/net40/Itinero.IO.Osm.dll",
         "lib/net45/Itinero.IO.Osm.dll",
@@ -15651,7 +15651,8 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Itinero.IO.Osm >= 0.31.0-rc1",
+      "Itinero >= 0.31.2-rc1",
+      "Itinero.IO.Osm >= 0.31.2-rc1",
       "Microsoft.NETCore.App >= 1.0.0"
     ],
     ".NETCoreApp,Version=v1.0": []
