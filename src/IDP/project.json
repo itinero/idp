@@ -8,19 +8,25 @@
     "Itinero": "0.31.2-rc1",
     "Itinero.IO.Osm": "0.31.2-rc1",
     "Microsoft.NETCore.App": {
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   },
 
   "frameworks": {
-    "netcoreapp1.0": {
+    "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
+        }
+      },
       "imports": "dnxcore50"
     }
   },
 
   "runtimes": {
     "win10-x64": {},
-    "osx.10.10-x64": {},
+    "osx.10.11-x64": {},
     "ubuntu.14.04-x64": {}
   }
 }
