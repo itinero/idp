@@ -47,7 +47,10 @@ namespace IDP
             // parses arguments.
             var processor = Switches.SwitchParsers.Parse(args);
 
+            var ticks = DateTime.Now.Ticks;
             processor.Execute();
+            Itinero.Logging.Logger.Log("Program", Itinero.Logging.TraceEventType.Information, "Processing finished, took {0}.",
+                (new TimeSpan(DateTime.Now.Ticks - ticks)).ToString());
         }
     }
 }

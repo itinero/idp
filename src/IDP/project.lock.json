@@ -4978,7 +4978,7 @@
         }
       }
     },
-    ".NETCoreApp,Version=v1.1/ubuntu.14.04-x64": {
+    ".NETCoreApp,Version=v1.1/ubuntu.16.04-x64": {
       "Itinero/0.31.2-rc1": {
         "type": "package",
         "dependencies": {
@@ -5180,27 +5180,27 @@
       "Microsoft.NETCore.DotNetHost/1.1.0": {
         "type": "package",
         "dependencies": {
-          "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHost": "1.1.0"
+          "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHost": "1.1.0"
         }
       },
       "Microsoft.NETCore.DotNetHostPolicy/1.1.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.DotNetHostResolver": "1.1.0",
-          "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostPolicy": "1.1.0"
+          "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostPolicy": "1.1.0"
         }
       },
       "Microsoft.NETCore.DotNetHostResolver/1.1.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.DotNetHost": "1.1.0",
-          "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostResolver": "1.1.0"
+          "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostResolver": "1.1.0"
         }
       },
       "Microsoft.NETCore.Jit/1.1.0": {
         "type": "package",
         "dependencies": {
-          "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Jit": "1.1.0"
+          "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Jit": "1.1.0"
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {
@@ -5252,7 +5252,7 @@
         "dependencies": {
           "Microsoft.NETCore.Jit": "1.1.0",
           "Microsoft.NETCore.Windows.ApiSets": "1.0.1",
-          "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Runtime.CoreCLR": "1.1.0"
+          "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Runtime.CoreCLR": "1.1.0"
         }
       },
       "Microsoft.NETCore.Targets/1.1.0": {
@@ -5589,7 +5589,7 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
-          "runtime.ubuntu.14.04-x64.runtime.native.System": "4.3.0"
+          "runtime.ubuntu.16.04-x64.runtime.native.System": "4.3.0"
         },
         "compile": {
           "lib/netstandard1.0/_._": {}
@@ -5603,7 +5603,7 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
-          "runtime.ubuntu.14.04-x64.runtime.native.System.IO.Compression": "4.3.0"
+          "runtime.ubuntu.16.04-x64.runtime.native.System.IO.Compression": "4.3.0"
         },
         "compile": {
           "lib/netstandard1.0/_._": {}
@@ -5617,7 +5617,7 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
-          "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Http": "4.3.0"
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Http": "4.3.0"
         },
         "compile": {
           "lib/netstandard1.0/_._": {}
@@ -5631,7 +5631,7 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
-          "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Security": "4.3.0"
+          "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Security": "4.3.0"
         },
         "compile": {
           "lib/netstandard1.0/_._": {}
@@ -5688,93 +5688,93 @@
       "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package"
       },
-      "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHost/1.1.0": {
+      "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
+        "type": "package"
+      },
+      "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHost/1.1.0": {
         "type": "package",
         "native": {
-          "runtimes/ubuntu.14.04-x64/native/dotnet": {}
+          "runtimes/ubuntu.16.04-x64/native/dotnet": {}
         }
       },
-      "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostPolicy/1.1.0": {
+      "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostPolicy/1.1.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.DotNetHostResolver": "1.1.0"
         },
         "native": {
-          "runtimes/ubuntu.14.04-x64/native/libhostpolicy.so": {}
+          "runtimes/ubuntu.16.04-x64/native/libhostpolicy.so": {}
         }
       },
-      "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostResolver/1.1.0": {
+      "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostResolver/1.1.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.DotNetHost": "1.1.0"
         },
         "native": {
-          "runtimes/ubuntu.14.04-x64/native/libhostfxr.so": {}
+          "runtimes/ubuntu.16.04-x64/native/libhostfxr.so": {}
         }
       },
-      "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Jit/1.1.0": {
+      "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Jit/1.1.0": {
         "type": "package",
         "native": {
-          "runtimes/ubuntu.14.04-x64/native/libclrjit.so": {}
+          "runtimes/ubuntu.16.04-x64/native/libclrjit.so": {}
         }
       },
-      "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Runtime.CoreCLR/1.1.0": {
+      "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Runtime.CoreCLR/1.1.0": {
         "type": "package",
         "compile": {
           "ref/netstandard1.0/_._": {}
         },
         "runtime": {
-          "runtimes/ubuntu.14.04-x64/lib/netstandard1.0/SOS.NETCore.dll": {},
-          "runtimes/ubuntu.14.04-x64/lib/netstandard1.0/System.Private.CoreLib.dll": {},
-          "runtimes/ubuntu.14.04-x64/lib/netstandard1.0/mscorlib.dll": {}
+          "runtimes/ubuntu.16.04-x64/lib/netstandard1.0/SOS.NETCore.dll": {},
+          "runtimes/ubuntu.16.04-x64/lib/netstandard1.0/System.Private.CoreLib.dll": {},
+          "runtimes/ubuntu.16.04-x64/lib/netstandard1.0/mscorlib.dll": {}
         },
         "native": {
-          "runtimes/ubuntu.14.04-x64/native/System.Globalization.Native.so": {},
-          "runtimes/ubuntu.14.04-x64/native/System.Private.CoreLib.ni.dll": {},
-          "runtimes/ubuntu.14.04-x64/native/libcoreclr.so": {},
-          "runtimes/ubuntu.14.04-x64/native/libcoreclrtraceptprovider.so": {},
-          "runtimes/ubuntu.14.04-x64/native/libdbgshim.so": {},
-          "runtimes/ubuntu.14.04-x64/native/libmscordaccore.so": {},
-          "runtimes/ubuntu.14.04-x64/native/libmscordbi.so": {},
-          "runtimes/ubuntu.14.04-x64/native/libsos.so": {},
-          "runtimes/ubuntu.14.04-x64/native/libsosplugin.so": {},
-          "runtimes/ubuntu.14.04-x64/native/mscorlib.ni.dll": {},
-          "runtimes/ubuntu.14.04-x64/native/sosdocsunix.txt": {}
+          "runtimes/ubuntu.16.04-x64/native/System.Globalization.Native.so": {},
+          "runtimes/ubuntu.16.04-x64/native/System.Private.CoreLib.ni.dll": {},
+          "runtimes/ubuntu.16.04-x64/native/libcoreclr.so": {},
+          "runtimes/ubuntu.16.04-x64/native/libcoreclrtraceptprovider.so": {},
+          "runtimes/ubuntu.16.04-x64/native/libdbgshim.so": {},
+          "runtimes/ubuntu.16.04-x64/native/libmscordaccore.so": {},
+          "runtimes/ubuntu.16.04-x64/native/libmscordbi.so": {},
+          "runtimes/ubuntu.16.04-x64/native/libsos.so": {},
+          "runtimes/ubuntu.16.04-x64/native/libsosplugin.so": {},
+          "runtimes/ubuntu.16.04-x64/native/mscorlib.ni.dll": {},
+          "runtimes/ubuntu.16.04-x64/native/sosdocsunix.txt": {}
         }
       },
-      "runtime.ubuntu.14.04-x64.runtime.native.System/4.3.0": {
+      "runtime.ubuntu.16.04-x64.runtime.native.System/4.3.0": {
         "type": "package",
         "native": {
-          "runtimes/ubuntu.14.04-x64/native/System.Native.a": {},
-          "runtimes/ubuntu.14.04-x64/native/System.Native.so": {}
+          "runtimes/ubuntu.16.04-x64/native/System.Native.a": {},
+          "runtimes/ubuntu.16.04-x64/native/System.Native.so": {}
         }
       },
-      "runtime.ubuntu.14.04-x64.runtime.native.System.IO.Compression/4.3.0": {
+      "runtime.ubuntu.16.04-x64.runtime.native.System.IO.Compression/4.3.0": {
         "type": "package",
         "native": {
-          "runtimes/ubuntu.14.04-x64/native/System.IO.Compression.Native.so": {}
+          "runtimes/ubuntu.16.04-x64/native/System.IO.Compression.Native.so": {}
         }
       },
-      "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Http/4.3.0": {
+      "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Http/4.3.0": {
         "type": "package",
         "native": {
-          "runtimes/ubuntu.14.04-x64/native/System.Net.Http.Native.so": {}
+          "runtimes/ubuntu.16.04-x64/native/System.Net.Http.Native.so": {}
         }
       },
-      "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Security/4.3.0": {
+      "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Security/4.3.0": {
         "type": "package",
         "native": {
-          "runtimes/ubuntu.14.04-x64/native/System.Net.Security.Native.so": {}
-        }
-      },
-      "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-        "type": "package",
-        "native": {
-          "runtimes/ubuntu.14.04-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {}
+          "runtimes/ubuntu.16.04-x64/native/System.Net.Security.Native.so": {}
         }
       },
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-        "type": "package"
+        "type": "package",
+        "native": {
+          "runtimes/ubuntu.16.04-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {}
+        }
       },
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package"
@@ -11321,133 +11321,6 @@
         "runtimes/rhel.7-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
-    "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHost/1.1.0": {
-      "sha512": "ygQsaLZfAliJ0KOZepl5EKd98u7Zu810WrojaBxEjRaY0PE2PC6JT8A97f1QXYzsoyUol+t4VkGM3G6Q9CCEwg==",
-      "type": "package",
-      "path": "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHost/1.1.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHost.1.1.0.nupkg.sha512",
-        "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHost.nuspec",
-        "runtimes/ubuntu.14.04-x64/native/dotnet",
-        "version.txt"
-      ]
-    },
-    "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostPolicy/1.1.0": {
-      "sha512": "BW3VbrEdGO9iCF8Mz6yAPKCDWQCpV0b40vJfdfsmNoGf0z8OZx0ogf9Jgsj3sJoX8X/APmxIsn0MxqX1EamdnQ==",
-      "type": "package",
-      "path": "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostPolicy/1.1.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostPolicy.1.1.0.nupkg.sha512",
-        "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostPolicy.nuspec",
-        "runtimes/ubuntu.14.04-x64/native/libhostpolicy.so",
-        "version.txt"
-      ]
-    },
-    "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostResolver/1.1.0": {
-      "sha512": "ehbSe0UylNwmyWQJ68nNlgdeWuIVihBL3yvgE9JOMcL9IIitstvpaQ+pUpZdlFMsp6OTv15jDT8FH6K3WVVLWQ==",
-      "type": "package",
-      "path": "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostResolver/1.1.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostResolver.1.1.0.nupkg.sha512",
-        "runtime.ubuntu.14.04-x64.Microsoft.NETCore.DotNetHostResolver.nuspec",
-        "runtimes/ubuntu.14.04-x64/native/libhostfxr.so",
-        "version.txt"
-      ]
-    },
-    "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Jit/1.1.0": {
-      "sha512": "MevIciIqpjRcL2xa130EHPooJbiOd2XAAVG7VX70306WwjyfsKPZrsZsiLvQpvYPmfnCpYoJGVfC9qKtC6TjYg==",
-      "type": "package",
-      "path": "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Jit/1.1.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Jit.1.1.0.nupkg.sha512",
-        "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Jit.nuspec",
-        "runtimes/ubuntu.14.04-x64/native/libclrjit.so"
-      ]
-    },
-    "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Runtime.CoreCLR/1.1.0": {
-      "sha512": "FL4P330Hk4ucOuOHySGpaTArzPlEXD6Vi6yqc2fDMbeeW4JF8O02a3v/ExrERMz6GpxEYDIq7RDBBewtsiIoaw==",
-      "type": "package",
-      "path": "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Runtime.CoreCLR/1.1.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "ref/netstandard1.0/_._",
-        "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Runtime.CoreCLR.1.1.0.nupkg.sha512",
-        "runtime.ubuntu.14.04-x64.Microsoft.NETCore.Runtime.CoreCLR.nuspec",
-        "runtimes/ubuntu.14.04-x64/lib/netstandard1.0/SOS.NETCore.dll",
-        "runtimes/ubuntu.14.04-x64/lib/netstandard1.0/System.Private.CoreLib.dll",
-        "runtimes/ubuntu.14.04-x64/lib/netstandard1.0/mscorlib.dll",
-        "runtimes/ubuntu.14.04-x64/native/System.Globalization.Native.so",
-        "runtimes/ubuntu.14.04-x64/native/System.Private.CoreLib.ni.dll",
-        "runtimes/ubuntu.14.04-x64/native/libcoreclr.so",
-        "runtimes/ubuntu.14.04-x64/native/libcoreclrtraceptprovider.so",
-        "runtimes/ubuntu.14.04-x64/native/libdbgshim.so",
-        "runtimes/ubuntu.14.04-x64/native/libmscordaccore.so",
-        "runtimes/ubuntu.14.04-x64/native/libmscordbi.so",
-        "runtimes/ubuntu.14.04-x64/native/libsos.so",
-        "runtimes/ubuntu.14.04-x64/native/libsosplugin.so",
-        "runtimes/ubuntu.14.04-x64/native/mscorlib.ni.dll",
-        "runtimes/ubuntu.14.04-x64/native/sosdocsunix.txt",
-        "tools/crossgen"
-      ]
-    },
-    "runtime.ubuntu.14.04-x64.runtime.native.System/4.3.0": {
-      "sha512": "5VGclG/uSCxMCWNLSAU2kliuHP2pv69XOwraRK9AXzVeJlQxNnCk43okuBxuw4bEXu9DFPXT7J1yiw1pJaEFDA==",
-      "type": "package",
-      "path": "runtime.ubuntu.14.04-x64.runtime.native.System/4.3.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "runtime.ubuntu.14.04-x64.runtime.native.System.4.3.0.nupkg.sha512",
-        "runtime.ubuntu.14.04-x64.runtime.native.System.nuspec",
-        "runtimes/ubuntu.14.04-x64/native/System.Native.a",
-        "runtimes/ubuntu.14.04-x64/native/System.Native.so"
-      ]
-    },
-    "runtime.ubuntu.14.04-x64.runtime.native.System.IO.Compression/4.3.0": {
-      "sha512": "wq6h8XVTmQShEd9Um+++ngnf1vaGefNVY693WQLEhmJ3RfeDPh7sRBcX/YrbKA5k/eZORgWEcjDJZBhd7Vb3jQ==",
-      "type": "package",
-      "path": "runtime.ubuntu.14.04-x64.runtime.native.System.IO.Compression/4.3.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "runtime.ubuntu.14.04-x64.runtime.native.System.IO.Compression.4.3.0.nupkg.sha512",
-        "runtime.ubuntu.14.04-x64.runtime.native.System.IO.Compression.nuspec",
-        "runtimes/ubuntu.14.04-x64/native/System.IO.Compression.Native.so"
-      ]
-    },
-    "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Http/4.3.0": {
-      "sha512": "I3XevHXIzfHeLwzJ9kNLiCmQPMUEssXyYbeBXH2Ot1M2nmw2Ydcvc+uo3R72unTja67a/CkOQfomrQbFoJW2xw==",
-      "type": "package",
-      "path": "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Http/4.3.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Http.4.3.0.nupkg.sha512",
-        "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Http.nuspec",
-        "runtimes/ubuntu.14.04-x64/native/System.Net.Http.Native.so"
-      ]
-    },
-    "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Security/4.3.0": {
-      "sha512": "gWuEgRgIbE4TAF4FQ7/QNnP26pKUY5Ncguup6CoG2+IEUc+PksgpFP+qfwZGMSWqsU2sgjPOWiDVB63VWIKDrw==",
-      "type": "package",
-      "path": "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Security/4.3.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Security.4.3.0.nupkg.sha512",
-        "runtime.ubuntu.14.04-x64.runtime.native.System.Net.Security.nuspec",
-        "runtimes/ubuntu.14.04-x64/native/System.Net.Security.Native.so"
-      ]
-    },
     "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "sha512": "CSugxACjFo9M3wec3mp8J1Vyc14fmHyfPiA7tANxdqOXlO8UQ0HAcvb4AxZeVFv2imL0ORasufTOivR3MN0hwA==",
       "type": "package",
@@ -11458,6 +11331,133 @@
         "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl.nuspec",
         "runtimes/ubuntu.14.04-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHost/1.1.0": {
+      "sha512": "iYA8ReeUTTqcUqpJGuhyPriQ+ngOH0A6m/8yKBENXnUHgvygAP/n0wOUnVjKueeO8HdDj6xA0uN1X7aXx1JKEQ==",
+      "type": "package",
+      "path": "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHost/1.1.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHost.1.1.0.nupkg.sha512",
+        "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHost.nuspec",
+        "runtimes/ubuntu.16.04-x64/native/dotnet",
+        "version.txt"
+      ]
+    },
+    "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostPolicy/1.1.0": {
+      "sha512": "mmcnZLyKd7GTqgmBbsQLSzyd7rM2wQtTUHDHG2C8caMyoEfmfYAxbDHz6FH48J1cu69g9aRTEHwJ5o7MW0ajJw==",
+      "type": "package",
+      "path": "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostPolicy/1.1.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostPolicy.1.1.0.nupkg.sha512",
+        "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostPolicy.nuspec",
+        "runtimes/ubuntu.16.04-x64/native/libhostpolicy.so",
+        "version.txt"
+      ]
+    },
+    "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostResolver/1.1.0": {
+      "sha512": "K7e+9CUpIQdFjMOKzCnF1kxKuotGGXo6YzH1CzFXbU0RtotAGsjIrF6fIy6gQjKc2V+GQ4TPrsTTL260ZC97HA==",
+      "type": "package",
+      "path": "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostResolver/1.1.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostResolver.1.1.0.nupkg.sha512",
+        "runtime.ubuntu.16.04-x64.Microsoft.NETCore.DotNetHostResolver.nuspec",
+        "runtimes/ubuntu.16.04-x64/native/libhostfxr.so",
+        "version.txt"
+      ]
+    },
+    "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Jit/1.1.0": {
+      "sha512": "oGl+SVpQnz5U/e/jgaVhbxJRrgdxV89v7T1vDsabWvuhmyjOzDyr25figLnSqyxAfebqbKmLipEnRzrj/yyB9g==",
+      "type": "package",
+      "path": "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Jit/1.1.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Jit.1.1.0.nupkg.sha512",
+        "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Jit.nuspec",
+        "runtimes/ubuntu.16.04-x64/native/libclrjit.so"
+      ]
+    },
+    "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Runtime.CoreCLR/1.1.0": {
+      "sha512": "7I1aeq7X/D9s/acppyOPtSDuaRJkdK1LERP8pNdZg6TZIWqu8bBdzPa726FKkHy2nn14ugOBRvwnurr0vnJfIw==",
+      "type": "package",
+      "path": "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Runtime.CoreCLR/1.1.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "ref/netstandard1.0/_._",
+        "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Runtime.CoreCLR.1.1.0.nupkg.sha512",
+        "runtime.ubuntu.16.04-x64.Microsoft.NETCore.Runtime.CoreCLR.nuspec",
+        "runtimes/ubuntu.16.04-x64/lib/netstandard1.0/SOS.NETCore.dll",
+        "runtimes/ubuntu.16.04-x64/lib/netstandard1.0/System.Private.CoreLib.dll",
+        "runtimes/ubuntu.16.04-x64/lib/netstandard1.0/mscorlib.dll",
+        "runtimes/ubuntu.16.04-x64/native/System.Globalization.Native.so",
+        "runtimes/ubuntu.16.04-x64/native/System.Private.CoreLib.ni.dll",
+        "runtimes/ubuntu.16.04-x64/native/libcoreclr.so",
+        "runtimes/ubuntu.16.04-x64/native/libcoreclrtraceptprovider.so",
+        "runtimes/ubuntu.16.04-x64/native/libdbgshim.so",
+        "runtimes/ubuntu.16.04-x64/native/libmscordaccore.so",
+        "runtimes/ubuntu.16.04-x64/native/libmscordbi.so",
+        "runtimes/ubuntu.16.04-x64/native/libsos.so",
+        "runtimes/ubuntu.16.04-x64/native/libsosplugin.so",
+        "runtimes/ubuntu.16.04-x64/native/mscorlib.ni.dll",
+        "runtimes/ubuntu.16.04-x64/native/sosdocsunix.txt",
+        "tools/crossgen"
+      ]
+    },
+    "runtime.ubuntu.16.04-x64.runtime.native.System/4.3.0": {
+      "sha512": "vz5FoBq1abtDHjZdytIbxi5U34p1cqw6fX64R2x/ShSkRmfYUkN0cpD10Aw6Rafv5DZrH3/wpLLlBIxcIWXuRQ==",
+      "type": "package",
+      "path": "runtime.ubuntu.16.04-x64.runtime.native.System/4.3.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.ubuntu.16.04-x64.runtime.native.System.4.3.0.nupkg.sha512",
+        "runtime.ubuntu.16.04-x64.runtime.native.System.nuspec",
+        "runtimes/ubuntu.16.04-x64/native/System.Native.a",
+        "runtimes/ubuntu.16.04-x64/native/System.Native.so"
+      ]
+    },
+    "runtime.ubuntu.16.04-x64.runtime.native.System.IO.Compression/4.3.0": {
+      "sha512": "2WXdHgtDMRBcNhYLLOevPFBo+fhxc6JFwQWpDlCf1KcMIsr+yMjJI7ahIv9vmWhCUYVs1NcB9jo/RFUajCGPMw==",
+      "type": "package",
+      "path": "runtime.ubuntu.16.04-x64.runtime.native.System.IO.Compression/4.3.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.ubuntu.16.04-x64.runtime.native.System.IO.Compression.4.3.0.nupkg.sha512",
+        "runtime.ubuntu.16.04-x64.runtime.native.System.IO.Compression.nuspec",
+        "runtimes/ubuntu.16.04-x64/native/System.IO.Compression.Native.so"
+      ]
+    },
+    "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Http/4.3.0": {
+      "sha512": "FXboIWG+yLuZVXqgZZmUyqKOuQx/MzPSrPW/OS3pRxLrFd7EQor9F4ZAunmZ3wcout51SMinZIWwOzkAVHnEBg==",
+      "type": "package",
+      "path": "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Http/4.3.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Http.4.3.0.nupkg.sha512",
+        "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Http.nuspec",
+        "runtimes/ubuntu.16.04-x64/native/System.Net.Http.Native.so"
+      ]
+    },
+    "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Security/4.3.0": {
+      "sha512": "amUh4OUzit/SN6bWlc0ksEXhxAfWssejPDzYRHDS6Xzk4dQ2zFsHxR8n8KpGqOv0IZazaroXL0HgY7ime3gv8w==",
+      "type": "package",
+      "path": "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Security/4.3.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Security.4.3.0.nupkg.sha512",
+        "runtime.ubuntu.16.04-x64.runtime.native.System.Net.Security.nuspec",
+        "runtimes/ubuntu.16.04-x64/native/System.Net.Security.Native.so"
       ]
     },
     "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
