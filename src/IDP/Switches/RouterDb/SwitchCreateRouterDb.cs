@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using IDP.Processors;
 using Itinero.Profiles;
 using Itinero.Algorithms.Search.Hilbert;
+using System.IO;
 
 namespace IDP.Switches.RouterDb
 {
@@ -104,10 +105,19 @@ namespace IDP.Switches.RouterDb
                                             vehicles.Add(Itinero.Osm.Vehicles.Vehicle.SmallTruck);
                                         }
                                         else
-                                        {
-                                            throw new SwitchParserException("--create-routerdb",
-                                                string.Format("Invalid parameter value for command --create-routerdb: Vehicle profile '{0}' not found.",
-                                                    vehicleValues[v]));
+                                        { // assume a filename.
+                                            var vehicleFile = new FileInfo(vehicleValues[v]);
+                                            if (!vehicleFile.Exists)
+                                            {
+                                                throw new SwitchParserException("--create-routerdb",
+                                                    string.Format("Invalid parameter value for command --create-routerdb: Vehicle profile '{0}' not found.",
+                                                        vehicleValues[v]));
+                                            }
+                                            using (var stream = vehicleFile.OpenRead())
+                                            {
+                                                vehicle = DynamicVehicle.LoadFromStream(stream);
+                                                vehicle.Register();
+                                            }
                                         }
                                     }
                                     else

@@ -15651,7 +15651,6 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Itinero >= 0.31.0-rc1",
       "Itinero.IO.Osm >= 0.31.0-rc1",
       "Microsoft.NETCore.App >= 1.0.0"
     ],
