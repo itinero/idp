@@ -1,6 +1,6 @@
 cd ./src/IDP/
 dotnet restore
 dotnet build
-dotnet publish
+dotnet publish -c release
 
-cd bin\Debug\netcoreapp1.0\win10-x64\publish
+cd bin\release\netcoreapp1.1\win10-x64\publish
