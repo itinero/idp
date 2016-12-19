@@ -159,7 +159,7 @@ namespace IDP.Switches.RouterDb
 
                 // load the data.
                 var target = new Itinero.IO.Osm.Streams.RouterDbStreamTarget(routerDb,
-                    vehicles.ToArray(), allCore);
+                    vehicles.ToArray(), allCore, processRestrictions: true);
                 if (keepWayIds)
                 { // add way id's.
                     var eventsFilter = new OsmSharp.Streams.Filters.OsmStreamFilterDelegate();
