@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
-      "Itinero/0.32.2-rc1": {
+      "Itinero/0.33.0-rc1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -2414,7 +2414,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.1",
         "dependencies": {
-          "Itinero": "0.32.2-rc1",
+          "Itinero": "0.33.0-rc1",
           "Itinero.IO.Osm": "0.33.0-rc1",
           "Microsoft.NETCore.App": "1.1.0"
         },
@@ -2428,12 +2428,12 @@
     }
   },
   "libraries": {
-    "Itinero/0.32.2-rc1": {
-      "sha512": "FMgmkzQpH+MwI0X8lJ61tqZWfUy8y+Cqz3/t1cSoVA1+73LGtIJg2ssUBO0tMPiHTHLWtIrw4mFEGuQNcX0HPQ==",
+    "Itinero/0.33.0-rc1": {
+      "sha512": "VogoAhqCfmAv+p/KM48E7k3fec0NIKvnLZfJJznhCo1GqgJ3uO4q0niTRGhkZ9XxJ8+PJIc5O2AgE4uSnz6+yg==",
       "type": "package",
-      "path": "Itinero/0.32.2-rc1",
+      "path": "Itinero/0.33.0-rc1",
       "files": [
-        "Itinero.0.32.2-rc1.nupkg.sha512",
+        "Itinero.0.33.0-rc1.nupkg.sha512",
         "Itinero.nuspec",
         "lib/net40/Itinero.dll",
         "lib/net45/Itinero.dll",
