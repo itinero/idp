@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
-      "Itinero/0.33.0-rc1": {
+      "Itinero/0.34.1-rc1": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -19,11 +19,11 @@
           "lib/netstandard1.3/Itinero.dll": {}
         }
       },
-      "Itinero.IO.Osm/0.33.0-rc1": {
+      "Itinero.IO.Osm/0.34.1-rc1": {
         "type": "package",
         "dependencies": {
-          "Itinero": "0.33.0-rc1",
-          "OsmSharp": "[5.0.2-rc1, 6.0.0)"
+          "Itinero": "0.34.1-rc1",
+          "OsmSharp": "[5.0.5-rc1, 6.0.0)"
         },
         "compile": {
           "lib/netstandard1.6/Itinero.IO.Osm.dll": {}
@@ -452,7 +452,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "OsmSharp/5.0.2-rc1": {
+      "OsmSharp/5.0.5-rc1": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
@@ -2414,8 +2414,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.1",
         "dependencies": {
-          "Itinero": "0.33.0-rc1",
-          "Itinero.IO.Osm": "0.33.0-rc1",
+          "Itinero": "0.34.1-rc1",
+          "Itinero.IO.Osm": "0.34.1-rc1",
           "Microsoft.NETCore.App": "1.1.0"
         },
         "compile": {
@@ -2428,12 +2428,12 @@
     }
   },
   "libraries": {
-    "Itinero/0.33.0-rc1": {
-      "sha512": "VogoAhqCfmAv+p/KM48E7k3fec0NIKvnLZfJJznhCo1GqgJ3uO4q0niTRGhkZ9XxJ8+PJIc5O2AgE4uSnz6+yg==",
+    "Itinero/0.34.1-rc1": {
+      "sha512": "Mbplop3CFqZdx3l5SNt6nlH4G8J5u+z1pfnRVZcYoSJgaMDU6cPpRsx4lmc48+Ih2HurgZq1wplYSv+5h2Y2dA==",
       "type": "package",
-      "path": "Itinero/0.33.0-rc1",
+      "path": "Itinero/0.34.1-rc1",
       "files": [
-        "Itinero.0.33.0-rc1.nupkg.sha512",
+        "Itinero.0.34.1-rc1.nupkg.sha512",
         "Itinero.nuspec",
         "lib/net40/Itinero.dll",
         "lib/net45/Itinero.dll",
@@ -2441,12 +2441,12 @@
         "lib/portable-net40+sl4+win8+wp7/Itinero.dll"
       ]
     },
-    "Itinero.IO.Osm/0.33.0-rc1": {
-      "sha512": "EPtglToNfQSLTOhIadYL/fWBTFPhLhy0zeDKPCfSRsRDz/UV4cPVSNB2BNX0aqTrnGBv0iKLAFEMIJaTf2flAA==",
+    "Itinero.IO.Osm/0.34.1-rc1": {
+      "sha512": "9CPZCUxuUOrhomvS9BKXslhVnBkzLKXEDdHusKrvSBl3Xs2s4x0XmXGZkXNOrZndX9r5qctCc3oivB/4j09MUA==",
       "type": "package",
-      "path": "Itinero.IO.Osm/0.33.0-rc1",
+      "path": "Itinero.IO.Osm/0.34.1-rc1",
       "files": [
-        "Itinero.IO.Osm.0.33.0-rc1.nupkg.sha512",
+        "Itinero.IO.Osm.0.34.1-rc1.nupkg.sha512",
         "Itinero.IO.Osm.nuspec",
         "lib/net40/Itinero.IO.Osm.dll",
         "lib/net45/Itinero.IO.Osm.dll",
@@ -2924,12 +2924,12 @@
         "dotnet_library_license.txt"
       ]
     },
-    "OsmSharp/5.0.2-rc1": {
-      "sha512": "swTkNvwekess8yAL3k4W0Je5kj+Azfcl01/BqPbBHvoQyP1sxXaoZr8EnWr39ubAqArgH85bcOMRobHO62WFTA==",
+    "OsmSharp/5.0.5-rc1": {
+      "sha512": "CkcfcHJ21qohp4CLuD/oqJ+RAq/MGFInx0HF62v7KdrCyE5+oJJJmh4Bpvadrufg066oKrVbrnGmJlonL2weRg==",
       "type": "package",
-      "path": "OsmSharp/5.0.2-rc1",
+      "path": "OsmSharp/5.0.5-rc1",
       "files": [
-        "OsmSharp.5.0.2-rc1.nupkg.sha512",
+        "OsmSharp.5.0.5-rc1.nupkg.sha512",
         "OsmSharp.nuspec",
         "lib/net40/OsmSharp.dll",
         "lib/net45/OsmSharp.dll",

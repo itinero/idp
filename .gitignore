@@ -35,5 +35,6 @@ packages/*
 
 .vs/*
 
+*.routing
 *.routerdb
 *.osm.pbf
