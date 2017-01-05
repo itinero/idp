@@ -52,6 +52,7 @@ namespace IDP.Switches
             //Register(MultimodalDb.SwitchCreateMultimodalDb.Names, (a) => new MultimodalDb.SwitchCreateMultimodalDb(a));
             //Register(MultimodalDb.SwitchAddStopLinks.Names, (a) => new MultimodalDb.SwitchAddStopLinks(a));
             //Register(MultimodalDb.SwitchWriteMultimodalDb.Names, (a) => new MultimodalDb.SwitchWriteMultimodalDb(a));
+            Register(Logging.SwitchLogging.Names, (a) => new Logging.SwitchLogging(a));
         }
 
         /// <summary>
@@ -105,7 +106,10 @@ namespace IDP.Switches
                     processors.RemoveAt(processors.Count - 1);
                     p--;
                 }
-                processors.Add(newProcessor);
+                if (newProcessor != null)
+                {
+                    processors.Add(newProcessor);
+                }
             }
             if (processors.Count > 1)
             {

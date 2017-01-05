@@ -1,0 +1,762 @@
+2017-01-05 09:52:17.094 +01:00 [Information] [StreamProgress-5/01/2017 9:52:17] information - Pass 1 - Way[10000] @ 27698,32/s
+2017-01-05 09:52:17.296 +01:00 [Information] [StreamProgress-5/01/2017 9:52:17] information - Pass 1 - Way[20000] @ 34479,16/s
+2017-01-05 09:52:17.437 +01:00 [Information] [StreamProgress-5/01/2017 9:52:17] information - Pass 1 - Way[30000] @ 41604,38/s
+2017-01-05 09:52:17.593 +01:00 [Information] [StreamProgress-5/01/2017 9:52:17] information - Pass 1 - Way[40000] @ 45605,48/s
+2017-01-05 09:52:17.726 +01:00 [Information] [StreamProgress-5/01/2017 9:52:17] information - Pass 1 - Way[50000] @ 49499,57/s
+2017-01-05 09:52:17.853 +01:00 [Information] [StreamProgress-5/01/2017 9:52:17] information - Pass 1 - Way[60000] @ 52763,87/s
+2017-01-05 09:52:17.976 +01:00 [Information] [StreamProgress-5/01/2017 9:52:17] information - Pass 1 - Way[70000] @ 55548,92/s
+2017-01-05 09:52:18.129 +01:00 [Information] [StreamProgress-5/01/2017 9:52:18] information - Pass 1 - Way[80000] @ 56610,34/s
+2017-01-05 09:52:18.226 +01:00 [Information] [StreamProgress-5/01/2017 9:52:18] information - Pass 1 - Way[90000] @ 59595,16/s
+2017-01-05 09:52:18.342 +01:00 [Information] [StreamProgress-5/01/2017 9:52:18] information - Pass 1 - Way[100000] @ 61492,79/s
+2017-01-05 09:52:18.450 +01:00 [Information] [StreamProgress-5/01/2017 9:52:18] information - Pass 1 - Way[110000] @ 63428,24/s
+2017-01-05 09:52:18.588 +01:00 [Information] [StreamProgress-5/01/2017 9:52:18] information - Pass 1 - Way[120000] @ 64092,4/s
+2017-01-05 09:52:18.657 +01:00 [Information] [StreamProgress-5/01/2017 9:52:18] information - Pass 1 - Way[130000] @ 66999,72/s
+2017-01-05 09:52:18.763 +01:00 [Information] [StreamProgress-5/01/2017 9:52:18] information - Pass 1 - Way[140000] @ 68381,52/s
+2017-01-05 09:52:18.843 +01:00 [Information] [StreamProgress-5/01/2017 9:52:18] information - Pass 1 - Way[150000] @ 70510,43/s
+2017-01-05 09:52:18.966 +01:00 [Information] [StreamProgress-5/01/2017 9:52:18] information - Pass 1 - Way[160000] @ 71099,91/s
+2017-01-05 09:52:19.081 +01:00 [Information] [StreamProgress-5/01/2017 9:52:19] information - Pass 1 - Way[170000] @ 71870,61/s
+2017-01-05 09:52:19.174 +01:00 [Information] [StreamProgress-5/01/2017 9:52:19] information - Pass 1 - Way[180000] @ 73218,22/s
+2017-01-05 09:52:19.262 +01:00 [Information] [StreamProgress-5/01/2017 9:52:19] information - Pass 1 - Way[190000] @ 74644,91/s
+2017-01-05 09:52:19.387 +01:00 [Information] [StreamProgress-5/01/2017 9:52:19] information - Pass 1 - Way[200000] @ 74867,2/s
+2017-01-05 09:52:19.483 +01:00 [Information] [StreamProgress-5/01/2017 9:52:19] information - Pass 1 - Way[210000] @ 75883,53/s
+2017-01-05 09:52:19.658 +01:00 [Information] [StreamProgress-5/01/2017 9:52:19] information - Pass 1 - Relation[1000] @ 43473,72/s
+2017-01-05 09:52:19.661 +01:00 [Information] [RestrictionProcessor-5/01/2017 9:52:19] warning - A positive restriction (only_xxx) with a via-way not supported, relation 3373740 not processed!
+2017-01-05 09:52:19.664 +01:00 [Information] [StreamProgress-5/01/2017 9:52:19] information - Pass 1 - Relation[2000] @ 68963,61/s
+2017-01-05 09:52:19.667 +01:00 [Information] [StreamProgress-5/01/2017 9:52:19] information - Pass 1 - Relation[3000] @ 93741,8/s
+2017-01-05 09:52:19.670 +01:00 [Information] [RestrictionProcessor-5/01/2017 9:52:19] warning - A positive restriction (only_xxx) with a via-way not supported, relation 5734053 not processed!
+2017-01-05 09:52:19.670 +01:00 [Information] [RestrictionProcessor-5/01/2017 9:52:19] warning - A positive restriction (only_xxx) with a via-way not supported, relation 5734054 not processed!
+2017-01-05 09:52:19.670 +01:00 [Information] [RestrictionProcessor-5/01/2017 9:52:19] warning - A positive restriction (only_xxx) with a via-way not supported, relation 5734087 not processed!
+2017-01-05 09:52:19.676 +01:00 [Information] [StreamProgress-5/01/2017 9:52:19] information - Pass 1 - Relation[4000] @ 97564,55/s
+2017-01-05 09:52:19.680 +01:00 [Information] [StreamProgress-5/01/2017 9:52:19] information - Pass 1 - Relation[5000] @ 111110,37/s
+2017-01-05 09:52:19.683 +01:00 [Information] [NodeIndex-5/01/2017 9:52:19] information - Sorting node id's...
+2017-01-05 09:52:20.500 +01:00 [Information] [StreamProgress-5/01/2017 9:52:20] information - Pass 2 - Node[100000] @ 406496/s
+2017-01-05 09:52:20.747 +01:00 [Information] [StreamProgress-5/01/2017 9:52:20] information - Pass 2 - Node[200000] @ 405643/s
+2017-01-05 09:52:21.061 +01:00 [Information] [StreamProgress-5/01/2017 9:52:21] information - Pass 2 - Node[300000] @ 371914/s
+2017-01-05 09:52:21.382 +01:00 [Information] [StreamProgress-5/01/2017 9:52:21] information - Pass 2 - Node[400000] @ 354712/s
+2017-01-05 09:52:21.712 +01:00 [Information] [StreamProgress-5/01/2017 9:52:21] information - Pass 2 - Node[500000] @ 342894/s
+2017-01-05 09:52:21.985 +01:00 [Information] [StreamProgress-5/01/2017 9:52:21] information - Pass 2 - Node[600000] @ 346680/s
+2017-01-05 09:52:22.247 +01:00 [Information] [StreamProgress-5/01/2017 9:52:22] information - Pass 2 - Node[700000] @ 351171/s
+2017-01-05 09:52:22.494 +01:00 [Information] [StreamProgress-5/01/2017 9:52:22] information - Pass 2 - Node[800000] @ 357157/s
+2017-01-05 09:52:22.785 +01:00 [Information] [StreamProgress-5/01/2017 9:52:22] information - Pass 2 - Node[900000] @ 355599/s
+2017-01-05 09:52:23.032 +01:00 [Information] [StreamProgress-5/01/2017 9:52:23] information - Pass 2 - Node[1000000] @ 359976/s
+2017-01-05 09:52:23.261 +01:00 [Information] [StreamProgress-5/01/2017 9:52:23] information - Pass 2 - Node[1100000] @ 365934/s
+2017-01-05 09:52:23.497 +01:00 [Information] [StreamProgress-5/01/2017 9:52:23] information - Pass 2 - Node[1200000] @ 370026/s
+2017-01-05 09:52:23.822 +01:00 [Information] [StreamProgress-5/01/2017 9:52:23] information - Pass 2 - Node[1300000] @ 364398/s
+2017-01-05 09:52:24.004 +01:00 [Information] [StreamProgress-5/01/2017 9:52:24] information - Pass 2 - Node[1400000] @ 373329/s
+2017-01-05 09:52:24.176 +01:00 [Information] [StreamProgress-5/01/2017 9:52:24] information - Pass 2 - Node[1500000] @ 382452/s
+2017-01-05 09:52:24.366 +01:00 [Information] [StreamProgress-5/01/2017 9:52:24] information - Pass 2 - Node[1600000] @ 389097/s
+2017-01-05 09:52:24.466 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 3: highway=motorway_link maxspeed=90 oneway=yes 
+2017-01-05 09:52:24.488 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 4: highway=motorway_link maxspeed=130 oneway=yes 
+2017-01-05 09:52:24.491 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 5: highway=motorway_link oneway=yes 
+2017-01-05 09:52:24.495 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 6: highway=motorway maxspeed=130 oneway=yes 
+2017-01-05 09:52:24.496 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 7: highway=motorway_link maxspeed=70 oneway=yes 
+2017-01-05 09:52:24.496 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 8: highway=motorway oneway=yes 
+2017-01-05 09:52:24.497 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 9: highway=motorway maxspeed=90 oneway=yes 
+2017-01-05 09:52:24.497 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 10: highway=primary maxspeed=50 
+2017-01-05 09:52:24.498 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 11: highway=service maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.498 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 12: highway=primary maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.499 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 13: highway=trunk_link oneway=yes 
+2017-01-05 09:52:24.499 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 14: highway=residential oneway=yes 
+2017-01-05 09:52:24.508 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 15: highway=residential 
+2017-01-05 09:52:24.508 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 16: highway=residential maxspeed=30 
+2017-01-05 09:52:24.509 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 17: highway=residential junction=roundabout 
+2017-01-05 09:52:24.510 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 18: highway=tertiary maxspeed=50 
+2017-01-05 09:52:24.511 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 19: highway=secondary 
+2017-01-05 09:52:24.512 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 20: highway=track 
+2017-01-05 09:52:24.512 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 21: highway=unclassified maxspeed=30 oneway=yes 
+2017-01-05 09:52:24.513 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 22: highway=tertiary maxspeed=90 
+2017-01-05 09:52:24.513 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 23: highway=residential maxspeed=30 oneway=yes 
+2017-01-05 09:52:24.514 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 24: highway=secondary maxspeed=90 
+2017-01-05 09:52:24.514 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 25: highway=motorway maxspeed=110 oneway=yes 
+2017-01-05 09:52:24.522 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 26: highway=motorway_link maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.522 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 27: highway=service 
+2017-01-05 09:52:24.523 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 28: highway=service junction=roundabout 
+2017-01-05 09:52:24.523 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 29: highway=service oneway=yes 
+2017-01-05 09:52:24.524 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 30: highway=secondary maxspeed=90 oneway=yes 
+2017-01-05 09:52:24.524 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 31: highway=residential maxspeed=30 oneway=-1 
+2017-01-05 09:52:24.525 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 32: highway=primary oneway=yes 
+2017-01-05 09:52:24.526 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 33: highway=primary maxspeed=50 junction=roundabout 
+2017-01-05 09:52:24.526 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 34: highway=primary_link maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.527 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 35: highway=secondary oneway=yes 
+2017-01-05 09:52:24.528 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 36: highway=secondary maxspeed=50 
+2017-01-05 09:52:24.528 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 37: highway=unclassified oneway=yes 
+2017-01-05 09:52:24.529 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 38: highway=secondary maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.529 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 39: highway=secondary maxspeed=50 junction=roundabout 
+2017-01-05 09:52:24.535 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 40: highway=residential maxspeed=50 
+2017-01-05 09:52:24.536 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 41: highway=unclassified 
+2017-01-05 09:52:24.537 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 42: highway=service motorcar=no 
+2017-01-05 09:52:24.537 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 43: highway=tertiary 
+2017-01-05 09:52:24.538 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 44: highway=unclassified maxspeed=50 
+2017-01-05 09:52:24.539 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 45: highway=primary maxspeed=70 
+2017-01-05 09:52:24.539 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 46: highway=residential maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.540 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 47: highway=motorway_link maxspeed=110 oneway=yes 
+2017-01-05 09:52:24.541 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 48: highway=residential oneway=-1 
+2017-01-05 09:52:24.542 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 49: highway=residential maxspeed=30 maxweight=2.5 
+2017-01-05 09:52:24.543 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 50: highway=primary maxspeed=90 
+2017-01-05 09:52:24.549 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 51: highway=primary 
+2017-01-05 09:52:24.554 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 52: highway=living_street 
+2017-01-05 09:52:24.556 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 53: highway=primary junction=roundabout 
+2017-01-05 09:52:24.556 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 54: highway=secondary junction=roundabout 
+2017-01-05 09:52:24.557 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 55: highway=service maxspeed=50 
+2017-01-05 09:52:24.562 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 56: highway=primary maxspeed=90 oneway=yes 
+2017-01-05 09:52:24.563 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 57: highway=unclassified junction=roundabout 
+2017-01-05 09:52:24.565 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 58: highway=primary_link 
+2017-01-05 09:52:24.565 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 59: highway=secondary maxspeed=30 
+2017-01-05 09:52:24.573 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 60: highway=trunk maxspeed=70 oneway=yes 
+2017-01-05 09:52:24.574 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 61: highway=motorway maxspeed=70 oneway=yes 
+2017-01-05 09:52:24.575 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 62: highway=trunk maxspeed=90 oneway=yes 
+2017-01-05 09:52:24.576 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 63: highway=tertiary maxspeed=50 junction=roundabout 
+2017-01-05 09:52:24.576 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 64: highway=unclassified maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.578 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 65: highway=motorway maxspeed=100 oneway=yes 
+2017-01-05 09:52:24.578 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 66: highway=primary maxspeed=30 
+2017-01-05 09:52:24.579 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 67: highway=tertiary junction=roundabout 
+2017-01-05 09:52:24.586 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 68: highway=service maxspeed=30 
+2017-01-05 09:52:24.586 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 69: highway=primary maxspeed=90 junction=roundabout 
+2017-01-05 09:52:24.588 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 70: highway=tertiary maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.589 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 71: highway=trunk_link maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.590 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 72: highway=primary maxspeed=70 oneway=yes 
+2017-01-05 09:52:24.590 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 73: highway=secondary_link maxspeed=70 oneway=yes 
+2017-01-05 09:52:24.591 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 74: highway=residential maxspeed=30 junction=roundabout 
+2017-01-05 09:52:24.592 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 75: highway=secondary maxspeed=70 oneway=yes 
+2017-01-05 09:52:24.592 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 76: highway=secondary maxspeed=90 junction=roundabout 
+2017-01-05 09:52:24.593 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 77: highway=residential maxspeed=50 maxweight=3.5 
+2017-01-05 09:52:24.599 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 78: highway=service maxspeed=10 
+2017-01-05 09:52:24.600 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 79: highway=living_street maxspeed=30 oneway=yes 
+2017-01-05 09:52:24.600 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 80: highway=trunk maxspeed=70 
+2017-01-05 09:52:24.601 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 81: highway=trunk maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.611 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 82: highway=track maxspeed=30 
+2017-01-05 09:52:24.611 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 83: highway=unclassified maxspeed=30 
+2017-01-05 09:52:24.612 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 84: highway=track motorcar=no 
+2017-01-05 09:52:24.614 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 85: highway=secondary_link oneway=yes 
+2017-01-05 09:52:24.615 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 86: highway=primary maxspeed=70 junction=roundabout 
+2017-01-05 09:52:24.616 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 87: highway=living_street maxspeed=20 
+2017-01-05 09:52:24.624 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 88: highway=residential maxspeed=30 maxweight=3.5 
+2017-01-05 09:52:24.626 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 89: highway=living_street maxspeed=20 oneway=yes 
+2017-01-05 09:52:24.627 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 90: highway=living_street maxspeed=20 oneway=yes maxweight=3.5 
+2017-01-05 09:52:24.628 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 91: highway=residential maxspeed=50 maxweight=3.5 maxwidth=2.2 
+2017-01-05 09:52:24.629 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 92: highway=secondary maxspeed=70 
+2017-01-05 09:52:24.632 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 93: highway=primary maxspeed=100 maxweight=24 
+2017-01-05 09:52:24.638 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 94: highway=secondary_link maxspeed=50 oneway=yes 
+2017-01-05 09:52:24.642 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 95: highway=tertiary maxspeed=90 oneway=yes 
+2017-01-05 09:52:24.643 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 96: highway=secondary_link maxspeed=50 junction=roundabout 
+2017-01-05 09:52:24.645 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 97: highway=primary_link oneway=yes 
+2017-01-05 09:52:24.646 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 98: highway=trunk_link 
+2017-01-05 09:52:24.647 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 99: highway=trunk_link maxspeed=70 oneway=yes 
+2017-01-05 09:52:24.652 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 100: highway=trunk maxspeed=90 
+2017-01-05 09:52:24.656 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 101: highway=tertiary maxspeed=30 
+2017-01-05 09:52:24.657 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 102: highway=trunk_link maxspeed=70 
+2017-01-05 09:52:24.657 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 103: highway=service oneway=yes motorcar=no 
+2017-01-05 09:52:24.665 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 104: highway=primary_link maxspeed=70 oneway=yes 
+2017-01-05 09:52:24.666 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 105: highway=motorway_link oneway=yes motorcar=no 
+2017-01-05 09:52:24.667 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 106: highway=unclassified motorcar=no 
+2017-01-05 09:52:24.674 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 107: highway=tertiary oneway=yes 
+2017-01-05 09:52:24.676 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 108: highway=residential maxspeed=30 maxwidth=2 
+2017-01-05 09:52:24.678 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 109: highway=residential maxspeed=20 
+2017-01-05 09:52:24.681 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 110: highway=residential motorcar=no 
+2017-01-05 09:52:24.687 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 111: highway=secondary maxspeed=50 maxweight=7.5 
+2017-01-05 09:52:24.689 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 112: highway=secondary maxspeed=90 maxwidth=4.2 
+2017-01-05 09:52:24.698 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 113: highway=tertiary maxspeed=50 motorcar=no 
+2017-01-05 09:52:24.703 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 114: highway=residential maxspeed=50 junction=roundabout 
+2017-01-05 09:52:24.713 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 115: highway=trunk_link maxspeed=90 oneway=yes 
+2017-01-05 09:52:24.716 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 116: highway=service oneway=yes maxweight=5.5 
+2017-01-05 09:52:24.721 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 117: highway=residential maxspeed=30 motorcar=no 
+2017-01-05 09:52:24.721 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 118: highway=tertiary maxspeed=30 oneway=yes 
+2017-01-05 09:52:24.722 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 119: highway=unclassified maxspeed=70 oneway=yes 
+2017-01-05 09:52:24.722 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 120: highway=unclassified maxspeed=70 junction=roundabout 
+2017-01-05 09:52:24.732 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 121: highway=secondary maxweight=3.5 
+2017-01-05 09:52:24.732 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 122: highway=residential maxspeed=50 motorcar=no 
+2017-01-05 09:52:24.733 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 123: highway=residential maxspeed=50 maxweight=3.5T 
+2017-01-05 09:52:24.736 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 124: highway=trunk 
+2017-01-05 09:52:24.739 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 125: highway=tertiary maxspeed=50 maxweight=3.5 
+2017-01-05 09:52:24.745 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 126: highway=unclassified maxspeed=50 junction=roundabout 
+2017-01-05 09:52:24.747 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 127: highway=unclassified maxweight=3.5 
+2017-01-05 09:52:24.749 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 128: highway=tertiary maxspeed=30 maxweight=3.5 
+2017-01-05 09:52:24.756 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 129: highway=residential maxspeed=30 oneway=yes maxweight=3.5 
+2017-01-05 09:52:24.761 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 130: highway=living_street maxspeed=30 
+2017-01-05 09:52:24.767 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 131: highway=service maxspeed=10 oneway=yes 
+2017-01-05 09:52:24.774 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 132: highway=service maxspeed=30 oneway=yes 
+2017-01-05 09:52:24.778 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 133: highway=unclassified maxspeed=90 
+2017-01-05 09:52:24.779 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 134: highway=service maxspeed=90 
+2017-01-05 09:52:24.782 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 135: highway=secondary maxspeed=50 maxweight=3.5T 
+2017-01-05 09:52:24.784 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 136: highway=tertiary motorcar=no 
+2017-01-05 09:52:24.793 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 137: highway=unclassified maxspeed=50 motorcar=no 
+2017-01-05 09:52:24.795 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 138: highway=services 
+2017-01-05 09:52:24.806 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 139: highway=tertiary maxspeed=90 maxweight=3.5 
+2017-01-05 09:52:24.807 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 140: highway=living_street maxspeed=20 maxwidth=2.2 
+2017-01-05 09:52:24.809 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 141: highway=residential maxweight=3.5 
+2017-01-05 09:52:24.813 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 142: highway=service maxweight=3.5 
+2017-01-05 09:52:24.866 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 143: highway=unclassified oneway=-1 
+2017-01-05 09:52:24.879 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 144: highway=service maxspeed=10 motorcar=no 
+2017-01-05 09:52:24.879 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 145: highway=secondary maxspeed=30 oneway=yes 
+2017-01-05 09:52:24.894 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 146: highway=service oneway=-1 
+2017-01-05 09:52:24.929 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 147: highway=service maxspeed=50 motorcar=no 
+2017-01-05 09:52:24.932 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 148: highway=residential maxspeed=50 oneway=yes maxweight=3.5 maxwidth=2.2 
+2017-01-05 09:52:24.934 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 149: highway=track maxweight=3.5 
+2017-01-05 09:52:24.943 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 150: highway=primary maxspeed=90 maxweight=10 
+2017-01-05 09:52:24.944 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 151: highway=primary maxspeed=30 oneway=yes 
+2017-01-05 09:52:24.945 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 152: highway=residential maxspeed=50 oneway=-1 
+2017-01-05 09:52:24.956 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 153: highway=residential maxspeed=50 oneway=yes maxwidth=1.9 
+2017-01-05 09:52:24.960 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 154: highway=residential oneway=yes motorcar=no 
+2017-01-05 09:52:24.961 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 155: highway=primary maxspeed=50 maxweight=6 
+2017-01-05 09:52:24.961 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 156: highway=secondary maxspeed=90 maxweight=9 
+2017-01-05 09:52:24.962 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 157: highway=secondary maxspeed=50 maxweight=9 
+2017-01-05 09:52:24.968 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 158: highway=track oneway=yes 
+2017-01-05 09:52:24.970 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 159: highway=residential maxspeed=50 maxwidth=1.9 
+2017-01-05 09:52:24.973 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 160: highway=residential maxspeed=20 oneway=yes maxwidth=2.3 
+2017-01-05 09:52:24.974 +01:00 [Information] [StreamProgress-5/01/2017 9:52:24] information - Pass 2 - Way[10000] @ 19412,81/s
+2017-01-05 09:52:24.975 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 161: highway=trunk_link maxspeed=130 oneway=yes 
+2017-01-05 09:52:24.982 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 162: highway=primary_link maxspeed=90 oneway=yes 
+2017-01-05 09:52:24.983 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 163: highway=service maxspeed=10 oneway=yes motorcar=no 
+2017-01-05 09:52:24.989 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 164: highway=service maxspeed=50 oneway=yes motorcar=no 
+2017-01-05 09:52:24.997 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:24] information - Normalized: # profiles 165: highway=primary maxspeed=100 
+2017-01-05 09:52:25.005 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 166: highway=residential maxspeed=30 oneway=yes maxwidth=1.9 
+2017-01-05 09:52:25.007 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 167: highway=primary maxspeed=90 maxweight=6 
+2017-01-05 09:52:25.008 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 168: highway=secondary maxspeed=50 maxweight=3.5 
+2017-01-05 09:52:25.010 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 169: highway=service maxspeed=20 
+2017-01-05 09:52:25.016 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 170: highway=primary maxspeed=30 maxweight=7 
+2017-01-05 09:52:25.040 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 171: highway=unclassified maxspeed=40 
+2017-01-05 09:52:25.044 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 172: highway=residential maxspeed=50 oneway=yes motorcar=no 
+2017-01-05 09:52:25.055 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 173: highway=living_street maxspeed=20 junction=roundabout 
+2017-01-05 09:52:25.055 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 174: highway=living_street maxspeed=20 oneway=-1 
+2017-01-05 09:52:25.060 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 175: highway=road 
+2017-01-05 09:52:25.067 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 176: highway=tertiary maxspeed=20 
+2017-01-05 09:52:25.070 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 177: highway=secondary maxweight=7.5 
+2017-01-05 09:52:25.071 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 178: highway=secondary maxspeed=50 oneway=yes maxweight=7.5 
+2017-01-05 09:52:25.092 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 179: highway=residential maxspeed=30 maxwidth=10 
+2017-01-05 09:52:25.094 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 180: highway=trunk maxspeed=50 junction=roundabout 
+2017-01-05 09:52:25.095 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 181: highway=trunk maxspeed=70 junction=roundabout 
+2017-01-05 09:52:25.098 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 182: highway=trunk_link maxspeed=50 junction=roundabout 
+2017-01-05 09:52:25.155 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 183: highway=unclassified maxspeed=30 motorcar=no 
+2017-01-05 09:52:25.164 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 184: highway=trunk maxspeed=120 oneway=yes 
+2017-01-05 09:52:25.169 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 185: highway=service maxspeed=30 maxweight=12 
+2017-01-05 09:52:25.196 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 186: highway=tertiary_link 
+2017-01-05 09:52:25.201 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 187: highway=residential oneway=yes maxwidth=7 
+2017-01-05 09:52:25.219 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 188: highway=unclassified maxspeed=90 oneway=yes 
+2017-01-05 09:52:25.228 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 189: highway=track maxweight=40 
+2017-01-05 09:52:25.239 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 190: highway=living_street maxspeed=20 maxwidth=1.8 
+2017-01-05 09:52:25.280 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 191: highway=service maxspeed=15 oneway=yes motorcar=no 
+2017-01-05 09:52:25.286 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 192: highway=service maxspeed=30 motorcar=no 
+2017-01-05 09:52:25.295 +01:00 [Information] [StreamProgress-5/01/2017 9:52:25] information - Pass 2 - Way[20000] @ 23918,85/s
+2017-01-05 09:52:25.297 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 193: highway=service maxspeed=20 oneway=yes 
+2017-01-05 09:52:25.299 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 194: highway=unclassified maxspeed=70 
+2017-01-05 09:52:25.306 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 195: highway=residential maxspeed=70 
+2017-01-05 09:52:25.354 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 196: highway=service maxspeed=30 oneway=yes motorcar=no 
+2017-01-05 09:52:25.398 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 197: highway=living_street maxspeed=20 maxweight=3.5 
+2017-01-05 09:52:25.414 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 198: highway=unclassified maxweight=5.5 
+2017-01-05 09:52:25.441 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 199: highway=residential maxspeed=50 maxweight=5.5 
+2017-01-05 09:52:25.457 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 200: highway=residential maxspeed=10 
+2017-01-05 09:52:25.459 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 201: highway=track maxspeed=20 
+2017-01-05 09:52:25.464 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 202: highway=track maxspeed=90 
+2017-01-05 09:52:25.483 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 203: highway=service oneway=yes maxweight=3.5 
+2017-01-05 09:52:25.494 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 204: highway=unclassified maxspeed=10 
+2017-01-05 09:52:25.513 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 205: highway=primary maxspeed=50 maxwidth=10 
+2017-01-05 09:52:25.525 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 206: highway=secondary_link oneway=yes motorcar=no 
+2017-01-05 09:52:25.539 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 207: highway=secondary_link maxspeed=90 oneway=yes 
+2017-01-05 09:52:25.541 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 208: highway=secondary maxspeed=90 maxweight=3.5 
+2017-01-05 09:52:25.555 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 209: highway=unclassified maxspeed=30 oneway=yes maxweight=3.5 
+2017-01-05 09:52:25.556 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 210: highway=secondary_link 
+2017-01-05 09:52:25.574 +01:00 [Information] [StreamProgress-5/01/2017 9:52:25] information - Pass 2 - Way[30000] @ 26901,08/s
+2017-01-05 09:52:25.578 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 211: highway=motorway_link maxspeed=50 junction=roundabout 
+2017-01-05 09:52:25.579 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 212: highway=motorway_link maxspeed=50 
+2017-01-05 09:52:25.679 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 213: highway=residential maxwidth=2.5 
+2017-01-05 09:52:25.683 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 214: highway=secondary maxspeed=50 maxweight=6 
+2017-01-05 09:52:25.689 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 215: highway=service maxspeed=20 motorcar=no 
+2017-01-05 09:52:25.697 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 216: highway=residential maxspeed=50 oneway=yes maxweight=7.5 
+2017-01-05 09:52:25.698 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 217: highway=trunk maxspeed=50 
+2017-01-05 09:52:25.748 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 218: highway=track oneway=-1 
+2017-01-05 09:52:25.752 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 219: highway=residential maxspeed=90 
+2017-01-05 09:52:25.824 +01:00 [Information] [StreamProgress-5/01/2017 9:52:25] information - Pass 2 - Way[40000] @ 29299,02/s
+2017-01-05 09:52:25.833 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 220: highway=living_street motorcar=no 
+2017-01-05 09:52:25.862 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 221: highway=living_street oneway=yes 
+2017-01-05 09:52:25.865 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 222: highway=service maxspeed=30 junction=roundabout 
+2017-01-05 09:52:25.915 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 223: highway=service maxspeed=10 oneway=-1 motorcar=no 
+2017-01-05 09:52:25.966 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:25] information - Normalized: # profiles 224: highway=secondary_link maxspeed=50 
+2017-01-05 09:52:26.018 +01:00 [Information] [StreamProgress-5/01/2017 9:52:26] information - Pass 2 - Way[50000] @ 32076,96/s
+2017-01-05 09:52:26.031 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 225: highway=track maxspeed=50 
+2017-01-05 09:52:26.066 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 226: highway=primary maxspeed=90 oneway=-1 
+2017-01-05 09:52:26.068 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 227: highway=primary maxspeed=90 oneway=yes maxweight=12 
+2017-01-05 09:52:26.074 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 228: highway=unclassified maxweight=5 
+2017-01-05 09:52:26.102 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 229: highway=motorway maxspeed=50 oneway=yes 
+2017-01-05 09:52:26.130 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 230: highway=service maxspeed=5 oneway=yes 
+2017-01-05 09:52:26.145 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 231: highway=service maxspeed=40 
+2017-01-05 09:52:26.185 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 232: highway=living_street maxspeed=30 oneway=yes motorcar=no 
+2017-01-05 09:52:26.198 +01:00 [Information] [StreamProgress-5/01/2017 9:52:26] information - Pass 2 - Way[60000] @ 34517,15/s
+2017-01-05 09:52:26.349 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 233: highway=secondary maxspeed=70 junction=roundabout 
+2017-01-05 09:52:26.355 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 234: highway=motorway_link 
+2017-01-05 09:52:26.356 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 235: highway=primary maxspeed=50 maxweight=7 
+2017-01-05 09:52:26.358 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 236: highway=secondary maxspeed=90 maxweight=7.5 
+2017-01-05 09:52:26.388 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 237: highway=service maxspeed=130 motorcar=no 
+2017-01-05 09:52:26.394 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 238: highway=primary_link maxspeed=70 oneway=yes maxweight=12 
+2017-01-05 09:52:26.398 +01:00 [Information] [StreamProgress-5/01/2017 9:52:26] information - Pass 2 - Way[70000] @ 36104,74/s
+2017-01-05 09:52:26.404 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 239: highway=primary_link maxspeed=70 
+2017-01-05 09:52:26.445 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 240: highway=primary_link maxspeed=50 
+2017-01-05 09:52:26.448 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 241: highway=secondary maxweight=9 
+2017-01-05 09:52:26.466 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 242: highway=unclassified maxspeed=20 
+2017-01-05 09:52:26.473 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 243: highway=residential maxwidth=7 
+2017-01-05 09:52:26.479 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 244: highway=unclassified maxspeed=50 oneway=yes motorcar=no 
+2017-01-05 09:52:26.493 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 245: highway=primary maxspeed=90 maxweight=7 
+2017-01-05 09:52:26.511 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 246: highway=primary maxspeed=50 maxweight=12 
+2017-01-05 09:52:26.557 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 247: highway=residential maxspeed=50 maxweight=13 
+2017-01-05 09:52:26.625 +01:00 [Information] [StreamProgress-5/01/2017 9:52:26] information - Pass 2 - Way[80000] @ 36928,73/s
+2017-01-05 09:52:26.634 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 248: highway=service maxspeed=5 
+2017-01-05 09:52:26.642 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 249: highway=primary maxspeed=90 maxweight=12 
+2017-01-05 09:52:26.766 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 250: highway=service maxspeed=15 
+2017-01-05 09:52:26.783 +01:00 [Information] [StreamProgress-5/01/2017 9:52:26] information - Pass 2 - Way[90000] @ 38720,58/s
+2017-01-05 09:52:26.804 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 251: highway=service maxspeed=20 maxweight=3.5 
+2017-01-05 09:52:26.896 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 252: highway=living_street maxspeed=30 oneway=-1 
+2017-01-05 09:52:26.938 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 253: highway=secondary oneway=yes motorcar=no 
+2017-01-05 09:52:26.942 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 254: highway=road motorcar=no 
+2017-01-05 09:52:26.954 +01:00 [Information] [StreamProgress-5/01/2017 9:52:26] information - Pass 2 - Way[100000] @ 40106,42/s
+2017-01-05 09:52:26.957 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 255: highway=service maxweight=2.5 
+2017-01-05 09:52:26.958 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:26] information - Normalized: # profiles 256: highway=service maxspeed=15 motorcar=no 
+2017-01-05 09:52:27.012 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 257: highway=track maxspeed=30 maxweight=12 
+2017-01-05 09:52:27.015 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 258: highway=tertiary maxspeed=70 
+2017-01-05 09:52:27.083 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 259: highway=living_street maxspeed=20 maxwidth=2 
+2017-01-05 09:52:27.105 +01:00 [Information] [StreamProgress-5/01/2017 9:52:27] information - Pass 2 - Way[110000] @ 41581,91/s
+2017-01-05 09:52:27.110 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 260: highway=service oneway=-1 motorcar=no 
+2017-01-05 09:52:27.111 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 261: highway=service junction=roundabout motorcar=no 
+2017-01-05 09:52:27.161 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 262: highway=service maxspeed=25 motorcar=no 
+2017-01-05 09:52:27.250 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 263: highway=primary maxspeed=110 
+2017-01-05 09:52:27.302 +01:00 [Information] [StreamProgress-5/01/2017 9:52:27] information - Pass 2 - Way[120000] @ 42232,6/s
+2017-01-05 09:52:27.398 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 264: highway=track maxspeed=10 motorcar=no 
+2017-01-05 09:52:27.401 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 265: highway=track maxspeed=20 motorcar=no 
+2017-01-05 09:52:27.404 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 266: highway=residential maxspeed=30 oneway=yes motorcar=no 
+2017-01-05 09:52:27.406 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 267: highway=unclassified maxspeed=20 oneway=yes motorcar=no 
+2017-01-05 09:52:27.408 +01:00 [Information] [StreamProgress-5/01/2017 9:52:27] information - Pass 2 - Way[130000] @ 44098,82/s
+2017-01-05 09:52:27.412 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 268: highway=service maxspeed=40 oneway=yes 
+2017-01-05 09:52:27.514 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 269: highway=road maxspeed=50 
+2017-01-05 09:52:27.543 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 270: highway=unclassified maxspeed=20 motorcar=no 
+2017-01-05 09:52:27.564 +01:00 [Information] [StreamProgress-5/01/2017 9:52:27] information - Pass 2 - Way[140000] @ 45088,08/s
+2017-01-05 09:52:27.701 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 271: highway=service maxweight=5.5 
+2017-01-05 09:52:27.729 +01:00 [Information] [StreamProgress-5/01/2017 9:52:27] information - Pass 2 - Way[150000] @ 45878,16/s
+2017-01-05 09:52:27.770 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 272: highway=residential maxspeed=90 motorcar=no 
+2017-01-05 09:52:27.792 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 273: highway=unclassified maxspeed=10 maxweight=2.5 
+2017-01-05 09:52:27.794 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 274: highway=service maxweight=10 
+2017-01-05 09:52:27.817 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 275: highway=unclassified maxspeed=20 oneway=yes 
+2017-01-05 09:52:27.823 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 276: highway=service maxspeed=90 oneway=yes motorcar=no 
+2017-01-05 09:52:27.823 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 277: highway=service maxspeed=90 oneway=yes 
+2017-01-05 09:52:27.835 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 278: highway=service maxspeed=5 motorcar=no 
+2017-01-05 09:52:27.852 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 279: highway=service maxspeed=90 junction=roundabout motorcar=no 
+2017-01-05 09:52:27.874 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 280: highway=motorway_link maxspeed=90 
+2017-01-05 09:52:27.949 +01:00 [Information] [StreamProgress-5/01/2017 9:52:27] information - Pass 2 - Way[160000] @ 45851,1/s
+2017-01-05 09:52:27.998 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:27] information - Normalized: # profiles 281: highway=residential maxspeed=20 motorcar=no 
+2017-01-05 09:52:28.159 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 282: highway=motorway_link maxspeed=100 oneway=yes 
+2017-01-05 09:52:28.162 +01:00 [Information] [StreamProgress-5/01/2017 9:52:28] information - Pass 2 - Way[170000] @ 45926,37/s
+2017-01-05 09:52:28.207 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 283: highway=secondary maxspeed=30 maxwidth=3.1 
+2017-01-05 09:52:28.278 +01:00 [Information] [StreamProgress-5/01/2017 9:52:28] information - Pass 2 - Way[180000] @ 47137,78/s
+2017-01-05 09:52:28.281 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 284: highway=service maxspeed=10 motorcar=no maxweight=3 
+2017-01-05 09:52:28.317 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 285: highway=tertiary maxweight=3.5 
+2017-01-05 09:52:28.396 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 286: highway=service maxwidth=1.20 
+2017-01-05 09:52:28.410 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 287: highway=motorway maxspeed=90 
+2017-01-05 09:52:28.427 +01:00 [Information] [StreamProgress-5/01/2017 9:52:28] information - Pass 2 - Way[190000] @ 47899,75/s
+2017-01-05 09:52:28.542 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 288: highway=unclassified oneway=yes motorcar=no 
+2017-01-05 09:52:28.583 +01:00 [Information] [StreamProgress-5/01/2017 9:52:28] information - Pass 2 - Way[200000] @ 48512,68/s
+2017-01-05 09:52:28.631 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 289: highway=service maxspeed=100 motorcar=no 
+2017-01-05 09:52:28.693 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 290: highway=service maxspeed=50 oneway=-1 
+2017-01-05 09:52:28.696 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 291: highway=service maxspeed=50 junction=roundabout 
+2017-01-05 09:52:28.768 +01:00 [Information] [StreamProgress-5/01/2017 9:52:28] information - Pass 2 - Way[210000] @ 48739,06/s
+2017-01-05 09:52:28.855 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 292: highway=residential maxspeed=20 oneway=yes 
+2017-01-05 09:52:28.990 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:28] information - Normalized: # profiles 293: highway=service maxspeed=90 motorcar=no 
+2017-01-05 09:52:29.040 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No link could be found between from and via node for restriction relation -1!
+2017-01-05 09:52:29.044 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No before vertex found for from way for restriction relation -1!
+2017-01-05 09:52:29.044 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No after vertex found for to way for restriction relation -1!
+2017-01-05 09:52:29.044 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No before vertex found for from way for restriction relation -1!
+2017-01-05 09:52:29.045 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No after vertex found for to way for restriction relation -1!
+2017-01-05 09:52:29.046 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No after vertex found for to way for restriction relation -1!
+2017-01-05 09:52:29.046 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No after vertex found for to way for restriction relation -1!
+2017-01-05 09:52:29.047 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No after vertex found for to way for restriction relation -1!
+2017-01-05 09:52:29.055 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No before vertex found for from way for restriction relation 1866903!
+2017-01-05 09:52:29.058 +01:00 [Information] [StreamProgress-5/01/2017 9:52:29] information - Pass 2 - Relation[1000] @ 14924,3/s
+2017-01-05 09:52:29.060 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No link could be found between from and via node for restriction relation 3307678!
+2017-01-05 09:52:29.060 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No link could be found between from and via node for restriction relation 3307679!
+2017-01-05 09:52:29.063 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No link could be found between from and via node for restriction relation 4664613!
+2017-01-05 09:52:29.063 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No link could be found between to and via node for restriction relation 5288302!
+2017-01-05 09:52:29.067 +01:00 [Information] [StreamProgress-5/01/2017 9:52:29] information - Pass 2 - Relation[2000] @ 26664,14/s
+2017-01-05 09:52:29.070 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No link could be found between to and via node for restriction relation 5510788!
+2017-01-05 09:52:29.071 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No link could be found between to and via node for restriction relation 5522081!
+2017-01-05 09:52:29.072 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:29] warning - No link could be found between to and via node for restriction relation 5528565!
+2017-01-05 09:52:29.073 +01:00 [Information] [StreamProgress-5/01/2017 9:52:29] information - Pass 2 - Relation[3000] @ 36581,98/s
+2017-01-05 09:52:29.084 +01:00 [Information] [StreamProgress-5/01/2017 9:52:29] information - Pass 2 - Relation[4000] @ 43008,26/s
+2017-01-05 09:52:29.090 +01:00 [Information] [StreamProgress-5/01/2017 9:52:29] information - Pass 2 - Relation[5000] @ 52079,05/s
+2017-01-05 09:52:30.712 +01:00 [Information] [Program-5/01/2017 9:52:30] information - Processing finished, took 00:00:15.0561554.
+2017-01-05 09:52:42.963 +01:00 [Information] [StreamProgress-5/01/2017 9:52:42] information - Pass 1 - Way[10000] @ 25412,81/s
+2017-01-05 09:52:43.129 +01:00 [Information] [StreamProgress-5/01/2017 9:52:43] information - Pass 1 - Way[20000] @ 34600,78/s
+2017-01-05 09:52:43.280 +01:00 [Information] [StreamProgress-5/01/2017 9:52:43] information - Pass 1 - Way[30000] @ 41193,28/s
+2017-01-05 09:52:43.422 +01:00 [Information] [StreamProgress-5/01/2017 9:52:43] information - Pass 1 - Way[40000] @ 45961,88/s
+2017-01-05 09:52:43.554 +01:00 [Information] [StreamProgress-5/01/2017 9:52:43] information - Pass 1 - Way[50000] @ 49860,15/s
+2017-01-05 09:52:43.660 +01:00 [Information] [StreamProgress-5/01/2017 9:52:43] information - Pass 1 - Way[60000] @ 54111,86/s
+2017-01-05 09:52:43.790 +01:00 [Information] [StreamProgress-5/01/2017 9:52:43] information - Pass 1 - Way[70000] @ 56505,04/s
+2017-01-05 09:52:43.931 +01:00 [Information] [StreamProgress-5/01/2017 9:52:43] information - Pass 1 - Way[80000] @ 57975,03/s
+2017-01-05 09:52:44.029 +01:00 [Information] [StreamProgress-5/01/2017 9:52:44] information - Pass 1 - Way[90000] @ 60896,69/s
+2017-01-05 09:52:44.133 +01:00 [Information] [StreamProgress-5/01/2017 9:52:44] information - Pass 1 - Way[100000] @ 63213,81/s
+2017-01-05 09:52:44.277 +01:00 [Information] [StreamProgress-5/01/2017 9:52:44] information - Pass 1 - Way[110000] @ 63733,4/s
+2017-01-05 09:52:44.395 +01:00 [Information] [StreamProgress-5/01/2017 9:52:44] information - Pass 1 - Way[120000] @ 65077,59/s
+2017-01-05 09:52:44.486 +01:00 [Information] [StreamProgress-5/01/2017 9:52:44] information - Pass 1 - Way[130000] @ 67184,8/s
+2017-01-05 09:52:44.591 +01:00 [Information] [StreamProgress-5/01/2017 9:52:44] information - Pass 1 - Way[140000] @ 68628,25/s
+2017-01-05 09:52:44.677 +01:00 [Information] [StreamProgress-5/01/2017 9:52:44] information - Pass 1 - Way[150000] @ 70555,36/s
+2017-01-05 09:52:44.807 +01:00 [Information] [StreamProgress-5/01/2017 9:52:44] information - Pass 1 - Way[160000] @ 70921,93/s
+2017-01-05 09:52:44.929 +01:00 [Information] [StreamProgress-5/01/2017 9:52:44] information - Pass 1 - Way[170000] @ 71488,52/s
+2017-01-05 09:52:45.043 +01:00 [Information] [StreamProgress-5/01/2017 9:52:45] information - Pass 1 - Way[180000] @ 72230,33/s
+2017-01-05 09:52:45.143 +01:00 [Information] [StreamProgress-5/01/2017 9:52:45] information - Pass 1 - Way[190000] @ 73301,44/s
+2017-01-05 09:52:45.266 +01:00 [Information] [StreamProgress-5/01/2017 9:52:45] information - Pass 1 - Way[200000] @ 73677,28/s
+2017-01-05 09:52:45.346 +01:00 [Information] [StreamProgress-5/01/2017 9:52:45] information - Pass 1 - Way[210000] @ 75146,51/s
+2017-01-05 09:52:45.533 +01:00 [Information] [StreamProgress-5/01/2017 9:52:45] information - Pass 1 - Relation[1000] @ 39997,12/s
+2017-01-05 09:52:45.536 +01:00 [Information] [RestrictionProcessor-5/01/2017 9:52:45] warning - A positive restriction (only_xxx) with a via-way not supported, relation 3373740 not processed!
+2017-01-05 09:52:45.539 +01:00 [Information] [StreamProgress-5/01/2017 9:52:45] information - Pass 1 - Relation[2000] @ 64515,92/s
+2017-01-05 09:52:45.541 +01:00 [Information] [StreamProgress-5/01/2017 9:52:45] information - Pass 1 - Relation[3000] @ 89552,77/s
+2017-01-05 09:52:45.543 +01:00 [Information] [RestrictionProcessor-5/01/2017 9:52:45] warning - A positive restriction (only_xxx) with a via-way not supported, relation 5734053 not processed!
+2017-01-05 09:52:45.543 +01:00 [Information] [RestrictionProcessor-5/01/2017 9:52:45] warning - A positive restriction (only_xxx) with a via-way not supported, relation 5734054 not processed!
+2017-01-05 09:52:45.543 +01:00 [Information] [RestrictionProcessor-5/01/2017 9:52:45] warning - A positive restriction (only_xxx) with a via-way not supported, relation 5734087 not processed!
+2017-01-05 09:52:45.555 +01:00 [Information] [StreamProgress-5/01/2017 9:52:45] information - Pass 1 - Relation[4000] @ 85105,3/s
+2017-01-05 09:52:45.559 +01:00 [Information] [StreamProgress-5/01/2017 9:52:45] information - Pass 1 - Relation[5000] @ 98035,37/s
+2017-01-05 09:52:45.565 +01:00 [Information] [NodeIndex-5/01/2017 9:52:45] information - Sorting node id's...
+2017-01-05 09:52:46.429 +01:00 [Information] [StreamProgress-5/01/2017 9:52:46] information - Pass 2 - Node[100000] @ 379459/s
+2017-01-05 09:52:46.691 +01:00 [Information] [StreamProgress-5/01/2017 9:52:46] information - Pass 2 - Node[200000] @ 380691/s
+2017-01-05 09:52:47.042 +01:00 [Information] [StreamProgress-5/01/2017 9:52:47] information - Pass 2 - Node[300000] @ 342112/s
+2017-01-05 09:52:47.363 +01:00 [Information] [StreamProgress-5/01/2017 9:52:47] information - Pass 2 - Node[400000] @ 334175/s
+2017-01-05 09:52:47.685 +01:00 [Information] [StreamProgress-5/01/2017 9:52:47] information - Pass 2 - Node[500000] @ 328945/s
+2017-01-05 09:52:47.923 +01:00 [Information] [StreamProgress-5/01/2017 9:52:47] information - Pass 2 - Node[600000] @ 341289/s
+2017-01-05 09:52:48.186 +01:00 [Information] [StreamProgress-5/01/2017 9:52:48] information - Pass 2 - Node[700000] @ 346350/s
+2017-01-05 09:52:48.449 +01:00 [Information] [StreamProgress-5/01/2017 9:52:48] information - Pass 2 - Node[800000] @ 350245/s
+2017-01-05 09:52:48.726 +01:00 [Information] [StreamProgress-5/01/2017 9:52:48] information - Pass 2 - Node[900000] @ 351475/s
+2017-01-05 09:52:48.982 +01:00 [Information] [StreamProgress-5/01/2017 9:52:48] information - Pass 2 - Node[1000000] @ 354966/s
+2017-01-05 09:52:49.200 +01:00 [Information] [StreamProgress-5/01/2017 9:52:49] information - Pass 2 - Node[1100000] @ 362536/s
+2017-01-05 09:52:49.443 +01:00 [Information] [StreamProgress-5/01/2017 9:52:49] information - Pass 2 - Node[1200000] @ 366054/s
+2017-01-05 09:52:49.762 +01:00 [Information] [StreamProgress-5/01/2017 9:52:49] information - Pass 2 - Node[1300000] @ 361490/s
+2017-01-05 09:52:49.938 +01:00 [Information] [StreamProgress-5/01/2017 9:52:49] information - Pass 2 - Node[1400000] @ 371079/s
+2017-01-05 09:52:50.141 +01:00 [Information] [StreamProgress-5/01/2017 9:52:50] information - Pass 2 - Node[1500000] @ 377239/s
+2017-01-05 09:52:50.332 +01:00 [Information] [StreamProgress-5/01/2017 9:52:50] information - Pass 2 - Node[1600000] @ 383992/s
+2017-01-05 09:52:50.433 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 3: highway=motorway_link maxspeed=90 oneway=yes 
+2017-01-05 09:52:50.453 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 4: highway=motorway_link maxspeed=130 oneway=yes 
+2017-01-05 09:52:50.453 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 5: highway=motorway_link oneway=yes 
+2017-01-05 09:52:50.458 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 6: highway=motorway maxspeed=130 oneway=yes 
+2017-01-05 09:52:50.459 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 7: highway=motorway_link maxspeed=70 oneway=yes 
+2017-01-05 09:52:50.460 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 8: highway=motorway oneway=yes 
+2017-01-05 09:52:50.461 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 9: highway=motorway maxspeed=90 oneway=yes 
+2017-01-05 09:52:50.462 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 10: highway=primary maxspeed=50 
+2017-01-05 09:52:50.463 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 11: highway=service maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.464 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 12: highway=primary maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.464 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 13: highway=trunk_link oneway=yes 
+2017-01-05 09:52:50.470 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 14: highway=residential oneway=yes 
+2017-01-05 09:52:50.470 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 15: highway=residential 
+2017-01-05 09:52:50.471 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 16: highway=residential maxspeed=30 
+2017-01-05 09:52:50.471 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 17: highway=residential junction=roundabout 
+2017-01-05 09:52:50.473 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 18: highway=tertiary maxspeed=50 
+2017-01-05 09:52:50.473 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 19: highway=secondary 
+2017-01-05 09:52:50.474 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 20: highway=track 
+2017-01-05 09:52:50.474 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 21: highway=unclassified maxspeed=30 oneway=yes 
+2017-01-05 09:52:50.475 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 22: highway=tertiary maxspeed=90 
+2017-01-05 09:52:50.475 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 23: highway=residential maxspeed=30 oneway=yes 
+2017-01-05 09:52:50.477 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 24: highway=secondary maxspeed=90 
+2017-01-05 09:52:50.485 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 25: highway=motorway maxspeed=110 oneway=yes 
+2017-01-05 09:52:50.488 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 26: highway=motorway_link maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.489 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 27: highway=service 
+2017-01-05 09:52:50.489 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 28: highway=service junction=roundabout 
+2017-01-05 09:52:50.490 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 29: highway=service oneway=yes 
+2017-01-05 09:52:50.491 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 30: highway=secondary maxspeed=90 oneway=yes 
+2017-01-05 09:52:50.491 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 31: highway=residential maxspeed=30 oneway=-1 
+2017-01-05 09:52:50.492 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 32: highway=primary oneway=yes 
+2017-01-05 09:52:50.492 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 33: highway=primary maxspeed=50 junction=roundabout 
+2017-01-05 09:52:50.493 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 34: highway=primary_link maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.493 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 35: highway=secondary oneway=yes 
+2017-01-05 09:52:50.499 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 36: highway=secondary maxspeed=50 
+2017-01-05 09:52:50.500 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 37: highway=unclassified oneway=yes 
+2017-01-05 09:52:50.501 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 38: highway=secondary maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.501 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 39: highway=secondary maxspeed=50 junction=roundabout 
+2017-01-05 09:52:50.502 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 40: highway=residential maxspeed=50 
+2017-01-05 09:52:50.503 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 41: highway=unclassified 
+2017-01-05 09:52:50.503 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 42: highway=service motorcar=no 
+2017-01-05 09:52:50.503 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 43: highway=tertiary 
+2017-01-05 09:52:50.504 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 44: highway=unclassified maxspeed=50 
+2017-01-05 09:52:50.504 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 45: highway=primary maxspeed=70 
+2017-01-05 09:52:50.505 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 46: highway=residential maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.505 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 47: highway=motorway_link maxspeed=110 oneway=yes 
+2017-01-05 09:52:50.507 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 48: highway=residential oneway=-1 
+2017-01-05 09:52:50.513 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 49: highway=residential maxspeed=30 maxweight=2.5 
+2017-01-05 09:52:50.514 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 50: highway=primary maxspeed=90 
+2017-01-05 09:52:50.514 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 51: highway=primary 
+2017-01-05 09:52:50.515 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 52: highway=living_street 
+2017-01-05 09:52:50.517 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 53: highway=primary junction=roundabout 
+2017-01-05 09:52:50.517 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 54: highway=secondary junction=roundabout 
+2017-01-05 09:52:50.521 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 55: highway=service maxspeed=50 
+2017-01-05 09:52:50.526 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 56: highway=primary maxspeed=90 oneway=yes 
+2017-01-05 09:52:50.527 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 57: highway=unclassified junction=roundabout 
+2017-01-05 09:52:50.530 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 58: highway=primary_link 
+2017-01-05 09:52:50.530 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 59: highway=secondary maxspeed=30 
+2017-01-05 09:52:50.538 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 60: highway=trunk maxspeed=70 oneway=yes 
+2017-01-05 09:52:50.538 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 61: highway=motorway maxspeed=70 oneway=yes 
+2017-01-05 09:52:50.539 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 62: highway=trunk maxspeed=90 oneway=yes 
+2017-01-05 09:52:50.540 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 63: highway=tertiary maxspeed=50 junction=roundabout 
+2017-01-05 09:52:50.541 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 64: highway=unclassified maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.542 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 65: highway=motorway maxspeed=100 oneway=yes 
+2017-01-05 09:52:50.543 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 66: highway=primary maxspeed=30 
+2017-01-05 09:52:50.544 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 67: highway=tertiary junction=roundabout 
+2017-01-05 09:52:50.551 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 68: highway=service maxspeed=30 
+2017-01-05 09:52:50.551 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 69: highway=primary maxspeed=90 junction=roundabout 
+2017-01-05 09:52:50.555 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 70: highway=tertiary maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.555 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 71: highway=trunk_link maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.556 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 72: highway=primary maxspeed=70 oneway=yes 
+2017-01-05 09:52:50.557 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 73: highway=secondary_link maxspeed=70 oneway=yes 
+2017-01-05 09:52:50.558 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 74: highway=residential maxspeed=30 junction=roundabout 
+2017-01-05 09:52:50.558 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 75: highway=secondary maxspeed=70 oneway=yes 
+2017-01-05 09:52:50.559 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 76: highway=secondary maxspeed=90 junction=roundabout 
+2017-01-05 09:52:50.566 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 77: highway=residential maxspeed=50 maxweight=3.5 
+2017-01-05 09:52:50.568 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 78: highway=service maxspeed=10 
+2017-01-05 09:52:50.569 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 79: highway=living_street maxspeed=30 oneway=yes 
+2017-01-05 09:52:50.569 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 80: highway=trunk maxspeed=70 
+2017-01-05 09:52:50.569 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 81: highway=trunk maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.571 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 82: highway=track maxspeed=30 
+2017-01-05 09:52:50.572 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 83: highway=unclassified maxspeed=30 
+2017-01-05 09:52:50.572 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 84: highway=track motorcar=no 
+2017-01-05 09:52:50.582 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 85: highway=secondary_link oneway=yes 
+2017-01-05 09:52:50.583 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 86: highway=primary maxspeed=70 junction=roundabout 
+2017-01-05 09:52:50.585 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 87: highway=living_street maxspeed=20 
+2017-01-05 09:52:50.590 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 88: highway=residential maxspeed=30 maxweight=3.5 
+2017-01-05 09:52:50.592 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 89: highway=living_street maxspeed=20 oneway=yes 
+2017-01-05 09:52:50.592 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 90: highway=living_street maxspeed=20 oneway=yes maxweight=3.5 
+2017-01-05 09:52:50.594 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 91: highway=residential maxspeed=50 maxweight=3.5 maxwidth=2.2 
+2017-01-05 09:52:50.595 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 92: highway=secondary maxspeed=70 
+2017-01-05 09:52:50.602 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 93: highway=primary maxspeed=100 maxweight=24 
+2017-01-05 09:52:50.604 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 94: highway=secondary_link maxspeed=50 oneway=yes 
+2017-01-05 09:52:50.606 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 95: highway=tertiary maxspeed=90 oneway=yes 
+2017-01-05 09:52:50.607 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 96: highway=secondary_link maxspeed=50 junction=roundabout 
+2017-01-05 09:52:50.613 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 97: highway=primary_link oneway=yes 
+2017-01-05 09:52:50.614 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 98: highway=trunk_link 
+2017-01-05 09:52:50.614 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 99: highway=trunk_link maxspeed=70 oneway=yes 
+2017-01-05 09:52:50.616 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 100: highway=trunk maxspeed=90 
+2017-01-05 09:52:50.618 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 101: highway=tertiary maxspeed=30 
+2017-01-05 09:52:50.619 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 102: highway=trunk_link maxspeed=70 
+2017-01-05 09:52:50.619 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 103: highway=service oneway=yes motorcar=no 
+2017-01-05 09:52:50.626 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 104: highway=primary_link maxspeed=70 oneway=yes 
+2017-01-05 09:52:50.628 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 105: highway=motorway_link oneway=yes motorcar=no 
+2017-01-05 09:52:50.629 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 106: highway=unclassified motorcar=no 
+2017-01-05 09:52:50.637 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 107: highway=tertiary oneway=yes 
+2017-01-05 09:52:50.639 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 108: highway=residential maxspeed=30 maxwidth=2 
+2017-01-05 09:52:50.641 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 109: highway=residential maxspeed=20 
+2017-01-05 09:52:50.644 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 110: highway=residential motorcar=no 
+2017-01-05 09:52:50.649 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 111: highway=secondary maxspeed=50 maxweight=7.5 
+2017-01-05 09:52:50.651 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 112: highway=secondary maxspeed=90 maxwidth=4.2 
+2017-01-05 09:52:50.661 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 113: highway=tertiary maxspeed=50 motorcar=no 
+2017-01-05 09:52:50.666 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 114: highway=residential maxspeed=50 junction=roundabout 
+2017-01-05 09:52:50.674 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 115: highway=trunk_link maxspeed=90 oneway=yes 
+2017-01-05 09:52:50.677 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 116: highway=service oneway=yes maxweight=5.5 
+2017-01-05 09:52:50.683 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 117: highway=residential maxspeed=30 motorcar=no 
+2017-01-05 09:52:50.684 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 118: highway=tertiary maxspeed=30 oneway=yes 
+2017-01-05 09:52:50.684 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 119: highway=unclassified maxspeed=70 oneway=yes 
+2017-01-05 09:52:50.685 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 120: highway=unclassified maxspeed=70 junction=roundabout 
+2017-01-05 09:52:50.691 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 121: highway=secondary maxweight=3.5 
+2017-01-05 09:52:50.697 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 122: highway=residential maxspeed=50 motorcar=no 
+2017-01-05 09:52:50.698 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 123: highway=residential maxspeed=50 maxweight=3.5T 
+2017-01-05 09:52:50.700 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 124: highway=trunk 
+2017-01-05 09:52:50.703 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 125: highway=tertiary maxspeed=50 maxweight=3.5 
+2017-01-05 09:52:50.711 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 126: highway=unclassified maxspeed=50 junction=roundabout 
+2017-01-05 09:52:50.712 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 127: highway=unclassified maxweight=3.5 
+2017-01-05 09:52:50.716 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 128: highway=tertiary maxspeed=30 maxweight=3.5 
+2017-01-05 09:52:50.720 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 129: highway=residential maxspeed=30 oneway=yes maxweight=3.5 
+2017-01-05 09:52:50.724 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 130: highway=living_street maxspeed=30 
+2017-01-05 09:52:50.730 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 131: highway=service maxspeed=10 oneway=yes 
+2017-01-05 09:52:50.736 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 132: highway=service maxspeed=30 oneway=yes 
+2017-01-05 09:52:50.738 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 133: highway=unclassified maxspeed=90 
+2017-01-05 09:52:50.742 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 134: highway=service maxspeed=90 
+2017-01-05 09:52:50.745 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 135: highway=secondary maxspeed=50 maxweight=3.5T 
+2017-01-05 09:52:50.747 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 136: highway=tertiary motorcar=no 
+2017-01-05 09:52:50.757 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 137: highway=unclassified maxspeed=50 motorcar=no 
+2017-01-05 09:52:50.759 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 138: highway=services 
+2017-01-05 09:52:50.772 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 139: highway=tertiary maxspeed=90 maxweight=3.5 
+2017-01-05 09:52:50.773 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 140: highway=living_street maxspeed=20 maxwidth=2.2 
+2017-01-05 09:52:50.778 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 141: highway=residential maxweight=3.5 
+2017-01-05 09:52:50.782 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 142: highway=service maxweight=3.5 
+2017-01-05 09:52:50.833 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 143: highway=unclassified oneway=-1 
+2017-01-05 09:52:50.845 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 144: highway=service maxspeed=10 motorcar=no 
+2017-01-05 09:52:50.846 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 145: highway=secondary maxspeed=30 oneway=yes 
+2017-01-05 09:52:50.856 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 146: highway=service oneway=-1 
+2017-01-05 09:52:50.894 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 147: highway=service maxspeed=50 motorcar=no 
+2017-01-05 09:52:50.898 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 148: highway=residential maxspeed=50 oneway=yes maxweight=3.5 maxwidth=2.2 
+2017-01-05 09:52:50.900 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 149: highway=track maxweight=3.5 
+2017-01-05 09:52:50.908 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 150: highway=primary maxspeed=90 maxweight=10 
+2017-01-05 09:52:50.909 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 151: highway=primary maxspeed=30 oneway=yes 
+2017-01-05 09:52:50.910 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 152: highway=residential maxspeed=50 oneway=-1 
+2017-01-05 09:52:50.920 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 153: highway=residential maxspeed=50 oneway=yes maxwidth=1.9 
+2017-01-05 09:52:50.924 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 154: highway=residential oneway=yes motorcar=no 
+2017-01-05 09:52:50.925 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 155: highway=primary maxspeed=50 maxweight=6 
+2017-01-05 09:52:50.926 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 156: highway=secondary maxspeed=90 maxweight=9 
+2017-01-05 09:52:50.926 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 157: highway=secondary maxspeed=50 maxweight=9 
+2017-01-05 09:52:50.932 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 158: highway=track oneway=yes 
+2017-01-05 09:52:50.933 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 159: highway=residential maxspeed=50 maxwidth=1.9 
+2017-01-05 09:52:50.936 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 160: highway=residential maxspeed=20 oneway=yes maxwidth=2.3 
+2017-01-05 09:52:50.937 +01:00 [Information] [StreamProgress-5/01/2017 9:52:50] information - Pass 2 - Way[10000] @ 19567,43/s
+2017-01-05 09:52:50.938 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 161: highway=trunk_link maxspeed=130 oneway=yes 
+2017-01-05 09:52:50.947 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 162: highway=primary_link maxspeed=90 oneway=yes 
+2017-01-05 09:52:50.947 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 163: highway=service maxspeed=10 oneway=yes motorcar=no 
+2017-01-05 09:52:50.955 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 164: highway=service maxspeed=50 oneway=yes motorcar=no 
+2017-01-05 09:52:50.966 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 165: highway=primary maxspeed=100 
+2017-01-05 09:52:50.973 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 166: highway=residential maxspeed=30 oneway=yes maxwidth=1.9 
+2017-01-05 09:52:50.976 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 167: highway=primary maxspeed=90 maxweight=6 
+2017-01-05 09:52:50.977 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 168: highway=secondary maxspeed=50 maxweight=3.5 
+2017-01-05 09:52:50.980 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 169: highway=service maxspeed=20 
+2017-01-05 09:52:50.988 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:50] information - Normalized: # profiles 170: highway=primary maxspeed=30 maxweight=7 
+2017-01-05 09:52:51.012 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 171: highway=unclassified maxspeed=40 
+2017-01-05 09:52:51.018 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 172: highway=residential maxspeed=50 oneway=yes motorcar=no 
+2017-01-05 09:52:51.029 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 173: highway=living_street maxspeed=20 junction=roundabout 
+2017-01-05 09:52:51.030 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 174: highway=living_street maxspeed=20 oneway=-1 
+2017-01-05 09:52:51.037 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 175: highway=road 
+2017-01-05 09:52:51.041 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 176: highway=tertiary maxspeed=20 
+2017-01-05 09:52:51.042 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 177: highway=secondary maxweight=7.5 
+2017-01-05 09:52:51.043 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 178: highway=secondary maxspeed=50 oneway=yes maxweight=7.5 
+2017-01-05 09:52:51.058 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 179: highway=residential maxspeed=30 maxwidth=10 
+2017-01-05 09:52:51.062 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 180: highway=trunk maxspeed=50 junction=roundabout 
+2017-01-05 09:52:51.063 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 181: highway=trunk maxspeed=70 junction=roundabout 
+2017-01-05 09:52:51.065 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 182: highway=trunk_link maxspeed=50 junction=roundabout 
+2017-01-05 09:52:51.109 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 183: highway=unclassified maxspeed=30 motorcar=no 
+2017-01-05 09:52:51.121 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 184: highway=trunk maxspeed=120 oneway=yes 
+2017-01-05 09:52:51.135 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 185: highway=service maxspeed=30 maxweight=12 
+2017-01-05 09:52:51.150 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 186: highway=tertiary_link 
+2017-01-05 09:52:51.156 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 187: highway=residential oneway=yes maxwidth=7 
+2017-01-05 09:52:51.188 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 188: highway=unclassified maxspeed=90 oneway=yes 
+2017-01-05 09:52:51.197 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 189: highway=track maxweight=40 
+2017-01-05 09:52:51.206 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 190: highway=living_street maxspeed=20 maxwidth=1.8 
+2017-01-05 09:52:51.245 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 191: highway=service maxspeed=15 oneway=yes motorcar=no 
+2017-01-05 09:52:51.251 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 192: highway=service maxspeed=30 motorcar=no 
+2017-01-05 09:52:51.257 +01:00 [Information] [StreamProgress-5/01/2017 9:52:51] information - Pass 2 - Way[20000] @ 24090,93/s
+2017-01-05 09:52:51.261 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 193: highway=service maxspeed=20 oneway=yes 
+2017-01-05 09:52:51.264 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 194: highway=unclassified maxspeed=70 
+2017-01-05 09:52:51.268 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 195: highway=residential maxspeed=70 
+2017-01-05 09:52:51.308 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 196: highway=service maxspeed=30 oneway=yes motorcar=no 
+2017-01-05 09:52:51.350 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 197: highway=living_street maxspeed=20 maxweight=3.5 
+2017-01-05 09:52:51.364 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 198: highway=unclassified maxweight=5.5 
+2017-01-05 09:52:51.401 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 199: highway=residential maxspeed=50 maxweight=5.5 
+2017-01-05 09:52:51.421 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 200: highway=residential maxspeed=10 
+2017-01-05 09:52:51.425 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 201: highway=track maxspeed=20 
+2017-01-05 09:52:51.437 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 202: highway=track maxspeed=90 
+2017-01-05 09:52:51.459 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 203: highway=service oneway=yes maxweight=3.5 
+2017-01-05 09:52:51.469 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 204: highway=unclassified maxspeed=10 
+2017-01-05 09:52:51.489 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 205: highway=primary maxspeed=50 maxwidth=10 
+2017-01-05 09:52:51.496 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 206: highway=secondary_link oneway=yes motorcar=no 
+2017-01-05 09:52:51.505 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 207: highway=secondary_link maxspeed=90 oneway=yes 
+2017-01-05 09:52:51.507 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 208: highway=secondary maxspeed=90 maxweight=3.5 
+2017-01-05 09:52:51.521 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 209: highway=unclassified maxspeed=30 oneway=yes maxweight=3.5 
+2017-01-05 09:52:51.522 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 210: highway=secondary_link 
+2017-01-05 09:52:51.542 +01:00 [Information] [StreamProgress-5/01/2017 9:52:51] information - Pass 2 - Way[30000] @ 26882,75/s
+2017-01-05 09:52:51.546 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 211: highway=motorway_link maxspeed=50 junction=roundabout 
+2017-01-05 09:52:51.547 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 212: highway=motorway_link maxspeed=50 
+2017-01-05 09:52:51.638 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 213: highway=residential maxwidth=2.5 
+2017-01-05 09:52:51.641 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 214: highway=secondary maxspeed=50 maxweight=6 
+2017-01-05 09:52:51.660 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 215: highway=service maxspeed=20 motorcar=no 
+2017-01-05 09:52:51.670 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 216: highway=residential maxspeed=50 oneway=yes maxweight=7.5 
+2017-01-05 09:52:51.672 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 217: highway=trunk maxspeed=50 
+2017-01-05 09:52:51.717 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 218: highway=track oneway=-1 
+2017-01-05 09:52:51.721 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 219: highway=residential maxspeed=90 
+2017-01-05 09:52:51.795 +01:00 [Information] [StreamProgress-5/01/2017 9:52:51] information - Pass 2 - Way[40000] @ 29218,23/s
+2017-01-05 09:52:51.804 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 220: highway=living_street motorcar=no 
+2017-01-05 09:52:51.826 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 221: highway=living_street oneway=yes 
+2017-01-05 09:52:51.830 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 222: highway=service maxspeed=30 junction=roundabout 
+2017-01-05 09:52:51.889 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 223: highway=service maxspeed=10 oneway=-1 motorcar=no 
+2017-01-05 09:52:51.927 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 224: highway=secondary_link maxspeed=50 
+2017-01-05 09:52:51.969 +01:00 [Information] [StreamProgress-5/01/2017 9:52:51] information - Pass 2 - Way[50000] @ 32403,93/s
+2017-01-05 09:52:51.990 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:51] information - Normalized: # profiles 225: highway=track maxspeed=50 
+2017-01-05 09:52:52.019 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 226: highway=primary maxspeed=90 oneway=-1 
+2017-01-05 09:52:52.022 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 227: highway=primary maxspeed=90 oneway=yes maxweight=12 
+2017-01-05 09:52:52.026 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 228: highway=unclassified maxweight=5 
+2017-01-05 09:52:52.059 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 229: highway=motorway maxspeed=50 oneway=yes 
+2017-01-05 09:52:52.090 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 230: highway=service maxspeed=5 oneway=yes 
+2017-01-05 09:52:52.102 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 231: highway=service maxspeed=40 
+2017-01-05 09:52:52.134 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 232: highway=living_street maxspeed=30 oneway=yes motorcar=no 
+2017-01-05 09:52:52.152 +01:00 [Information] [StreamProgress-5/01/2017 9:52:52] information - Pass 2 - Way[60000] @ 34771,65/s
+2017-01-05 09:52:52.302 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 233: highway=secondary maxspeed=70 junction=roundabout 
+2017-01-05 09:52:52.309 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 234: highway=motorway_link 
+2017-01-05 09:52:52.310 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 235: highway=primary maxspeed=50 maxweight=7 
+2017-01-05 09:52:52.312 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 236: highway=secondary maxspeed=90 maxweight=7.5 
+2017-01-05 09:52:52.337 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 237: highway=service maxspeed=130 motorcar=no 
+2017-01-05 09:52:52.343 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 238: highway=primary_link maxspeed=70 oneway=yes maxweight=12 
+2017-01-05 09:52:52.351 +01:00 [Information] [StreamProgress-5/01/2017 9:52:52] information - Pass 2 - Way[70000] @ 36409,67/s
+2017-01-05 09:52:52.355 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 239: highway=primary_link maxspeed=70 
+2017-01-05 09:52:52.408 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 240: highway=primary_link maxspeed=50 
+2017-01-05 09:52:52.412 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 241: highway=secondary maxweight=9 
+2017-01-05 09:52:52.425 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 242: highway=unclassified maxspeed=20 
+2017-01-05 09:52:52.433 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 243: highway=residential maxwidth=7 
+2017-01-05 09:52:52.439 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 244: highway=unclassified maxspeed=50 oneway=yes motorcar=no 
+2017-01-05 09:52:52.469 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 245: highway=primary maxspeed=90 maxweight=7 
+2017-01-05 09:52:52.476 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 246: highway=primary maxspeed=50 maxweight=12 
+2017-01-05 09:52:52.527 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 247: highway=residential maxspeed=50 maxweight=13 
+2017-01-05 09:52:52.582 +01:00 [Information] [StreamProgress-5/01/2017 9:52:52] information - Pass 2 - Way[80000] @ 37112,6/s
+2017-01-05 09:52:52.589 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 248: highway=service maxspeed=5 
+2017-01-05 09:52:52.599 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 249: highway=primary maxspeed=90 maxweight=12 
+2017-01-05 09:52:52.719 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 250: highway=service maxspeed=15 
+2017-01-05 09:52:52.736 +01:00 [Information] [StreamProgress-5/01/2017 9:52:52] information - Pass 2 - Way[90000] @ 38984,45/s
+2017-01-05 09:52:52.751 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 251: highway=service maxspeed=20 maxweight=3.5 
+2017-01-05 09:52:52.853 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 252: highway=living_street maxspeed=30 oneway=-1 
+2017-01-05 09:52:52.893 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 253: highway=secondary oneway=yes motorcar=no 
+2017-01-05 09:52:52.895 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 254: highway=road motorcar=no 
+2017-01-05 09:52:52.907 +01:00 [Information] [StreamProgress-5/01/2017 9:52:52] information - Pass 2 - Way[100000] @ 40361,02/s
+2017-01-05 09:52:52.911 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 255: highway=service maxweight=2.5 
+2017-01-05 09:52:52.912 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 256: highway=service maxspeed=15 motorcar=no 
+2017-01-05 09:52:52.981 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 257: highway=track maxspeed=30 maxweight=12 
+2017-01-05 09:52:52.983 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:52] information - Normalized: # profiles 258: highway=tertiary maxspeed=70 
+2017-01-05 09:52:53.048 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 259: highway=living_street maxspeed=20 maxwidth=2 
+2017-01-05 09:52:53.077 +01:00 [Information] [StreamProgress-5/01/2017 9:52:53] information - Pass 2 - Way[110000] @ 41514,76/s
+2017-01-05 09:52:53.082 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 260: highway=service oneway=-1 motorcar=no 
+2017-01-05 09:52:53.083 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 261: highway=service junction=roundabout motorcar=no 
+2017-01-05 09:52:53.142 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 262: highway=service maxspeed=25 motorcar=no 
+2017-01-05 09:52:53.217 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 263: highway=primary maxspeed=110 
+2017-01-05 09:52:53.252 +01:00 [Information] [StreamProgress-5/01/2017 9:52:53] information - Pass 2 - Way[120000] @ 42467,85/s
+2017-01-05 09:52:53.333 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 264: highway=track maxspeed=10 motorcar=no 
+2017-01-05 09:52:53.336 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 265: highway=track maxspeed=20 motorcar=no 
+2017-01-05 09:52:53.339 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 266: highway=residential maxspeed=30 oneway=yes motorcar=no 
+2017-01-05 09:52:53.352 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 267: highway=unclassified maxspeed=20 oneway=yes motorcar=no 
+2017-01-05 09:52:53.353 +01:00 [Information] [StreamProgress-5/01/2017 9:52:53] information - Pass 2 - Way[130000] @ 44418,92/s
+2017-01-05 09:52:53.356 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 268: highway=service maxspeed=40 oneway=yes 
+2017-01-05 09:52:53.443 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 269: highway=road maxspeed=50 
+2017-01-05 09:52:53.477 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 270: highway=unclassified maxspeed=20 motorcar=no 
+2017-01-05 09:52:53.496 +01:00 [Information] [StreamProgress-5/01/2017 9:52:53] information - Pass 2 - Way[140000] @ 45621,86/s
+2017-01-05 09:52:53.630 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 271: highway=service maxweight=5.5 
+2017-01-05 09:52:53.643 +01:00 [Information] [StreamProgress-5/01/2017 9:52:53] information - Pass 2 - Way[150000] @ 46631,4/s
+2017-01-05 09:52:53.677 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 272: highway=residential maxspeed=90 motorcar=no 
+2017-01-05 09:52:53.708 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 273: highway=unclassified maxspeed=10 maxweight=2.5 
+2017-01-05 09:52:53.710 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 274: highway=service maxweight=10 
+2017-01-05 09:52:53.736 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 275: highway=unclassified maxspeed=20 oneway=yes 
+2017-01-05 09:52:53.739 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 276: highway=service maxspeed=90 oneway=yes motorcar=no 
+2017-01-05 09:52:53.739 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 277: highway=service maxspeed=90 oneway=yes 
+2017-01-05 09:52:53.744 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 278: highway=service maxspeed=5 motorcar=no 
+2017-01-05 09:52:53.758 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 279: highway=service maxspeed=90 junction=roundabout motorcar=no 
+2017-01-05 09:52:53.775 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 280: highway=motorway_link maxspeed=90 
+2017-01-05 09:52:53.857 +01:00 [Information] [StreamProgress-5/01/2017 9:52:53] information - Pass 2 - Way[160000] @ 46643,93/s
+2017-01-05 09:52:53.898 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:53] information - Normalized: # profiles 281: highway=residential maxspeed=20 motorcar=no 
+2017-01-05 09:52:54.075 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 282: highway=motorway_link maxspeed=100 oneway=yes 
+2017-01-05 09:52:54.082 +01:00 [Information] [StreamProgress-5/01/2017 9:52:54] information - Pass 2 - Way[170000] @ 46565,45/s
+2017-01-05 09:52:54.127 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 283: highway=secondary maxspeed=30 maxwidth=3.1 
+2017-01-05 09:52:54.218 +01:00 [Information] [StreamProgress-5/01/2017 9:52:54] information - Pass 2 - Way[180000] @ 47483,58/s
+2017-01-05 09:52:54.220 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 284: highway=service maxspeed=10 motorcar=no maxweight=3 
+2017-01-05 09:52:54.242 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 285: highway=tertiary maxweight=3.5 
+2017-01-05 09:52:54.326 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 286: highway=service maxwidth=1.20 
+2017-01-05 09:52:54.337 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 287: highway=motorway maxspeed=90 
+2017-01-05 09:52:54.361 +01:00 [Information] [StreamProgress-5/01/2017 9:52:54] information - Pass 2 - Way[190000] @ 48299,32/s
+2017-01-05 09:52:54.493 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 288: highway=unclassified oneway=yes motorcar=no 
+2017-01-05 09:52:54.529 +01:00 [Information] [StreamProgress-5/01/2017 9:52:54] information - Pass 2 - Way[200000] @ 48753,01/s
+2017-01-05 09:52:54.577 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 289: highway=service maxspeed=100 motorcar=no 
+2017-01-05 09:52:54.618 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 290: highway=service maxspeed=50 oneway=-1 
+2017-01-05 09:52:54.621 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 291: highway=service maxspeed=50 junction=roundabout 
+2017-01-05 09:52:54.708 +01:00 [Information] [StreamProgress-5/01/2017 9:52:54] information - Pass 2 - Way[210000] @ 49044,61/s
+2017-01-05 09:52:54.791 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 292: highway=residential maxspeed=20 oneway=yes 
+2017-01-05 09:52:54.909 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] information - Normalized: # profiles 293: highway=service maxspeed=90 motorcar=no 
+2017-01-05 09:52:54.973 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No link could be found between from and via node for restriction relation -1!
+2017-01-05 09:52:54.975 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No before vertex found for from way for restriction relation -1!
+2017-01-05 09:52:54.976 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No after vertex found for to way for restriction relation -1!
+2017-01-05 09:52:54.977 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No before vertex found for from way for restriction relation -1!
+2017-01-05 09:52:54.978 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No after vertex found for to way for restriction relation -1!
+2017-01-05 09:52:54.978 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No after vertex found for to way for restriction relation -1!
+2017-01-05 09:52:54.979 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No after vertex found for to way for restriction relation -1!
+2017-01-05 09:52:54.980 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No after vertex found for to way for restriction relation -1!
+2017-01-05 09:52:54.988 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No before vertex found for from way for restriction relation 1866903!
+2017-01-05 09:52:54.989 +01:00 [Information] [StreamProgress-5/01/2017 9:52:54] information - Pass 2 - Relation[1000] @ 13886,84/s
+2017-01-05 09:52:54.991 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No link could be found between from and via node for restriction relation 3307678!
+2017-01-05 09:52:54.991 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No link could be found between from and via node for restriction relation 3307679!
+2017-01-05 09:52:54.994 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No link could be found between from and via node for restriction relation 4664613!
+2017-01-05 09:52:54.995 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:54] warning - No link could be found between to and via node for restriction relation 5288302!
+2017-01-05 09:52:55.001 +01:00 [Information] [StreamProgress-5/01/2017 9:52:55] information - Pass 2 - Relation[2000] @ 24685,2/s
+2017-01-05 09:52:55.004 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:55] warning - No link could be found between to and via node for restriction relation 5510788!
+2017-01-05 09:52:55.004 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:55] warning - No link could be found between to and via node for restriction relation 5522081!
+2017-01-05 09:52:55.005 +01:00 [Information] [RouterDbStreamTarget-5/01/2017 9:52:55] warning - No link could be found between to and via node for restriction relation 5528565!
+2017-01-05 09:52:55.006 +01:00 [Information] [StreamProgress-5/01/2017 9:52:55] information - Pass 2 - Relation[3000] @ 34088,04/s
+2017-01-05 09:52:55.017 +01:00 [Information] [StreamProgress-5/01/2017 9:52:55] information - Pass 2 - Relation[4000] @ 39996,88/s
+2017-01-05 09:52:55.021 +01:00 [Information] [StreamProgress-5/01/2017 9:52:55] information - Pass 2 - Relation[5000] @ 48073,73/s
+2017-01-05 09:52:56.896 +01:00 [Information] [Program-5/01/2017 9:52:56] information - Processing finished, took 00:00:15.6833128.

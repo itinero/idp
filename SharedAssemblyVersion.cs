@@ -1,5 +1,5 @@
 ﻿// OsmSharp - OpenStreetMap (OSM) SDK
-// Copyright (C) 2016 Abelshausen Ben
+// Copyright (C) 2017 Abelshausen Ben
 // 
 // This file is part of OsmSharp.
 // 
@@ -18,5 +18,5 @@
 
 using System.Reflection;
 
-[assembly: AssemblyVersion("2.4.1")] // semantic versioning Major.Minor.Patch.Build (9999 will be updated by CI server)
-[assembly: AssemblyInformationalVersion("2.4.1-rc1")] // do not change this; build server update this automatically (.9999 will be updated by CI server with -{buildnumber})
+[assembly: AssemblyVersion("2.5.0")] // semantic versioning Major.Minor.Patch.Build (9999 will be updated by CI server)
+[assembly: AssemblyInformationalVersion("2.5.0-rc1")] // do not change this; build server update this automatically (.9999 will be updated by CI server with -{buildnumber})
