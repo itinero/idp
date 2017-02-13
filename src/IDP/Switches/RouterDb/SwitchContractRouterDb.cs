@@ -94,7 +94,7 @@ namespace IDP.Switches.RouterDb
             {
                 var routerDb = source.GetRouterDb();
                 
-                if (augmented)
+                if (!augmented)
                 {
                     routerDb.AddContracted(profile);
                 }
