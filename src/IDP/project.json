@@ -5,8 +5,8 @@
   },
 
   "dependencies": {
-    "Itinero": "0.38.17-rc1",
-    "Itinero.IO.Osm": "0.38.17-rc1",
+    "Itinero": "0.38.20-rc1",
+    "Itinero.IO.Osm": "0.38.20-rc1",
     "Microsoft.NETCore.App": {
       "version": "1.1.0"
     },
