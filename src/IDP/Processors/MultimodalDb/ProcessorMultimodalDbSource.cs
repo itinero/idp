@@ -1,72 +1,72 @@
-﻿//// The MIT License (MIT)
+﻿// The MIT License (MIT)
 
-//// Copyright (c) 2016 Ben Abelshausen
+// Copyright (c) 2016 Ben Abelshausen
 
-//// Permission is hereby granted, free of charge, to any person obtaining a copy
-//// of this software and associated documentation files (the "Software"), to deal
-//// in the Software without restriction, including without limitation the rights
-//// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//// copies of the Software, and to permit persons to whom the Software is
-//// furnished to do so, subject to the following conditions:
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 
-//// The above copyright notice and this permission notice shall be included in
-//// all copies or substantial portions of the Software.
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
 
-//// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//// THE SOFTWARE.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
-//using System;
+using System;
 
-//namespace IDP.Processors.MultimodalDb
-//{
-//    /// <summary>
-//    /// Represents a processor to get a multimodal db.
-//    /// </summary>
-//    class ProcessorMultimodalDbSource : Processor, IProcessorMultimodalDbSource
-//    {
-//        private readonly Func<Itinero.Transit.Data.MultimodalDb> _getMultimodalDb;
+namespace IDP.Processors.MultimodalDb
+{
+    /// <summary>
+    /// Represents a processor to get a multimodal db.
+    /// </summary>
+    class ProcessorMultimodalDbSource : Processor, IProcessorMultimodalDbSource
+    {
+        private readonly Func<Itinero.Transit.Data.MultimodalDb> _getMultimodalDb;
 
-//        /// <summary>
-//        /// Creates a new processor multimodal db.
-//        /// </summary>
-//        public ProcessorMultimodalDbSource(Func<Itinero.Transit.Data.MultimodalDb> getMultimodalDb)
-//        {
-//            _getMultimodalDb = getMultimodalDb;
-//        }
+        /// <summary>
+        /// Creates a new processor multimodal db.
+        /// </summary>
+        public ProcessorMultimodalDbSource(Func<Itinero.Transit.Data.MultimodalDb> getMultimodalDb)
+        {
+            _getMultimodalDb = getMultimodalDb;
+        }
 
-//        /// <summary>
-//        /// Gets a multimodal db.
-//        /// </summary>
-//        public Func<Itinero.Transit.Data.MultimodalDb> GetMultimodalDb
-//        {
-//            get
-//            {
-//                return _getMultimodalDb;
-//            }
-//        }
+        /// <summary>
+        /// Gets a multimodal db.
+        /// </summary>
+        public Func<Itinero.Transit.Data.MultimodalDb> GetMultimodalDb
+        {
+            get
+            {
+                return _getMultimodalDb;
+            }
+        }
 
-//        /// <summary>
-//        /// Returns true if this processor can execute.
-//        /// </summary>
-//        public override bool CanExecute
-//        {
-//            get
-//            {
-//                return true;
-//            }
-//        }
+        /// <summary>
+        /// Returns true if this processor can execute.
+        /// </summary>
+        public override bool CanExecute
+        {
+            get
+            {
+                return true;
+            }
+        }
 
-//        /// <summary>
-//        /// Executes this processor.
-//        /// </summary>
-//        public override void Execute()
-//        {
-//            var r = _getMultimodalDb();
-//        }
-//    }
-//}
+        /// <summary>
+        /// Executes this processor.
+        /// </summary>
+        public override void Execute()
+        {
+            var r = _getMultimodalDb();
+        }
+    }
+}

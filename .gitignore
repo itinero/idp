@@ -38,3 +38,5 @@ packages/*
 *.routing
 *.routerdb
 *.osm.pbf
+*.transitdb
+*.multimodaldb

@@ -5,8 +5,10 @@
   },
 
   "dependencies": {
-    "Itinero": "0.38.20-rc1",
-    "Itinero.IO.Osm": "0.38.20-rc1",
+    "GTFS": "2.1.2-alpha",
+    "Itinero": "0.39.0-rc1",
+    "Itinero.IO.Osm": "0.39.0-rc1",
+    "Itinero.Transit": "0.2.6-alpha",
     "Microsoft.NETCore.App": {
       "version": "1.1.0"
     },

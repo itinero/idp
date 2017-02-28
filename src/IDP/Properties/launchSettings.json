@@ -2,7 +2,7 @@
   "profiles": {
     "IDP": {
       "commandName": "Project",
-      "commandLineArgs": "--read-pbf C:\\work\\data\\OSM\\belgium-latest.osm.pbf --pr --create-routerdb vehicle=car --contract profile=car augmented=yes --write-routerdb belgium.c.cf.routerdb"
+      "commandLineArgs": "--read-gtfs C:\\work\\data\\gtfs\\nmbs-shapes --create-transitdb --write-transitdb nmbs.transitdb"
     }
   }
 }
