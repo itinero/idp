@@ -4,7 +4,7 @@
   "dependencies": {
     "GTFS": "2.1.2-alpha",
     "IDP": "1.0.0-*",
-    "Itinero.Transit": "0.2.6-alpha",
+    "Itinero.Transit": "0.3.2-alpha",
     "NETStandard.Library": "1.6.1"
   },
 
