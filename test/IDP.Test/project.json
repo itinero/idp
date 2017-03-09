@@ -2,9 +2,9 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "GTFS": "2.1.2-alpha",
+    "GTFS": "2.1.4-alpha",
     "IDP": "1.0.0-*",
-    "Itinero.Transit": "0.3.2-alpha",
+    "Itinero.Transit": "0.3.4-alpha",
     "NETStandard.Library": "1.6.1"
   },
 

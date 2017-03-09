@@ -2,7 +2,7 @@
   "profiles": {
     "IDP": {
       "commandName": "Project",
-      "commandLineArgs": "--read-gtfs C:\\work\\data\\gtfs\\nmbs-shapes --create-transitdb --write-transitdb nmbs.transitdb"
+      "commandLineArgs": "--read-gtfs C:\\work\\data\\gtfs\\delijn-latest-kempen-shapes --create-transitdb --write-transitdb delijn-latest-kempen-shapes.transitdb"
     }
   }
 }

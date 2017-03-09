@@ -3,7 +3,7 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
-      "GTFS/2.1.2-alpha": {
+      "GTFS/2.1.4-alpha": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -45,7 +45,7 @@
           "lib/netstandard1.6/Itinero.IO.Osm.dll": {}
         }
       },
-      "Itinero.Transit/0.3.2-alpha": {
+      "Itinero.Transit/0.3.4-alpha": {
         "type": "package",
         "dependencies": {
           "GTFS": "2.0.1-alpha",
@@ -2482,7 +2482,7 @@
       }
     },
     ".NETCoreApp,Version=v1.1/osx.10.11-x64": {
-      "GTFS/2.1.2-alpha": {
+      "GTFS/2.1.4-alpha": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -2524,7 +2524,7 @@
           "lib/netstandard1.6/Itinero.IO.Osm.dll": {}
         }
       },
-      "Itinero.Transit/0.3.2-alpha": {
+      "Itinero.Transit/0.3.4-alpha": {
         "type": "package",
         "dependencies": {
           "GTFS": "2.0.1-alpha",
@@ -5119,7 +5119,7 @@
       }
     },
     ".NETCoreApp,Version=v1.1/ubuntu.16.04-x64": {
-      "GTFS/2.1.2-alpha": {
+      "GTFS/2.1.4-alpha": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -5161,7 +5161,7 @@
           "lib/netstandard1.6/Itinero.IO.Osm.dll": {}
         }
       },
-      "Itinero.Transit/0.3.2-alpha": {
+      "Itinero.Transit/0.3.4-alpha": {
         "type": "package",
         "dependencies": {
           "GTFS": "2.0.1-alpha",
@@ -7755,7 +7755,7 @@
       }
     },
     ".NETCoreApp,Version=v1.1/win10-x64": {
-      "GTFS/2.1.2-alpha": {
+      "GTFS/2.1.4-alpha": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -7797,7 +7797,7 @@
           "lib/netstandard1.6/Itinero.IO.Osm.dll": {}
         }
       },
-      "Itinero.Transit/0.3.2-alpha": {
+      "Itinero.Transit/0.3.4-alpha": {
         "type": "package",
         "dependencies": {
           "GTFS": "2.0.1-alpha",
@@ -10355,7 +10355,7 @@
       }
     },
     ".NETCoreApp,Version=v1.1/win8-x64": {
-      "GTFS/2.1.2-alpha": {
+      "GTFS/2.1.4-alpha": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -10397,7 +10397,7 @@
           "lib/netstandard1.6/Itinero.IO.Osm.dll": {}
         }
       },
-      "Itinero.Transit/0.3.2-alpha": {
+      "Itinero.Transit/0.3.4-alpha": {
         "type": "package",
         "dependencies": {
           "GTFS": "2.0.1-alpha",
@@ -12991,12 +12991,12 @@
     }
   },
   "libraries": {
-    "GTFS/2.1.2-alpha": {
-      "sha512": "s/1rYPG1xcN6hl8essURFAKMCKpIB3YOo7KTmw51eY2TbnmCvH2ejQ4YhFMAfDixtFmWYVbxBuuGnPtdVFWI9Q==",
+    "GTFS/2.1.4-alpha": {
+      "sha512": "PW19d/tPetIvBJTtF9o3RW8XMRNupPdXSMnx3MKpMi1crdKaCLrKfbDknl50anOKzsiZC2yhjpKQ6gihqz9PcA==",
       "type": "package",
-      "path": "GTFS/2.1.2-alpha",
+      "path": "GTFS/2.1.4-alpha",
       "files": [
-        "GTFS.2.1.2-alpha.nupkg.sha512",
+        "GTFS.2.1.4-alpha.nupkg.sha512",
         "GTFS.nuspec",
         "lib/net40/GTFS.dll",
         "lib/netstandard1.3/GTFS.dll",
@@ -13029,12 +13029,12 @@
         "lib/portable-net40+sl4+win8+wp7/Itinero.IO.Osm.dll"
       ]
     },
-    "Itinero.Transit/0.3.2-alpha": {
-      "sha512": "x58CaiQ2RVhlvd8cAehDfSVGh3lRe6gwg6ZajulQ5xvo18UQyPbi6Nv0wdWoEBjEDOcSHJBnAchliP891e4c7g==",
+    "Itinero.Transit/0.3.4-alpha": {
+      "sha512": "1xHrtGMbRwqyGluteCuISuaNnINvTYbytVuHEQb71+NCSwAnLdqD3zbp/b/W6g7jL7Dy/3p93FHMQyQKQJ+Znw==",
       "type": "package",
-      "path": "Itinero.Transit/0.3.2-alpha",
+      "path": "Itinero.Transit/0.3.4-alpha",
       "files": [
-        "Itinero.Transit.0.3.2-alpha.nupkg.sha512",
+        "Itinero.Transit.0.3.4-alpha.nupkg.sha512",
         "Itinero.Transit.nuspec",
         "lib/net45/Itinero.Transit.dll",
         "lib/netstandard1.3/Itinero.Transit.dll"
@@ -19176,10 +19176,10 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "GTFS >= 2.1.2-alpha",
+      "GTFS >= 2.1.4-alpha",
       "Itinero >= 0.40.5-rc1",
       "Itinero.IO.Osm >= 0.40.5-rc1",
-      "Itinero.Transit >= 0.3.2-alpha",
+      "Itinero.Transit >= 0.3.4-alpha",
       "Microsoft.NETCore.App >= 1.1.0",
       "Serilog >= 2.3.0",
       "Serilog.Sinks.File >= 3.2.0"
