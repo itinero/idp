@@ -59,7 +59,8 @@ namespace IDP.Switches.Osm
         {
             if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
 
-            var file = new FileInfo(this.Arguments[0]);
+            var localFile = Downloader.DownloadOrOpen(this.Arguments[0]);
+            var file = new FileInfo(localFile);
             if (!file.Exists)
             {
                 throw new FileNotFoundException("File not found.", file.FullName);

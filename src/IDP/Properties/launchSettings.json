@@ -2,7 +2,7 @@
   "profiles": {
     "IDP": {
       "commandName": "Project",
-      "commandLineArgs": "--read-gtfs C:\\work\\data\\gtfs\\delijn-latest-kempen-shapes --create-transitdb --write-transitdb delijn-latest-kempen-shapes.transitdb"
+      "commandLineArgs": "--read-pbf http://download.geofabrik.de/europe/belgium-latest.osm.pbf --pr --create-routerdb vehicle=car --write-routerdb temp.routerdb"
     }
   }
 }

@@ -60,7 +60,7 @@ namespace IDP.Switches.GTFS
         public override int Parse(List<Processor> previous, out Processor processor)
         {
             if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
-
+            
             var directory = new DirectoryInfo(this.Arguments[0]);
             if (!directory.Exists)
             {
