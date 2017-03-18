@@ -72,7 +72,7 @@ namespace IDP
             catch (Exception ex)
             {
                 Logger.Log("Dowloader.Download", TraceEventType.Critical,
-                    "A fatal error occured, failed to download: {0}.", url);
+                    "A fatal error occured, failed to download: {0} - {1}.", url, ex.ToString());
             }
             return string.Empty;
         }
