@@ -1,26 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{736A6AC8-5F2B-45B2-B913-7C7A5E732B24}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{12282BA4-EA2A-4023-BD3E-1825B3C13F1D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IDP", "src\IDP\IDP.xproj", "{D61EF72D-2842-4FE0-ACC9-1462F30DCFA9}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IDP.Test", "test\IDP.Test\IDP.Test.xproj", "{0A283509-0DF3-4D99-84C7-AB62E180B2A1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{42E83A4E-2E99-4A06-8D67-7987C2685496}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		CONTRIBUTING.md = CONTRIBUTING.md
-		global.json = global.json
 		publish.bat = publish.bat
 		publish.sh = publish.sh
 		readme.md = readme.md
 		SharedAssemblyVersion.cs = SharedAssemblyVersion.cs
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IDP", "src\IDP\IDP.csproj", "{D61EF72D-2842-4FE0-ACC9-1462F30DCFA9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IDP.Test", "test\IDP.Test\IDP.Test.csproj", "{0A283509-0DF3-4D99-84C7-AB62E180B2A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
