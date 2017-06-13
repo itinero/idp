@@ -15,8 +15,8 @@
 
   <ItemGroup>
     <PackageReference Include="GTFS" Version="2.1.4-alpha" />
-    <PackageReference Include="Itinero" Version="1.0.0-rc3" />
-    <PackageReference Include="Itinero.IO.Osm" Version="1.0.0-rc3" />
+    <PackageReference Include="Itinero" Version="1.1.0-pre7" />
+    <PackageReference Include="Itinero.IO.Osm" Version="1.1.0-pre7" />
     <PackageReference Include="Itinero.Transit" Version="0.3.4-alpha" />
     <PackageReference Include="Serilog" Version="2.3.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />
