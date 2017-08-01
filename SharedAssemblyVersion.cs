@@ -22,5 +22,5 @@
 
 using System.Reflection;
 
-[assembly: AssemblyVersion("2.13.1")] // semantic versioning Major.Minor.Patch.Build (9999 will be updated by CI server)
+[assembly: AssemblyVersion("2.13.2")] // semantic versioning Major.Minor.Patch.Build (9999 will be updated by CI server)
 [assembly: AssemblyInformationalVersion("2.13.1")] // do not change this; build server update this automatically (.9999 will be updated by CI server with -{buildnumber})
