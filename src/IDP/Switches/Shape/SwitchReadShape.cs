@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 using IDP.Processors;
+using Itinero.IO.Shape;
 using Itinero.Profiles;
 using System;
 using System.Collections.Generic;
@@ -60,12 +61,7 @@ namespace IDP.Switches.Shape
         {
             if (this.Arguments.Length < 2) { throw new ArgumentException("At least two arguments are expected."); }
 
-            var localShapefile = this.Arguments[0];
-            if (!File.Exists(localShapefile))
-            {
-                throw new FileNotFoundException("File not found.", localShapefile);
-            }
-
+            var localShapefile = string.Empty;
             var vehicles = new List<Vehicle>();
             var sourceVertexColumn = string.Empty;
             var targetVertexColumn = string.Empty;
@@ -91,8 +87,8 @@ namespace IDP.Switches.Shape
                                         var vehicleFile = new FileInfo(vehicleValues[v]);
                                         if (!vehicleFile.Exists)
                                         {
-                                            throw new SwitchParserException("--create-routerdb",
-                                                string.Format("Invalid parameter value for command --create-routerdb: Vehicle profile '{0}' not found.",
+                                            throw new SwitchParserException("--read-shape",
+                                                string.Format("Invalid parameter value for command --read-shape: Vehicle profile '{0}' not found.",
                                                     vehicleValues[v]));
                                         }
                                         using (var stream = vehicleFile.OpenRead())
@@ -103,6 +99,13 @@ namespace IDP.Switches.Shape
                                         }
                                     }
                                 }
+                            }
+                            break;
+                        case "file":
+                        case "files":
+                            if (!string.IsNullOrWhiteSpace(value))
+                            {
+                                localShapefile = value;
                             }
                             break;
                         case "source-vertex-column":
@@ -141,7 +144,12 @@ namespace IDP.Switches.Shape
             
             Func<Itinero.RouterDb> getRouterDb = () =>
             {
-                throw new NotImplementedException("Not implemented yet, waiting for a .NET Standard supported implementation.");
+                var routerDb = new Itinero.RouterDb(Itinero.Data.Edges.EdgeDataSerializer.MAX_DISTANCE);
+                var file = new FileInfo(localShapefile);
+                routerDb.LoadFromShape(file.DirectoryName, file.Name, sourceVertexColumn, targetVertexColumn,
+                    vehicles.ToArray());
+
+                return routerDb;
             };
             processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
             return 0;

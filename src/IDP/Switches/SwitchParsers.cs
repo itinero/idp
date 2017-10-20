@@ -53,6 +53,7 @@ namespace IDP.Switches
             Register(MultimodalDb.SwitchCreateMultimodalDb.Names, (a) => new MultimodalDb.SwitchCreateMultimodalDb(a));
             Register(MultimodalDb.SwitchAddStopLinks.Names, (a) => new MultimodalDb.SwitchAddStopLinks(a));
             Register(MultimodalDb.SwitchWriteMultimodalDb.Names, (a) => new MultimodalDb.SwitchWriteMultimodalDb(a));
+            Register(Shape.SwitchReadShape.Names, (a) => new Shape.SwitchReadShape(a));
             Register(Logging.SwitchLogging.Names, (a) => new Logging.SwitchLogging(a));
         }
 

@@ -2,7 +2,7 @@
   "profiles": {
     "IDP": {
       "commandName": "Project",
-      "commandLineArgs": "--read-pbf belgium-latest.osm.pbf --pr --create-routerdb vehicle=car --write-routerdb temp.routerdb"
+      "commandLineArgs": "--read-shape file=C:\\work\\itinero\\routing\\samples\\Sample.Shape\\bin\\Debug\\net45\\win7-x86\\temp\\wegvakken.shp vehicle=C:\\work\\itinero\\routing\\samples\\Sample.Shape\\car.lua svc=JTE_ID_BEG tvc=JTE_ID_END  --write-routerdb temp.routerdb"
     }
   }
 }
