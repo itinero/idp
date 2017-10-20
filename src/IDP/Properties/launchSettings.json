@@ -2,7 +2,7 @@
   "profiles": {
     "IDP": {
       "commandName": "Project",
-      "commandLineArgs": "--read-pbf belgium-latest.osm.pbf --pr --create-routerdb vehicle=car --write-routerdb temp.routerdb"
+      "commandLineArgs": "--read-pbf  C:\\work\\data\\OSM\\belgium-latest.osm.pbf --create-routerdb vehicle=car --write-routerdb temp.routerdb --write-shape temp.shp"
     }
   }
 }
