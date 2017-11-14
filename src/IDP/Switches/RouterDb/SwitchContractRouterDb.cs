@@ -45,14 +45,13 @@ namespace IDP.Switches.RouterDb
                 throw new Exception("Expected a router db source.");
             }
 
-            Profile profile = null;
+            string profile = null;
             var augmented = false;
             
             if (this.Arguments.Length == 1 && 
                 !this.Arguments[0].Contains("="))
             {
-                var profileName = this.Arguments[0];
-                profile = Itinero.Profiles.Profile.GetRegistered(profileName);
+                profile = this.Arguments[0];
                 if (profile == null)
                 {
                     throw new Exception(string.Format("Cannot find profile {0}.", this.Arguments[0]));
@@ -68,8 +67,7 @@ namespace IDP.Switches.RouterDb
                         switch (key.ToLower())
                         {
                             case "profile":
-                                var profileName = value;
-                                profile = Itinero.Profiles.Profile.GetRegistered(profileName);
+                                profile = value;
                                 if (profile == null)
                                 {
                                     throw new Exception(string.Format("Cannot find profile {0}.", this.Arguments[0]));
@@ -93,14 +91,16 @@ namespace IDP.Switches.RouterDb
             Func<Itinero.RouterDb> getRouterDb = () =>
             {
                 var routerDb = source.GetRouterDb();
+
+                var profileInstance = routerDb.GetSupportedProfile(profile);
                 
                 if (!augmented)
                 {
-                    routerDb.AddContracted(profile);
+                    routerDb.AddContracted(profileInstance);
                 }
                 else
                 {
-                    routerDb.AddContracted(profile, profile.AugmentedWeightHandlerCached(routerDb));
+                    routerDb.AddContracted(profileInstance, profileInstance.AugmentedWeightHandlerCached(routerDb));
                 }
 
                 return routerDb;
