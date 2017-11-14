@@ -211,5 +211,20 @@ namespace IDP.Switches
             }
             return false;
         }
+
+        /// <summary>
+        /// Parses an integer from the given value.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        internal static int? Parse(string value)
+        {
+            int val;
+            if (int.TryParse(value, out val))
+            {
+                return val;
+            }
+            return null;
+        }
     }
 }

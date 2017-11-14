@@ -26,6 +26,7 @@ using IDP.Processors;
 using Itinero.Profiles;
 using Itinero.Algorithms.Search.Hilbert;
 using System.IO;
+using Itinero.Algorithms.Networks;
 
 namespace IDP.Switches.RouterDb
 {
@@ -65,8 +66,9 @@ namespace IDP.Switches.RouterDb
             });
             var allCore = false;
             var keepWayIds = false;
+            var simplification = (new Itinero.IO.Osm.LoadSettings()).NetworkSimplificationEpsilon;
 
-            for(var i = 0; i < this.Arguments.Length; i++)
+            for (var i = 0; i < this.Arguments.Length; i++)
             {
                 string key, value;
                 if (SwitchParsers.SplitKeyValue(this.Arguments[i], out key, out value))
@@ -134,10 +136,19 @@ namespace IDP.Switches.RouterDb
                                 allCore = true;;
                             }
                             break;
+                        case "wayids":
                         case "keepwayids":
                             if (SwitchParsers.IsTrue(value))
                             {
                                 keepWayIds = true; ;
+                            }
+                            break;
+                        case "s":
+                        case "simplification":
+                            var parsedInt = SwitchParsers.Parse(value);
+                            if (parsedInt != null)
+                            {
+                                simplification = parsedInt.Value;
                             }
                             break;
                         default:
@@ -175,6 +186,12 @@ namespace IDP.Switches.RouterDb
 
                 // sort the network.
                 routerDb.Sort();
+
+                // optimize the network if requested.
+                if (simplification != 0)
+                {
+                    routerDb.OptimizeNetwork(simplification);
+                }
 
                 // compress the network.
                 routerDb.Network.Compress();
