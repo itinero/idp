@@ -176,6 +176,9 @@ namespace IDP.Switches.RouterDb
                 // sort the network.
                 routerDb.Sort();
 
+                // compress the network.
+                routerDb.Network.Compress();
+
                 return routerDb;
             };
             processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
