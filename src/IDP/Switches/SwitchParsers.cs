@@ -41,11 +41,12 @@ namespace IDP.Switches
         {
             Register(Osm.SwitchReadPBF.Names, (a) => new Osm.SwitchReadPBF(a));
             //Register(Osm.SwitchWritePBF.Names, (a) => new Osm.SwitchWritePBF(a));
+            Register(RouterDb.SwitchContractRouterDb.Names, (a) => new RouterDb.SwitchContractRouterDb(a));
             Register(Osm.SwitchFilterProgress.Names, (a) => new Osm.SwitchFilterProgress(a));
             Register(RouterDb.SwitchCreateRouterDb.Names, (a) => new RouterDb.SwitchCreateRouterDb(a));
-            Register(RouterDb.SwitchWriteRouterDb.Names, (a) => new RouterDb.SwitchWriteRouterDb(a));
-            Register(RouterDb.SwitchContractRouterDb.Names, (a) => new RouterDb.SwitchContractRouterDb(a));
+            Register(RouterDb.SwitchIslandsRouterDb.Names, (a) => new RouterDb.SwitchIslandsRouterDb(a));
             Register(RouterDb.SwitchReadRouterDb.Names, (a) => new RouterDb.SwitchReadRouterDb(a));
+            Register(RouterDb.SwitchWriteRouterDb.Names, (a) => new RouterDb.SwitchWriteRouterDb(a));
             Register(GTFS.SwitchReadGTFS.Names, (a) => new GTFS.SwitchReadGTFS(a));
             Register(TransitDb.SwitchCreateTransitDb.Names, (a) => new TransitDb.SwitchCreateTransitDb(a));
             Register(TransitDb.SwitchWriteTransitDb.Names, (a) => new TransitDb.SwitchWriteTransitDb(a));

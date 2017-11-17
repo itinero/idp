@@ -40,3 +40,6 @@ packages/*
 *.osm.pbf
 *.transitdb
 *.multimodaldb
+*.dbf
+*.shp
+*.shx
