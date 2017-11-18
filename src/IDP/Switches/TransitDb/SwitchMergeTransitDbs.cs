@@ -1,6 +1,6 @@
 ﻿// The MIT License (MIT)
 
-// Copyright (c) 2016 Ben Abelshausen
+// Copyright (c) 2017 Ben Abelshausen
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using IDP.Processors;
+using IDP.Processors.TransitDb;
+using Itinero.Transit.Data;
 using System;
 using System.Collections.Generic;
-using IDP.Processors;
-using System.IO;
 
-namespace IDP.Switches.RouterDb
+namespace IDP.Switches.TransitDb
 {
     /// <summary>
-    /// A switch to read a routerdb.
+    /// A switch to merge transit db's together into one.
     /// </summary>
-    class SwitchReadTransitDb : Switch
+    class SwitchMergeTransitDbs : Switch
     {
         /// <summary>
-        /// Creates a switch to read a router db.
+        /// Creates the switch.
         /// </summary>
-        public SwitchReadTransitDb(string[] a)
+        public SwitchMergeTransitDbs(string[] a)
             : base(a)
         {
 
@@ -48,7 +49,7 @@ namespace IDP.Switches.RouterDb
         {
             get
             {
-                return new string[] { "--read-routerdb" };
+                return new string[] { "--merge" };
             }
         }
 
@@ -57,26 +58,36 @@ namespace IDP.Switches.RouterDb
         /// </summary>
         public override int Parse(List<Processor> previous, out Processor processor)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
+            if (previous == null || previous.Count == 0) { throw new ArgumentOutOfRangeException("processors"); }
 
-            var localFile = Downloader.DownloadOrOpen(this.Arguments[0]);
-            var file = new FileInfo(localFile);
-            if (!file.Exists)
+            // ok combine all the previous transit db's.
+            var getTransitDbs = new List<Func<Itinero.Transit.Data.TransitDb>>();
+            while (getTransitDbs.Count < previous.Count &&
+                previous[previous.Count - getTransitDbs.Count - 1] is IProcessorTransitDbSource)
             {
-                throw new FileNotFoundException("File not found.", file.FullName);
+                getTransitDbs.Add(
+                    (previous[previous.Count - getTransitDbs.Count - 1] as IProcessorTransitDbSource).GetTransitDb);
             }
-            Func<Itinero.RouterDb> getRouterDb = () =>
-            {
-                Itinero.Logging.Logger.Log("Switch", Itinero.Logging.TraceEventType.Information,
-                    "Reading RouterDb: " + file.FullName);
-                using (var stream = file.OpenRead())
-                {
-                    return Itinero.RouterDb.Deserialize(stream);
-                }
-            };
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
 
-            return 0;
+            if (getTransitDbs.Count < 2)
+            {
+                throw new Exception("No transit db's found to merge.");
+            }
+
+            processor = new Processors.TransitDb.ProcessorTransitDbSource(() =>
+            {
+                var transitDb = new Itinero.Transit.Data.TransitDb();
+                for (var i = 0; i < getTransitDbs.Count; i++)
+                {
+                    transitDb.CopyFrom(getTransitDbs[i]());
+                }
+                transitDb.SortConnections(DefaultSorting.DepartureTime, null);
+                transitDb.SortStops();
+
+                return transitDb;
+            });
+
+            return getTransitDbs.Count;
         }
     }
 }

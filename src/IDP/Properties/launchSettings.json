@@ -2,7 +2,7 @@
   "profiles": {
     "IDP": {
       "commandName": "Project",
-      "commandLineArgs": " --read-pbf C:\\work\\itinero\\issues\\0110\\0110.osm.pbf --create-routerdb vehicles=car --write-routerdb 0110.routerdb --write-shape 0110.shp"
+      "commandLineArgs": "--read-routerdb belgium.a.routerdb --read-transitdb nmbs-latest.transitdb --read-transitdb delijn-latest.transitdb --merge --add-transfers profile=pedestrian --create-multimodaldb --add-links pedestrian --write-multimodaldb belgium.a.multimodaldb"
     }
   }
 }

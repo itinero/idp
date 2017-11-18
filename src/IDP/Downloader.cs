@@ -41,6 +41,20 @@ namespace IDP
             if (Downloader.IsUrl(file))
             { // download file and get local filename.
                 file = Downloader.Download(file);
+
+                var directory = (new FileInfo(file)).DirectoryName;
+                if (file.EndsWith(".zip"))
+                {
+                    var unzippedFile = file.Substring(0, file.Length - 4);
+                    if (File.Exists(unzippedFile))
+                    {
+                        File.Delete(unzippedFile);
+                    }
+                    System.IO.Compression.ZipFile.ExtractToDirectory(file,
+                        directory);
+                    file = unzippedFile;
+                }
+
             }
             return file;
         }

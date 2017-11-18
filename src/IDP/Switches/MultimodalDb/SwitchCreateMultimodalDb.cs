@@ -78,8 +78,6 @@ namespace IDP.Switches.MultimodalDb
             {
                 throw new Exception("Creating a multimodal requires a transit db an a router db source.");
             }
-            previous.RemoveAt(previous.Count - 1);
-            previous.RemoveAt(previous.Count - 2);
 
             processor = new Processors.MultimodalDb.ProcessorMultimodalDbSource(() =>
             {

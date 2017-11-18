@@ -45,9 +45,11 @@ namespace IDP.Switches
             Register(Osm.SwitchFilterProgress.Names, (a) => new Osm.SwitchFilterProgress(a));
             Register(RouterDb.SwitchCreateRouterDb.Names, (a) => new RouterDb.SwitchCreateRouterDb(a));
             Register(RouterDb.SwitchIslandsRouterDb.Names, (a) => new RouterDb.SwitchIslandsRouterDb(a));
-            Register(RouterDb.SwitchReadRouterDb.Names, (a) => new RouterDb.SwitchReadRouterDb(a));
+            Register(RouterDb.SwitchReadTransitDb.Names, (a) => new RouterDb.SwitchReadTransitDb(a));
             Register(RouterDb.SwitchWriteRouterDb.Names, (a) => new RouterDb.SwitchWriteRouterDb(a));
             Register(GTFS.SwitchReadGTFS.Names, (a) => new GTFS.SwitchReadGTFS(a));
+            Register(TransitDb.SwitchMergeTransitDbs.Names, (a) => new TransitDb.SwitchMergeTransitDbs(a));
+            Register(TransitDb.SwitchReadTransitDb.Names, (a) => new TransitDb.SwitchReadTransitDb(a));
             Register(TransitDb.SwitchCreateTransitDb.Names, (a) => new TransitDb.SwitchCreateTransitDb(a));
             Register(TransitDb.SwitchWriteTransitDb.Names, (a) => new TransitDb.SwitchWriteTransitDb(a));
             Register(TransitDb.SwitchAddTransfersDb.Names, (a) => new TransitDb.SwitchAddTransfersDb(a));

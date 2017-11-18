@@ -25,15 +25,15 @@ using System.Collections.Generic;
 using IDP.Processors;
 using System.IO;
 
-namespace IDP.Switches.RouterDb
+namespace IDP.Switches.TransitDb
 {
     /// <summary>
-    /// A switch to read a routerdb.
+    /// A switch to read a transit db.
     /// </summary>
     class SwitchReadTransitDb : Switch
     {
         /// <summary>
-        /// Creates a switch to read a router db.
+        /// Creates a switch to read a transit db.
         /// </summary>
         public SwitchReadTransitDb(string[] a)
             : base(a)
@@ -48,7 +48,7 @@ namespace IDP.Switches.RouterDb
         {
             get
             {
-                return new string[] { "--read-routerdb" };
+                return new string[] { "--read-transitdb" };
             }
         }
 
@@ -65,16 +65,17 @@ namespace IDP.Switches.RouterDb
             {
                 throw new FileNotFoundException("File not found.", file.FullName);
             }
-            Func<Itinero.RouterDb> getRouterDb = () =>
+
+            Func< Itinero.Transit.Data.TransitDb> getTransitDb = () =>
             {
                 Itinero.Logging.Logger.Log("Switch", Itinero.Logging.TraceEventType.Information,
-                    "Reading RouterDb: " + file.FullName);
+                    "Reading TransitDb: " + file.FullName);
                 using (var stream = file.OpenRead())
                 {
-                    return Itinero.RouterDb.Deserialize(stream);
+                    return Itinero.Transit.Data.TransitDb.Deserialize(stream);
                 }
             };
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
+            processor = new Processors.TransitDb.ProcessorTransitDbSource(getTransitDb);
 
             return 0;
         }

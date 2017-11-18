@@ -60,7 +60,7 @@ namespace IDP.Switches.MultimodalDb
         /// </summary>
         public override int Parse(List<Processor> previous, out Processor processor)
         {
-            var profileName = string.Empty; // no default profile.
+            var profileName = "pedestrian"; // default profile.
             var distance = 100; // default distance 100m.
 
             for (var i = 0; i < this.Arguments.Length; i++)

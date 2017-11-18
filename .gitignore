@@ -37,9 +37,12 @@ packages/*
 
 *.routing
 *.routerdb
+*.routerdb.zip
 *.osm.pbf
 *.transitdb
+*.transitdb.zip
 *.multimodaldb
+*.multimodaldb.zip
 *.dbf
 *.shp
 *.shx
