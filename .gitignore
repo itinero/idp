@@ -46,3 +46,5 @@ packages/*
 *.dbf
 *.shp
 *.shx
+
+*.hgt.zip

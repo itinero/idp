@@ -2,7 +2,7 @@
   "profiles": {
     "IDP": {
       "commandName": "Project",
-      "commandLineArgs": "--read-routerdb belgium.a.routerdb --read-transitdb nmbs-latest.transitdb --read-transitdb delijn-latest.transitdb --merge --add-transfers profile=pedestrian --create-multimodaldb --add-links pedestrian --write-multimodaldb belgium.a.multimodaldb"
+      "commandLineArgs": "--read-routerdb belgium.a.routerdb --elevation --write-routerdb belgium-elevation.a.routerdb"
     }
   }
 }
