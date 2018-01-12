@@ -104,6 +104,8 @@ namespace IDP.Switches.RouterDb
                 
                 foreach (var profileInstance in profileInstances)
                 {
+                    Itinero.Logging.Logger.Log("SwitchIslandRouterDb", Itinero.Logging.TraceEventType.Information,
+                        "Detecting islands for: {0}", profileInstance.FullName);
                     routerDb.AddIslandData(profileInstance);
                 }
 
