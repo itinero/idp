@@ -32,6 +32,11 @@ Build a RouterDb for pedestrians and bicycle and add a contracted graph for both
 
 `idp --read-pbf path/to/some-file.osm.pbf --pr --create-routerdb vehicles=bicycle,pedestrian --contract bicycle --contract pedestrian --write-routerdb some-file.routerdb`
 
+Adding elevation from SRTM can be done using:
+
+`idp --read-pbf path/to/some-file.osm.pbf --pr --create-routerdb vehicles=bicycle --elevation --write-routerdb some-file.routerdb`
+
+
 - contract: adds a contracted version of the routing graph to the routerdb.
 
 ### Related projects
