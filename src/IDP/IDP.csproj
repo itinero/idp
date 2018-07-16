@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyName>IDP</AssemblyName>
     <OutputType>Exe</OutputType>
-    <RuntimeIdentifiers>win8-x64;win10-x64;osx.10.11-x64;ubuntu.16.04-x64</RuntimeIdentifiers>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
@@ -18,9 +17,9 @@
 
   <ItemGroup>
     <PackageReference Include="GTFS" Version="2.1.5-pre02" />
-    <PackageReference Include="Itinero" Version="1.4.0-pre37" />
+    <PackageReference Include="Itinero" Version="1.4.0-pre63" />
     <PackageReference Include="Itinero.Geo" Version="1.4.0-pre18" />
-    <PackageReference Include="Itinero.IO.Osm" Version="1.4.0-pre37" />
+    <PackageReference Include="Itinero.IO.Osm" Version="1.4.0-pre63" />
     <PackageReference Include="Itinero.IO.Shape" Version="1.4.0-pre18" />
     <PackageReference Include="Itinero.Transit" Version="0.4.0-alpha" />
     <PackageReference Include="Serilog" Version="2.5.0" />

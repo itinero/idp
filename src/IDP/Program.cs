@@ -38,9 +38,6 @@ namespace IDP
                 Console.WriteLine(string.Format("[{0}-{3}] {1} - {2}", origin, level, message, DateTime.Now.ToString()));
             };
 
-            // register vehicles.
-            Itinero.Osm.Vehicles.Vehicle.RegisterVehicles();
-
             // register switches.
             Switches.SwitchParsers.RegisterAll();
 

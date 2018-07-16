@@ -94,7 +94,6 @@ namespace IDP.Switches.Shape
                                         using (var stream = vehicleFile.OpenRead())
                                         {
                                             vehicle = DynamicVehicle.LoadFromStream(stream);
-                                            vehicle.Register();
                                             vehicles.Add(vehicle);
                                         }
                                     }

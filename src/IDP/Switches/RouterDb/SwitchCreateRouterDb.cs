@@ -67,6 +67,8 @@ namespace IDP.Switches.RouterDb
             var allCore = false;
             var keepWayIds = false;
             var simplification = (new Itinero.IO.Osm.LoadSettings()).NetworkSimplificationEpsilon;
+            
+            Itinero.Osm.Vehicles.Vehicle.RegisterVehicles();
 
             for (var i = 0; i < this.Arguments.Length; i++)
             {
@@ -118,7 +120,6 @@ namespace IDP.Switches.RouterDb
                                             using (var stream = vehicleFile.OpenRead())
                                             {
                                                 vehicle = DynamicVehicle.LoadFromStream(stream);
-                                                vehicle.Register();
                                                 vehicles.Add(vehicle);
                                             }
                                         }
@@ -168,6 +169,9 @@ namespace IDP.Switches.RouterDb
             {
                 var routerDb = new Itinero.RouterDb();
 
+                // make sure the routerdb can handle multiple edges.
+                routerDb.Network.GeometricGraph.Graph.MarkAsMulti();
+                
                 // load the data.
                 var target = new Itinero.IO.Osm.Streams.RouterDbStreamTarget(routerDb,
                     vehicles.ToArray(), allCore, processRestrictions: true);
@@ -183,6 +187,10 @@ namespace IDP.Switches.RouterDb
                     target.RegisterSource(source);
                 }
                 target.Pull();
+                
+                // optimize the network for routing.
+                routerDb.SplitLongEdges();
+                routerDb.ConvertToSimple();
 
                 // sort the network.
                 routerDb.Sort();
