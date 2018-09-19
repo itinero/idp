@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyName>IDP</AssemblyName>
@@ -10,21 +9,18 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="..\..\SharedAssemblyVersion.cs" Link="Properties\SharedAssemblyVersion.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="GTFS" Version="2.1.5-pre02" />
-    <PackageReference Include="Itinero" Version="1.4.0-pre78" />
-    <PackageReference Include="Itinero.Geo" Version="1.4.0-pre78" />
-    <PackageReference Include="Itinero.IO.Osm" Version="1.4.0-pre78" />
-    <PackageReference Include="Itinero.IO.Shape" Version="1.4.0-pre78" />
+    <PackageReference Include="Itinero" Version="1.4.0-pre81" />
+    <PackageReference Include="Itinero.Geo" Version="1.4.0-pre81" />
+    <PackageReference Include="Itinero.IO.Osm" Version="1.4.0-pre81" />
+    <PackageReference Include="Itinero.IO.Shape" Version="1.4.0-pre81" />
     <PackageReference Include="Itinero.Transit" Version="0.4.0-alpha" />
     <PackageReference Include="Serilog" Version="2.5.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />
     <PackageReference Include="SRTM" Version="0.0.3" />
   </ItemGroup>
-
 </Project>
