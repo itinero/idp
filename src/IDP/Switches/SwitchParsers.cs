@@ -40,7 +40,8 @@ namespace IDP.Switches
         public static void RegisterAll()
         {
             Register(Osm.SwitchReadPBF.Names, (a) => new Osm.SwitchReadPBF(a));
-            //Register(Osm.SwitchWritePBF.Names, (a) => new Osm.SwitchWritePBF(a));
+            Register(Osm.SwitchWritePBF.Names, (a) => new Osm.SwitchWritePBF(a));
+            Register(GeoJson.SwitchWriteGeoJson.Names, (a) => new GeoJson.SwitchWriteGeoJson(a));
             Register(RouterDb.SwitchContractRouterDb.Names, (a) => new RouterDb.SwitchContractRouterDb(a));
             Register(Osm.SwitchFilterProgress.Names, (a) => new Osm.SwitchFilterProgress(a));
             Register(RouterDb.SwitchCreateRouterDb.Names, (a) => new RouterDb.SwitchCreateRouterDb(a));
