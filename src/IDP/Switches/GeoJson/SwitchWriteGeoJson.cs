@@ -20,73 +20,117 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using IDP.Processors.RouterDb;
-using Itinero;
-using Itinero.Profiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IDP.Processors;
+using IDP.Processors.RouterDb;
+using Itinero;
 
 namespace IDP.Switches.GeoJson
 {
     /// <summary>
     /// A switch to write geojson.
     /// </summary>
-    class SwitchWriteGeoJson : Switch
+    class SwitchWriteGeoJson : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a switch to write a geojson.
-        /// </summary>
-        public SwitchWriteGeoJson(string[] a)
-            : base(a)
-        {
-
-        }
-
         /// <summary>
         /// Gets the names.
         /// </summary>
-        public static string[] Names
-        {
-            get
+        private static string[] _names => new[] {"--write-geojson"};
+
+        private static readonly List<(string argName, bool isObligated, string comment)> Parameters =
+            new List<(string argName, bool isObligated, string comment)>
             {
-                return new string[] { "--write-geojson" };
-            }
+                ("file", true, "The output file which will contain the geojson. Will be overriden by the code"),
+                ("left",   false, "Specifies the minimal latitude of the output. Used when specifying a bounding box for the output."),
+                ("right",  false, "Specifies the maximal latitude of the output. Used when specifying a bounding box for the output."),
+                ("top",    false, "Specifies the minimal longitude of the output. Used when specifying a bounding box for the output."),
+                ("bottom", false, "Specifies the maximal longitude of the output. Used when specifying a bounding box for the output."),
+            };
+
+
+        private const bool IsStable = true;
+
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Creates a switch to write a geojson.
+        /// </summary>
+        private SwitchWriteGeoJson(string[] a)
+            : base(a, _names, Parameters, IsStable)
+        {
+        }
+        
+        public SwitchWriteGeoJson()
+            : base(_names, Parameters, IsStable)
+        {
         }
 
+        public override DocumentedSwitch SetArguments(string[] arguments)
+        {
+            return new SwitchWriteGeoJson(arguments);
+        }
+
+        /// <inheritdoc />
         /// <summary>
         /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
         /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+        public override Processor Parse(Dictionary<string, string> args, List<Processor> previous)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
-            if (previous.Count < 1) { throw new ArgumentException("Expected at least one processors before this one."); }
+            if (previous.Count < 1)
+            {
+                throw new ArgumentException(
+                    "Expected at least one other argument before this one.");
+            }
 
-            var file = new FileInfo(this.Arguments[0]);
-
-            if (!(previous[previous.Count - 1] is Processors.RouterDb.IProcessorRouterDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource))
             {
                 throw new Exception("Expected a router db source.");
             }
 
-            var source = (previous[previous.Count - 1] as Processors.RouterDb.IProcessorRouterDbSource);
-            Func<Itinero.RouterDb> getRouterDb = () =>
+
+            var source = (previous[previous.Count - 1] as IProcessorRouterDbSource);
+
+            var file = new FileInfo(args["file"]);
+
+
+            var bounds =
+                (args.ContainsKey("left") ? 1 : 0)
+                + (args.ContainsKey("left") ? 1 : 0)
+                + (args.ContainsKey("left") ? 1 : 0)
+                + (args.ContainsKey("left") ? 1 : 0);
+            if (bounds > 0 && bounds < 4)
+            {
+                throw new ArgumentException("When specifying bounds, give all arguments\n" + Help());
+            }
+
+
+            Itinero.RouterDb GetRouterDb()
             {
                 var routerDb = source.GetRouterDb();
 
                 using (var stream = file.Open(FileMode.Create))
                 using (var textStream = new StreamWriter(stream))
                 {
-                    routerDb.WriteGeoJson(textStream);
+                    if (bounds == 4)
+                    {
+                        var minLat = float.Parse("left");
+                        var maxLat = float.Parse("right");
+                        var minLon = float.Parse("down");
+                        var maxLon = float.Parse("up");
+                        routerDb.WriteGeoJson(textStream, minLat, minLon, maxLat, maxLon);
+                    }
+                    else
+                    {
+                        routerDb.WriteGeoJson(textStream);
+                    }
                 }
-                
+
                 return routerDb;
-            };
+            }
 
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
-
-            return 1;
+            return new ProcessorRouterDbSource(GetRouterDb);
         }
     }
 }
