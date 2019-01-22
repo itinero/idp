@@ -20,40 +20,45 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
+using System;
 using System.Collections.Generic;
+using IDP.Processors;
 
 namespace IDP.Switches
 {
     /// <summary>
-    /// Represents a switch.
+    /// A switch is a command line flag, such as '--write-geojson output.file'.
+    ///
+    /// A class implementing 'switch' has a name (--write-geojson) and
+    /// is responsible for constructing a processor based on arguments ("output.file") in this case
+    ///
+    /// It does this in the 'ParseArguments'-method
+    /// 
     /// </summary>
-    abstract class Switch
+    internal abstract class Switch
     {
         private readonly string[] _arguments;
 
         /// <summary>
         /// Creates a new switch.
         /// </summary>
-        public Switch(string[] arguments)
+        /// <param name="arguments">The command line arguments that were typed</param>
+        protected Switch(string[] arguments)
         {
             _arguments = arguments;
         }
 
         /// <summary>
-        /// Gets the arguments for this switch.
+        /// Gets the arguments for this switch that are given with the programs invocation.
         /// </summary>
-        public string[] Arguments
-        {
-            get
-            {
-                return _arguments;
-            }
-        }
+        protected string[] Arguments => _arguments;
 
         /// <summary>
-        /// Parses this switch.
+        /// Constructs a processor based on the command line arguments
         /// </summary>
         public abstract int Parse(List<Processor> previous, out Processor processor);
+
+
+        
     }
 }

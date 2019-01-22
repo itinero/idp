@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 using System;
+using IDP.Processors;
 
 namespace IDP
 {
@@ -31,22 +32,42 @@ namespace IDP
             // enable logging.
             OsmSharp.Logging.Logger.LogAction = (origin, level, message, parameters) =>
             {
-                Console.WriteLine(string.Format("[{0}-{3}] {1} - {2}", origin, level, message, DateTime.Now.ToString()));
+                Console.WriteLine(string.Format("[{0}-{3}] {1} - {2}", origin, level, message,
+                    DateTime.Now.ToString()));
             };
             Itinero.Logging.Logger.LogAction = (origin, level, message, parameters) =>
             {
-                Console.WriteLine(string.Format("[{0}-{3}] {1} - {2}", origin, level, message, DateTime.Now.ToString()));
+                Console.WriteLine(string.Format("[{0}-{3}] {1} - {2}", origin, level, message,
+                    DateTime.Now.ToString()));
             };
 
             // register switches.
             Switches.SwitchParsers.RegisterAll();
 
             // parses arguments.
-            var processor = Switches.SwitchParsers.Parse(args);
+            Processor processor;
+            try
+            {
+                processor = Switches.SwitchParsers.Parse(args);
+            }
+            catch (ArgumentException e)
+            {
+                Exception exc = e;
+                Console.WriteLine("Parsing arguments failed:");
+                do
+                {
+                    Console.WriteLine($"  {exc.Message}");
+                    exc = exc.InnerException;
+                } while (exc != null);
+                
+                
+                return ;
+            }
 
             var ticks = DateTime.Now.Ticks;
             processor.Execute();
-            Itinero.Logging.Logger.Log("Program", Itinero.Logging.TraceEventType.Information, "Processing finished, took {0}.",
+            Itinero.Logging.Logger.Log("Program", Itinero.Logging.TraceEventType.Information,
+                "Processing finished, took {0}.",
                 (new TimeSpan(DateTime.Now.Ticks - ticks)).ToString());
         }
     }

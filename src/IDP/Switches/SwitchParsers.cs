@@ -31,7 +31,10 @@ namespace IDP.Switches
     /// </summary>
     static class SwitchParsers
     {
-        private static List<Tuple<string[], Func<string[], Switch>>> _switches = 
+        public static List<DocumentedSwitch> DocumentedSwitches
+            = new List<DocumentedSwitch>();
+
+        private static List<Tuple<string[], Func<string[], Switch>>> _switches =
             new List<Tuple<string[], Func<string[], Switch>>>();
 
         /// <summary>
@@ -39,9 +42,12 @@ namespace IDP.Switches
         /// </summary>
         public static void RegisterAll()
         {
+            Register(new GeoJson.SwitchWriteGeoJson());
+            Register(new HelpSwitch());
+
+            
             Register(Osm.SwitchReadPBF.Names, (a) => new Osm.SwitchReadPBF(a));
             Register(Osm.SwitchWritePBF.Names, (a) => new Osm.SwitchWritePBF(a));
-            Register(GeoJson.SwitchWriteGeoJson.Names, (a) => new GeoJson.SwitchWriteGeoJson(a));
             Register(RouterDb.SwitchContractRouterDb.Names, (a) => new RouterDb.SwitchContractRouterDb(a));
             Register(Osm.SwitchFilterProgress.Names, (a) => new Osm.SwitchFilterProgress(a));
             Register(RouterDb.SwitchCreateRouterDb.Names, (a) => new RouterDb.SwitchCreateRouterDb(a));
@@ -63,10 +69,16 @@ namespace IDP.Switches
             Register(Logging.SwitchLogging.Names, (a) => new Logging.SwitchLogging(a));
         }
 
+        private static void Register(DocumentedSwitch swtch)
+        {
+            Register(swtch.Names, swtch.SetArguments);
+            DocumentedSwitches.Add(swtch);
+        }
+
         /// <summary>
         /// Registers a new switch.
         /// </summary>
-        public static void Register(string[] names, Func<string[], Switch> create)
+        private static void Register(string[] names, Func<string[], Switch> create)
         {
             _switches.Add(new Tuple<string[], Func<string[], Switch>>(names, create));
         }
@@ -85,49 +97,65 @@ namespace IDP.Switches
         public static Processors.Processor Parse(string[] args)
         {
             var switches = new List<Switch>();
-            for(var i = 0; i < args.Length; )
+            for (var i = 0; i < args.Length;)
             {
                 var s = FindSwitch(args[i]);
                 i++;
                 var parameters = new List<string>();
-                while(i < args.Length &&
-                    !IsSwitch(args[i]))
+                while (i < args.Length &&
+                       !IsSwitch(args[i]))
                 {
                     parameters.Add(args[i]);
                     i++;
                 }
+
                 switches.Add(s(parameters.ToArray()));
             }
 
             var processors = new List<Processors.Processor>();
-            for(var i = 0; i < switches.Count; i++)
+            for (var i = 0; i < switches.Count; i++)
             {
                 Processors.Processor newProcessor;
-                var p = switches[i].Parse(processors, out newProcessor);
+
+                int p;
+                try
+                {
+                    p = switches[i].Parse(processors, out newProcessor);
+                }
+                catch (ArgumentException e)
+                {
+                    throw new ArgumentException(string.Format("Parsing of arguments failed for switch: {0}",
+                        switches[0].ToString()), e);
+                }
+
                 if (p < 0)
                 {
-                    throw new Exception(string.Format("Parsing of arguments failed for switch: {0}", 
+                    throw new ArgumentException(string.Format("Parsing of arguments failed for switch: {0}",
                         switches[0].ToString()));
                 }
-                while(p > 0)
+
+                while (p > 0)
                 {
                     processors.RemoveAt(processors.Count - 1);
                     p--;
                 }
+
                 if (newProcessor != null)
                 {
                     processors.Add(newProcessor);
                 }
             }
+
             if (processors.Count > 1)
             {
                 throw new Exception("More than one processor left over after parsing switches.");
             }
+
             if (!processors[0].CanExecute)
             {
                 throw new Exception("Processor left over after parsing switches cannot be executed.");
             }
-            
+
             return processors[0];
         }
 
@@ -143,9 +171,10 @@ namespace IDP.Switches
                     return tuple.Item2;
                 }
             }
+
             throw new Exception(string.Format("Cannot find switch with name: {0}", name));
         }
-        
+
         /// <summary>
         /// Returns true if the given string contains a key value like 'key=value'.
         /// </summary>
@@ -154,7 +183,8 @@ namespace IDP.Switches
             key = null;
             value = null;
             if (keyValueString.Count(x => x == '=') == 1)
-            { // there is only one '=' sign here.
+            {
+                // there is only one '=' sign here.
                 int idx = keyValueString.IndexOf('=');
                 if (idx > 0 && idx < keyValueString.Length - 1)
                 {
@@ -163,6 +193,7 @@ namespace IDP.Switches
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -210,10 +241,11 @@ namespace IDP.Switches
         {
             if (!string.IsNullOrWhiteSpace(value) &&
                 (value.ToLowerInvariant() == "yes" ||
-                value.ToLowerInvariant() == "true"))
+                 value.ToLowerInvariant() == "true"))
             {
                 return true;
             }
+
             return false;
         }
 
@@ -229,6 +261,7 @@ namespace IDP.Switches
             {
                 return val;
             }
+
             return null;
         }
     }
