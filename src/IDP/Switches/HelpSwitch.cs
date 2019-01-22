@@ -13,18 +13,18 @@ namespace IDP.Switches
                 ("about", false, "The command (or switch) you'd like more info about")
             };
 
-        private const bool isStable = true;
+        private const bool IsStable = true;
 
-        public HelpSwitch(string[] arguments) : base(arguments, names, ExtraParams, isStable)
+        public HelpSwitch(string[] arguments) : base(arguments, names, ExtraParams, IsStable)
         {
         }
 
         public HelpSwitch() :
-            base(names, ExtraParams, isStable)
+            base(names, ExtraParams, IsStable)
         {
         }
 
-        private string GenerateAllHelp()
+        private static string GenerateAllHelp()
         {
             var text = " Itinero Data Processor \n";
             text += " ====================== \n\n";
