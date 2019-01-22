@@ -115,10 +115,41 @@ namespace IDP.Switches.GeoJson
                 {
                     if (bounds == 4)
                     {
-                        var minLat = float.Parse("left");
-                        var maxLat = float.Parse("right");
-                        var minLon = float.Parse("down");
-                        var maxLon = float.Parse("up");
+                        var minLon = float.Parse(args["left"]);
+                        var maxLon = float.Parse(args["right"]);
+                        var minLat = float.Parse(args["bottom"]);
+                        var maxLat = float.Parse(args["top"]);
+
+                        if (minLat < -90)
+                        {
+                            throw new ArgumentException("Minimum latitude is out of range (< -90)");
+                        }
+                        
+                        if (maxLat >  90)
+                        {
+                            throw new ArgumentException("Maximum latitude is out of range (>  90)");
+                        }
+                        
+                        if (minLon < -180)
+                        {
+                            throw new ArgumentException("Minimum longitude is out of range (< -180)");
+                        }
+                        
+                        if (maxLat > 180)
+                        {
+                            throw new ArgumentException("Maximum longitude is out of range (> 180)");
+                        }
+                        
+                        if (minLat > maxLat)
+                        {
+                            throw new ArgumentException("The minimum latitude (bottom) is bigger then the maximum latitude (top)");
+                        }
+                        
+                        if (minLon > maxLon)
+                        {
+                            throw new ArgumentException("The minimum longitude (left) is bigger then the maximum longitude (right)");
+                        }
+                        
                         routerDb.WriteGeoJson(textStream, minLat, minLon, maxLat, maxLon);
                     }
                     else
