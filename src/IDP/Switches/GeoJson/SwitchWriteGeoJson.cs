@@ -115,10 +115,10 @@ namespace IDP.Switches.GeoJson
                 {
                     if (bounds == 4)
                     {
-                        var minLat = float.Parse("left");
-                        var maxLat = float.Parse("right");
-                        var minLon = float.Parse("down");
-                        var maxLon = float.Parse("up");
+                        var minLat = float.Parse(args["left"]);
+                        var maxLat = float.Parse(args["right"]);
+                        var minLon = float.Parse(args["down"]);
+                        var maxLon = float.Parse(args["up"]);
                         routerDb.WriteGeoJson(textStream, minLat, minLon, maxLat, maxLon);
                     }
                     else
