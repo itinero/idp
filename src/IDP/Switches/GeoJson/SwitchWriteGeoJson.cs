@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using IDP.Processors;
+using IDP.Processors.Osm;
 using IDP.Processors.RouterDb;
 using Itinero;
 
@@ -37,16 +38,22 @@ namespace IDP.Switches.GeoJson
         /// <summary>
         /// Gets the names.
         /// </summary>
-        private static string[] _names => new[] {"--write-geojson"};
+        private static string[] _names => new[] {"--write-geojson","--wg"};      
+        private static string about = "Write a file as geojson file. Useful for debugging";
+
 
         private static readonly List<(string argName, bool isObligated, string comment)> Parameters =
             new List<(string argName, bool isObligated, string comment)>
             {
                 ("file", true, "The output file which will contain the geojson. Will be overriden by the code"),
-                ("left",   false, "Specifies the minimal latitude of the output. Used when specifying a bounding box for the output."),
-                ("right",  false, "Specifies the maximal latitude of the output. Used when specifying a bounding box for the output."),
-                ("top",    false, "Specifies the minimal longitude of the output. Used when specifying a bounding box for the output."),
-                ("bottom", false, "Specifies the maximal longitude of the output. Used when specifying a bounding box for the output."),
+                ("left", false,
+                    "Specifies the minimal latitude of the output. Used when specifying a bounding box for the output."),
+                ("right", false,
+                    "Specifies the maximal latitude of the output. Used when specifying a bounding box for the output."),
+                ("top", false,
+                    "Specifies the minimal longitude of the output. Used when specifying a bounding box for the output."),
+                ("bottom", false,
+                    "Specifies the maximal longitude of the output. Used when specifying a bounding box for the output."),
             };
 
 
@@ -58,12 +65,12 @@ namespace IDP.Switches.GeoJson
         /// Creates a switch to write a geojson.
         /// </summary>
         private SwitchWriteGeoJson(string[] a)
-            : base(a, _names, Parameters, IsStable)
+            : base(a, _names,about, Parameters, IsStable)
         {
         }
-        
+
         public SwitchWriteGeoJson()
-            : base(_names, Parameters, IsStable)
+            : base(_names,about, Parameters, IsStable)
         {
         }
 
@@ -76,7 +83,8 @@ namespace IDP.Switches.GeoJson
         /// <summary>
         /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
         /// </summary>
-        public override Processor Parse(Dictionary<string, string> args, List<Processor> previous)
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> args,
+            List<Processor> previous)
         {
             if (previous.Count < 1)
             {
@@ -124,32 +132,34 @@ namespace IDP.Switches.GeoJson
                         {
                             throw new ArgumentException("Minimum latitude is out of range (< -90)");
                         }
-                        
-                        if (maxLat >  90)
+
+                        if (maxLat > 90)
                         {
                             throw new ArgumentException("Maximum latitude is out of range (>  90)");
                         }
-                        
+
                         if (minLon < -180)
                         {
                             throw new ArgumentException("Minimum longitude is out of range (< -180)");
                         }
-                        
+
                         if (maxLat > 180)
                         {
                             throw new ArgumentException("Maximum longitude is out of range (> 180)");
                         }
-                        
+
                         if (minLat > maxLat)
                         {
-                            throw new ArgumentException("The minimum latitude (bottom) is bigger then the maximum latitude (top)");
+                            throw new ArgumentException(
+                                "The minimum latitude (bottom) is bigger then the maximum latitude (top)");
                         }
-                        
+
                         if (minLon > maxLon)
                         {
-                            throw new ArgumentException("The minimum longitude (left) is bigger then the maximum longitude (right)");
+                            throw new ArgumentException(
+                                "The minimum longitude (left) is bigger then the maximum longitude (right)");
                         }
-                        
+
                         routerDb.WriteGeoJson(textStream, minLat, minLon, maxLat, maxLon);
                     }
                     else
@@ -161,7 +171,7 @@ namespace IDP.Switches.GeoJson
                 return routerDb;
             }
 
-            return new ProcessorRouterDbSource(GetRouterDb);
+            return (new ProcessorRouterDbSource(GetRouterDb), 1);
         }
     }
 }

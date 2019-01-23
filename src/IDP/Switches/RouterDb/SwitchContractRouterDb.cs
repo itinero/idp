@@ -1,99 +1,76 @@
-﻿using IDP.Processors;
+﻿using System;
+using System.Collections.Generic;
+using IDP.Processors;
+using IDP.Processors.Osm;
+using IDP.Processors.RouterDb;
 using Itinero;
 using Itinero.Algorithms.Weights;
-using Itinero.Osm.Vehicles;
-using Itinero.Profiles;
-using System;
-using System.Collections.Generic;
 
 namespace IDP.Switches.RouterDb
 {
-    /// <summary>
-    /// A switch to add a contracted db to a router db.
-    /// </summary>
-    class SwitchContractRouterDb : Switch
+    class SwitchContractRouterDb : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a switch.
-        /// </summary>
-        public SwitchContractRouterDb(string[] a)
-            : base(a)
-        {
+       
+        private static string[] names = {"--contract"};
 
-        }
+        private static string about = "Applies contraction on the graph." +
+                                      "Solving queries on a contracted graph is _much_ faster, although preprocessing is quite a bit slower (at least 5 times slower);" +
+                                      "most use cases will require this flag." +
+                                      "To enable contraction for multiple profiles and/or multiple vehicles, simply add another --contraction";
 
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
+        private const bool isStable = true;
+
+        private static readonly List<(string argName, bool isObligated, string comment)> extraParams
+            = new List<(string argName, bool isObligated, string comment)>()
             {
-                return new string[] { "--contract" };
-            }
+                ("profile", true, "The profile for which a contraction hierarchy should be built"),
+                ("augmented", false, "If specified with 'yes', an augmented weight handler will be used")
+            };
+
+
+        public SwitchContractRouterDb(string[] arguments)
+            : base(arguments, names, about, extraParams, isStable)
+        {
+        }
+        
+        public SwitchContractRouterDb()
+            : base(names, about, extraParams, isStable)
+        {
+        }
+        
+        
+        public override DocumentedSwitch SetArguments(string[] arguments)
+        {
+            return new SwitchContractRouterDb(arguments);
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+        
+        
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> args, List<Processor> previous)
         {
-            if (previous.Count < 1) { throw new ArgumentException("Expected at least one processors before this one."); }
-            
-            if (!(previous[previous.Count - 1] is Processors.RouterDb.IProcessorRouterDbSource))
+            if (previous.Count < 1)
+            {
+                throw new ArgumentException("Expected at least one processors before this one.");
+            }
+
+            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource))
             {
                 throw new Exception("Expected a router db source.");
             }
 
-            string profile = null;
-            var augmented = false;
-            
-            if (this.Arguments.Length == 1 && 
-                !this.Arguments[0].Contains("="))
-            {
-                profile = this.Arguments[0];
-                if (profile == null)
-                {
-                    throw new Exception(string.Format("Cannot find profile {0}.", this.Arguments[0]));
-                }
-            }
-            else
-            {
-                for (var i = 0; i < this.Arguments.Length; i++)
-                {
-                    string key, value;
-                    if (SwitchParsers.SplitKeyValue(this.Arguments[i], out key, out value))
-                    {
-                        switch (key.ToLower())
-                        {
-                            case "profile":
-                                profile = value;
-                                if (profile == null)
-                                {
-                                    throw new Exception(string.Format("Cannot find profile {0}.", this.Arguments[0]));
-                                }
-                                break;
-                            case "augmented":
-                                if (SwitchParsers.IsTrue(value))
-                                {
-                                    augmented = true; ;
-                                }
-                                break;
-                            default:
-                                throw new SwitchParserException("--contract",
-                                    string.Format("Invalid parameter for command --contract: {0} not recognized.", key));
-                        }
-                    }
-                }
-            }
+            string profile = args["profile"];
+            var augmented = args.ContainsKey("augmented") &&
+                            SwitchParsers.IsTrue(args["augmented"]);
 
-            var source = (previous[previous.Count - 1] as Processors.RouterDb.IProcessorRouterDbSource);
-            Func<Itinero.RouterDb> getRouterDb = () =>
+
+            var source = (previous[previous.Count - 1] as IProcessorRouterDbSource);
+
+            Itinero.RouterDb GetRouterDb()
             {
                 var routerDb = source.GetRouterDb();
 
                 var profileInstance = routerDb.GetSupportedProfile(profile);
-                
+
                 if (!augmented)
                 {
                     routerDb.AddContracted(profileInstance);
@@ -104,10 +81,11 @@ namespace IDP.Switches.RouterDb
                 }
 
                 return routerDb;
-            };
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
+            }
 
-            return 1;
+            return (new ProcessorRouterDbSource(GetRouterDb), 1);
         }
+
+
     }
 }

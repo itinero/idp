@@ -42,19 +42,34 @@ namespace IDP.Switches
         /// </summary>
         public static void RegisterAll()
         {
+            // The help function does print in the same order as here
+            // so put the most important switches up top
+           
+            // -- Input Switches --
+            Register(new Osm.SwitchReadPBF());
+            
+            // -- Data processing switches --
+            Register(new RouterDb.SwitchContractRouterDb());
+            
+           
+            // -- Output Switches --
+            Register(new Osm.SwitchWritePBF());
             Register(new GeoJson.SwitchWriteGeoJson());
+            
+            
+            
+            // -- Usability switches: help, debug output, ... --
+            Register(new Osm.SwitchFilterProgress());
+            Register(new Logging.SwitchLogging());
             Register(new HelpSwitch());
 
             
-            Register(Osm.SwitchReadPBF.Names, (a) => new Osm.SwitchReadPBF(a));
-            Register(Osm.SwitchWritePBF.Names, (a) => new Osm.SwitchWritePBF(a));
-            Register(RouterDb.SwitchContractRouterDb.Names, (a) => new RouterDb.SwitchContractRouterDb(a));
-            Register(Osm.SwitchFilterProgress.Names, (a) => new Osm.SwitchFilterProgress(a));
             Register(RouterDb.SwitchCreateRouterDb.Names, (a) => new RouterDb.SwitchCreateRouterDb(a));
             Register(RouterDb.SwitchIslandsRouterDb.Names, (a) => new RouterDb.SwitchIslandsRouterDb(a));
             Register(RouterDb.SwitchElevationRouterDb.Names, (a) => new RouterDb.SwitchElevationRouterDb(a));
             Register(RouterDb.SwitchReadRouterDb.Names, (a) => new RouterDb.SwitchReadRouterDb(a));
             Register(RouterDb.SwitchWriteRouterDb.Names, (a) => new RouterDb.SwitchWriteRouterDb(a));
+           
             Register(GTFS.SwitchReadGTFS.Names, (a) => new GTFS.SwitchReadGTFS(a));
             Register(TransitDb.SwitchMergeTransitDbs.Names, (a) => new TransitDb.SwitchMergeTransitDbs(a));
             Register(TransitDb.SwitchReadTransitDb.Names, (a) => new TransitDb.SwitchReadTransitDb(a));
@@ -66,7 +81,6 @@ namespace IDP.Switches
             Register(MultimodalDb.SwitchWriteMultimodalDb.Names, (a) => new MultimodalDb.SwitchWriteMultimodalDb(a));
             Register(Shape.SwitchReadShape.Names, (a) => new Shape.SwitchReadShape(a));
             Register(Shape.SwitchWriteShape.Names, (a) => new Shape.SwitchWriteShape(a));
-            Register(Logging.SwitchLogging.Names, (a) => new Logging.SwitchLogging(a));
         }
 
         private static void Register(DocumentedSwitch swtch)
@@ -239,14 +253,9 @@ namespace IDP.Switches
         /// </summary>
         internal static bool IsTrue(string value)
         {
-            if (!string.IsNullOrWhiteSpace(value) &&
-                (value.ToLowerInvariant() == "yes" ||
-                 value.ToLowerInvariant() == "true"))
-            {
-                return true;
-            }
-
-            return false;
+            return !string.IsNullOrWhiteSpace(value) &&
+                   (value.ToLowerInvariant() == "yes" ||
+                    value.ToLowerInvariant() == "true");
         }
 
         /// <summary>
@@ -256,8 +265,7 @@ namespace IDP.Switches
         /// <returns></returns>
         internal static int? Parse(string value)
         {
-            int val;
-            if (int.TryParse(value, out val))
+            if (int.TryParse(value, out var val))
             {
                 return val;
             }

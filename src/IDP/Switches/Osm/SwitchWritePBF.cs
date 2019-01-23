@@ -24,43 +24,46 @@ using IDP.Processors;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IDP.Processors.Osm;
+using IDP.Processors.RouterDb;
 
 namespace IDP.Switches.Osm
 {
-    /// <summary>
-    /// Represents a switch to write an OSM-PBF file.
-    /// </summary>
-    class SwitchWritePBF : Switch
+    class SwitchWritePBF : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a new write PBF switch.
-        /// </summary>
-        public SwitchWritePBF(string[] arguments)
-            : base(arguments)
-        {
+        private static string[] names = {"--write-pbf", "--wb"};
+        private static string about = "Write an .osm.pbf file";
 
-        }
-
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
+        private static readonly List<(string argName, bool isObligated, string comment)> extraParams
+            = new List<(string argName, bool isObligated, string comment)>
             {
-                return new string[] { "--wb", "--write-pbf" };
-            }
+                ("file", true, "The file to write the .osm.pbf to")
+            };
+
+        private const bool isStable = true;
+
+        public SwitchWritePBF(string[] arguments) : base(arguments, names, about, extraParams, isStable)
+        {
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+        public SwitchWritePBF() : base(names, about, extraParams, isStable)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
-            if (previous.Count < 1) { throw new ArgumentException("Expected at least one processors before this one."); }
+        }
 
-            var file = new FileInfo(this.Arguments[0]);
+        public override DocumentedSwitch SetArguments(string[] arguments)
+        {
+            return new SwitchWritePBF(arguments);
+        }
+
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
+        {
+            if (previous.Count < 1)
+            {
+                throw new ArgumentException("Expected at least one processors before this one.");
+            }
+
+            var file = new FileInfo(arguments["file"]);
             if (!file.Exists)
             {
                 throw new FileNotFoundException("File not found.", file.FullName);
@@ -73,9 +76,7 @@ namespace IDP.Switches.Osm
 
             var pbfTarget = new OsmSharp.Streams.PBFOsmStreamTarget(file.OpenRead());
             pbfTarget.RegisterSource((previous[previous.Count - 1] as Processors.Osm.IProcessorOsmStreamSource).Source);
-            processor = new Processors.Osm.ProcessorOsmStreamTarget(pbfTarget);
-
-            return 1;
+            return (new Processors.Osm.ProcessorOsmStreamTarget(pbfTarget), 1);
         }
     }
 }

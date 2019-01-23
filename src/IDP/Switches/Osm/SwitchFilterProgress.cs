@@ -5,35 +5,32 @@ using System.IO;
 
 namespace IDP.Switches.Osm
 {
-    /// <summary>
-    /// Represents a switch to add a filter to report progress.
-    /// </summary>
-    class SwitchFilterProgress : Switch
+    class SwitchFilterProgress : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a new switch.
-        /// </summary>
-        public SwitchFilterProgress(string[] arguments)
-            : base(arguments)
-        {
+        private static readonly string[] names = {"--progress-report", "--progress", "--pr"};
 
+        private const string about = "If this flag is specified, the progress will be printed to standard out. Useful to see how quickly the process goes and to do a bit of initial troubleshooting.";
+
+        private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams = 
+          new List<(string argName, bool isObligated, string comment)>();
+
+        private const bool IsStable = true;
+
+        public SwitchFilterProgress(string[] arguments) : base(arguments, names, about, ExtraParams, IsStable)
+        {
         }
 
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
+        public SwitchFilterProgress() : base(names, about, ExtraParams, IsStable)
         {
-            get
-            {
-                return new string[] { "--pr", "--progress" };
-            }
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+        public override DocumentedSwitch SetArguments(string[] arguments)
+        {
+            return new SwitchFilterProgress(arguments);
+        }
+
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
         {
             if (!(previous[previous.Count - 1] is Processors.Osm.IProcessorOsmStreamSource))
             {
@@ -41,10 +38,11 @@ namespace IDP.Switches.Osm
             }
 
             var progressFilter = new OsmSharp.Streams.Filters.OsmStreamFilterProgress();
-            progressFilter.RegisterSource((previous[previous.Count - 1] as Processors.Osm.IProcessorOsmStreamSource).Source);
-            processor = new Processors.Osm.ProcessorOsmStreamSource(progressFilter);
-
-            return 1;
+            var source = previous[previous.Count - 1] as Processors.Osm.IProcessorOsmStreamSource;
+            progressFilter.RegisterSource(source.Source);
+            return (new Processors.Osm.ProcessorOsmStreamSource(progressFilter), 1);
         }
+
+      
     }
 }

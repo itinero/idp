@@ -20,56 +20,57 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using System;
 using System.Collections.Generic;
 using System.IO;
+using IDP.Processors;
+using IDP.Processors.Osm;
+using OsmSharp.Streams;
 
 namespace IDP.Switches.Osm
 {
-    /// <summary>
-    /// Represents a switch to read an OSM-PBF file.
-    /// </summary>
-    class SwitchReadPBF : Switch
+    class SwitchReadPBF : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a new read PBF switch.
-        /// </summary>
-        public SwitchReadPBF(string[] arguments)
-            : base(arguments)
-        {
+        private static readonly string[] names = {"--read-pbf", "--rb"};
+        private static string about = "Read an .osm.pbf file to serve as input";
 
-        }
-
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
+        private static readonly List<(string argName, bool isObligated, string comment)> extraParams
+            = new List<(string argName, bool isObligated, string comment)>()
             {
-                return new string[] { "--rb", "--read-pbf" };
-            }
+                ("file", true, "The .osm.pbf file that serves as input")
+            };
+
+        private const bool IsStable = true;
+
+        public SwitchReadPBF() : base(names, about, extraParams, IsStable)
+        {
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+        private SwitchReadPBF(string[] arguments) : base(arguments, names, about, extraParams, IsStable)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
+        }
 
-            var localFile = Downloader.DownloadOrOpen(this.Arguments[0]);
+        public override DocumentedSwitch SetArguments(string[] arguments)
+        {
+            return new SwitchReadPBF(arguments);
+        }
+
+
+        /// <summary>
+        /// Parses this command into a processor given the arguments for this switch.
+        /// Consumes the previous processors and returns how many it consumes.
+        /// </summary>
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
+        {
+            var localFile = Downloader.DownloadOrOpen(arguments["file"]);
             var file = new FileInfo(localFile);
             if (!file.Exists)
             {
                 throw new FileNotFoundException("File not found.", file.FullName);
             }
 
-            var pbfSource = new OsmSharp.Streams.PBFOsmStreamSource(file.OpenRead());
-            processor = new Processors.Osm.ProcessorOsmStreamSource(pbfSource);
-
-            return 0;
+            var pbfSource = new PBFOsmStreamSource(file.OpenRead());
+            return (new ProcessorOsmStreamSource(pbfSource), 0);
         }
     }
 }

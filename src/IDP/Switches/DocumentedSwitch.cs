@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using IDP.Processors;
+using IDP.Processors.Osm;
 
 [assembly: InternalsVisibleTo("IDP.Test")]
 [assembly: InternalsVisibleTo("IDP.Test")]
@@ -19,6 +20,11 @@ namespace IDP.Switches
         /// The names of the switch
         /// </summary>
         public readonly string[] Names;
+
+        /// <summary>
+        /// What does this switch do?
+        /// </summary>
+        private readonly string _about;
 
         /// <summary>
         /// 
@@ -42,39 +48,43 @@ namespace IDP.Switches
         private readonly bool _isStable;
 
         protected DocumentedSwitch(string[] arguments,
-            string[] names,
+            string[] names, string about,
             List<(string argName, bool isObligated, string comment)> extraParams,
             bool isStable
         ) : base(arguments)
         {
             Names = names;
+            _about = about;
             _extraParams = extraParams;
             _isStable = isStable;
         }
-        
-        protected DocumentedSwitch(string[] names,
+
+        protected DocumentedSwitch(string[] names, string about,
             List<(string argName, bool isObligated, string comment)> extraParams,
             bool isStable
-        ) : this(new string[]{}, names, extraParams, isStable)
+        ) : this(new string[] { }, names, about, extraParams, isStable)
         {
         }
 
         protected DocumentedSwitch(string[] arguments,
-            DocumentedSwitch cloneFrom) : this(arguments, cloneFrom.Names, cloneFrom._extraParams, cloneFrom._isStable)
+            DocumentedSwitch cloneFrom) : this(arguments, cloneFrom.Names, cloneFrom._about, cloneFrom._extraParams,
+            cloneFrom._isStable)
         {
         }
 
 
-        public abstract Processor Parse(Dictionary<string, string> arguments, List<Processor> previous);
+        public abstract (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous);
 
         // Legacy, to be removed
         public abstract DocumentedSwitch SetArguments(string[] arguments);
-        
+
         public override int Parse(List<Processor> previous, out Processor processor)
         {
+            int consumed;
             // I'm not really keen on keeping track of the Argument in this object, hence my "translation" to make transition easier
-            processor = Parse(ParseExtraParams(Arguments), previous);
-            return 1;
+            (processor, consumed) = Parse(ParseExtraParams(Arguments), previous);
+            return consumed;
         }
 
         /// <summary>
@@ -93,22 +103,38 @@ namespace IDP.Switches
             var expected = _extraParams;
             var index = 0;
 
+            var used = new HashSet<string>();
+
             // First, handle all the named arguments
             foreach (var argument in arguments)
             {
-                if (!argument.Contains("=")) continue;
-
+                if (!SwitchParsers.SplitKeyValue(argument, out var key, out var value)) continue;
                 // The argument is of the format 'file=abc'
-                var split = argument.IndexOf("=", StringComparison.Ordinal);
-                var name = argument.Substring(0, split);
-                var arg = argument.Substring(split + 1);
-                result.Add(name, arg);
+                result.Add(key, value);
+                used.Add(argument);
+
+                bool found = false;
+                foreach (var (argName, _, _) in expected)
+                {
+                    // ReSharper disable once InvertIf
+                    if (argName.Equals(key))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    throw new ArgumentException(
+                        $"Found a parameter with key {key}, but no such parameter is defined for this switch.\n\n{Help()}");
+                }
             }
 
             // Now, we handle the resting elements
             foreach (var argument in arguments)
             {
-                if (argument.Contains("=")) continue;
+                if (SwitchParsers.SplitKeyValue(argument, out _, out _)) continue;
 
                 // We found an argument which does not use "="
                 // Was it used already?
@@ -125,10 +151,28 @@ namespace IDP.Switches
                 }
 
                 result.Add(name, argument);
+                used.Add(argument);
             }
 
 
-            // At last, do we have all obligated arguments?
+            // Did we use all arguments?
+            if (arguments.Length != used.Count)
+            {
+                var unused = "";
+                foreach (var argument in arguments)
+                {
+                    if (!used.Contains(argument))
+                    {
+                        unused += argument + ", ";
+                    }
+                }
+
+                unused = unused.Substring(unused.Length - 2);
+                throw new ArgumentException($"Some arguments were not used: \n  {unused}");
+            }
+
+
+            // At last, do we have all obligated parameters?
             foreach (var (name, obligated, _) in expected)
             {
                 if (obligated && !result.ContainsKey(name))
@@ -146,13 +190,32 @@ namespace IDP.Switches
         /// </summary>
         /// <returns></returns>
         // ReSharper disable once MemberCanBeProtected.Global
-        public string Help()
+        public string Help(bool markdown = false)
         {
             var text = "";
 
-            foreach (var name in Names)
+            if (markdown)
             {
-                text += name + " ";
+                text += "### ";
+                text += Names[0];
+                if (Names.Length > 1)
+                {
+                    text += " (";
+                    for (int i = 1; i < Names.Length; i++)
+                    {
+                        text += Names[i] + ", ";
+                    }
+
+                    text = text.Substring(0, text.Length - 2);
+                    text += ")";
+                }
+            }
+            else
+            {
+                foreach (var name in Names)
+                {
+                    text += name + " ";
+                }
             }
 
 
@@ -160,19 +223,47 @@ namespace IDP.Switches
             {
                 text += " (Experimental feature)";
             }
-            text += "\n";
 
-            var parameters = _extraParams;
-            foreach (var (argName, isObligated, comment) in parameters)
+            text += "\n";
+            text += "   " + _about + "\n\n";
+
+            if (markdown)
             {
-                text += $"   {argName}=*\n\t{comment}";
-                if (isObligated)
+                if (_extraParams.Count == 0)
                 {
-                    text += "(Obligated)";
+                    text += "\n\n*This switch does not need parameters*\n";
                 }
                 else
                 {
-                    text += "(Optional)";
+                    text += "| Parameter  | Obligated? | Explanation       |\n";
+                    text += "|----------- | ---------- | ----------------- |\n";
+                }
+            }
+
+            foreach (var (argName, isObligated, comment) in _extraParams)
+            {
+                if (markdown)
+                {
+                    if (isObligated)
+                    {
+                        text += $"| **{argName}** | ✓ | {comment} | ";
+                    }
+                    else
+                    {
+                        text += $"| {argName} | | {comment} | ";
+                    }
+                }
+                else
+                {
+                    text += $"   {argName}=*\n\t{comment}";
+                    if (isObligated)
+                    {
+                        text += "(Obligated)";
+                    }
+                    else
+                    {
+                        text += "(Optional)";
+                    }
                 }
 
                 text += "\n";

@@ -20,64 +20,66 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using Serilog;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Globalization;
+using IDP.Processors;
+using OsmSharp.Logging;
+using Serilog;
 
 namespace IDP.Switches.Logging
 {
-    /// <summary>
-    /// A switch to add logging.
-    /// </summary>
-    class SwitchLogging : Switch
+    class SwitchLogging : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a new logging switch.
-        /// </summary>
-        public SwitchLogging(string[] arguments)
-            : base(arguments)
-        {
+        private static readonly string[] names = {"--log"};
 
+        private const string About = "If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile";
+
+        private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams =
+            new List<(string argName, bool isObligated, string comment)>()
+            {
+                ("file", true, "The name of the file where the logs will be written to")
+            };
+
+        private const bool IsStable = true;
+
+
+        public SwitchLogging(string[] arguments) : base(arguments, names, About, ExtraParams, IsStable)
+        {
         }
 
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
+        public SwitchLogging() :
+            base(names, About, ExtraParams, IsStable)
         {
-            get
-            {
-                return new string[] { "--log" };
-            }
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+
+        public override DocumentedSwitch SetArguments(string[] arguments)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
-            
-            // enable logging but add serilog this time.
-            OsmSharp.Logging.Logger.LogAction = (origin, level, message, parameters) =>
+            return new SwitchLogging(arguments);
+        }
+
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
+        {
+            // enable logging by adding serilog
+            Logger.LogAction = (origin, level, message, parameters) =>
             {
-                Console.WriteLine(string.Format("[{0}-{3}] {1} - {2}", origin, level, message, DateTime.Now.ToString()));
-                Serilog.Log.Information(string.Format("[{0}-{3}] {1} - {2}", origin, level, message, DateTime.Now.ToString()));
+                Console.WriteLine($"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}");
+                Log.Information(string.Format($"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}"));
             };
             Itinero.Logging.Logger.LogAction = (origin, level, message, parameters) =>
             {
-                Console.WriteLine(string.Format("[{0}-{3}] {1} - {2}", origin, level, message, DateTime.Now.ToString()));
-                Serilog.Log.Information(string.Format("[{0}-{3}] {1} - {2}", origin, level, message, DateTime.Now.ToString()));
+                Console.WriteLine($"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}");
+                Log.Information(string.Format($"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}"));
             };
-            
-            Serilog.Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(this.Arguments[0])
+
+            var logFile = arguments["file"];
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File(logFile)
                 .CreateLogger();
 
-            processor = null;
-            return 0;
+            return (null, 0);
         }
     }
 }
