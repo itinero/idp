@@ -26,138 +26,170 @@ using IDP.Processors;
 using Itinero.Profiles;
 using Itinero.Algorithms.Search.Hilbert;
 using System.IO;
+using System.Runtime.CompilerServices;
+using IDP.Processors.RouterDb;
 using Itinero.Algorithms.Networks;
+using OsmSharp.Streams;
 
 namespace IDP.Switches.RouterDb
 {
     /// <summary>
     /// A switch to create a router db.
     /// </summary>
-    class SwitchCreateRouterDb : Switch
+    class SwitchCreateRouterDb : DocumentedSwitch
     {
+        private static readonly string[] names = {"--create-routerdb"};
+
+        private static string about = "Converts an input source (such as a .osm) into a routable graph. If no vehicle is specified, `car` is used.\n" +
+                                      "If the routing graph should be built for another vehicle, the `vehicle`-parameter can be used\n\n" +
+                                      "1) specify a **file** containing a routing profile [(examples in our repository)](https://github.com/anyways-open/routing-profiles/), or...\n" + 
+                                      "2) a **built-in** profile can be used. This should be one of:\n\n" +
+                                      " - `Bicycle`\n" +
+                                      " - `BigTruck`\n" +
+                                      " - `Bus`\n" +
+                                      " - `Car`\n" +
+                                      " - `Moped`\n" +
+                                      " - `MotorCycle`\n" +
+                                      " - `Pedestrian`\n" +
+                                      " - `SmallTruck`\n" +
+                                      "\n" +
+                                      "Additionally, there are two special values:\n\n" +
+                                      "- `all`: Adds all of the above vehicles to the routing graph\n" +
+                                      "- `motors `(or `motorvehicles`): adds all motor vehicles to the routing graph\n\n" +
+                                      "Note that one can specify multiple vehicles at once too, using the `vehicles` parameter (note the plural)";
+
+
+        private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams =
+            new List<(string argName, bool isObligated, string comment)>()
+            {
+                ("vehicle", false,
+                    "The vehicle that the routing graph should be built for. Default is 'car'."),
+                ("vehicles", false, "A comma separated list containing vehicles that should be used"),
+                ("keepwayids", false, "Boolean indicating that the way IDs should be kept"), // TODO Clarify this
+                ("wayids", false, "Same as `keepwayids`"),
+                ("allcore", false, "Boolean indicating allcore"), // TODO WTF? Clarify this
+                ("simplification", false,
+                    "Integer indicating the simplification factor. Default: very small"), // TODO Clarify this
+            };
+
+        private const bool IsStable = true;
+
+
         /// <summary>
         /// Creates a switch to create a router db.
         /// </summary>
-        public SwitchCreateRouterDb(string[] a)
-            : base(a)
+        public SwitchCreateRouterDb()
+            : base(names, about, ExtraParams, IsStable)
         {
-
-        }
-        
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
-            {
-                return new string[] { "--create-routerdb" };
-            }
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
         {
-            var vehicles = new List<Vehicle>(new Vehicle[]
-            {
-                Itinero.Osm.Vehicles.Vehicle.Car
-            });
-            var allCore = false;
-            var keepWayIds = false;
+            // Various options parsing
+            var allCore = arguments.ContainsKey("allcore")
+                          && SwitchParsers.IsTrue(arguments["allcore"]);
+            var keepWayIds = (arguments.ContainsKey("keepwayids")
+                              && SwitchParsers.IsTrue(arguments["keepwayids"]))
+                             || (arguments.ContainsKey("wayids")
+                                 && SwitchParsers.IsTrue(arguments["wayids"]));
+
             var simplification = (new Itinero.IO.Osm.LoadSettings()).NetworkSimplificationEpsilon;
-            
-            Itinero.Osm.Vehicles.Vehicle.RegisterVehicles();
-
-            for (var i = 0; i < this.Arguments.Length; i++)
+            if (arguments.TryGetValue("simplification", out var sArg))
             {
-                string key, value;
-                if (SwitchParsers.SplitKeyValue(this.Arguments[i], out key, out value))
+                var parsedInt = SwitchParsers.Parse(sArg);
+                if (parsedInt != null)
                 {
-                    switch (key.ToLower())
-                    {
-                        case "vehicles":
-                        case "vehicle":
-                            string[] vehicleValues;
-                            if (SwitchParsers.SplitValuesArray(value.ToLower(), out vehicleValues))
-                            { // split the values array.
-                                vehicles = new List<Vehicle>(vehicleValues.Length);
-                                for (int v = 0; v < vehicleValues.Length; v++)
-                                {
-                                    Vehicle vehicle;
-                                    if (!Vehicle.TryGet(vehicleValues[v], out vehicle))
-                                    {
-                                        if (vehicleValues[v] == "all")
-                                        { // all vehicles.
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bicycle);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.BigTruck);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bus);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Car);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Moped);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.MotorCycle);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Pedestrian);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.SmallTruck);
-                                        }
-                                        else if (vehicleValues[v] == "motorvehicle" ||
-                                            vehicleValues[v] == "motorvehicles")
-                                        { // all motor vehicles.
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.BigTruck);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bus);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Car);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.MotorCycle);
-                                            vehicles.Add(Itinero.Osm.Vehicles.Vehicle.SmallTruck);
-                                        }
-                                        else
-                                        { // assume a filename.
-                                            var vehicleFile = new FileInfo(vehicleValues[v]);
-                                            if (!vehicleFile.Exists)
-                                            {
-                                                throw new SwitchParserException("--create-routerdb",
-                                                    string.Format("Invalid parameter value for command --create-routerdb: Vehicle profile '{0}' not found.",
-                                                        vehicleValues[v]));
-                                            }
-                                            using (var stream = vehicleFile.OpenRead())
-                                            {
-                                                vehicle = DynamicVehicle.LoadFromStream(stream);
-                                                vehicles.Add(vehicle);
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        vehicles.Add(vehicle);
-                                    }
-                                }
-                            }
-                            break;
-                        case "allcore":
-                            if (SwitchParsers.IsTrue(value))
-                            {
-                                allCore = true;;
-                            }
-                            break;
-                        case "wayids":
-                        case "keepwayids":
-                            if (SwitchParsers.IsTrue(value))
-                            {
-                                keepWayIds = true; ;
-                            }
-                            break;
-                        case "s":
-                        case "simplification":
-                            var parsedInt = SwitchParsers.Parse(value);
-                            if (parsedInt != null)
-                            {
-                                simplification = parsedInt.Value;
-                            }
-                            break;
-                        default:
-                            throw new SwitchParserException("--create-routerdb",
-                                string.Format("Invalid parameter for command --create-routerdb: {0} not recognized.", key));
-                    }
+                    simplification = parsedInt.Value;
                 }
             }
+
+
+            if (arguments.ContainsKey("vehicle") && arguments.ContainsKey("vehicles"))
+            {
+                throw new ArgumentException(
+                    "Do not specify both `vehicle` and `vehicles`. Add the sole vehicle to the list.");
+            }
+
+            Itinero.Osm.Vehicles.Vehicle.RegisterVehicles();
+            string vehiclesArg;
+            if (arguments.ContainsKey("vehicle"))
+            {
+                vehiclesArg = arguments["vehicle"];
+            }
+            else if (arguments.ContainsKey("vehicles"))
+            {
+                vehiclesArg = arguments["vehicles"];
+            }
+            else
+            {
+                vehiclesArg = "car";
+            }
+
+
+            string[] vehicleNames;
+            if (!SwitchParsers.SplitValuesArray(vehiclesArg.ToLower(), out vehicleNames))
+            {
+                // No commas found or something
+                vehicleNames = new[] {vehiclesArg};
+            }
+
+            // The resulting list containing everything
+            var vehicles = new List<Vehicle>();
+
+            foreach (var vehicleName in vehicleNames)
+            {
+                var name = vehicleName.ToLower();
+                if (Vehicle.TryGet(name, out var vehicle))
+                {
+                    vehicles.Add(vehicle);
+                    continue;
+                }
+
+                if (name.Equals("all"))
+                {
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bicycle);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.BigTruck);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bus);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Car);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Moped);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.MotorCycle);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Pedestrian);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.SmallTruck);
+                    continue;
+                }
+
+
+                if (name.Equals("motors") || name.Equals("motorvehicles"))
+                {
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.BigTruck);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bus);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Car);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.MotorCycle);
+                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.SmallTruck);
+                    continue;
+                }
+
+
+                // Assume that this is a filename
+
+                // assume a filename.
+                var vehicleFile = new FileInfo(name);
+                if (!vehicleFile.Exists)
+                {
+                    throw new FileNotFoundException($"Loading the vehicle profile {name} failed. This profile was not recognized as a built-in profile, neither was it found as a file. Profiles can be found online: https://github.com/anyways-open/routing-profiles/", name);
+                }
+
+                using (var stream = vehicleFile.OpenRead())
+                {
+                    vehicles.Add( DynamicVehicle.LoadFromStream(stream));
+                }
+            }
+
+            // All arguments have been set up!
+            
+            // Only thing left to do: grab an OSM stream source and actually get stuff done
             
             if (!(previous[previous.Count - 1] is Processors.Osm.IProcessorOsmStreamSource))
             {
@@ -165,29 +197,38 @@ namespace IDP.Switches.RouterDb
             }
 
             var source = (previous[previous.Count - 1] as Processors.Osm.IProcessorOsmStreamSource).Source;
+            return CreateProcessor(source, vehicles, allCore, keepWayIds, simplification);
+        }
+
+        private (ProcessorRouterDbSource, int) CreateProcessor(OsmStreamSource source, List<Vehicle> vehicles,
+            bool allCore, bool keepWayIds, float simplification)
+        {
             Func<Itinero.RouterDb> getRouterDb = () =>
             {
                 var routerDb = new Itinero.RouterDb();
 
                 // make sure the routerdb can handle multiple edges.
                 routerDb.Network.GeometricGraph.Graph.MarkAsMulti();
-                
+
                 // load the data.
                 var target = new Itinero.IO.Osm.Streams.RouterDbStreamTarget(routerDb,
                     vehicles.ToArray(), allCore, processRestrictions: true);
                 if (keepWayIds)
-                { // add way id's.
+                {
+                    // add way id's.
                     var eventsFilter = new OsmSharp.Streams.Filters.OsmStreamFilterDelegate();
                     eventsFilter.MoveToNextEvent += EventsFilter_AddWayId;
                     eventsFilter.RegisterSource(source);
                     target.RegisterSource(eventsFilter, false);
                 }
                 else
-                { // use the source as-is.
+                {
+                    // use the source as-is.
                     target.RegisterSource(source);
                 }
+
                 target.Pull();
-                
+
                 // optimize the network for routing.
                 routerDb.SplitLongEdges();
                 routerDb.ConvertToSimple();
@@ -206,18 +247,17 @@ namespace IDP.Switches.RouterDb
 
                 return routerDb;
             };
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
-
-            return 1;
+            return (new ProcessorRouterDbSource(getRouterDb), 1);
         }
 
-        
-        static OsmSharp.OsmGeo EventsFilter_AddWayId(OsmSharp.OsmGeo osmGeo, object param)
+
+        private static OsmSharp.OsmGeo EventsFilter_AddWayId(OsmSharp.OsmGeo osmGeo, object param)
         {
             if (osmGeo.Type == OsmSharp.OsmGeoType.Way)
             {
                 osmGeo.Tags.Add("way_id", osmGeo.Id.ToString());
             }
+
             return osmGeo;
         }
     }

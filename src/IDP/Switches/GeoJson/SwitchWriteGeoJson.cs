@@ -35,9 +35,6 @@ namespace IDP.Switches.GeoJson
     /// </summary>
     class SwitchWriteGeoJson : DocumentedSwitch
     {
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
         private static string[] _names => new[] {"--write-geojson","--wg"};      
         private static string about = "Write a file as geojson file. Useful for debugging";
 

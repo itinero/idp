@@ -179,7 +179,7 @@ namespace IDP.Switches
 
             if (markdown)
             {
-                text += "### ";
+                text += "#### ";
                 text += Names[0];
                 if (Names.Length > 1)
                 {

@@ -31,37 +31,39 @@ namespace IDP.Switches.RouterDb
     /// <summary>
     /// A switch to write a router db.
     /// </summary>
-    class SwitchWriteRouterDb : Switch
+    class SwitchWriteRouterDb : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a switch to write a router db.
-        /// </summary>
-        public SwitchWriteRouterDb(string[] a)
-            : base(a)
-        {
+        private static string[] _names => new[] {"--write-routerdb"};
 
-        }
+        private static string about =
+            "Specifies that the routable graph should be saved to a file. This routerdb can be used later to perform queries.";
 
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
+
+        private static readonly List<(string argName, bool isObligated, string comment)> Parameters =
+            new List<(string argName, bool isObligated, string comment)>
             {
-                return new string[] { "--write-routerdb" };
-            }
+                ("file", true, "The path where the routerdb should be written."),
+            };
+
+
+        private const bool IsStable = true;
+
+
+        public SwitchWriteRouterDb()
+            : base(_names, about, Parameters, IsStable)
+        {
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
-        {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
-            if (previous.Count < 1) { throw new ArgumentException("Expected at least one processors before this one."); }
 
-            var file = new FileInfo(this.Arguments[0]);
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
+        {
+            if (previous.Count < 1)
+            {
+                throw new ArgumentException("Expected at least one processors before this one.");
+            }
+
+            var file = new FileInfo(arguments["file"]);
 
             if (!(previous[previous.Count - 1] is Processors.RouterDb.IProcessorRouterDbSource))
             {
@@ -76,12 +78,11 @@ namespace IDP.Switches.RouterDb
                 {
                     routerDb.Serialize(stream, true);
                 }
+
                 return routerDb;
             };
 
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
-
-            return 1;
+            return (new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb), 1);
         }
     }
 }

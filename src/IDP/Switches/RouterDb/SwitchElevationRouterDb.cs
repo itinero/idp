@@ -16,35 +16,43 @@ namespace IDP.Switches.RouterDb
     /// <summary>
     /// A switch to detect elevation in a router db.
     /// </summary>
-    class SwitchElevationRouterDb : Switch
+    class SwitchElevationRouterDb : DocumentedSwitch
     {
         private const string DEFAULT_CACHE = "srtm-cache";
+        
+        
+        
+        
+        private static string[] _names => new[] {"--elevation","--ele"};      
+        private static string about = "Incorporates elevation data in the calculations.\n" +
+                                      $"Specifying this flag will download the SRTM-dataset and cache this in {DEFAULT_CACHE}." +
+                                      "This data will be reused upon further runs";
 
-        /// <summary>
-        /// Creates a switch.
-        /// </summary>
-        public SwitchElevationRouterDb(string[] a)
-            : base(a)
-        {
 
-        }
-
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
+        private static readonly List<(string argName, bool isObligated, string comment)> Parameters =
+            new List<(string argName, bool isObligated, string comment)>
             {
-                return new string[] { "--elevation" };
-            }
+                ("cache", false, "Caching directory name, if another caching directory should be used."),
+            };
+
+
+        private const bool IsStable = true;
+
+
+        public SwitchElevationRouterDb()
+            : base(_names, about, Parameters, IsStable)
+        {
+
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments, List<Processor> previous)
         {
+
+
+            var cache = DEFAULT_CACHE;
+            arguments.TryGetValue("cache", out cache);
+
             if (previous.Count < 1) { throw new ArgumentException("Expected at least one processors before this one."); }
             
             if (!(previous[previous.Count - 1] is Processors.RouterDb.IProcessorRouterDbSource))
@@ -52,36 +60,7 @@ namespace IDP.Switches.RouterDb
                 throw new Exception("Expected a router db source.");
             }
 
-            var cache = DEFAULT_CACHE;
-            if (this.Arguments.Length == 0)
-            {
-                // use default.
-            }
-            else if (this.Arguments.Length == 1 &&
-                !this.Arguments[0].Contains("="))
-            {
-                throw new Exception("Invalid argument.");
-            }
-            else
-            {
-                for (var i = 0; i < this.Arguments.Length; i++)
-                {
-                    string key, value;
-                    if (SwitchParsers.SplitKeyValue(this.Arguments[i], out key, out value))
-                    {
-                        switch (key.ToLower())
-                        {
-                            case "cache":
-                                cache = value;
-                                break;
-                            default:
-                                throw new SwitchParserException("--elevation",
-                                    string.Format("Invalid parameter for command --elevation: {0} not recognized.", key));
-                        }
-                    }
-                }
-            }
-            
+          
             // create a new srtm data instance.
             // it accepts a folder to download and cache data into.
             var srtmCache = new DirectoryInfo(cache);
@@ -89,7 +68,8 @@ namespace IDP.Switches.RouterDb
             {
                 srtmCache.Create();
             }
-            var srtmData = new SRTMData("srtm-cache");
+            
+            var srtmData = new SRTMData(cache);
             ElevationHandler.GetElevation = (lat, lon) =>
             {
                 var elevation = srtmData.GetElevation(lat, lon);
@@ -101,19 +81,18 @@ namespace IDP.Switches.RouterDb
             };
 
             var source = (previous[previous.Count - 1] as Processors.RouterDb.IProcessorRouterDbSource);
-            Func<Itinero.RouterDb> getRouterDb = () =>
+
+            Itinero.RouterDb GetRouterDb()
             {
                 var routerDb = source.GetRouterDb();
 
-                Itinero.Logging.Logger.Log("SwitchElevationRouterDb", Itinero.Logging.TraceEventType.Information,
-                    "Adding elevation.");
+                Itinero.Logging.Logger.Log("SwitchElevationRouterDb", Itinero.Logging.TraceEventType.Information, "Adding elevation.");
                 routerDb.AddElevation();
-                
-                return routerDb;
-            };
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
 
-            return 1;
+                return routerDb;
+            }
+
+            return(new Processors.RouterDb.ProcessorRouterDbSource(GetRouterDb), 1);
         }
     }
 }
