@@ -44,20 +44,12 @@ namespace IDP.Switches.Logging
         private const bool IsStable = true;
 
 
-        public SwitchLogging(string[] arguments) : base(arguments, names, About, ExtraParams, IsStable)
-        {
-        }
 
         public SwitchLogging() :
             base(names, About, ExtraParams, IsStable)
         {
         }
 
-
-        public override DocumentedSwitch SetArguments(string[] arguments)
-        {
-            return new SwitchLogging(arguments);
-        }
 
         public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)

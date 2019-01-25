@@ -20,10 +20,6 @@ namespace IDP.Switches
         private const bool IsStable = true;
         private static string about = "Print the help message";
 
-        public HelpSwitch(string[] arguments) : base(arguments, names, about, ExtraParams, IsStable)
-        {
-        }
-
         public HelpSwitch() :
             base(names, about, ExtraParams, IsStable)
         {
@@ -80,11 +76,6 @@ namespace IDP.Switches
             
             Console.Write(GenerateAllHelp(md));
             return (null, 0);
-        }
-
-        public override DocumentedSwitch SetArguments(string[] arguments)
-        {
-            return new HelpSwitch(arguments);
         }
     }
 }

@@ -64,19 +64,9 @@ namespace IDP.Switches.GeoJson
         /// <summary>
         /// Creates a switch to write a geojson.
         /// </summary>
-        private SwitchWriteGeoJson(string[] a)
-            : base(a, _names,about, Parameters, IsStable)
-        {
-        }
-
         public SwitchWriteGeoJson()
             : base(_names,about, Parameters, IsStable)
         {
-        }
-
-        public override DocumentedSwitch SetArguments(string[] arguments)
-        {
-            return new SwitchWriteGeoJson(arguments);
         }
 
         /// <inheritdoc />

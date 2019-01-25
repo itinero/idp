@@ -16,9 +16,7 @@ namespace IDP.Tests.Switches
         {
 
             var args = new[] {"abc", "def=ghi", "jkl"};
-            var d = new Dummy(
-                args,
-                new[] {"--test-flag"},
+            var d = new Dummy(new[] {"--test-flag"},
                 new List<(string argName, bool isObligated, string comment)>
                 {
                     ("a", true, "Test"), 
@@ -50,8 +48,8 @@ namespace IDP.Tests.Switches
 
     internal class Dummy : DocumentedSwitch
     {
-        public Dummy(string[] arguments, string[] names,
-            List<(string argName, bool isObligated, string comment)> extraParams, bool isStable) : base(arguments,
+        public Dummy(string[] names,
+            List<(string argName, bool isObligated, string comment)> extraParams, bool isStable) : base(
             names, "",extraParams, isStable)
         {
         }
@@ -62,7 +60,7 @@ namespace IDP.Tests.Switches
             throw new System.NotImplementedException();
         }
 
-        public override DocumentedSwitch SetArguments(string[] arguments)
+        public virtual DocumentedSwitch SetArguments(string[] arguments)
         {
             throw new NotImplementedException();
         }

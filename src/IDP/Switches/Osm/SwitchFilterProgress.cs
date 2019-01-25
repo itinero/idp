@@ -16,17 +16,8 @@ namespace IDP.Switches.Osm
 
         private const bool IsStable = true;
 
-        public SwitchFilterProgress(string[] arguments) : base(arguments, names, about, ExtraParams, IsStable)
-        {
-        }
-
         public SwitchFilterProgress() : base(names, about, ExtraParams, IsStable)
         {
-        }
-
-        public override DocumentedSwitch SetArguments(string[] arguments)
-        {
-            return new SwitchFilterProgress(arguments);
         }
 
         public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,

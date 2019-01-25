@@ -42,17 +42,8 @@ namespace IDP.Switches.Osm
 
         private const bool isStable = true;
 
-        public SwitchWritePBF(string[] arguments) : base(arguments, names, about, extraParams, isStable)
-        {
-        }
-
         public SwitchWritePBF() : base(names, about, extraParams, isStable)
         {
-        }
-
-        public override DocumentedSwitch SetArguments(string[] arguments)
-        {
-            return new SwitchWritePBF(arguments);
         }
 
         public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,

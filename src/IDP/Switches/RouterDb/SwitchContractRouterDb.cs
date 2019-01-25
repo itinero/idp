@@ -28,24 +28,12 @@ namespace IDP.Switches.RouterDb
             };
 
 
-        public SwitchContractRouterDb(string[] arguments)
-            : base(arguments, names, about, extraParams, isStable)
-        {
-        }
-        
         public SwitchContractRouterDb()
             : base(names, about, extraParams, isStable)
         {
         }
-        
-        
-        public override DocumentedSwitch SetArguments(string[] arguments)
-        {
-            return new SwitchContractRouterDb(arguments);
-        }
 
-        
-        
+
         public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> args, List<Processor> previous)
         {
             if (previous.Count < 1)

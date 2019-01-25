@@ -45,15 +45,6 @@ namespace IDP.Switches.Osm
         {
         }
 
-        private SwitchReadPBF(string[] arguments) : base(arguments, names, about, extraParams, IsStable)
-        {
-        }
-
-        public override DocumentedSwitch SetArguments(string[] arguments)
-        {
-            return new SwitchReadPBF(arguments);
-        }
-
 
         /// <summary>
         /// Parses this command into a processor given the arguments for this switch.

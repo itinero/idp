@@ -47,11 +47,11 @@ namespace IDP.Switches
         /// <returns></returns>
         private readonly bool _isStable;
 
-        protected DocumentedSwitch(string[] arguments,
+        protected DocumentedSwitch(
             string[] names, string about,
             List<(string argName, bool isObligated, string comment)> extraParams,
             bool isStable
-        ) : base(arguments)
+        ) : base(new string[]{})
         {
             Names = names;
             _about = about;
@@ -59,25 +59,8 @@ namespace IDP.Switches
             _isStable = isStable;
         }
 
-        protected DocumentedSwitch(string[] names, string about,
-            List<(string argName, bool isObligated, string comment)> extraParams,
-            bool isStable
-        ) : this(new string[] { }, names, about, extraParams, isStable)
-        {
-        }
-
-        protected DocumentedSwitch(string[] arguments,
-            DocumentedSwitch cloneFrom) : this(arguments, cloneFrom.Names, cloneFrom._about, cloneFrom._extraParams,
-            cloneFrom._isStable)
-        {
-        }
-
-
         public abstract (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous);
-
-        // Legacy, to be removed
-        public abstract DocumentedSwitch SetArguments(string[] arguments);
 
         public override int Parse(List<Processor> previous, out Processor processor)
         {
