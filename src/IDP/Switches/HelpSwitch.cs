@@ -67,11 +67,11 @@ namespace IDP.Switches
 
             foreach (var (cat, switches) in allSwitches)
             {
-                text += $"- [{cat}](#{cat.Replace(" ", "")})\n";
+                text += $"- [{cat}](#{cat.Replace(" ", "-")})\n";
 
                 foreach (var @switch in switches)
                 {
-                    text += $"  * [{@switch.Names[0]}](#s";
+                    text += $"  * [{@switch.Names[0]}]-(#s";
                     foreach (var name in @switch.Names)
                     {
                         text += name;

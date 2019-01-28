@@ -33,20 +33,20 @@ There is no need to explicitly give the parameter name, as long as the *unnamed*
 All switches are listed below. Click on a switch to get a full overview, including sub-arguments.
 
 - [Input](#Input)
-  * [--read-pbf](#s--read-pbf--rb) Reads an OpenStreetMap input file.
-  * [--read-routerdb](#s--read-routerdb) Reads a routerdb file for processing.
-- [Data processing](#Dataprocessing)
-  * [--create-routerdb](#s--create-routerdb) Converts an input source (such as an `osm`-file) into a routable graph.
-  * [--elevation](#s--elevation--ele) Incorporates elevation data in the calculations.
-  * [--contract](#s--contract) Applies contraction on the graph.
+  * [--read-pbf]-(#s--read-pbf--rb) Reads an OpenStreetMap input file.
+  * [--read-routerdb]-(#s--read-routerdb) Reads a routerdb file for processing.
+- [Data processing](#Data-processing)
+  * [--create-routerdb]-(#s--create-routerdb) Converts an input source (such as an `osm`-file) into a routable graph.
+  * [--elevation]-(#s--elevation--ele) Incorporates elevation data in the calculations.
+  * [--contract]-(#s--contract) Applies contraction on the graph.
 - [Output](#Output)
-  * [--write-routerdb](#s--write-routerdb) Specifies that the routable graph should be saved to a file.
-  * [--write-pbf](#s--write-pbf--wb) Writes the result of the calculations as protobuff-osm file.
-  * [--write-geojson](#s--write-geojson--wg) Write a file as geojson file.
+  * [--write-routerdb]-(#s--write-routerdb) Specifies that the routable graph should be saved to a file.
+  * [--write-pbf]-(#s--write-pbf--wb) Writes the result of the calculations as protobuff-osm file.
+  * [--write-geojson]-(#s--write-geojson--wg) Write a file as geojson file.
 - [Usability](#Usability)
-  * [--progress-report](#s--progress-report--progress--pr) If this flag is specified, the progress will be printed to standard out.
-  * [--log](#s--log) If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile
-  * [--help](#s--help--?) Print the help message
+  * [--progress-report]-(#s--progress-report--progress--pr) If this flag is specified, the progress will be printed to standard out.
+  * [--log]-(#s--log) If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile
+  * [--help]-(#s--help--?) Print the help message
 ### Input
 #### --read-pbf (--rb)
    Reads an OpenStreetMap input file. The format should be an `.osm.pbf` file.
