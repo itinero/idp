@@ -33,22 +33,23 @@ There is no need to explicitly give the parameter name, as long as the *unnamed*
 All switches are listed below. Click on a switch to get a full overview, including sub-arguments.
 
 - [Input](#Input)
-  * [--read-pbf]-(#s--read-pbf--rb) Reads an OpenStreetMap input file.
-  * [--read-routerdb]-(#s--read-routerdb) Reads a routerdb file for processing.
+  * [--read-pbf](#--read-pbf---rb) Reads an OpenStreetMap input file.
+  * [--read-routerdb](#--read-routerdb) Reads a routerdb file for processing.
 - [Data processing](#Data-processing)
-  * [--create-routerdb]-(#s--create-routerdb) Converts an input source (such as an `osm`-file) into a routable graph.
-  * [--elevation]-(#s--elevation--ele) Incorporates elevation data in the calculations.
-  * [--contract]-(#s--contract) Applies contraction on the graph.
+  * [--create-routerdb](#--create-routerdb) Converts an input source (such as an `osm`-file) into a routable graph.
+  * [--elevation](#--elevation---ele) Incorporates elevation data in the calculations.
+  * [--contract](#--contract) Applies contraction on the graph.
 - [Output](#Output)
-  * [--write-routerdb]-(#s--write-routerdb) Specifies that the routable graph should be saved to a file.
-  * [--write-pbf]-(#s--write-pbf--wb) Writes the result of the calculations as protobuff-osm file.
-  * [--write-geojson]-(#s--write-geojson--wg) Write a file as geojson file.
+  * [--write-routerdb](#--write-routerdb) Specifies that the routable graph should be saved to a file.
+  * [--write-pbf](#--write-pbf---wb) Writes the result of the calculations as protobuff-osm file.
+  * [--write-geojson](#--write-geojson---wg) Write a file as geojson file.
 - [Usability](#Usability)
-  * [--progress-report]-(#s--progress-report--progress--pr) If this flag is specified, the progress will be printed to standard out.
-  * [--log]-(#s--log) If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile
-  * [--help]-(#s--help--?) Print the help message
+  * [--progress-report](#--progress-report---progress---pr) If this flag is specified, the progress will be printed to standard out.
+  * [--log](#--log) If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile
+  * [--help](#--help---?) Print the help message
 ### Input
 #### --read-pbf (--rb)
+
    Reads an OpenStreetMap input file. The format should be an `.osm.pbf` file.
 
 | Parameter  | Obligated? | Explanation       |
@@ -56,6 +57,7 @@ All switches are listed below. Click on a switch to get a full overview, includi
 | **file** | ✓ | The .osm.pbf file that serves as input | 
 
 #### --read-routerdb
+
    Reads a routerdb file for processing. This can be useful to e.g. translate it to a geojson or shapefile.
 
 | Parameter  | Obligated? | Explanation       |
@@ -66,6 +68,7 @@ All switches are listed below. Click on a switch to get a full overview, includi
 
 ### Data processing
 #### --create-routerdb
+
    Converts an input source (such as an `osm`-file) into a routable graph. If no vehicle is specified, `car` is used.
 If the routing graph should be built for another vehicle, the `vehicle`-parameter can be used
 
@@ -98,6 +101,7 @@ Note that one can specify multiple vehicles at once too, using the `vehicles` pa
 | simplification | | Integer indicating the simplification factor. Default: very small | 
 
 #### --elevation (--ele)
+
    Incorporates elevation data in the calculations.
 Specifying this flag will download the SRTM-dataset and cache this in srtm-cache.This data will be reused upon further runs
 
@@ -106,6 +110,7 @@ Specifying this flag will download the SRTM-dataset and cache this in srtm-cache
 | cache | | Caching directory name, if another caching directory should be used. | 
 
 #### --contract
+
    Applies contraction on the graph.Solving queries on a contracted graph is _much_ faster, although preprocessing is quite a bit slower (at least 5 times slower);most use cases will require this flag.To enable contraction for multiple profiles and/or multiple vehicles, simply add another --contraction
 
 | Parameter  | Obligated? | Explanation       |
@@ -115,6 +120,7 @@ Specifying this flag will download the SRTM-dataset and cache this in srtm-cache
 
 ### Output
 #### --write-routerdb
+
    Specifies that the routable graph should be saved to a file. This routerdb can be used later to perform queries.
 
 | Parameter  | Obligated? | Explanation       |
@@ -122,6 +128,7 @@ Specifying this flag will download the SRTM-dataset and cache this in srtm-cache
 | **file** | ✓ | The path where the routerdb should be written. | 
 
 #### --write-pbf (--wb)
+
    Writes the result of the calculations as protobuff-osm file. The file format is `.osm.pbf`
 
 | Parameter  | Obligated? | Explanation       |
@@ -129,6 +136,7 @@ Specifying this flag will download the SRTM-dataset and cache this in srtm-cache
 | **file** | ✓ | The file to write the .osm.pbf to | 
 
 #### --write-geojson (--wg)
+
    Write a file as geojson file. Useful for debugging
 
 | Parameter  | Obligated? | Explanation       |
@@ -141,6 +149,7 @@ Specifying this flag will download the SRTM-dataset and cache this in srtm-cache
 
 ### Usability
 #### --progress-report (--progress, --pr)
+
    If this flag is specified, the progress will be printed to standard out. Useful to see how quickly the process goes and to do a bit of initial troubleshooting.
 
 
@@ -148,6 +157,7 @@ Specifying this flag will download the SRTM-dataset and cache this in srtm-cache
 *This switch does not need parameters*
 
 #### --log
+
    If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile
 
 | Parameter  | Obligated? | Explanation       |
@@ -155,6 +165,7 @@ Specifying this flag will download the SRTM-dataset and cache this in srtm-cache
 | **file** | ✓ | The name of the file where the logs will be written to | 
 
 #### --help (--?)
+
    Print the help message
 
 | Parameter  | Obligated? | Explanation       |

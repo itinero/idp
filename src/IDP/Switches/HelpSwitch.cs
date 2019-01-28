@@ -40,7 +40,8 @@ namespace IDP.Switches
             text +=
                 "Typical usage:\n\n" +
                 "        IDP --read-pbf <input-file> --pr --create-routerdb bicycle --write-routerdb output.routerdb";
-            text += "\n\nTo include elevation data, add `--elevation`. To solve the queries even faster, use `--contract bicycle.<profile-to-optimize>`.  \n";
+            text +=
+                "\n\nTo include elevation data, add `--elevation`. To solve the queries even faster, use `--contract bicycle.<profile-to-optimize>`.  \n";
 
             text +=
                 "\n\n" +
@@ -55,15 +56,13 @@ namespace IDP.Switches
                 "`--switch value2 param1=value1`, `--switch value1 param2=value2` or `--switch param1=value1 value2` " +
                 "are valid just as well.";
             text += "\n\n";
-            
-            
+
+
             text += "\n\n Full overview of all options ";
             text += "\n ------------------------------- \n\n" +
                     "All switches are listed below. Click on a switch to get a full overview, including sub-arguments.\n\n";
             var allSwitches = SwitchParsers.documented;
 
-
-         
 
             foreach (var (cat, switches) in allSwitches)
             {
@@ -71,11 +70,8 @@ namespace IDP.Switches
 
                 foreach (var @switch in switches)
                 {
-                    text += $"  * [{@switch.Names[0]}]-(#s";
-                    foreach (var name in @switch.Names)
-                    {
-                        text += name;
-                    }
+                    text += $"  * [{@switch.Names[0]}](#";
+                    text += @switch.MarkdownName().Replace(" ", "-").Replace(",", "").Replace("(", "").Replace(")", "");
 
                     text += ") ";
                     var about = @switch._about;

@@ -51,7 +51,7 @@ namespace IDP.Switches
             string[] names, string about,
             List<(string argName, bool isObligated, string comment)> extraParams,
             bool isStable
-        ) : base(new string[]{})
+        ) : base(new string[] { })
         {
             Names = names;
             _about = about;
@@ -167,47 +167,54 @@ namespace IDP.Switches
             return result;
         }
 
-
-        /// <summary>
-        /// Creates a help text for this switch
-        /// </summary>
-        /// <returns></returns>
-        // ReSharper disable once MemberCanBeProtected.Global
-        public string Help(bool markdown = false)
+        public string MarkdownName()
         {
-            var text = "";
-
-            if (markdown)
+            string text = "";
+            text += Names[0];
+            if (Names.Length > 1)
             {
-                text += "#### ";
-                text += Names[0];
-                if (Names.Length > 1)
+                text += " (";
+                for (int i = 1; i < Names.Length; i++)
                 {
-                    text += " (";
-                    for (int i = 1; i < Names.Length; i++)
-                    {
-                        text += Names[i] + ", ";
-                    }
-
-                    text = text.Substring(0, text.Length - 2);
-                    text += ")";
+                    text += Names[i] + ", ";
                 }
-            }
-            else
-            {
-                foreach (var name in Names)
-                {
-                    text += name + " ";
-                }
-            }
 
+                text = text.Substring(0, text.Length - 2);
+                text += ")";
+            }
 
             if (!_isStable)
             {
                 text += " (Experimental feature)";
             }
 
-            text += "\n";
+            return text;
+        }
+
+        /// <summary>
+        /// Creates a help text for this switch
+        /// </summary>
+        /// <returns></returns>
+// ReSharper disable once MemberCanBeProtected.Global
+        public string Help(bool markdown = false)
+        {
+            var text = "";
+            if (markdown)
+            {
+                text += "#### " + MarkdownName();
+            }
+            else
+            {
+                foreach (var name in Names)
+                {
+                    text += name + ", ";
+                }
+
+                text = text.Substring(0, text.Length - 2);
+            }
+
+
+            text += "\n\n";
             text += "   " + _about + "\n\n";
 
             if (markdown)
