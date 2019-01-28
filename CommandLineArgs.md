@@ -34,14 +34,18 @@ All switches are listed below. Click on a switch to get a full overview, includi
 
 - [Input](#Input)
   * [--read-pbf](#--read-pbf---rb) Reads an OpenStreetMap input file.
+  * [--read-shape](#--read-shape---rs) Read a shapefile as input to do all the data processing.
   * [--read-routerdb](#--read-routerdb) Reads a routerdb file for processing.
 - [Data processing](#Data-processing)
   * [--create-routerdb](#--create-routerdb) Converts an input source (such as an `osm`-file) into a routable graph.
   * [--elevation](#--elevation---ele) Incorporates elevation data in the calculations.
   * [--contract](#--contract) Applies contraction on the graph.
+- [Data analysis](#Data-analysis)
+  * [--islands](#--islands-Experimental-feature) Detects islands in a routerdb.
 - [Output](#Output)
   * [--write-routerdb](#--write-routerdb) Specifies that the routable graph should be saved to a file.
   * [--write-pbf](#--write-pbf---wb) Writes the result of the calculations as protobuff-osm file.
+  * [--write-shape](#--write-shape) Write the result as shapefile
   * [--write-geojson](#--write-geojson---wg) Write a file as geojson file.
 - [Usability](#Usability)
   * [--progress-report](#--progress-report---progress---pr) If this flag is specified, the progress will be printed to standard out.
@@ -55,6 +59,17 @@ All switches are listed below. Click on a switch to get a full overview, includi
 | Parameter  | Obligated? | Explanation       |
 |----------- | ---------- | ----------------- |
 | **file** | ✓ | The .osm.pbf file that serves as input | 
+
+#### --read-shape (--rs)
+
+   Read a shapefile as input to do all the data processing.
+
+| Parameter  | Obligated? | Explanation       |
+|----------- | ---------- | ----------------- |
+| **file** | ✓ | The input file to read | 
+| **vehicle** | ✓ | The profile to read. This can be a comma-separated list too. | 
+| **svc** | ✓ | The `source-vertex-column` | 
+| **tvc** | ✓ | The `target-vertex-column` | 
 
 #### --read-routerdb
 
@@ -118,6 +133,15 @@ Specifying this flag will download the SRTM-dataset and cache this in srtm-cache
 | **profile** | ✓ | The profile for which a contraction hierarchy should be built | 
 | augmented | | If specified with 'yes', an augmented weight handler will be used | 
 
+### Data analysis
+#### --islands (Experimental feature)
+
+   Detects islands in a routerdb. An island is a subgraph which is not reachable via the rest of the graph.
+
+| Parameter  | Obligated? | Explanation       |
+|----------- | ---------- | ----------------- |
+| profile | | The profile for which islands should be detected. This can be a comma-separated list of profiles as well. Default: apply island detection on _all_ profiles in the routerdb | 
+
 ### Output
 #### --write-routerdb
 
@@ -134,6 +158,14 @@ Specifying this flag will download the SRTM-dataset and cache this in srtm-cache
 | Parameter  | Obligated? | Explanation       |
 |----------- | ---------- | ----------------- |
 | **file** | ✓ | The file to write the .osm.pbf to | 
+
+#### --write-shape
+
+   Write the result as shapefile
+
+| Parameter  | Obligated? | Explanation       |
+|----------- | ---------- | ----------------- |
+| **file** | ✓ | The output file to write to | 
 
 #### --write-geojson (--wg)
 

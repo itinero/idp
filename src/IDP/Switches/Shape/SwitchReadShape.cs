@@ -32,149 +32,64 @@ namespace IDP.Switches.Shape
     /// <summary>
     /// Represents a switch to read a shapefile for routing.
     /// </summary>
-    class SwitchReadShape : Switch
+    class SwitchReadShape : DocumentedSwitch
     {
         public static readonly string[] Names = {"--read-shape", "--rs"};
 
-        private static string about = "";
+        private static string about = "Read a shapefile as input to do all the data processing.";
 
 
         private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams =
             new List<(string argName, bool isObligated, string comment)>()
             {
-                ("vehicle", false,
-                    "The vehicle that the routing graph should be built for. Default is 'car'."),
-                ("vehicles", false, "A comma separated list containing vehicles that should be used"),
-                ("keepwayids", false, "Boolean indicating that the way IDs should be kept"), // TODO Clarify this
-                ("wayids", false, "Same as `keepwayids`"),
-                ("allcore", false, "Boolean indicating allcore"), // TODO WTF? Clarify this
-                ("simplification", false,
-                    "Integer indicating the simplification factor. Default: very small"), // TODO Clarify this
+                ("file", true, "The input file to read"),
+                ("vehicle", true, "The profile to read. This can be a comma-separated list too."),
+                ("svc", true, "The `source-vertex-column`"), // TODO Clarify this
+                ("tvc", true, "The `target-vertex-column`") // TODO Clarify this
             };
 
         private const bool IsStable = true;
 
 
-        /// <summary>
-        /// Creates a new switch.
-        /// </summary>
-        public SwitchReadShape(string[] arguments)
-            : base(arguments)
+        public SwitchReadShape()
+            : base(Names, about, ExtraParams, IsStable)
         {
         }
 
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments, List<Processor> previous)
         {
-            if (this.Arguments.Length < 2)
-            {
-                throw new ArgumentException("At least two arguments are expected.");
-            }
 
-            var localShapefile = string.Empty;
-            var vehicles = new List<Vehicle>();
-            var sourceVertexColumn = string.Empty;
-            var targetVertexColumn = string.Empty;
-
-            for (var i = 0; i < this.Arguments.Length; i++)
-            {
-                string key, value;
-                if (SwitchParsers.SplitKeyValue(this.Arguments[i], out key, out value))
-                {
-                    switch (key.ToLower())
-                    {
-                        case "vehicles":
-                        case "vehicle":
-                            string[] vehicleValues;
-                            if (SwitchParsers.SplitValuesArray(value.ToLower(), out vehicleValues))
-                            {
-                                // split the values array.
-                                vehicles = new List<Vehicle>(vehicleValues.Length);
-                                for (int v = 0; v < vehicleValues.Length; v++)
-                                {
-                                    Vehicle vehicle;
-                                    if (!Vehicle.TryGet(vehicleValues[v], out vehicle))
-                                    {
-                                        // assume a filename.
-                                        var vehicleFile = new FileInfo(vehicleValues[v]);
-                                        if (!vehicleFile.Exists)
-                                        {
-                                            throw new SwitchParserException("--read-shape",
-                                                string.Format(
-                                                    "Invalid parameter value for command --read-shape: Vehicle profile '{0}' not found.",
-                                                    vehicleValues[v]));
-                                        }
-
-                                        using (var stream = vehicleFile.OpenRead())
-                                        {
-                                            vehicle = DynamicVehicle.LoadFromStream(stream);
-                                            vehicles.Add(vehicle);
-                                        }
-                                    }
-                                }
-                            }
-
-                            break;
-                        case "file":
-                        case "files":
-                            if (!string.IsNullOrWhiteSpace(value))
-                            {
-                                localShapefile = value;
-                            }
-
-                            break;
-                        case "source-vertex-column":
-                        case "svc":
-                            if (!string.IsNullOrWhiteSpace(value))
-                            {
-                                sourceVertexColumn = value;
-                            }
-
-                            break;
-                        case "target-vertex-column":
-                        case "tvc":
-                            if (!string.IsNullOrWhiteSpace(value))
-                            {
-                                targetVertexColumn = value;
-                            }
-
-                            break;
-                        default:
-                            throw new SwitchParserException("--read-shape",
-                                string.Format("Invalid parameter for command --read-shape: {0} not recognized.", key));
-                    }
-                }
-            }
+            var localShapefile = arguments["file"];
+            var vehicles = arguments.ExtractVehicleArguments();
+            var sourceVertexColumn = arguments.GetOrDefault("svc", "");
+            var targetVertexColumn = arguments.GetOrDefault("tvc", "");
 
             if (vehicles.Count == 0)
             {
-                throw new Exception("At least one vehicle expected.");
+                throw new ArgumentException("At least one vehicle expected.");
             }
 
             if (string.IsNullOrWhiteSpace(sourceVertexColumn))
             {
-                throw new Exception("Source vertex column not defined.");
+                throw new ArgumentException("Source vertex column not defined.");
             }
 
             if (string.IsNullOrWhiteSpace(targetVertexColumn))
             {
-                throw new Exception("Target vertex column not defined.");
+                throw new ArgumentException("Target vertex column not defined.");
             }
 
-            Func<Itinero.RouterDb> getRouterDb = () =>
+            Itinero.RouterDb GetRouterDb()
             {
                 var routerDb = new Itinero.RouterDb(Itinero.Data.Edges.EdgeDataSerializer.MAX_DISTANCE);
                 var file = new FileInfo(localShapefile);
-                routerDb.LoadFromShape(file.DirectoryName, file.Name, sourceVertexColumn, targetVertexColumn,
-                    vehicles.ToArray());
+                routerDb.LoadFromShape(file.DirectoryName, file.Name, sourceVertexColumn, targetVertexColumn, vehicles.ToArray());
 
                 return routerDb;
-            };
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
-            return 0;
+            }
+
+            return(new Processors.RouterDb.ProcessorRouterDbSource(GetRouterDb), 0);
         }
     }
 }

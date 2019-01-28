@@ -23,13 +23,16 @@
 using System;
 using System.Collections.Generic;
 using IDP.Processors;
-using Itinero.Profiles;
-using Itinero.Algorithms.Search.Hilbert;
-using System.IO;
-using System.Runtime.CompilerServices;
+using IDP.Processors.Osm;
 using IDP.Processors.RouterDb;
 using Itinero.Algorithms.Networks;
+using Itinero.Algorithms.Search.Hilbert;
+using Itinero.IO.Osm;
+using Itinero.IO.Osm.Streams;
+using Itinero.Profiles;
+using OsmSharp;
 using OsmSharp.Streams;
+using OsmSharp.Streams.Filters;
 
 namespace IDP.Switches.RouterDb
 {
@@ -95,7 +98,7 @@ namespace IDP.Switches.RouterDb
                              || (arguments.ContainsKey("wayids")
                                  && SwitchParsers.IsTrue(arguments["wayids"]));
 
-            var simplification = (new Itinero.IO.Osm.LoadSettings()).NetworkSimplificationEpsilon;
+            var simplification = (new LoadSettings()).NetworkSimplificationEpsilon;
             if (arguments.TryGetValue("simplification", out var sArg))
             {
                 var parsedInt = SwitchParsers.Parse(sArg);
@@ -113,90 +116,18 @@ namespace IDP.Switches.RouterDb
             }
 
             Itinero.Osm.Vehicles.Vehicle.RegisterVehicles();
-            string vehiclesArg;
-            if (arguments.ContainsKey("vehicle"))
-            {
-                vehiclesArg = arguments["vehicle"];
-            }
-            else if (arguments.ContainsKey("vehicles"))
-            {
-                vehiclesArg = arguments["vehicles"];
-            }
-            else
-            {
-                vehiclesArg = "car";
-            }
-
-
-            string[] vehicleNames;
-            if (!SwitchParsers.SplitValuesArray(vehiclesArg.ToLower(), out vehicleNames))
-            {
-                // No commas found or something
-                vehicleNames = new[] {vehiclesArg};
-            }
-
-            // The resulting list containing everything
-            var vehicles = new List<Vehicle>();
-
-            foreach (var vehicleName in vehicleNames)
-            {
-                var name = vehicleName.ToLower();
-                if (Vehicle.TryGet(name, out var vehicle))
-                {
-                    vehicles.Add(vehicle);
-                    continue;
-                }
-
-                if (name.Equals("all"))
-                {
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bicycle);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.BigTruck);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bus);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Car);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Moped);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.MotorCycle);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Pedestrian);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.SmallTruck);
-                    continue;
-                }
-
-
-                if (name.Equals("motors") || name.Equals("motorvehicles"))
-                {
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.BigTruck);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Bus);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.Car);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.MotorCycle);
-                    vehicles.Add(Itinero.Osm.Vehicles.Vehicle.SmallTruck);
-                    continue;
-                }
-
-
-                // Assume that this is a filename
-
-                // assume a filename.
-                var vehicleFile = new FileInfo(name);
-                if (!vehicleFile.Exists)
-                {
-                    throw new FileNotFoundException($"Loading the vehicle profile {name} failed. This profile was not recognized as a built-in profile, neither was it found as a file. Profiles can be found online: https://github.com/anyways-open/routing-profiles/", name);
-                }
-
-                using (var stream = vehicleFile.OpenRead())
-                {
-                    vehicles.Add( DynamicVehicle.LoadFromStream(stream));
-                }
-            }
+            var vehicles = arguments.ExtractVehicleArguments();
 
             // All arguments have been set up!
             
             // Only thing left to do: grab an OSM stream source and actually get stuff done
             
-            if (!(previous[previous.Count - 1] is Processors.Osm.IProcessorOsmStreamSource))
+            if (!(previous[previous.Count - 1] is IProcessorOsmStreamSource))
             {
                 throw new Exception("Expected an OSM stream source.");
             }
 
-            var source = (previous[previous.Count - 1] as Processors.Osm.IProcessorOsmStreamSource).Source;
+            var source = (previous[previous.Count - 1] as IProcessorOsmStreamSource).Source;
             return CreateProcessor(source, vehicles, allCore, keepWayIds, simplification);
         }
 
@@ -211,12 +142,12 @@ namespace IDP.Switches.RouterDb
                 routerDb.Network.GeometricGraph.Graph.MarkAsMulti();
 
                 // load the data.
-                var target = new Itinero.IO.Osm.Streams.RouterDbStreamTarget(routerDb,
+                var target = new RouterDbStreamTarget(routerDb,
                     vehicles.ToArray(), allCore, processRestrictions: true);
                 if (keepWayIds)
                 {
                     // add way id's.
-                    var eventsFilter = new OsmSharp.Streams.Filters.OsmStreamFilterDelegate();
+                    var eventsFilter = new OsmStreamFilterDelegate();
                     eventsFilter.MoveToNextEvent += EventsFilter_AddWayId;
                     eventsFilter.RegisterSource(source);
                     target.RegisterSource(eventsFilter, false);
@@ -251,9 +182,9 @@ namespace IDP.Switches.RouterDb
         }
 
 
-        private static OsmSharp.OsmGeo EventsFilter_AddWayId(OsmSharp.OsmGeo osmGeo, object param)
+        private static OsmGeo EventsFilter_AddWayId(OsmGeo osmGeo, object param)
         {
-            if (osmGeo.Type == OsmSharp.OsmGeoType.Way)
+            if (osmGeo.Type == OsmGeoType.Way)
             {
                 osmGeo.Tags.Add("way_id", osmGeo.Id.ToString());
             }

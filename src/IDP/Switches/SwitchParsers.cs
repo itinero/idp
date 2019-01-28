@@ -51,6 +51,7 @@ namespace IDP.Switches
                 ("Input", new List<DocumentedSwitch>
                 {
                     new Osm.SwitchReadPBF(),
+                    new Shape.SwitchReadShape(),
                     new RouterDb.SwitchReadRouterDb()
                 }),
 
@@ -61,11 +62,16 @@ namespace IDP.Switches
                     new RouterDb.SwitchContractRouterDb()
                 }),
 
+                ("Data analysis", new List<DocumentedSwitch>()
+                {
+                    new RouterDb.SwitchIslandsRouterDb()
+                }),
 
                 ("Output", new List<DocumentedSwitch>
                 {
                     new RouterDb.SwitchWriteRouterDb(),
                     new Osm.SwitchWritePBF(),
+                    new Shape.SwitchWriteShape(),
                     new GeoJson.SwitchWriteGeoJson()
                 }),
 
@@ -86,11 +92,8 @@ namespace IDP.Switches
                 }
             }
 
-            Register(Shape.SwitchReadShape.Names, new Shape.SwitchReadShape(null));
-            Register(Shape.SwitchWriteShape.Names, new Shape.SwitchWriteShape(null));
             // -- Old switches, documentation pending --
 
-            Register(RouterDb.SwitchIslandsRouterDb.Names, new RouterDb.SwitchIslandsRouterDb(null));
 
             Register(GTFS.SwitchReadGTFS.Names, new GTFS.SwitchReadGTFS(null));
             Register(TransitDb.SwitchMergeTransitDbs.Names, new TransitDb.SwitchMergeTransitDbs(null));

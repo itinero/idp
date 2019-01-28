@@ -12,79 +12,54 @@ namespace IDP.Switches.RouterDb
     /// <summary>
     /// A switch to detect islands in a router db.
     /// </summary>
-    class SwitchIslandsRouterDb : Switch
+    class SwitchIslandsRouterDb : DocumentedSwitch
     {
+        private static string[] _names = {"--islands"};
+
+        private static string about =
+            "Detects islands in a routerdb. An island is a subgraph which is not reachable via the rest of the graph.";
+
+
+        private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams =
+            new List<(string argName, bool isObligated, string comment)>()
+            {
+                ("profile", false,
+                    "The profile for which islands should be detected. This can be a comma-separated list of profiles as well. Default: apply island detection on _all_ profiles in the routerdb"),
+            };
+
         /// <summary>
         /// Creates a switch.
         /// </summary>
-        public SwitchIslandsRouterDb(string[] a)
-            : base(a)
+        public SwitchIslandsRouterDb()
+            : base(_names, about, ExtraParams, false)
         {
-
         }
 
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
         {
-            get
+            if (previous.Count < 1)
             {
-                return new string[] { "--islands" };
+                throw new ArgumentException("Expected at least one processors before this one.");
             }
-        }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
-        {
-            if (previous.Count < 1) { throw new ArgumentException("Expected at least one processors before this one."); }
-            
             if (!(previous[previous.Count - 1] is Processors.RouterDb.IProcessorRouterDbSource))
             {
                 throw new Exception("Expected a router db source.");
             }
 
             string[] profiles = null;
-            if (this.Arguments.Length == 0)
+            if (arguments.ContainsKey("profile"))
             {
-                // do all profiles.
-            }
-            else if (this.Arguments.Length == 1 && 
-                !this.Arguments[0].Contains("="))
-            {
-                if (!SwitchParsers.SplitValuesArray(this.Arguments[0], out profiles))
+                if (!SwitchParsers.SplitValuesArray(arguments["profile"], out profiles))
                 {
-                    throw new Exception("Cannot split profile parameter.");
-                }
-            }
-            else
-            {
-                for (var i = 0; i < this.Arguments.Length; i++)
-                {
-                    string key, value;
-                    if (SwitchParsers.SplitKeyValue(this.Arguments[i], out key, out value))
-                    {
-                        switch (key.ToLower())
-                        {
-                            case "profile":
-                            case "profiles":
-                                if (!SwitchParsers.SplitValuesArray(value, out profiles))
-                                {
-                                    throw new Exception("Cannot split profile parameter.");
-                                }
-                                break;
-                            default:
-                                throw new SwitchParserException("--islands",
-                                    string.Format("Invalid parameter for command --islands: {0} not recognized.", key));
-                        }
-                    }
+                    profiles = new[] {arguments["profile"]};
                 }
             }
 
             var source = (previous[previous.Count - 1] as Processors.RouterDb.IProcessorRouterDbSource);
-            Func<Itinero.RouterDb> getRouterDb = () =>
+
+            Itinero.RouterDb GetRouterDb()
             {
                 var routerDb = source.GetRouterDb();
 
@@ -101,7 +76,7 @@ namespace IDP.Switches.RouterDb
                         profileInstances[i] = routerDb.GetSupportedProfile(profiles[i]);
                     }
                 }
-                
+
                 foreach (var profileInstance in profileInstances)
                 {
                     Itinero.Logging.Logger.Log("SwitchIslandRouterDb", Itinero.Logging.TraceEventType.Information,
@@ -110,10 +85,9 @@ namespace IDP.Switches.RouterDb
                 }
 
                 return routerDb;
-            };
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
+            }
 
-            return 1;
+            return (new Processors.RouterDb.ProcessorRouterDbSource(GetRouterDb), 1);
         }
     }
 }
