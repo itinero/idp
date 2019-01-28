@@ -36,7 +36,7 @@ namespace IDP.Switches.RouterDb
         private static string[] _names => new[] {"--read-routerdb"};
 
         private static string about =
-            "Reads a routerdb file for processing, e.g. to translate it to a geojson.";
+            "Reads a routerdb file for processing. This can be useful to e.g. translate it to a geojson or shapefile.";
 
 
         private static readonly List<(string argName, bool isObligated, string comment)> Parameters =

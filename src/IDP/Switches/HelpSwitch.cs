@@ -33,35 +33,63 @@ namespace IDP.Switches
             var text = " Itinero Data Processor \n";
             text += " ====================== \n\n";
             text +=
-                "The **Itinero Data Processor** *(IDP)* helps you to convert a routable graph into a RouterDB," +
-                " which can help to quickly solve routing queries.\n\nTo work with IDP, you only need an input graph. OpenStreetMap data dumps can be obtained at [geofrabrik.de](http://download.geofabrik.de/)\n";
+                "The **Itinero Data Processor** *(IDP)* helps to convert a routable graph into a RouterDB," +
+                " which can be used to quickly solve routing queries.\n\n" +
+                "To work with IDP, you only need an input graph. OpenStreetMap data dumps can be obtained at [geofrabrik.de](http://download.geofabrik.de/)\n";
             text += "\n\n";
             text +=
                 "Typical usage:\n\n" +
                 "        IDP --read-pbf <input-file> --pr --create-routerdb bicycle --write-routerdb output.routerdb";
-            text += "\n\nOften in combination with `--contract bicycle.networks` and `--elevation` for production.\n";
+            text += "\n\nTo include elevation data, add `--elevation`. To solve the queries even faster, use `--contract bicycle.<profile-to-optimize>`.  \n";
 
+            text +=
+                "\n\n" +
+                "Switch Syntax\n" +
+                "-------------\n\n" +
+                "The syntax of a switch is:\n\n" +
+                "    --switch param1=value1 param2=value2\n" +
+                "    # Or equivalent:\n" +
+                "    --switch value1 value2\n" +
+                "\n\nThere is no need to explicitly give the parameter name, as long as the *unnamed* parameters      are in the same order as in the tables below. " +
+                "Note that you are free to name some (but not all) arguments. " +
+                "`--switch value2 param1=value1`, `--switch value1 param2=value2` or `--switch param1=value1 value2` " +
+                "are valid just as well.";
+            text += "\n\n";
+            
+            
             text += "\n\n Full overview of all options ";
-            text += "\n ------------------------------- \n\n";
+            text += "\n ------------------------------- \n\n" +
+                    "All switches are listed below. Click on a switch to get a full overview, including sub-arguments.\n\n";
             var allSwitches = SwitchParsers.documented;
+
+
+         
 
             foreach (var (cat, switches) in allSwitches)
             {
-                text += $"- [{cat}](#{cat})\n";
-                
+                text += $"- [{cat}](#{cat.Replace(" ", "")})\n";
+
                 foreach (var @switch in switches)
                 {
-                    
-                //    text += $" + [{@switch.Names[0]}[]\n";
+                    text += $"  * [{@switch.Names[0]}](#s";
+                    foreach (var name in @switch.Names)
+                    {
+                        text += name;
+                    }
+
+                    text += ") ";
+                    var about = @switch._about;
+                    var index = about.IndexOf('.');
+                    text += index < 0 ? about : about.Substring(0, index + 1);
+                    text += "\n";
                 }
             }
 
-            
 
             foreach (var (cat, switches) in allSwitches)
             {
                 text += $"### {cat}\n";
-                
+
                 foreach (var @switch in switches)
                 {
                     text += @switch.Help(markdown) + "\n";

@@ -40,7 +40,7 @@ namespace IDP.Switches.RouterDb
     {
         private static readonly string[] names = {"--create-routerdb"};
 
-        private static string about = "Converts an input source (such as a .osm) into a routable graph. If no vehicle is specified, `car` is used.\n" +
+        private static string about = "Converts an input source (such as an `osm`-file) into a routable graph. If no vehicle is specified, `car` is used.\n" +
                                       "If the routing graph should be built for another vehicle, the `vehicle`-parameter can be used\n\n" +
                                       "1) specify a **file** containing a routing profile [(examples in our repository)](https://github.com/anyways-open/routing-profiles/), or...\n" + 
                                       "2) a **built-in** profile can be used. This should be one of:\n\n" +

@@ -31,7 +31,7 @@ namespace IDP.Switches.Osm
     class SwitchReadPBF : DocumentedSwitch
     {
         private static readonly string[] names = {"--read-pbf", "--rb"};
-        private static string about = "Read an .osm.pbf file to serve as input";
+        private const string about = "Reads an OpenStreetMap input file. The format should be an `.osm.pbf` file.";
 
         private static readonly List<(string argName, bool isObligated, string comment)> extraParams
             = new List<(string argName, bool isObligated, string comment)>()

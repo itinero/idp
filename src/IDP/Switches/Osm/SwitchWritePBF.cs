@@ -32,7 +32,7 @@ namespace IDP.Switches.Osm
     class SwitchWritePBF : DocumentedSwitch
     {
         private static string[] names = {"--write-pbf", "--wb"};
-        private static string about = "Write an .osm.pbf file";
+        private static string about = "Writes the result of the calculations as protobuff-osm file. The file format is `.osm.pbf`";
 
         private static readonly List<(string argName, bool isObligated, string comment)> extraParams
             = new List<(string argName, bool isObligated, string comment)>

@@ -24,7 +24,7 @@ namespace IDP.Switches
         /// <summary>
         /// What does this switch do?
         /// </summary>
-        private readonly string _about;
+        public readonly string _about;
 
         /// <summary>
         /// 
@@ -241,11 +241,11 @@ namespace IDP.Switches
                     text += $"   {argName}=*\n\t{comment}";
                     if (isObligated)
                     {
-                        text += "(Obligated)";
+                        text += " (Obligated)";
                     }
                     else
                     {
-                        text += "(Optional)";
+                        text += " (Optional)";
                     }
                 }
 
