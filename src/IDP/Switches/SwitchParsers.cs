@@ -210,7 +210,14 @@ namespace IDP.Switches
                 }
             }
 
-            throw new Exception($"Cannot find switch with name: {name}");
+
+            var names = "";
+            foreach (var (nms, sw) in _switches)
+            {
+                names += nms[0] + "\n";
+            }
+            
+            throw new Exception($"Cannot find switch with name: {name}.\nKnown switches are: {names}");
         }
 
 
