@@ -66,6 +66,7 @@ namespace IDP.Switches.RouterDb
             });
             var allCore = false;
             var keepWayIds = false;
+            var normalize = true;
             var simplification = (new Itinero.IO.Osm.LoadSettings()).NetworkSimplificationEpsilon;
             
             Itinero.Osm.Vehicles.Vehicle.RegisterVehicles();
@@ -152,6 +153,14 @@ namespace IDP.Switches.RouterDb
                                 simplification = parsedInt.Value;
                             }
                             break;
+                        case "n":
+                        case "normalize":
+                            var parsedBool = SwitchParsers.ParseBool(value);
+                            if (parsedBool.HasValue)
+                            {
+                                normalize = parsedBool.Value;
+                            }
+                            break;
                         default:
                             throw new SwitchParserException("--create-routerdb",
                                 string.Format("Invalid parameter for command --create-routerdb: {0} not recognized.", key));
@@ -184,7 +193,7 @@ namespace IDP.Switches.RouterDb
                 }
                 else
                 { // use the source as-is.
-                    target.RegisterSource(source);
+                    target.RegisterSource(source, normalize);
                 }
                 target.Pull();
                 

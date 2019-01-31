@@ -250,6 +250,26 @@ namespace IDP.Switches
         }
 
         /// <summary>
+        /// Returns true if the given string value represent false.
+        /// </summary>
+        internal static bool? ParseBool(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return null;
+
+            switch (value.ToLowerInvariant())
+            {
+                case "yes":
+                case "true":
+                    return true;
+                case "no":
+                case "false":
+                    return false;
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
         /// Parses an integer from the given value.
         /// </summary>
         /// <param name="value"></param>
