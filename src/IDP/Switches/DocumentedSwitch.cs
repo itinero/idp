@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using IDP.Processors;
-using IDP.Processors.Osm;
 
 [assembly: InternalsVisibleTo("IDP.Test")]
 [assembly: InternalsVisibleTo("IDP.Test")]
@@ -38,7 +37,8 @@ namespace IDP.Switches
         ///
         /// Indicating an must-have argument 'file' and four optional arguments
         /// </summary>
-        private readonly List<(string argName, bool isObligated, string comment)> _extraParams;
+        private readonly List<(List<string> argNames, bool isObligated, string comment, string defaultValue)>
+            _extraParams;
 
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace IDP.Switches
 
         protected DocumentedSwitch(
             string[] names, string about,
-            List<(string argName, bool isObligated, string comment)> extraParams,
+            List<(List<string> argName, bool isObligated, string comment, string defaultValue)> extraParams,
             bool isStable
         ) : base(new string[] { })
         {
@@ -57,6 +57,27 @@ namespace IDP.Switches
             _about = about;
             _extraParams = extraParams;
             _isStable = isStable;
+        }
+
+        private DocumentedSwitch(
+            string[] names, string about,
+            List<(string argName, bool isObligated, string comment)> extraParams,
+            bool isStable
+        ) : this(names, about, PrepareParams(extraParams), isStable)
+        {
+        }
+
+
+        private static List<(List<string> argNames, bool isObligated, string comment, string defaultValue)>
+            PrepareParams(List<(string argName, bool isObligated, string comment)> parameters)
+        {
+            var newParams = new List<(List<string> argName, bool isObligated, string comment, string defaultValue)>();
+            foreach (var (argName, isObligated, comment) in parameters)
+            {
+                newParams.Add((new List<string> {argName}, isObligated, comment, ""));
+            }
+
+            return newParams;
         }
 
         public abstract (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
@@ -76,6 +97,8 @@ namespace IDP.Switches
         ///
         /// E.g. --write-geojson left=123 someFile right=456 ...
         /// will match someFile with the first 'file' argument
+        ///
+        /// The resulting dictionary will 
         /// 
         /// </summary>
         /// <returns></returns>
@@ -88,22 +111,31 @@ namespace IDP.Switches
 
             var used = new HashSet<string>();
 
-            // First, handle all the named arguments
+            // First, handle all the named arguments, thus every element containing '='
+            // We _translate_ the argument name to the first index in the according list
             foreach (var argument in arguments)
             {
                 if (!SwitchParsers.SplitKeyValue(argument, out var key, out var value)) continue;
                 // The argument is of the format 'file=abc'
-                result.Add(key, value);
-                used.Add(argument);
 
-                bool found = false;
-                foreach (var (argName, _, _) in expected)
+
+                var found = false;
+                foreach (var (argNames, _, _, _) in expected)
                 {
-                    // ReSharper disable once InvertIf
-                    if (argName.Equals(key))
+                    foreach (var argName in argNames)
                     {
-                        found = true;
-                        break;
+                        // ReSharper disable once InvertIf
+                        if (argName.Equals(key))
+                        {
+                            found = true;
+                            key = argNames[0];
+                            break;
+                        }
+
+                        if (found)
+                        {
+                            break;
+                        }
                     }
                 }
 
@@ -112,16 +144,63 @@ namespace IDP.Switches
                     throw new ArgumentException(
                         $"Found a parameter with key {key}, but no such parameter is defined for this switch.\n\n{Help()}");
                 }
-            }
 
-            // Now, we handle the resting elements
+
+                result.Add(key, value);
+                used.Add(argument);
+            }
+            
+            
+            // Now, we handle all the boolean arguments, thus every element starting with '-', e.g. '-some-flag'
+            // We _translate_ the argument name to the first index in the according list
             foreach (var argument in arguments)
             {
-                if (SwitchParsers.SplitKeyValue(argument, out _, out _)) continue;
+                if(used.Contains(argument)) continue;
+                
+                if (!argument.StartsWith("-")) continue;
+                // The argument is of the format '-flag'
+
+                var key = argument.Substring(1);
+                var found = false;
+                foreach (var (argNames, _, _, _) in expected)
+                {
+                    foreach (var argName in argNames)
+                    {
+                        // ReSharper disable once InvertIf
+                        if (argName.Equals(key))
+                        {
+                            found = true;
+                            key = argNames[0];
+                            break;
+                        }
+
+                        if (found)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                if (!found)
+                {
+                    throw new ArgumentException(
+                        $"Found a flag with key {key}, but no such flag is defined for this switch.\n\n{Help()}");
+                }
+
+
+                result.Add(key, "true");
+                used.Add(argument);
+            }
+
+
+            // Now, we handle the resting elements without a name
+            foreach (var argument in arguments)
+            {
+                if (used.Contains(argument)) continue;
 
                 // We found an argument which does not use "="
                 // Was it used already?
-                var name = expected[index].argName;
+                var name = expected[index].argNames[0];
                 while (result.ContainsKey(name))
                 {
                     index++;
@@ -130,7 +209,7 @@ namespace IDP.Switches
                         throw new ArgumentException("Too many arguments are given");
                     }
 
-                    name = expected[index].argName;
+                    name = expected[index].argNames[0];
                 }
 
                 result.Add(name, argument);
@@ -156,11 +235,18 @@ namespace IDP.Switches
 
 
             // At last, do we have all obligated parameters?
-            foreach (var (name, obligated, _) in expected)
+            // And we fill out the default values if not obligated
+            foreach (var (name, obligated, _, defaultValue) in expected)
             {
-                if (obligated && !result.ContainsKey(name))
+                if (obligated && !result.ContainsKey(name[0]))
                 {
-                    throw new ArgumentException($"The argument '{name}' is missing");
+                    throw new ArgumentException($"The argument '{name[0]}' is missing");
+                }
+
+                if(!result.ContainsKey(name[0]))
+                {
+                    // Add default of optional parameter
+                    result.Add(name[0], defaultValue);
                 }
             }
 
@@ -169,12 +255,12 @@ namespace IDP.Switches
 
         public string MarkdownName()
         {
-            string text = "";
+            var text = "";
             text += Names[0];
             if (Names.Length > 1)
             {
                 text += " (";
-                for (int i = 1; i < Names.Length; i++)
+                for (var i = 1; i < Names.Length; i++)
                 {
                     text += Names[i] + ", ";
                 }
@@ -205,12 +291,7 @@ namespace IDP.Switches
             }
             else
             {
-                foreach (var name in Names)
-                {
-                    text += name + ", ";
-                }
-
-                text = text.Substring(0, text.Length - 2);
+                text += string.Join(", ", Names);
             }
 
 
@@ -225,22 +306,26 @@ namespace IDP.Switches
                 }
                 else
                 {
-                    text += "| Parameter  | Obligated? | Explanation       |\n";
-                    text += "|----------- | ---------- | ----------------- |\n";
+                    text += "| Parameter  | Default value | Explanation       |\n";
+                    text += "|----------- | ------------- | ----------------- |\n";
                 }
             }
 
-            foreach (var (argName, isObligated, comment) in _extraParams)
+            foreach (var (argNames, isObligated, comment, defaultValue) in _extraParams)
             {
+                var argName = string.Join(", ", argNames);
+
+
                 if (markdown)
                 {
                     if (isObligated)
                     {
-                        text += $"| **{argName}** | ✓ | {comment} | ";
+                        text += $"| **{argName}** | _Obligated param_ | {comment} | ";
                     }
                     else
                     {
-                        text += $"| {argName} | | {comment} | ";
+                        var defV = String.IsNullOrEmpty(defaultValue) ? "_NA_" : $"`{defaultValue}`";
+                        text += $"| {argName} | {defV}| {comment} | ";
                     }
                 }
                 else
@@ -252,7 +337,7 @@ namespace IDP.Switches
                     }
                     else
                     {
-                        text += " (Optional)";
+                        text += $" (Optional, default is {defaultValue})";
                     }
                 }
 
@@ -261,5 +346,7 @@ namespace IDP.Switches
 
             return text;
         }
+
+
     }
 }

@@ -26,19 +26,23 @@ using System.Collections.Generic;
 using System.IO;
 using IDP.Processors.Osm;
 using IDP.Processors.RouterDb;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Osm
 {
     class SwitchWritePBF : DocumentedSwitch
     {
-        private static string[] names = {"--write-pbf", "--wb"};
-        private static string about = "Writes the result of the calculations as protobuff-osm file. The file format is `.osm.pbf`";
+        private static readonly string[] names = {"--write-pbf", "--wb"};
 
-        private static readonly List<(string argName, bool isObligated, string comment)> extraParams
-            = new List<(string argName, bool isObligated, string comment)>
-            {
-                ("file", true, "The file to write the .osm.pbf to")
-            };
+        private static readonly string about =
+            "Writes the result of the calculations as protobuff-osm file. The file format is `.osm.pbf`";
+
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
+            extraParams
+                = new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
+                {
+                    obl("file", "The file to write the .osm.pbf to")
+                };
 
         private const bool isStable = true;
 

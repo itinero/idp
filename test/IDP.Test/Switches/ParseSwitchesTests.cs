@@ -5,7 +5,7 @@ using IDP.Processors.Osm;
 using IDP.Processors.RouterDb;
 using Xunit;
 using IDP.Switches;
-
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Tests.Switches
 {
@@ -14,14 +14,13 @@ namespace IDP.Tests.Switches
         [Fact]
         public void TestParseDict()
         {
-
             var args = new[] {"abc", "def=ghi", "jkl"};
             var d = new Dummy(new[] {"--test-flag"},
-                new List<(string argName, bool isObligated, string comment)>
+                new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
-                    ("a", true, "Test"), 
-                    ("x", true, "test"), 
-                    ("def", false, "test")
+                    obl("a", "Test"),
+                    obl("x", "test"),
+                    opt("def", "test")
                 },
                 false
             );
@@ -42,15 +41,15 @@ namespace IDP.Tests.Switches
             {
                 Assert.Equal("The argument 'x' is missing", e.Message);
             }
-
         }
     }
 
     internal class Dummy : DocumentedSwitch
     {
         public Dummy(string[] names,
-            List<(string argName, bool isObligated, string comment)> extraParams, bool isStable) : base(
-            names, "",extraParams, isStable)
+            List<(List<string> argName, bool isObligated, string comment, string defaultValue)> extraParams,
+            bool isStable) : base(
+            names, "", extraParams, isStable)
         {
         }
 

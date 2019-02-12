@@ -21,7 +21,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 
 namespace IDP.Processors
 {
@@ -30,14 +29,6 @@ namespace IDP.Processors
     /// </summary>
     abstract class Processor
     {
-        /// <summary>
-        /// Collapses the given list of processors by adding this one to it.
-        /// </summary>
-        public virtual int Collapse(List<Processor> processors, int i)
-        {
-            return 0;
-        }
-
         /// <summary>
         /// Executes this processor.
         /// </summary>

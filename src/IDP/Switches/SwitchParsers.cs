@@ -149,14 +149,14 @@ namespace IDP.Switches
             }
 
             var processors = new List<Processors.Processor>();
-            for (var i = 0; i < switches.Count; i++)
+            foreach (var t in switches)
             {
                 Processors.Processor newProcessor;
 
                 int p;
                 try
                 {
-                    var (sw, parameters) = switches[i];
+                    var (sw, parameters) = t;
                     sw.Arguments = parameters;
                     p = sw.Parse(processors, out newProcessor);
                 }
@@ -288,6 +288,26 @@ namespace IDP.Switches
             return !string.IsNullOrWhiteSpace(value) &&
                    (value.ToLowerInvariant() == "yes" ||
                     value.ToLowerInvariant() == "true");
+        }
+
+        /// <summary>
+        /// Returns true if the given string value represent false.
+        /// </summary>
+        internal static bool? ParseBool(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return null;
+
+            switch (value.ToLowerInvariant())
+            {
+                case "yes":
+                case "true":
+                    return true;
+                case "no":
+                case "false":
+                    return false;
+                default:
+                    return null;
+            }
         }
 
         /// <summary>

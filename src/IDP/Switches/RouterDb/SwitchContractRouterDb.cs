@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using IDP.Processors;
-using IDP.Processors.Osm;
 using IDP.Processors.RouterDb;
 using Itinero;
 using Itinero.Algorithms.Weights;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.RouterDb
 {
     class SwitchContractRouterDb : DocumentedSwitch
     {
-       
         private static string[] names = {"--contract"};
 
         private static string about = "Applies contraction on the graph." +
@@ -20,12 +19,14 @@ namespace IDP.Switches.RouterDb
 
         private const bool isStable = true;
 
-        private static readonly List<(string argName, bool isObligated, string comment)> extraParams
-            = new List<(string argName, bool isObligated, string comment)>()
-            {
-                ("profile", true, "The profile for which a contraction hierarchy should be built"),
-                ("augmented", false, "If specified with 'yes', an augmented weight handler will be used")
-            };
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
+            extraParams
+                = new List<(List<string> args, bool isObligated, string comment, string defaultValue)>()
+                {
+                    obl("profile", "The profile for which a contraction hierarchy should be built"),
+                    opt("augmented", "If specified with 'yes', an augmented weight handler will be used")
+                        .SetDefault("false")
+                };
 
 
         public SwitchContractRouterDb()
@@ -34,7 +35,8 @@ namespace IDP.Switches.RouterDb
         }
 
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> args, List<Processor> previous)
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> args,
+            List<Processor> previous)
         {
             if (previous.Count < 1)
             {
@@ -46,9 +48,8 @@ namespace IDP.Switches.RouterDb
                 throw new Exception("Expected a router db source.");
             }
 
-            string profile = args["profile"];
-            var augmented = args.ContainsKey("augmented") &&
-                            SwitchParsers.IsTrue(args["augmented"]);
+            var profile = args["profile"];
+            var augmented = SwitchParsers.IsTrue(args["augmented"]);
 
 
             var source = (previous[previous.Count - 1] as IProcessorRouterDbSource);
@@ -73,7 +74,5 @@ namespace IDP.Switches.RouterDb
 
             return (new ProcessorRouterDbSource(GetRouterDb), 1);
         }
-
-
     }
 }

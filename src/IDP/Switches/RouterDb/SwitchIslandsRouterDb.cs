@@ -6,6 +6,7 @@ using Itinero.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.RouterDb
 {
@@ -20,10 +21,10 @@ namespace IDP.Switches.RouterDb
             "Detects islands in a routerdb. An island is a subgraph which is not reachable via the rest of the graph.";
 
 
-        private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams =
-            new List<(string argName, bool isObligated, string comment)>()
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> ExtraParams =
+            new List<(List<string> args, bool isObligated, string comment, string defaultValue)>()
             {
-                ("profile", false,
+                opt("profile",
                     "The profile for which islands should be detected. This can be a comma-separated list of profiles as well. Default: apply island detection on _all_ profiles in the routerdb"),
             };
 
@@ -49,7 +50,7 @@ namespace IDP.Switches.RouterDb
             }
 
             string[] profiles = null;
-            if (arguments.ContainsKey("profile"))
+            if (!string.IsNullOrEmpty(arguments["profile"]))
             {
                 if (!SwitchParsers.SplitValuesArray(arguments["profile"], out profiles))
                 {

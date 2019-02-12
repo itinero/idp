@@ -1,7 +1,8 @@
-﻿using IDP.Processors;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using IDP.Processors;
+using IDP.Processors.Osm;
+using OsmSharp.Streams.Filters;
 
 namespace IDP.Switches.Osm
 {
@@ -9,10 +10,12 @@ namespace IDP.Switches.Osm
     {
         private static readonly string[] names = {"--progress-report", "--progress", "--pr"};
 
-        private const string about = "If this flag is specified, the progress will be printed to standard out. Useful to see how quickly the process goes and to do a bit of initial troubleshooting.";
+        private const string about =
+            "If this flag is specified, the progress will be printed to standard out. Useful to see how quickly the process goes and to do a bit of initial troubleshooting.";
 
-        private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams = 
-          new List<(string argName, bool isObligated, string comment)>();
+        private static readonly List<(List<string> argName, bool isObligated, string comment, string defaultValue)>
+            ExtraParams =
+                new List<(List<string>argName, bool isObligated, string comment, string defaultValue)>();
 
         private const bool IsStable = true;
 
@@ -23,17 +26,15 @@ namespace IDP.Switches.Osm
         public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
-            if (!(previous[previous.Count - 1] is Processors.Osm.IProcessorOsmStreamSource))
+            if (!(previous[previous.Count - 1] is IProcessorOsmStreamSource))
             {
                 throw new Exception("Expected an OSM stream source.");
             }
 
-            var progressFilter = new OsmSharp.Streams.Filters.OsmStreamFilterProgress();
-            var source = previous[previous.Count - 1] as Processors.Osm.IProcessorOsmStreamSource;
+            var progressFilter = new OsmStreamFilterProgress();
+            var source = previous[previous.Count - 1] as IProcessorOsmStreamSource;
             progressFilter.RegisterSource(source.Source);
-            return (new Processors.Osm.ProcessorOsmStreamSource(progressFilter), 1);
+            return (new ProcessorOsmStreamSource(progressFilter), 1);
         }
-
-      
     }
 }

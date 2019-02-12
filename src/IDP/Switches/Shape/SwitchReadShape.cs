@@ -20,12 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using Itinero.IO.Shape;
-using Itinero.Profiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IDP.Processors;
+using IDP.Processors.RouterDb;
+using Itinero.Data.Edges;
+using Itinero.IO.Shape;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Shape
 {
@@ -39,14 +41,15 @@ namespace IDP.Switches.Shape
         private static string about = "Read a shapefile as input to do all the data processing.";
 
 
-        private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams =
-            new List<(string argName, bool isObligated, string comment)>()
-            {
-                ("file", true, "The input file to read"),
-                ("vehicle", true, "The profile to read. This can be a comma-separated list too."),
-                ("svc", true, "The `source-vertex-column`"), // TODO Clarify this
-                ("tvc", true, "The `target-vertex-column`") // TODO Clarify this
-            };
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
+            ExtraParams =
+                new List<(List<string> args, bool isObligated, string comment, string defaultValue)>()
+                {
+                    obl("file", "The input file to read"),
+                    obl("vehicle", "The profile to read. This can be a comma-separated list too."),
+                    obl("svc", "The `source-vertex-column`"), // TODO Clarify this
+                    obl("tvc", "The `target-vertex-column`") // TODO Clarify this
+                };
 
         private const bool IsStable = true;
 
@@ -57,9 +60,9 @@ namespace IDP.Switches.Shape
         }
 
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments, List<Processor> previous)
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
         {
-
             var localShapefile = arguments["file"];
             var vehicles = arguments.ExtractVehicleArguments();
             var sourceVertexColumn = arguments.GetOrDefault("svc", "");
@@ -82,14 +85,15 @@ namespace IDP.Switches.Shape
 
             Itinero.RouterDb GetRouterDb()
             {
-                var routerDb = new Itinero.RouterDb(Itinero.Data.Edges.EdgeDataSerializer.MAX_DISTANCE);
+                var routerDb = new Itinero.RouterDb(EdgeDataSerializer.MAX_DISTANCE);
                 var file = new FileInfo(localShapefile);
-                routerDb.LoadFromShape(file.DirectoryName, file.Name, sourceVertexColumn, targetVertexColumn, vehicles.ToArray());
+                routerDb.LoadFromShape(file.DirectoryName, file.Name, sourceVertexColumn, targetVertexColumn,
+                    vehicles.ToArray());
 
                 return routerDb;
             }
 
-            return(new Processors.RouterDb.ProcessorRouterDbSource(GetRouterDb), 0);
+            return (new ProcessorRouterDbSource(GetRouterDb), 0);
         }
     }
 }

@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using IDP.Processors;
-using IDP.Processors.Osm;
-using IDP.Processors.RouterDb;
-using NetTopologySuite.Operation.Valid;
+using static System.String;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches
 {
@@ -13,19 +11,38 @@ namespace IDP.Switches
     {
         private static readonly string[] names = {"--help", "--?"};
 
-        private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams =
-            new List<(string argName, bool isObligated, string comment)>()
-            {
-                ("about", false, "The command (or switch) you'd like more info about"),
-                ("markdown", false, "Write the help text as markdown to a file")
-            };
+        private static readonly List<(List<string>argName, bool isObligated, string comment, string defaultValue)>
+            ExtraParams =
+                new List<(List<string>argName, bool isObligated, string comment, string defaultValue)>()
+                {
+                    opt("about", "The command (or switch) you'd like more info about"),
+                    opt("markdown", "md", "Write the help text as markdown to a file")
+                };
 
         private const bool IsStable = true;
-        private static string about = "Print the help message";
+        private const string About = "Print the help message";
 
         public HelpSwitch() :
-            base(names, about, ExtraParams, IsStable)
+            base(names, About, ExtraParams, IsStable)
         {
+        }
+
+
+        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
+        {
+            return (new HelpProcessor(arguments), 0);
+        }
+    }
+
+
+    internal sealed class HelpProcessor : Processor
+    {
+        private readonly Dictionary<string, string> _arguments;
+
+        public HelpProcessor(Dictionary<string, string> arguments)
+        {
+            _arguments = arguments;
         }
 
         private static string GenerateAllHelp(bool markdown = false)
@@ -56,6 +73,7 @@ namespace IDP.Switches
                 "`--switch value2 param1=value1`, `--switch value1 param2=value2` or `--switch param1=value1 value2` " +
                 "are valid just as well.";
             text += "\n\n";
+            text += "At last, `-param1` is a shorthand for `param=true`. This is useful for flags\n\n";
 
 
             text += "\n\n Full overview of all options ";
@@ -95,14 +113,14 @@ namespace IDP.Switches
             return text;
         }
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
-            List<Processor> previous)
+
+        public override void Execute()
         {
-            if (arguments.ContainsKey("about"))
+            if (!IsNullOrEmpty(_arguments["about"]))
             {
-                var needed = arguments["about"];
+                var needed = _arguments["about"];
                 var allSwitches = SwitchParsers.documented;
-                foreach (var (cat, switches) in allSwitches)
+                foreach (var (_, switches) in allSwitches)
                 {
                     foreach (var documentedSwitch in switches)
                     {
@@ -111,7 +129,7 @@ namespace IDP.Switches
                             if (needed.Equals(name))
                             {
                                 Console.WriteLine(documentedSwitch.Help());
-                                return (null, 0);
+                                return;
                             }
                         }
                     }
@@ -121,17 +139,19 @@ namespace IDP.Switches
                     $"Did not find documentation for switch {needed}. Don't worry, the switch probably exists but is not documented yet");
             }
 
-            string md = null;
-            if (arguments.TryGetValue("markdown", out md))
-            {
-                File.WriteAllText(md, GenerateAllHelp(true));
-            }
-            else
+            if (IsNullOrEmpty(_arguments["markdown"]))
             {
                 Console.Write(GenerateAllHelp());
             }
+            else
+            {
+                File.WriteAllText(_arguments["markdown"], GenerateAllHelp(true));
+            }
+        }
 
-            return (null, 0);
+        public override bool CanExecute
+        {
+            get { return true; }
         }
     }
 }

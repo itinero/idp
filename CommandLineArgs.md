@@ -25,6 +25,8 @@ The syntax of a switch is:
 
 There is no need to explicitly give the parameter name, as long as the *unnamed* parameters      are in the same order as in the tables below. Note that you are free to name some (but not all) arguments. `--switch value2 param1=value1`, `--switch value1 param2=value2` or `--switch param1=value1 value2` are valid just as well.
 
+At last, `-param1` is a shorthand for `param=true`. This is useful for flags
+
 
 
  Full overview of all options 
@@ -56,30 +58,29 @@ All switches are listed below. Click on a switch to get a full overview, includi
 
    Reads an OpenStreetMap input file. The format should be an `.osm.pbf` file.
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| **file** | ✓ | The .osm.pbf file that serves as input | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **file** | _Obligated param_ | The .osm.pbf file that serves as input | 
 
 #### --read-shape (--rs)
 
    Read a shapefile as input to do all the data processing.
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| **file** | ✓ | The input file to read | 
-| **vehicle** | ✓ | The profile to read. This can be a comma-separated list too. | 
-| **svc** | ✓ | The `source-vertex-column` | 
-| **tvc** | ✓ | The `target-vertex-column` | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **file** | _Obligated param_ | The input file to read | 
+| **vehicle** | _Obligated param_ | The profile to read. This can be a comma-separated list too. | 
+| **svc** | _Obligated param_ | The `source-vertex-column` | 
+| **tvc** | _Obligated param_ | The `target-vertex-column` | 
 
 #### --read-routerdb
 
    Reads a routerdb file for processing. This can be useful to e.g. translate it to a geojson or shapefile.
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| **file** | ✓ | The path where the routerdb should be read. | 
-| mapped | | Enable memory-mapping: only fetch the parts from disk that are needed. There is less memory used, but the queries are slower. Use 'mapped=true' | 
-| m | | Same as 'mapped'. | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **file** | _Obligated param_ | The path where the routerdb should be read. | 
+| mapped, m | `false`| Enable memory-mapping: only fetch the parts from disk that are needed. There is less memory used, but the queries are slower. | 
 
 ### Data processing
 #### --create-routerdb
@@ -106,78 +107,77 @@ Additionally, there are two special values:
 
 Note that one can specify multiple vehicles at once too, using the `vehicles` parameter (note the plural)
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| vehicle | | The vehicle that the routing graph should be built for. Default is 'car'. | 
-| vehicles | | A comma separated list containing vehicles that should be used | 
-| keepwayids | | Boolean indicating that the way IDs should be kept | 
-| wayids | | Same as `keepwayids` | 
-| allcore | | Boolean indicating allcore | 
-| simplification | | Integer indicating the simplification factor. Default: very small | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| vehicle, vehicles | `car`| The vehicle (or comma separated list of vehicles) that the routing graph should be built for. | 
+| keepwayids, wayids | `false`| Boolean indicating that the way IDs should be kept | 
+| allcore | `false`| Boolean indicating allcore | 
+| simplification | `1`| Integer indicating the simplification factor. Default: very small | 
+| normalize | `false`| Normalize the values. | 
 
 #### --elevation (--ele)
 
    Incorporates elevation data in the calculations.
-Specifying this flag will download the SRTM-dataset and cache this in srtm-cache.This data will be reused upon further runs
+Specifying this flag will download the SRTM-dataset and cache this on the file system.This data will be reused upon further runs
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| cache | | Caching directory name, if another caching directory should be used. | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| cache | `srtm-cache`| Caching directory name, if another caching directory should be used. | 
 
 #### --contract
 
    Applies contraction on the graph.Solving queries on a contracted graph is _much_ faster, although preprocessing is quite a bit slower (at least 5 times slower);most use cases will require this flag.To enable contraction for multiple profiles and/or multiple vehicles, simply add another --contraction
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| **profile** | ✓ | The profile for which a contraction hierarchy should be built | 
-| augmented | | If specified with 'yes', an augmented weight handler will be used | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **profile** | _Obligated param_ | The profile for which a contraction hierarchy should be built | 
+| augmented | `false`| If specified with 'yes', an augmented weight handler will be used | 
 
 ### Data analysis
 #### --islands (Experimental feature)
 
    Detects islands in a routerdb. An island is a subgraph which is not reachable via the rest of the graph.
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| profile | | The profile for which islands should be detected. This can be a comma-separated list of profiles as well. Default: apply island detection on _all_ profiles in the routerdb | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| profile | _NA_| The profile for which islands should be detected. This can be a comma-separated list of profiles as well. Default: apply island detection on _all_ profiles in the routerdb | 
 
 ### Output
 #### --write-routerdb
 
    Specifies that the routable graph should be saved to a file. This routerdb can be used later to perform queries.
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| **file** | ✓ | The path where the routerdb should be written. | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **file** | _Obligated param_ | The path where the routerdb should be written. | 
 
 #### --write-pbf (--wb)
 
    Writes the result of the calculations as protobuff-osm file. The file format is `.osm.pbf`
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| **file** | ✓ | The file to write the .osm.pbf to | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **file** | _Obligated param_ | The file to write the .osm.pbf to | 
 
 #### --write-shape
 
    Write the result as shapefile
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| **file** | ✓ | The output file to write to | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **file** | _Obligated param_ | The output file to write to | 
 
 #### --write-geojson (--wg)
 
    Write a file as geojson file. Useful for debugging
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| **file** | ✓ | The output file which will contain the geojson. Will be overriden by the code | 
-| left | | Specifies the minimal latitude of the output. Used when specifying a bounding box for the output. | 
-| right | | Specifies the maximal latitude of the output. Used when specifying a bounding box for the output. | 
-| top | | Specifies the minimal longitude of the output. Used when specifying a bounding box for the output. | 
-| bottom | | Specifies the maximal longitude of the output. Used when specifying a bounding box for the output. | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **file** | _Obligated param_ | The output file which will contain the geojson. Will be overriden by the code | 
+| left | _NA_| Specifies the minimal latitude of the output. Used when specifying a bounding box for the output. | 
+| right | _NA_| Specifies the maximal latitude of the output. Used when specifying a bounding box for the output. | 
+| top, up | _NA_| Specifies the minimal longitude of the output. Used when specifying a bounding box for the output. | 
+| bottom, down | _NA_| Specifies the maximal longitude of the output. Used when specifying a bounding box for the output. | 
 
 ### Usability
 #### --progress-report (--progress, --pr)
@@ -192,16 +192,16 @@ Specifying this flag will download the SRTM-dataset and cache this in srtm-cache
 
    If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| **file** | ✓ | The name of the file where the logs will be written to | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| file | `log.txt`| The name of the file where the logs will be written to | 
 
 #### --help (--?)
 
    Print the help message
 
-| Parameter  | Obligated? | Explanation       |
-|----------- | ---------- | ----------------- |
-| about | | The command (or switch) you'd like more info about | 
-| markdown | | Write the help text as markdown to a file | 
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| about | _NA_| The command (or switch) you'd like more info about | 
+| markdown, md | _NA_| Write the help text as markdown to a file | 
 

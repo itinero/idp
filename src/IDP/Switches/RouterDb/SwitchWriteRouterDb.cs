@@ -20,11 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using IDP.Processors.RouterDb;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IDP.Processors;
+using IDP.Processors.RouterDb;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.RouterDb
 {
@@ -39,10 +40,10 @@ namespace IDP.Switches.RouterDb
             "Specifies that the routable graph should be saved to a file. This routerdb can be used later to perform queries.";
 
 
-        private static readonly List<(string argName, bool isObligated, string comment)> Parameters =
-            new List<(string argName, bool isObligated, string comment)>
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> Parameters =
+            new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             {
-                ("file", true, "The path where the routerdb should be written."),
+                obl("file", "The path where the routerdb should be written."),
             };
 
 
@@ -65,12 +66,12 @@ namespace IDP.Switches.RouterDb
 
             var file = new FileInfo(arguments["file"]);
 
-            if (!(previous[previous.Count - 1] is Processors.RouterDb.IProcessorRouterDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource))
             {
                 throw new Exception("Expected a router db source.");
             }
 
-            var source = (previous[previous.Count - 1] as Processors.RouterDb.IProcessorRouterDbSource);
+            var source = (previous[previous.Count - 1] as IProcessorRouterDbSource);
             Func<Itinero.RouterDb> getRouterDb = () =>
             {
                 var routerDb = source.GetRouterDb();
@@ -82,7 +83,7 @@ namespace IDP.Switches.RouterDb
                 return routerDb;
             };
 
-            return (new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb), 1);
+            return (new ProcessorRouterDbSource(getRouterDb), 1);
         }
     }
 }

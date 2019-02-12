@@ -27,6 +27,8 @@ using IDP.Processors;
 using IDP.Processors.Osm;
 using IDP.Processors.RouterDb;
 using Itinero;
+using static System.String;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.GeoJson
 {
@@ -35,23 +37,24 @@ namespace IDP.Switches.GeoJson
     /// </summary>
     class SwitchWriteGeoJson : DocumentedSwitch
     {
-        private static string[] _names => new[] {"--write-geojson","--wg"};      
+        private static string[] _names => new[] {"--write-geojson", "--wg"};
         private static string about = "Write a file as geojson file. Useful for debugging";
 
 
-        private static readonly List<(string argName, bool isObligated, string comment)> Parameters =
-            new List<(string argName, bool isObligated, string comment)>
-            {
-                ("file", true, "The output file which will contain the geojson. Will be overriden by the code"),
-                ("left", false,
-                    "Specifies the minimal latitude of the output. Used when specifying a bounding box for the output."),
-                ("right", false,
-                    "Specifies the maximal latitude of the output. Used when specifying a bounding box for the output."),
-                ("top", false,
-                    "Specifies the minimal longitude of the output. Used when specifying a bounding box for the output."),
-                ("bottom", false,
-                    "Specifies the maximal longitude of the output. Used when specifying a bounding box for the output."),
-            };
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
+            Parameters =
+                new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
+                {
+                    obl("file", "The output file which will contain the geojson. Will be overriden by the code"),
+                    opt("left",
+                        "Specifies the minimal latitude of the output. Used when specifying a bounding box for the output."),
+                    opt("right",
+                        "Specifies the maximal latitude of the output. Used when specifying a bounding box for the output."),
+                    opt("top", "up",
+                        "Specifies the minimal longitude of the output. Used when specifying a bounding box for the output."),
+                    opt("bottom", "down",
+                        "Specifies the maximal longitude of the output. Used when specifying a bounding box for the output."),
+                };
 
 
         private const bool IsStable = true;
@@ -62,7 +65,7 @@ namespace IDP.Switches.GeoJson
         /// Creates a switch to write a geojson.
         /// </summary>
         public SwitchWriteGeoJson()
-            : base(_names,about, Parameters, IsStable)
+            : base(_names, about, Parameters, IsStable)
         {
         }
 
@@ -91,10 +94,10 @@ namespace IDP.Switches.GeoJson
 
 
             var bounds =
-                (args.ContainsKey("left") ? 1 : 0)
-                + (args.ContainsKey("left") ? 1 : 0)
-                + (args.ContainsKey("left") ? 1 : 0)
-                + (args.ContainsKey("left") ? 1 : 0);
+                (!IsNullOrEmpty(args["left"]) ? 1 : 0)
+                + (!IsNullOrEmpty(args["right"]) ? 1 : 0)
+                + (!IsNullOrEmpty(args["top"]) ? 1 : 0)
+                + (!IsNullOrEmpty(args["bottom"]) ? 1 : 0);
             if (bounds > 0 && bounds < 4)
             {
                 throw new ArgumentException("When specifying bounds, give all arguments\n" + Help());

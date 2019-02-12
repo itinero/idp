@@ -20,14 +20,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
-using IDP.Processors;
 using System.IO;
+using IDP.Processors;
+using IDP.Processors.RouterDb;
 using Itinero;
+using Itinero.Logging;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.RouterDb
 {
+    /// <inheritdoc />
     /// <summary>
     /// A switch to read or open a routerdb.
     /// </summary>
@@ -39,13 +42,13 @@ namespace IDP.Switches.RouterDb
             "Reads a routerdb file for processing. This can be useful to e.g. translate it to a geojson or shapefile.";
 
 
-        private static readonly List<(string argName, bool isObligated, string comment)> Parameters =
-            new List<(string argName, bool isObligated, string comment)>
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> Parameters =
+            new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             {
-                ("file", true, "The path where the routerdb should be read."),
-                ("mapped", false,
-                    "Enable memory-mapping: only fetch the parts from disk that are needed. There is less memory used, but the queries are slower. Use 'mapped=true'"),
-                ("m", false, "Same as 'mapped'.")
+                obl("file", "The path where the routerdb should be read."),
+                opt("mapped", "m",
+                        "Enable memory-mapping: only fetch the parts from disk that are needed. There is less memory used, but the queries are slower.")
+                    .SetDefault("false"),
             };
 
 
@@ -68,7 +71,7 @@ namespace IDP.Switches.RouterDb
             // check if the file exists.
             var localFile = Downloader.DownloadOrOpen(fileName);
             var file = new FileInfo(localFile);
-            
+
             if (!file.Exists)
             {
                 throw new FileNotFoundException("File not found.", file.FullName);
@@ -80,16 +83,15 @@ namespace IDP.Switches.RouterDb
                 {
                     // use the mapped version of the routerdb.
                     // WARNING: the source stream will remain open and cannot be written to.
-                    Itinero.Logging.Logger.Log(nameof(SwitchReadRouterDb), Itinero.Logging.TraceEventType.Information,
+                    Logger.Log(nameof(SwitchReadRouterDb), TraceEventType.Information,
                         "Opening RouterDb: " + file.FullName);
                     var stream = file.OpenRead();
                     return Itinero.RouterDb.Deserialize(stream, RouterDbProfile.NoCache);
                 }
 
-                
-                
+
                 // load the entire routerdb in RAM.
-                Itinero.Logging.Logger.Log(nameof(SwitchReadRouterDb), Itinero.Logging.TraceEventType.Information,
+                Logger.Log(nameof(SwitchReadRouterDb), TraceEventType.Information,
                     "Reading RouterDb: " + file.FullName);
                 using (var stream = file.OpenRead())
                 {
@@ -97,7 +99,7 @@ namespace IDP.Switches.RouterDb
                 }
             }
 
-            return (new Processors.RouterDb.ProcessorRouterDbSource(GetRouterDb), 0);
+            return (new ProcessorRouterDbSource(GetRouterDb), 0);
         }
     }
 }

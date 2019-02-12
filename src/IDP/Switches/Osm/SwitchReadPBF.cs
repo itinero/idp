@@ -25,7 +25,7 @@ using System.IO;
 using IDP.Processors;
 using IDP.Processors.Osm;
 using OsmSharp.Streams;
-
+using static IDP.Switches.SwitchesExtensions;
 namespace IDP.Switches.Osm
 {
     class SwitchReadPBF : DocumentedSwitch
@@ -33,10 +33,10 @@ namespace IDP.Switches.Osm
         private static readonly string[] names = {"--read-pbf", "--rb"};
         private const string about = "Reads an OpenStreetMap input file. The format should be an `.osm.pbf` file.";
 
-        private static readonly List<(string argName, bool isObligated, string comment)> extraParams
-            = new List<(string argName, bool isObligated, string comment)>()
+        private static readonly List<(List<string> argName, bool isObligated, string comment, string defaultValue)> extraParams
+            = new List<(List<string>argName, bool isObligated, string comment, string defaultValue)>()
             {
-                ("file", true, "The .osm.pbf file that serves as input")
+                obl("file", "The .osm.pbf file that serves as input")
             };
 
         private const bool IsStable = true;

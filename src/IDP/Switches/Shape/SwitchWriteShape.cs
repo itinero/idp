@@ -27,6 +27,7 @@ using Itinero.Profiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Shape
 {
@@ -39,10 +40,10 @@ namespace IDP.Switches.Shape
 
         private static string about = "Write the result as shapefile";
 
-        private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams =
-            new List<(string argName, bool isObligated, string comment)>()
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> ExtraParams =
+            new List<(List<string> args, bool isObligated, string comment, string defaultValue)>()
             {
-                ("file", true, "The output file to write to"),
+              obl  ("file", "The output file to write to"),
             };
 
         public SwitchWriteShape()

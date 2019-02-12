@@ -26,6 +26,7 @@ using System.Globalization;
 using IDP.Processors;
 using OsmSharp.Logging;
 using Serilog;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Logging
 {
@@ -33,16 +34,16 @@ namespace IDP.Switches.Logging
     {
         private static readonly string[] names = {"--log"};
 
-        private const string About = "If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile";
+        private const string About =
+            "If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile";
 
-        private static readonly List<(string argName, bool isObligated, string comment)> ExtraParams =
-            new List<(string argName, bool isObligated, string comment)>()
+        private static readonly List<(List<string> argName, bool isObligated, string comment, string defaultValue)> ExtraParams =
+            new List<(List<string> argName, bool isObligated, string comment, string defaultValue)>()
             {
-                ("file", true, "The name of the file where the logs will be written to")
+                opt("file", "The name of the file where the logs will be written to").SetDefault("log.txt")
             };
 
         private const bool IsStable = true;
-
 
 
         public SwitchLogging() :
@@ -57,13 +58,17 @@ namespace IDP.Switches.Logging
             // enable logging by adding serilog
             Logger.LogAction = (origin, level, message, parameters) =>
             {
-                Console.WriteLine($"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}");
-                Log.Information(string.Format($"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}"));
+                Console.WriteLine(
+                    $"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}");
+                Log.Information(string.Format(
+                    $"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}"));
             };
             Itinero.Logging.Logger.LogAction = (origin, level, message, parameters) =>
             {
-                Console.WriteLine($"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}");
-                Log.Information(string.Format($"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}"));
+                Console.WriteLine(
+                    $"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}");
+                Log.Information(string.Format(
+                    $"[{origin}-{DateTime.Now.ToString(CultureInfo.InvariantCulture)}] {level} - {message}"));
             };
 
             var logFile = arguments["file"];
