@@ -45,7 +45,7 @@ namespace IDP.Switches.GeoJson
             Parameters =
                 new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
-                    obl("file", "The output file which will contain the geojson. Will be overriden by the code"),
+                    obl("file", "The output file which will contain the geojson. If the file already exists, it will be overwritten without warning."),
                     opt("left",
                         "Specifies the minimal latitude of the output. Used when specifying a bounding box for the output."),
                     opt("right",

@@ -16,7 +16,7 @@ namespace IDP.Switches
                 new List<(List<string>argName, bool isObligated, string comment, string defaultValue)>()
                 {
                     opt("about", "The command (or switch) you'd like more info about"),
-                    opt("markdown", "md", "Write the help text as markdown to a file")
+                    opt("markdown", "md", "Write the help text as markdown to a file. The documentation is generated with this flag.")
                 };
 
         private const bool IsStable = true;

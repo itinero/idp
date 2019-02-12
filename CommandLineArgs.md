@@ -173,7 +173,7 @@ Specifying this flag will download the SRTM-dataset and cache this on the file s
 
 | Parameter  | Default value | Explanation       |
 |----------- | ------------- | ----------------- |
-| **file** | _Obligated param_ | The output file which will contain the geojson. Will be overriden by the code | 
+| **file** | _Obligated param_ | The output file which will contain the geojson. If the file already exists, it will be overwritten without warning. | 
 | left | _NA_| Specifies the minimal latitude of the output. Used when specifying a bounding box for the output. | 
 | right | _NA_| Specifies the maximal latitude of the output. Used when specifying a bounding box for the output. | 
 | top, up | _NA_| Specifies the minimal longitude of the output. Used when specifying a bounding box for the output. | 
@@ -203,5 +203,5 @@ Specifying this flag will download the SRTM-dataset and cache this on the file s
 | Parameter  | Default value | Explanation       |
 |----------- | ------------- | ----------------- |
 | about | _NA_| The command (or switch) you'd like more info about | 
-| markdown, md | _NA_| Write the help text as markdown to a file | 
+| markdown, md | _NA_| Write the help text as markdown to a file. The documentation is generated with this flag. | 
 
