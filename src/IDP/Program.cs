@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Globalization;
 using IDP.Processors;
 
 namespace IDP
@@ -33,12 +34,12 @@ namespace IDP
             OsmSharp.Logging.Logger.LogAction = (origin, level, message, parameters) =>
             {
                 Console.WriteLine(string.Format("[{0}-{3}] {1} - {2}", origin, level, message,
-                    DateTime.Now.ToString()));
+                    DateTime.Now.ToString(CultureInfo.InvariantCulture)));
             };
             Itinero.Logging.Logger.LogAction = (origin, level, message, parameters) =>
             {
                 Console.WriteLine(string.Format("[{0}-{3}] {1} - {2}", origin, level, message,
-                    DateTime.Now.ToString()));
+                    DateTime.Now.ToString(CultureInfo.InvariantCulture)));
             };
 
             // register switches.

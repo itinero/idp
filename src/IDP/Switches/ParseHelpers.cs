@@ -7,15 +7,9 @@ namespace IDP.Switches
     public static class ParseHelpers
     {
 
-        public static V GetOrDefault<K, V>(this Dictionary<K, V> dict,K key, V deflt)
+        public static TV GetOrDefault<TK, TV>(this Dictionary<TK, TV> dict,TK key, TV deflt)
         {
-            if (dict.ContainsKey(key))
-            {
-                return dict[key];
-            }
-
-            return deflt;
-
+            return dict.ContainsKey(key) ? dict[key] : deflt;
         }
         /// <summary>
         /// Creates a list of vehicles based on the 'vehicle' and 'vehicles' parameters.

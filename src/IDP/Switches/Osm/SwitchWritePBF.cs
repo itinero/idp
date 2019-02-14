@@ -20,37 +20,36 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IDP.Processors;
 using IDP.Processors.Osm;
-using IDP.Processors.RouterDb;
+using OsmSharp.Streams;
 using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Osm
 {
-    class SwitchWritePBF : DocumentedSwitch
+    class SwitchWritePbf : DocumentedSwitch
     {
-        private static readonly string[] names = {"--write-pbf", "--wb"};
+        private static readonly string[] _names = {"--write-pbf", "--wb"};
 
-        private static readonly string about =
-            "Writes the result of the calculations as protobuff-osm file. The file format is `.osm.pbf`";
+        private const string _about = "Writes the result of the calculations as protobuff-osm file. The file format is `.osm.pbf`";
 
         private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
-            extraParams
+            _extraParams
                 = new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
                     obl("file", "The file to write the .osm.pbf to")
                 };
 
-        private const bool isStable = true;
+        private const bool _isStable = true;
 
-        public SwitchWritePBF() : base(names, about, extraParams, isStable)
+        public SwitchWritePbf() : base(_names, _about, _extraParams, _isStable)
         {
         }
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
             if (previous.Count < 1)
@@ -64,14 +63,14 @@ namespace IDP.Switches.Osm
                 throw new FileNotFoundException("File not found.", file.FullName);
             }
 
-            if (!(previous[previous.Count - 1] is Processors.Osm.IProcessorOsmStreamSource))
+            if (!(previous[previous.Count - 1] is IProcessorOsmStreamSource source))
             {
                 throw new Exception("Expected an OSM stream source.");
             }
 
-            var pbfTarget = new OsmSharp.Streams.PBFOsmStreamTarget(file.OpenRead());
-            pbfTarget.RegisterSource((previous[previous.Count - 1] as Processors.Osm.IProcessorOsmStreamSource).Source);
-            return (new Processors.Osm.ProcessorOsmStreamTarget(pbfTarget), 1);
+            var pbfTarget = new PBFOsmStreamTarget(file.OpenRead());
+            pbfTarget.RegisterSource(source.Source);
+            return (new ProcessorOsmStreamTarget(pbfTarget), 1);
         }
     }
 }

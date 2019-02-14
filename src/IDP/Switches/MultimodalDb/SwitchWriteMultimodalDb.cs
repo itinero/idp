@@ -20,10 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IDP.Processors;
+using IDP.Processors.MultimodalDb;
 
 namespace IDP.Switches.MultimodalDb
 {
@@ -48,7 +49,7 @@ namespace IDP.Switches.MultimodalDb
         {
             get
             {
-                return new string[] { "--write-multimodaldb" };
+                return new[] { "--write-multimodaldb" };
             }
         }
 
@@ -57,17 +58,16 @@ namespace IDP.Switches.MultimodalDb
         /// </summary>
         public override int Parse(List<Processor> previous, out Processor processor)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
+            if (Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
             if (previous.Count < 1) { throw new ArgumentException("Expected at least one processors before this one."); }
 
-            var file = new FileInfo(this.Arguments[0]);
+            var file = new FileInfo(Arguments[0]);
 
-            if (!(previous[previous.Count - 1] is Processors.MultimodalDb.IProcessorMultimodalDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorMultimodalDbSource source))
             {
                 throw new Exception("Expected a multimodal db source.");
             }
 
-            var source = (previous[previous.Count - 1] as Processors.MultimodalDb.IProcessorMultimodalDbSource);
             Func<Itinero.Transit.Data.MultimodalDb> getMultimodalDb = () =>
             {
                 var multimodalDb = source.GetMultimodalDb();
@@ -78,7 +78,7 @@ namespace IDP.Switches.MultimodalDb
                 return multimodalDb;
             };
 
-            processor = new Processors.MultimodalDb.ProcessorMultimodalDbSource(getMultimodalDb);
+            processor = new ProcessorMultimodalDbSource(getMultimodalDb);
 
             return 1;
         }

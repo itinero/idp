@@ -20,13 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+using System.Collections.Generic;
+using System.IO;
 using IDP.Processors;
 using IDP.Processors.RouterDb;
 using Itinero.IO.Shape;
 using Itinero.Profiles;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Shape
@@ -36,23 +36,23 @@ namespace IDP.Switches.Shape
     /// </summary>
     class SwitchWriteShape : DocumentedSwitch
     {
-        private static string[] _names = {"--write-shape"};
+        private static readonly string[] _names = {"--write-shape"};
 
-        private static string about = "Write the result as shapefile";
+        private const string _about = "Write the result as shapefile";
 
-        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> ExtraParams =
-            new List<(List<string> args, bool isObligated, string comment, string defaultValue)>()
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> _extraParams =
+            new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             {
-              obl  ("file", "The output file to write to"),
+              obl  ("file", "The output file to write to")
             };
 
         public SwitchWriteShape()
-            : base(_names, about, ExtraParams, true)
+            : base(_names, _about, _extraParams, true)
         {
         }
 
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
             if (previous.Count < 1)
@@ -62,12 +62,10 @@ namespace IDP.Switches.Shape
 
             var file = new FileInfo(arguments["file"]);
 
-            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource source))
             {
                 throw new Exception("Expected a router db source.");
             }
-
-            var source = (previous[previous.Count - 1] as IProcessorRouterDbSource);
 
             Itinero.RouterDb GetRouterDb()
             {

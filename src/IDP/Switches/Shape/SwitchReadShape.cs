@@ -36,31 +36,34 @@ namespace IDP.Switches.Shape
     /// </summary>
     class SwitchReadShape : DocumentedSwitch
     {
-        public static readonly string[] Names = {"--read-shape", "--rs"};
+        private static readonly string[] _names = {"--read-shape", "--rs"};
 
-        private static string about = "Read a shapefile as input to do all the data processing.";
+        private static string about = "Read a shapefile as input to do all the data processing."+
+            "To tie together all the edges, the endpoint of each edge should have an identifier. " +
+                                      "If two edges share an endpoint (and thus allow traffic to go from one edge to the other), the identifier for the common endpoint should be the same. " +
+                                      "The attributes which identify the start- and endpoint should be passed explicitly in this switch with `svc` and `tvc`";
 
 
         private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
-            ExtraParams =
-                new List<(List<string> args, bool isObligated, string comment, string defaultValue)>()
+            _extraParams =
+                new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
                     obl("file", "The input file to read"),
                     obl("vehicle", "The profile to read. This can be a comma-separated list too."),
-                    obl("svc", "The `source-vertex-column`"), // TODO Clarify this
-                    obl("tvc", "The `target-vertex-column`") // TODO Clarify this
+                    obl("svc", "The `source-vertex-column` - the attribute of an edge which identifies one end of the edge."), 
+                    obl("tvc", "The `target-vertex-column` - the attribute of an edge which identifies the other end of the edge.")
                 };
 
-        private const bool IsStable = true;
+        private const bool _isStable = true;
 
 
         public SwitchReadShape()
-            : base(Names, about, ExtraParams, IsStable)
+            : base(_names, about, _extraParams, _isStable)
         {
         }
 
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
             var localShapefile = arguments["file"];

@@ -32,27 +32,27 @@ namespace IDP.Switches.Logging
 {
     class SwitchLogging : DocumentedSwitch
     {
-        private static readonly string[] names = {"--log"};
+        private static readonly string[] _names = {"--log"};
 
-        private const string About =
+        private const string _about =
             "If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile";
 
-        private static readonly List<(List<string> argName, bool isObligated, string comment, string defaultValue)> ExtraParams =
-            new List<(List<string> argName, bool isObligated, string comment, string defaultValue)>()
+        private static readonly List<(List<string> argName, bool isObligated, string comment, string defaultValue)> _extraParams =
+            new List<(List<string> argName, bool isObligated, string comment, string defaultValue)>
             {
                 opt("file", "The name of the file where the logs will be written to").SetDefault("log.txt")
             };
 
-        private const bool IsStable = true;
+        private const bool _isStable = true;
 
 
         public SwitchLogging() :
-            base(names, About, ExtraParams, IsStable)
+            base(_names, _about, _extraParams, _isStable)
         {
         }
 
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
             // enable logging by adding serilog

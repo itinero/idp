@@ -36,31 +36,30 @@ namespace IDP.Switches.RouterDb
     /// </summary>
     internal class SwitchReadRouterDb : DocumentedSwitch
     {
-        private static string[] _names => new[] {"--read-routerdb"};
+        private static readonly string[] _names = {"--read-routerdb"};
 
-        private static string about =
-            "Reads a routerdb file for processing. This can be useful to e.g. translate it to a geojson or shapefile.";
+        private const string _about = "Reads a routerdb file for processing. This can be useful to e.g. translate it to a geojson or shapefile.";
 
 
-        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> Parameters =
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> _parameters =
             new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             {
                 obl("file", "The path where the routerdb should be read."),
                 opt("mapped", "m",
                         "Enable memory-mapping: only fetch the parts from disk that are needed. There is less memory used, but the queries are slower.")
-                    .SetDefault("false"),
+                    .SetDefault("false")
             };
 
 
-        private const bool IsStable = true;
+        private const bool _isStable = true;
 
 
         public SwitchReadRouterDb()
-            : base(_names, about, Parameters, IsStable)
+            : base(_names, _about, _parameters, _isStable)
         {
         }
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
             var fileName = arguments["file"];

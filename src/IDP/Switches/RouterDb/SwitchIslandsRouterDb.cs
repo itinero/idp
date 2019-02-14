@@ -1,11 +1,11 @@
-﻿using IDP.Processors;
-using Itinero;
-using Itinero.Algorithms.Weights;
-using Itinero.Osm.Vehicles;
-using Itinero.Profiles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using IDP.Processors;
+using IDP.Processors.RouterDb;
+using Itinero;
+using Itinero.Logging;
+using Itinero.Profiles;
 using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.RouterDb
@@ -15,28 +15,27 @@ namespace IDP.Switches.RouterDb
     /// </summary>
     class SwitchIslandsRouterDb : DocumentedSwitch
     {
-        private static string[] _names = {"--islands"};
+        private static readonly string[] _names = {"--islands"};
 
-        private static string about =
-            "Detects islands in a routerdb. An island is a subgraph which is not reachable via the rest of the graph.";
+        private const string _about = "Detects islands in a routerdb. An island is a subgraph which is not reachable via the rest of the graph.";
 
 
-        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> ExtraParams =
-            new List<(List<string> args, bool isObligated, string comment, string defaultValue)>()
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> _extraParams =
+            new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             {
                 opt("profile",
-                    "The profile for which islands should be detected. This can be a comma-separated list of profiles as well. Default: apply island detection on _all_ profiles in the routerdb"),
+                    "The profile for which islands should be detected. This can be a comma-separated list of profiles as well. Default: apply island detection on _all_ profiles in the routerdb")
             };
 
         /// <summary>
         /// Creates a switch.
         /// </summary>
         public SwitchIslandsRouterDb()
-            : base(_names, about, ExtraParams, false)
+            : base(_names, _about, _extraParams, true)
         {
         }
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
             if (previous.Count < 1)
@@ -44,7 +43,7 @@ namespace IDP.Switches.RouterDb
                 throw new ArgumentException("Expected at least one processors before this one.");
             }
 
-            if (!(previous[previous.Count - 1] is Processors.RouterDb.IProcessorRouterDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource source))
             {
                 throw new Exception("Expected a router db source.");
             }
@@ -58,13 +57,11 @@ namespace IDP.Switches.RouterDb
                 }
             }
 
-            var source = (previous[previous.Count - 1] as Processors.RouterDb.IProcessorRouterDbSource);
-
             Itinero.RouterDb GetRouterDb()
             {
                 var routerDb = source.GetRouterDb();
 
-                Profile[] profileInstances = null;
+                Profile[] profileInstances;
                 if (profiles == null)
                 {
                     profileInstances = routerDb.GetSupportedProfiles().ToArray();
@@ -80,7 +77,7 @@ namespace IDP.Switches.RouterDb
 
                 foreach (var profileInstance in profileInstances)
                 {
-                    Itinero.Logging.Logger.Log("SwitchIslandRouterDb", Itinero.Logging.TraceEventType.Information,
+                    Logger.Log("SwitchIslandRouterDb", TraceEventType.Information,
                         "Detecting islands for: {0}", profileInstance.FullName);
                     routerDb.AddIslandData(profileInstance);
                 }
@@ -88,7 +85,7 @@ namespace IDP.Switches.RouterDb
                 return routerDb;
             }
 
-            return (new Processors.RouterDb.ProcessorRouterDbSource(GetRouterDb), 1);
+            return (new ProcessorRouterDbSource(GetRouterDb), 1);
         }
     }
 }

@@ -23,6 +23,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using IDP.Processors;
+using IDP.Switches.GeoJson;
+using IDP.Switches.GTFS;
+using IDP.Switches.Logging;
+using IDP.Switches.MultimodalDb;
+using IDP.Switches.Osm;
+using IDP.Switches.RouterDb;
+using IDP.Switches.Shape;
+using IDP.Switches.TransitDb;
 
 namespace IDP.Switches
 {
@@ -35,7 +44,7 @@ namespace IDP.Switches
             new List<(string[] names, Switch @switch)>();
 
 
-        public static List<(string category, List<DocumentedSwitch>)> documented;
+        public static List<(string category, List<DocumentedSwitch>)>     Documented;
 
         /// <summary>
         /// Registers all switches.
@@ -46,45 +55,50 @@ namespace IDP.Switches
             // so put the most important switches up top
 
 
-            documented = new List<(string category, List<DocumentedSwitch>)>()
+            Documented = new List<(string category, List<DocumentedSwitch>)>
             {
                 ("Input", new List<DocumentedSwitch>
                 {
-                    new Osm.SwitchReadPBF(),
-                    new Shape.SwitchReadShape(),
-                    new RouterDb.SwitchReadRouterDb()
+                    new SwitchReadPbf(),
+                    new SwitchReadShape(),
+                    new SwitchReadRouterDb()
                 }),
 
                 ("Data processing", new List<DocumentedSwitch>
                 {
-                    new RouterDb.SwitchCreateRouterDb(),
-                    new RouterDb.SwitchElevationRouterDb(),
-                    new RouterDb.SwitchContractRouterDb()
+                    new SwitchCreateRouterDb(),
+                    new SwitchElevationRouterDb(),
+                    new SwitchContractRouterDb()
                 }),
 
-                ("Data analysis", new List<DocumentedSwitch>()
+                ("Data analysis", new List<DocumentedSwitch>
                 {
-                    new RouterDb.SwitchIslandsRouterDb()
+                    new SwitchIslandsRouterDb()
                 }),
 
                 ("Output", new List<DocumentedSwitch>
                 {
-                    new RouterDb.SwitchWriteRouterDb(),
-                    new Osm.SwitchWritePBF(),
-                    new Shape.SwitchWriteShape(),
-                    new GeoJson.SwitchWriteGeoJson()
+                    new SwitchWriteRouterDb(),
+                    new SwitchWritePbf(),
+                    new SwitchWriteShape(),
+                    new SwitchWriteGeoJson()
                 }),
 
-                ("Usability", new List<DocumentedSwitch>()
+                ("Usability", new List<DocumentedSwitch>
                 {
-                    new Osm.SwitchFilterProgress(),
-                    new Logging.SwitchLogging(),
+                    new SwitchFilterProgress(),
+                    new SwitchLogging(),
                     new HelpSwitch()
+                }),
+
+                ("GTFS and multimodal", new List<DocumentedSwitch>
+                {
+                    new SwitchReadGTFS()
                 })
             };
 
 
-            foreach (var (_, switches) in documented)
+            foreach (var (_, switches) in Documented)
             {
                 foreach (var @switch in switches)
                 {
@@ -95,15 +109,14 @@ namespace IDP.Switches
             // -- Old switches, documentation pending --
 
 
-            Register(GTFS.SwitchReadGTFS.Names, new GTFS.SwitchReadGTFS(null));
-            Register(TransitDb.SwitchMergeTransitDbs.Names, new TransitDb.SwitchMergeTransitDbs(null));
-            Register(TransitDb.SwitchReadTransitDb.Names, new TransitDb.SwitchReadTransitDb(null));
-            Register(TransitDb.SwitchCreateTransitDb.Names, new TransitDb.SwitchCreateTransitDb(null));
-            Register(TransitDb.SwitchWriteTransitDb.Names, new TransitDb.SwitchWriteTransitDb(null));
-            Register(TransitDb.SwitchAddTransfersDb.Names, new TransitDb.SwitchAddTransfersDb(null));
-            Register(MultimodalDb.SwitchCreateMultimodalDb.Names, new MultimodalDb.SwitchCreateMultimodalDb(null));
-            Register(MultimodalDb.SwitchAddStopLinks.Names, new MultimodalDb.SwitchAddStopLinks(null));
-            Register(MultimodalDb.SwitchWriteMultimodalDb.Names, new MultimodalDb.SwitchWriteMultimodalDb(null));
+            Register(SwitchMergeTransitDbs.Names, new SwitchMergeTransitDbs(null));
+            Register(SwitchReadTransitDb.Names, new SwitchReadTransitDb(null));
+            Register(SwitchCreateTransitDb.Names, new SwitchCreateTransitDb(null));
+            Register(SwitchWriteTransitDb.Names, new SwitchWriteTransitDb(null));
+            Register(SwitchAddTransfersDb.Names, new SwitchAddTransfersDb(null));
+            Register(SwitchCreateMultimodalDb.Names, new SwitchCreateMultimodalDb(null));
+            Register(SwitchAddStopLinks.Names, new SwitchAddStopLinks(null));
+            Register(SwitchWriteMultimodalDb.Names, new SwitchWriteMultimodalDb(null));
         }
 
         private static void Register(DocumentedSwitch swtch)
@@ -130,7 +143,7 @@ namespace IDP.Switches
         /// <summary>
         /// Parses the given arguments.
         /// </summary>
-        public static Processors.Processor Parse(string[] args)
+        public static Processor Parse(string[] args)
         {
             var switches = new List<(Switch, string[] args)>();
             for (var i = 0; i < args.Length;)
@@ -148,10 +161,10 @@ namespace IDP.Switches
                 switches.Add((swtch, parameters.ToArray()));
             }
 
-            var processors = new List<Processors.Processor>();
+            var processors = new List<Processor>();
             foreach (var t in switches)
             {
-                Processors.Processor newProcessor;
+                Processor newProcessor;
 
                 int p;
                 try
@@ -212,11 +225,11 @@ namespace IDP.Switches
 
 
             var names = "";
-            foreach (var (nms, sw) in _switches)
+            foreach (var (nms, _) in _switches)
             {
                 names += nms[0] + "\n";
             }
-            
+
             throw new Exception($"Cannot find switch with name: {name}.\nKnown switches are: {names}");
         }
 

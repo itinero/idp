@@ -1,15 +1,12 @@
-﻿using IDP.Processors;
-using Itinero;
-using Itinero.Algorithms.Weights;
-using Itinero.Elevation;
-using Itinero.LocalGeo.Elevation;
-using Itinero.Osm.Vehicles;
-using Itinero.Profiles;
-using SRTM;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using IDP.Processors;
+using IDP.Processors.RouterDb;
+using Itinero.Elevation;
+using Itinero.LocalGeo.Elevation;
+using Itinero.Logging;
+using SRTM;
 using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.RouterDb
@@ -19,45 +16,42 @@ namespace IDP.Switches.RouterDb
     /// </summary>
     class SwitchElevationRouterDb : DocumentedSwitch
     {
-        private const string DEFAULT_CACHE = "srtm-cache";
+        private const string _defaultCache = "srtm-cache";
 
 
-        private static string[] _names => new[] {"--elevation", "--ele"};
+        private static readonly string[] _names = {"--elevation", "--ele"};
 
-        private static string about = "Incorporates elevation data in the calculations.\n" +
-                                      $"Specifying this flag will download the SRTM-dataset and cache this on the file system." +
-                                      "This data will be reused upon further runs";
+        private const string _about = "Incorporates elevation data in the calculations.\n" + "Specifying this flag will download the SRTM-dataset and cache this on the file system." + "This data will be reused upon further runs";
 
 
-        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> Parameters =
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> _parameters =
             new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             {
                 opt("cache", "Caching directory name, if another caching directory should be used.")
-                    .SetDefault(DEFAULT_CACHE),
+                    .SetDefault(_defaultCache)
             };
 
 
-        private const bool IsStable = true;
+        private const bool _isStable = true;
 
 
         public SwitchElevationRouterDb()
-            : base(_names, about, Parameters, IsStable)
+            : base(_names, _about, _parameters, _isStable)
         {
         }
 
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
-            var cache = DEFAULT_CACHE;
-            arguments.TryGetValue("cache", out cache);
+            var cache = arguments["cache"];
 
             if (previous.Count < 1)
             {
                 throw new ArgumentException("Expected at least one processors before this one.");
             }
 
-            if (!(previous[previous.Count - 1] is Processors.RouterDb.IProcessorRouterDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource source))
             {
                 throw new Exception("Expected a router db source.");
             }
@@ -83,20 +77,18 @@ namespace IDP.Switches.RouterDb
                 return (short) elevation;
             };
 
-            var source = (previous[previous.Count - 1] as Processors.RouterDb.IProcessorRouterDbSource);
-
             Itinero.RouterDb GetRouterDb()
             {
                 var routerDb = source.GetRouterDb();
 
-                Itinero.Logging.Logger.Log("SwitchElevationRouterDb", Itinero.Logging.TraceEventType.Information,
+                Logger.Log("SwitchElevationRouterDb", TraceEventType.Information,
                     "Adding elevation.");
                 routerDb.AddElevation();
 
                 return routerDb;
             }
 
-            return (new Processors.RouterDb.ProcessorRouterDbSource(GetRouterDb), 1);
+            return (new ProcessorRouterDbSource(GetRouterDb), 1);
         }
     }
 }

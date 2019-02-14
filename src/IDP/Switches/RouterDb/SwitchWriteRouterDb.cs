@@ -34,29 +34,28 @@ namespace IDP.Switches.RouterDb
     /// </summary>
     class SwitchWriteRouterDb : DocumentedSwitch
     {
-        private static string[] _names => new[] {"--write-routerdb"};
+        private static readonly string[] _names = {"--write-routerdb"};
 
-        private static string about =
-            "Specifies that the routable graph should be saved to a file. This routerdb can be used later to perform queries.";
+        private const string _about = "Specifies that the routable graph should be saved to a file. This routerdb can be used later to perform queries.";
 
 
-        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> Parameters =
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> _parameters =
             new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             {
-                obl("file", "The path where the routerdb should be written."),
+                obl("file", "The path where the routerdb should be written.")
             };
 
 
-        private const bool IsStable = true;
+        private const bool _isStable = true;
 
 
         public SwitchWriteRouterDb()
-            : base(_names, about, Parameters, IsStable)
+            : base(_names, _about, _parameters, _isStable)
         {
         }
 
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
             if (previous.Count < 1)
@@ -66,13 +65,12 @@ namespace IDP.Switches.RouterDb
 
             var file = new FileInfo(arguments["file"]);
 
-            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource source))
             {
                 throw new Exception("Expected a router db source.");
             }
 
-            var source = (previous[previous.Count - 1] as IProcessorRouterDbSource);
-            Func<Itinero.RouterDb> getRouterDb = () =>
+            Itinero.RouterDb GetRouterDb()
             {
                 var routerDb = source.GetRouterDb();
                 using (var stream = File.Open(file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
@@ -81,9 +79,9 @@ namespace IDP.Switches.RouterDb
                 }
 
                 return routerDb;
-            };
+            }
 
-            return (new ProcessorRouterDbSource(getRouterDb), 1);
+            return (new ProcessorRouterDbSource(GetRouterDb), 1);
         }
     }
 }

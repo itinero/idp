@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Itinero.Profiles.Lua.Interop.StandardDescriptors.HardwiredDescriptors;
 
 namespace IDP.Switches
 {

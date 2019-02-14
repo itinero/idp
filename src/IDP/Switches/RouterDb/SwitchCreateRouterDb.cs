@@ -34,6 +34,7 @@ using OsmSharp;
 using OsmSharp.Streams;
 using OsmSharp.Streams.Filters;
 using static IDP.Switches.SwitchesExtensions;
+
 namespace IDP.Switches.RouterDb
 {
     /// <summary>
@@ -41,66 +42,51 @@ namespace IDP.Switches.RouterDb
     /// </summary>
     class SwitchCreateRouterDb : DocumentedSwitch
     {
-        private static readonly string[] names = {"--create-routerdb"};
+        private static readonly string[] _names = {"--create-routerdb"};
 
-        private static string about =
-            "Converts an input source (such as an `osm`-file) into a routable graph. If no vehicle is specified, `car` is used.\n" +
-            "If the routing graph should be built for another vehicle, the `vehicle`-parameter can be used\n\n" +
-            "1) specify a **file** containing a routing profile [(examples in our repository)](https://github.com/anyways-open/routing-profiles/), or...\n" +
-            "2) a **built-in** profile can be used. This should be one of:\n\n" +
-            " - `Bicycle`\n" +
-            " - `BigTruck`\n" +
-            " - `Bus`\n" +
-            " - `Car`\n" +
-            " - `Moped`\n" +
-            " - `MotorCycle`\n" +
-            " - `Pedestrian`\n" +
-            " - `SmallTruck`\n" +
-            "\n" +
-            "Additionally, there are two special values:\n\n" +
-            "- `all`: Adds all of the above vehicles to the routing graph\n" +
-            "- `motors `(or `motorvehicles`): adds all motor vehicles to the routing graph\n\n" +
-            "Note that one can specify multiple vehicles at once too, using the `vehicles` parameter (note the plural)";
+        private const string _about = "Converts an input source (such as an `osm`-file) into a routable graph. If no vehicle is specified, `car` is used.\n" + "If the routing graph should be built for another vehicle, the `vehicle`-parameter can be used\n\n" + "1) specify a **file** containing a routing profile [(examples in our repository)](https://github.com/anyways-open/routing-profiles/), or...\n" + "2) a **built-in** profile can be used. This should be one of:\n\n" + " - `Bicycle`\n" + " - `BigTruck`\n" + " - `Bus`\n" + " - `Car`\n" + " - `Moped`\n" + " - `MotorCycle`\n" + " - `Pedestrian`\n" + " - `SmallTruck`\n" + "\n" + "Additionally, there are two special values:\n\n" + "- `all`: Adds all of the above vehicles to the routing graph\n" + "- `motors `(or `motorvehicles`): adds all motor vehicles to the routing graph\n\n" + "Note that one can specify multiple vehicles at once too, using the `vehicles` parameter (note the plural)";
 
 
-        private static readonly List<(List<string>argName, bool isObligated, string comment, string defaultValue)> ExtraParams =
-            new List<(List<string> argName, bool isObligated, string comment, string defaultValue)>()
-            {
-                opt("vehicle", "vehicles",
-                    "The vehicle (or comma separated list of vehicles) that the routing graph should be built for.")
-                    .SetDefault("car"),
-                opt("keepwayids", "wayids", "Boolean indicating that the way IDs should be kept")
-                    .SetDefault("false"), // TODO Clarify this
-                opt("allcore", "Boolean indicating allcore")
-                    .SetDefault("false"), // TODO WTF? Clarify this
-                opt("simplification",
-                    "Integer indicating the simplification factor. Default: very small")
-                .SetDefault(""+new LoadSettings().NetworkSimplificationEpsilon)
-                , // TODO Clarify this
-                opt("normalize", "Normalize the values.").
-                    SetDefault("false"), // TODO Clarifiy this
-            };
+        private static readonly List<(List<string>argName, bool isObligated, string comment, string defaultValue)>
+            _extraParams =
+                new List<(List<string> argName, bool isObligated, string comment, string defaultValue)>
+                {
+                    opt("vehicle", "vehicles",
+                            "The vehicle (or comma separated list of vehicles) that the routing graph should be built for.")
+                        .SetDefault("car"),
+                    opt("keepwayids", "wayids", "If specified, the identifiers in the source data are kept. By default, they are discarded. Specify this flag if the calculated routes will have to be backreferenced to the source data set.")
+                        .SetDefault("false"),
+                    opt("allcore", "If true, all nodes in the source data will be converted into vertices, even if they have only two neighbours." +
+                                   "By default, only nodes at intersections will be kept in the routerdb as vertices. Nodes with only two neighbours are just part of a road and skipped.")
+                        .SetDefault("false"),
+                    opt("simplification",
+                            "Parameter to steer simplification. Simplification removes points from each edge in order to have simpler (yet similar) lines using [Ramer-Doublas-Peucker](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm)")
+                        .SetDefault("" + new LoadSettings().NetworkSimplificationEpsilon),
+                    opt("normalize",
+                            "When building the routerdb, a table is built for each combination of tags. E.g. `highway=residential` will get entry `1`, whereas `highway=residential & access=public` will get entry `2`. If this table has to be kept small, `normalize` can be used. Tags will be rewritten to equivalent forms. In our example, `access=public` will be dropped, as this is implied by `highway=residential`.")
+                        .SetDefault("false")
+                };
 
-        private const bool IsStable = true;
+        private const bool _isStable = true;
 
 
         /// <summary>
         /// Creates a switch to create a router db.
         /// </summary>
         public SwitchCreateRouterDb()
-            : base(names, about, ExtraParams, IsStable)
+            : base(_names, _about, _extraParams, _isStable)
         {
         }
 
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
             // Various options parsing
             var allCore = SwitchParsers.IsTrue(arguments["allcore"]);
-            var keepWayIds =  SwitchParsers.IsTrue(arguments["keepwayids"]);
+            var keepWayIds = SwitchParsers.IsTrue(arguments["keepwayids"]);
 
-            var simplification = new LoadSettings().NetworkSimplificationEpsilon    ;
+            var simplification = new LoadSettings().NetworkSimplificationEpsilon;
             if (arguments.TryGetValue("simplification", out var sArg))
             {
                 var parsedInt = SwitchParsers.Parse(sArg);
@@ -113,19 +99,19 @@ namespace IDP.Switches.RouterDb
             Itinero.Osm.Vehicles.Vehicle.RegisterVehicles();
 
             var vehicles = arguments.ExtractVehicleArguments();
-   
+
             var normalize = SwitchParsers.IsTrue(arguments["normalize"]);
 
             // All arguments have been set up!
 
             // Only thing left to do: grab an OSM stream source and actually get stuff done
 
-            if (!(previous[previous.Count - 1] is IProcessorOsmStreamSource))
+            if (!(previous[previous.Count - 1] is IProcessorOsmStreamSource src))
             {
                 throw new Exception("Expected an OSM stream source.");
             }
 
-            var source = (previous[previous.Count - 1] as IProcessorOsmStreamSource).Source;
+            var source = src.Source;
             return CreateProcessor(source, vehicles, allCore, keepWayIds, simplification, normalize);
         }
 

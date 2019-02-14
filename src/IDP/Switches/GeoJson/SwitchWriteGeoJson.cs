@@ -24,7 +24,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using IDP.Processors;
-using IDP.Processors.Osm;
 using IDP.Processors.RouterDb;
 using Itinero;
 using static System.String;
@@ -37,12 +36,12 @@ namespace IDP.Switches.GeoJson
     /// </summary>
     class SwitchWriteGeoJson : DocumentedSwitch
     {
-        private static string[] _names => new[] {"--write-geojson", "--wg"};
-        private static string about = "Write a file as geojson file. Useful for debugging";
+        private static readonly string[] _names = {"--write-geojson", "--wg"};
+        private const string _about = "Write a file as geojson file. Useful for debugging";
 
 
         private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
-            Parameters =
+            _parameters =
                 new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
                     obl("file", "The output file which will contain the geojson. If the file already exists, it will be overwritten without warning."),
@@ -53,11 +52,11 @@ namespace IDP.Switches.GeoJson
                     opt("top", "up",
                         "Specifies the minimal longitude of the output. Used when specifying a bounding box for the output."),
                     opt("bottom", "down",
-                        "Specifies the maximal longitude of the output. Used when specifying a bounding box for the output."),
+                        "Specifies the maximal longitude of the output. Used when specifying a bounding box for the output.")
                 };
 
 
-        private const bool IsStable = true;
+        private const bool _isStable = true;
 
 
         /// <inheritdoc />
@@ -65,7 +64,7 @@ namespace IDP.Switches.GeoJson
         /// Creates a switch to write a geojson.
         /// </summary>
         public SwitchWriteGeoJson()
-            : base(_names, about, Parameters, IsStable)
+            : base(_names, _about, _parameters, _isStable)
         {
         }
 
@@ -73,7 +72,7 @@ namespace IDP.Switches.GeoJson
         /// <summary>
         /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
         /// </summary>
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> args,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> args,
             List<Processor> previous)
         {
             if (previous.Count < 1)
@@ -84,11 +83,13 @@ namespace IDP.Switches.GeoJson
 
             if (!(previous[previous.Count - 1] is IProcessorRouterDbSource))
             {
-                throw new Exception("Expected a router db source.");
             }
 
 
-            var source = (previous[previous.Count - 1] as IProcessorRouterDbSource);
+            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource source))
+            {
+                throw new Exception("Expected a router db source.");
+            }
 
             var file = new FileInfo(args["file"]);
 

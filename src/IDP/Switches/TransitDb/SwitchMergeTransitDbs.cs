@@ -20,11 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+using System.Collections.Generic;
 using IDP.Processors;
 using IDP.Processors.TransitDb;
 using Itinero.Transit.Data;
-using System;
-using System.Collections.Generic;
+// ReSharper disable NotResolvedInText
 
 namespace IDP.Switches.TransitDb
 {
@@ -49,7 +50,7 @@ namespace IDP.Switches.TransitDb
         {
             get
             {
-                return new string[] { "--merge" };
+                return new[] { "--merge" };
             }
         }
 
@@ -63,10 +64,10 @@ namespace IDP.Switches.TransitDb
             // ok combine all the previous transit db's.
             var getTransitDbs = new List<Func<Itinero.Transit.Data.TransitDb>>();
             while (getTransitDbs.Count < previous.Count &&
-                previous[previous.Count - getTransitDbs.Count - 1] is IProcessorTransitDbSource)
+                previous[previous.Count - getTransitDbs.Count - 1] is IProcessorTransitDbSource src) 
             {
                 getTransitDbs.Add(
-                    (previous[previous.Count - getTransitDbs.Count - 1] as IProcessorTransitDbSource).GetTransitDb);
+                    src.GetTransitDb);
             }
 
             if (getTransitDbs.Count < 2)
@@ -74,7 +75,7 @@ namespace IDP.Switches.TransitDb
                 throw new Exception("No transit db's found to merge.");
             }
 
-            processor = new Processors.TransitDb.ProcessorTransitDbSource(() =>
+            processor = new ProcessorTransitDbSource(() =>
             {
                 var transitDb = new Itinero.Transit.Data.TransitDb();
                 for (var i = 0; i < getTransitDbs.Count; i++)

@@ -23,9 +23,10 @@
 using System;
 using System.Collections.Generic;
 using IDP.Processors;
-using Itinero.Transit.Data;
-using Itinero.Transit.Osm.Data;
+using IDP.Processors.TransitDb;
 using Itinero.Profiles;
+using Itinero.Transit.Osm.Data;
+// ReSharper disable NotResolvedInText
 
 namespace IDP.Switches.TransitDb
 {
@@ -50,7 +51,7 @@ namespace IDP.Switches.TransitDb
         {
             get
             {
-                return new string[] { "--add-transfers" };
+                return new[] { "--add-transfers" };
             }
         }
 
@@ -62,10 +63,10 @@ namespace IDP.Switches.TransitDb
             var profileName = string.Empty; // no default profile.
             var distance = 100; // default distance 100m.
 
-            for (var i = 0; i < this.Arguments.Length; i++)
+            for (var i = 0; i < Arguments.Length; i++)
             {
                 string key, value;
-                if (SwitchParsers.SplitKeyValue(this.Arguments[i], out key, out value))
+                if (SwitchParsers.SplitKeyValue(Arguments[i], out key, out value))
                 {
                     switch (key.ToLower())
                     {
@@ -75,12 +76,12 @@ namespace IDP.Switches.TransitDb
                         case "distance":
                             if (!int.TryParse(value, out distance))
                             {
-                                throw new SwitchParserException("--add-transfers",
+                                throw new ArgumentException("--add-transfers",
                                     "Invalid parameter value for command --add-transfers: distance not a number.");
                             }
                             break;
                         default:
-                            throw new SwitchParserException("--add-transfers",
+                            throw new ArgumentException("--add-transfers",
                                 string.Format("Invalid parameter for command --add-transfers: {0} not recognized.", key));
                     }
                 }
@@ -89,25 +90,23 @@ namespace IDP.Switches.TransitDb
             Profile profile;
             if (!Profile.TryGet(profileName, out profile))
             {
-                throw new SwitchParserException("--add-transfers",
+                throw new ArgumentException("--add-transfers",
                     string.Format("Invalid parameter value for command --add-transfers: profile {0} not found.", profileName));
             }
 
-            if (!(previous[previous.Count - 1] is Processors.TransitDb.IProcessorTransitDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorTransitDbSource source))
             {
                 throw new Exception("Expected a transit db stream source.");
             }
 
-            var source = (previous[previous.Count - 1] as Processors.TransitDb.IProcessorTransitDbSource).GetTransitDb;
-            Func<Itinero.Transit.Data.TransitDb> getTransitDb = () =>
+            Itinero.Transit.Data.TransitDb GetTransitDb()
             {
-                var db = source();
-
+                var db = source.GetTransitDb();
                 db.AddTransfersDb(profile, distance);
-
                 return db;
-            };
-            processor = new Processors.TransitDb.ProcessorTransitDbSource(getTransitDb);
+            }
+
+            processor = new ProcessorTransitDbSource(GetTransitDb);
 
             return 1;
         }

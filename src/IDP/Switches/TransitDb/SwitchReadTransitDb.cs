@@ -22,8 +22,10 @@
 
 using System;
 using System.Collections.Generic;
-using IDP.Processors;
 using System.IO;
+using IDP.Processors;
+using IDP.Processors.TransitDb;
+using Itinero.Logging;
 
 namespace IDP.Switches.TransitDb
 {
@@ -48,7 +50,7 @@ namespace IDP.Switches.TransitDb
         {
             get
             {
-                return new string[] { "--read-transitdb" };
+                return new[] { "--read-transitdb" };
             }
         }
 
@@ -57,9 +59,9 @@ namespace IDP.Switches.TransitDb
         /// </summary>
         public override int Parse(List<Processor> previous, out Processor processor)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
+            if (Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
 
-            var localFile = Downloader.DownloadOrOpen(this.Arguments[0]);
+            var localFile = Downloader.DownloadOrOpen(Arguments[0]);
             var file = new FileInfo(localFile);
             if (!file.Exists)
             {
@@ -68,14 +70,14 @@ namespace IDP.Switches.TransitDb
 
             Func< Itinero.Transit.Data.TransitDb> getTransitDb = () =>
             {
-                Itinero.Logging.Logger.Log("Switch", Itinero.Logging.TraceEventType.Information,
+                Logger.Log("Switch", TraceEventType.Information,
                     "Reading TransitDb: " + file.FullName);
                 using (var stream = file.OpenRead())
                 {
                     return Itinero.Transit.Data.TransitDb.Deserialize(stream);
                 }
             };
-            processor = new Processors.TransitDb.ProcessorTransitDbSource(getTransitDb);
+            processor = new ProcessorTransitDbSource(getTransitDb);
 
             return 0;
         }

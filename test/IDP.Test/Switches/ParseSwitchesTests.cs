@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using IDP.Processors;
-using IDP.Processors.Osm;
-using IDP.Processors.RouterDb;
-using Xunit;
 using IDP.Switches;
+using Xunit;
 using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Tests.Switches
@@ -53,12 +51,14 @@ namespace IDP.Tests.Switches
         {
         }
 
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
+        // ReSharper disable once UnusedMember.Global
+        // ReSharper disable once UnusedParameter.Global
         public virtual DocumentedSwitch SetArguments(string[] arguments)
         {
             throw new NotImplementedException();

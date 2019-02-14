@@ -23,7 +23,7 @@ namespace IDP.Switches
         /// <summary>
         /// What does this switch do?
         /// </summary>
-        public readonly string _about;
+        public readonly string About;
 
         /// <summary>
         /// 
@@ -45,7 +45,7 @@ namespace IDP.Switches
         /// Should this switch be clearly showed in the documentation?
         /// </summary>
         /// <returns></returns>
-        private readonly bool _isStable;
+        public readonly bool IsStable;
 
         protected DocumentedSwitch(
             string[] names, string about,
@@ -54,33 +54,13 @@ namespace IDP.Switches
         ) : base(new string[] { })
         {
             Names = names;
-            _about = about;
+            About = about;
             _extraParams = extraParams;
-            _isStable = isStable;
-        }
-
-        private DocumentedSwitch(
-            string[] names, string about,
-            List<(string argName, bool isObligated, string comment)> extraParams,
-            bool isStable
-        ) : this(names, about, PrepareParams(extraParams), isStable)
-        {
+            IsStable = isStable;
         }
 
 
-        private static List<(List<string> argNames, bool isObligated, string comment, string defaultValue)>
-            PrepareParams(List<(string argName, bool isObligated, string comment)> parameters)
-        {
-            var newParams = new List<(List<string> argName, bool isObligated, string comment, string defaultValue)>();
-            foreach (var (argName, isObligated, comment) in parameters)
-            {
-                newParams.Add((new List<string> {argName}, isObligated, comment, ""));
-            }
-
-            return newParams;
-        }
-
-        public abstract (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected abstract (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous);
 
         public override int Parse(List<Processor> previous, out Processor processor)
@@ -269,7 +249,7 @@ namespace IDP.Switches
                 text += ")";
             }
 
-            if (!_isStable)
+            if (!IsStable)
             {
                 text += " (Experimental feature)";
             }
@@ -296,7 +276,7 @@ namespace IDP.Switches
 
 
             text += "\n\n";
-            text += "   " + _about + "\n\n";
+            text += "   " + About + "\n\n";
 
             if (markdown)
             {

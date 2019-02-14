@@ -59,6 +59,8 @@ All switches are listed below. Click on a switch to get a full overview, includi
   * [--progress-report](#--progress-report---progress---pr) If this flag is specified, the progress will be printed to standard out.
   * [--log](#--log) If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile
   * [--help](#--help---?) Print the help message
+- [GTFS and multimodal](#GTFS-and-multimodal)
+  * [--rg](#--rg---read-gtfs-Experimental-feature) Read a GTFS-datastream to route over public transport networks.
 ### Input
 
 #### --read-pbf (--rb)
@@ -218,4 +220,14 @@ Contraction is able to speed up querying by building an index of _shortcuts_. Ba
 | about | _NA_| The command (or switch) you'd like more info about | 
 | markdown, md | _NA_| Write the help text as markdown to a file. The documentation is generated with this flag. | 
 | experimental | `false`| Include experimental switches in the output | 
+
+### GTFS and multimodal
+
+#### --rg (--read-gtfs) (Experimental feature)
+
+   Read a GTFS-datastream to route over public transport networks.
+
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **directory** | _Obligated param_ | The directory where the GTFS-feed is saved | 
 

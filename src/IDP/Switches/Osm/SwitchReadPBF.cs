@@ -28,20 +28,20 @@ using OsmSharp.Streams;
 using static IDP.Switches.SwitchesExtensions;
 namespace IDP.Switches.Osm
 {
-    class SwitchReadPBF : DocumentedSwitch
+    class SwitchReadPbf : DocumentedSwitch
     {
-        private static readonly string[] names = {"--read-pbf", "--rb"};
-        private const string about = "Reads an OpenStreetMap input file. The format should be an `.osm.pbf` file.";
+        private static readonly string[] _names = {"--read-pbf", "--rb"};
+        private const string _about = "Reads an OpenStreetMap input file. The format should be an `.osm.pbf` file.";
 
-        private static readonly List<(List<string> argName, bool isObligated, string comment, string defaultValue)> extraParams
-            = new List<(List<string>argName, bool isObligated, string comment, string defaultValue)>()
+        private static readonly List<(List<string> argName, bool isObligated, string comment, string defaultValue)> _extraParams
+            = new List<(List<string>argName, bool isObligated, string comment, string defaultValue)>
             {
                 obl("file", "The .osm.pbf file that serves as input")
             };
 
-        private const bool IsStable = true;
+        private const bool _isStable = true;
 
-        public SwitchReadPBF() : base(names, about, extraParams, IsStable)
+        public SwitchReadPbf() : base(_names, _about, _extraParams, _isStable)
         {
         }
 
@@ -50,7 +50,7 @@ namespace IDP.Switches.Osm
         /// Parses this command into a processor given the arguments for this switch.
         /// Consumes the previous processors and returns how many it consumes.
         /// </summary>
-        public override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
             var localFile = Downloader.DownloadOrOpen(arguments["file"]);
