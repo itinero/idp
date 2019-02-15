@@ -20,68 +20,68 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using IDP.Processors.RouterDb;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IDP.Processors;
+using IDP.Processors.RouterDb;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.RouterDb
 {
     /// <summary>
     /// A switch to write a router db.
     /// </summary>
-    class SwitchWriteRouterDb : Switch
+    class SwitchWriteRouterDb : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a switch to write a router db.
-        /// </summary>
-        public SwitchWriteRouterDb(string[] a)
-            : base(a)
-        {
+        private static readonly string[] _names = {"--write-routerdb"};
 
-        }
+        private const string _about = "Specifies that the routable graph should be saved to a file. This routerdb can be used later to perform queries.";
 
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
+
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> _parameters =
+            new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             {
-                return new string[] { "--write-routerdb" };
-            }
+                obl("file", "The path where the routerdb should be written.")
+            };
+
+
+        private const bool _isStable = true;
+
+
+        public SwitchWriteRouterDb()
+            : base(_names, _about, _parameters, _isStable)
+        {
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
-            if (previous.Count < 1) { throw new ArgumentException("Expected at least one processors before this one."); }
+            if (previous.Count < 1)
+            {
+                throw new ArgumentException("Expected at least one processors before this one.");
+            }
 
-            var file = new FileInfo(this.Arguments[0]);
+            var file = new FileInfo(arguments["file"]);
 
-            if (!(previous[previous.Count - 1] is Processors.RouterDb.IProcessorRouterDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource source))
             {
                 throw new Exception("Expected a router db source.");
             }
 
-            var source = (previous[previous.Count - 1] as Processors.RouterDb.IProcessorRouterDbSource);
-            Func<Itinero.RouterDb> getRouterDb = () =>
+            Itinero.RouterDb GetRouterDb()
             {
                 var routerDb = source.GetRouterDb();
                 using (var stream = File.Open(file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
                 {
                     routerDb.Serialize(stream, true);
                 }
+
                 return routerDb;
-            };
+            }
 
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
-
-            return 1;
+            return (new ProcessorRouterDbSource(GetRouterDb), 1);
         }
     }
 }

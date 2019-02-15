@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using IDP.Processors;
-using Xunit;
 using IDP.Switches;
-
+using Xunit;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Tests.Switches
 {
@@ -12,16 +12,13 @@ namespace IDP.Tests.Switches
         [Fact]
         public void TestParseDict()
         {
-
             var args = new[] {"abc", "def=ghi", "jkl"};
-            var d = new Dummy(
-                args,
-                new[] {"--test-flag"},
-                new List<(string argName, bool isObligated, string comment)>
+            var d = new Dummy(new[] {"--test-flag"},
+                new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
-                    ("a", true, "Test"), 
-                    ("x", true, "test"), 
-                    ("def", false, "test")
+                    obl("a", "Test"),
+                    obl("x", "test"),
+                    opt("def", "test")
                 },
                 false
             );
@@ -32,23 +29,37 @@ namespace IDP.Tests.Switches
             Assert.Equal("jkl", dict["x"]);
             Assert.Equal("ghi", dict["def"]);
 
+            args = new[] {"a"};
+            try
+            {
+                d.ParseExtraParams(args);
+                Assert.True(false);
+            }
+            catch (ArgumentException e)
+            {
+                Assert.Equal("The argument 'x' is missing", e.Message);
+            }
         }
     }
 
     internal class Dummy : DocumentedSwitch
     {
-        public Dummy(string[] arguments, string[] names,
-            List<(string argName, bool isObligated, string comment)> extraParams, bool isStable) : base(arguments,
-            names, extraParams, isStable)
+        public Dummy(string[] names,
+            List<(List<string> argName, bool isObligated, string comment, string defaultValue)> extraParams,
+            bool isStable) : base(
+            names, "", extraParams, isStable)
         {
         }
 
-        public override Processor Parse(Dictionary<string, string> arguments, List<Processor> previous)
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public override DocumentedSwitch SetArguments(string[] arguments)
+        // ReSharper disable once UnusedMember.Global
+        // ReSharper disable once UnusedParameter.Global
+        public virtual DocumentedSwitch SetArguments(string[] arguments)
         {
             throw new NotImplementedException();
         }

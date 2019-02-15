@@ -20,56 +20,48 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using System;
 using System.Collections.Generic;
 using System.IO;
-
+using IDP.Processors;
+using IDP.Processors.Osm;
+using OsmSharp.Streams;
+using static IDP.Switches.SwitchesExtensions;
 namespace IDP.Switches.Osm
 {
-    /// <summary>
-    /// Represents a switch to read an OSM-PBF file.
-    /// </summary>
-    class SwitchReadPBF : Switch
+    class SwitchReadPbf : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a new read PBF switch.
-        /// </summary>
-        public SwitchReadPBF(string[] arguments)
-            : base(arguments)
-        {
+        private static readonly string[] _names = {"--read-pbf", "--rb"};
+        private const string _about = "Reads an OpenStreetMap input file. The format should be an `.osm.pbf` file.";
 
-        }
-
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
+        private static readonly List<(List<string> argName, bool isObligated, string comment, string defaultValue)> _extraParams
+            = new List<(List<string>argName, bool isObligated, string comment, string defaultValue)>
             {
-                return new string[] { "--rb", "--read-pbf" };
-            }
+                obl("file", "The .osm.pbf file that serves as input")
+            };
+
+        private const bool _isStable = true;
+
+        public SwitchReadPbf() : base(_names, _about, _extraParams, _isStable)
+        {
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
-        {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
 
-            var localFile = Downloader.DownloadOrOpen(this.Arguments[0]);
+        /// <summary>
+        /// Parses this command into a processor given the arguments for this switch.
+        /// Consumes the previous processors and returns how many it consumes.
+        /// </summary>
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
+        {
+            var localFile = Downloader.DownloadOrOpen(arguments["file"]);
             var file = new FileInfo(localFile);
             if (!file.Exists)
             {
                 throw new FileNotFoundException("File not found.", file.FullName);
             }
 
-            var pbfSource = new OsmSharp.Streams.PBFOsmStreamSource(file.OpenRead());
-            processor = new Processors.Osm.ProcessorOsmStreamSource(pbfSource);
-
-            return 0;
+            var pbfSource = new PBFOsmStreamSource(file.OpenRead());
+            return (new ProcessorOsmStreamSource(pbfSource), 0);
         }
     }
 }

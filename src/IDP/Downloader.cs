@@ -21,7 +21,6 @@
 // THE SOFTWARE.
 
 using Itinero.Logging;
-using Serilog;
 using System;
 using System.IO;
 using System.Net.Http;

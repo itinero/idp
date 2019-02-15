@@ -20,7 +20,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
 using IDP.Processors;
 
@@ -37,7 +36,7 @@ namespace IDP.Switches
     /// </summary>
     internal abstract class Switch
     {
-        private readonly string[] _arguments;
+        private string[] _arguments;
 
         /// <summary>
         /// Creates a new switch.
@@ -51,7 +50,11 @@ namespace IDP.Switches
         /// <summary>
         /// Gets the arguments for this switch that are given with the programs invocation.
         /// </summary>
-        protected string[] Arguments => _arguments;
+        public string[] Arguments
+        {
+            get => _arguments;
+            set => _arguments = value;
+        }
 
         /// <summary>
         /// Constructs a processor based on the command line arguments

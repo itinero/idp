@@ -1,50 +1,41 @@
-﻿using IDP.Processors;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using IDP.Processors;
+using IDP.Processors.Osm;
+using OsmSharp.Streams.Filters;
 
 namespace IDP.Switches.Osm
 {
-    /// <summary>
-    /// Represents a switch to add a filter to report progress.
-    /// </summary>
-    class SwitchFilterProgress : Switch
+    class SwitchFilterProgress : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a new switch.
-        /// </summary>
-        public SwitchFilterProgress(string[] arguments)
-            : base(arguments)
-        {
+        private static readonly string[] _names = {"--progress-report", "--progress", "--pr"};
 
+        private const string _about =
+            "If this flag is specified, the progress will be printed to standard out. Useful to see how quickly the process goes and to do a bit of initial troubleshooting.";
+
+        private static readonly List<(List<string> argName, bool isObligated, string comment, string defaultValue)>
+            _extraParams =
+                new List<(List<string>argName, bool isObligated, string comment, string defaultValue)>();
+
+        private const bool _isStable = true;
+
+        public SwitchFilterProgress() : base(_names, _about, _extraParams, _isStable)
+        {
         }
 
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
         {
-            get
-            {
-                return new string[] { "--pr", "--progress" };
-            }
-        }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
-        {
-            if (!(previous[previous.Count - 1] is Processors.Osm.IProcessorOsmStreamSource))
+            var progressFilter = new OsmStreamFilterProgress();
+            if (!(previous[previous.Count - 1] is IProcessorOsmStreamSource source))
             {
                 throw new Exception("Expected an OSM stream source.");
             }
-
-            var progressFilter = new OsmSharp.Streams.Filters.OsmStreamFilterProgress();
-            progressFilter.RegisterSource((previous[previous.Count - 1] as Processors.Osm.IProcessorOsmStreamSource).Source);
-            processor = new Processors.Osm.ProcessorOsmStreamSource(progressFilter);
-
-            return 1;
+            
+            
+            progressFilter.RegisterSource(source.Source);
+            return (new ProcessorOsmStreamSource(progressFilter), 1);
         }
     }
 }

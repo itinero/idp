@@ -20,11 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using IDP.Processors.RouterDb;
-using IDP.Processors.TransitDb;
 using System;
 using System.Collections.Generic;
+using IDP.Processors;
+using IDP.Processors.MultimodalDb;
+using IDP.Processors.RouterDb;
+using IDP.Processors.TransitDb;
+// ReSharper disable NotResolvedInText
 
 namespace IDP.Switches.MultimodalDb
 {
@@ -49,7 +51,7 @@ namespace IDP.Switches.MultimodalDb
         {
             get
             {
-                return new string[] { "--create-multimodaldb" };
+                return new[] { "--create-multimodaldb" };
             }
         }
         /// <summary>
@@ -62,24 +64,24 @@ namespace IDP.Switches.MultimodalDb
             // ok combine the transit db and the router db into one multimodal db.
             Func<Itinero.Transit.Data.TransitDb> getTransitDb;
             Func<Itinero.RouterDb> getRouterDb;
-            if (previous[previous.Count - 2] is IProcessorTransitDbSource &&
-                previous[previous.Count - 1] is IProcessorRouterDbSource)
+            if (previous[previous.Count - 2] is IProcessorTransitDbSource proc2 &&
+                previous[previous.Count - 1] is IProcessorRouterDbSource proc1)
             {
-                getTransitDb = (previous[previous.Count - 2] as IProcessorTransitDbSource).GetTransitDb;
-                getRouterDb = (previous[previous.Count - 1] as IProcessorRouterDbSource).GetRouterDb;
+                getTransitDb = proc2.GetTransitDb;
+                getRouterDb = proc1.GetRouterDb;
             }
-            else if (previous[previous.Count - 1] is IProcessorTransitDbSource &&
-                previous[previous.Count - 2] is IProcessorRouterDbSource)
+            else if (previous[previous.Count - 1] is IProcessorTransitDbSource  src1 &&
+                previous[previous.Count - 2] is IProcessorRouterDbSource src2 )
             {
-                getTransitDb = (previous[previous.Count - 1] as IProcessorTransitDbSource).GetTransitDb;
-                getRouterDb = (previous[previous.Count - 2] as IProcessorRouterDbSource).GetRouterDb;
+                getTransitDb = src1.GetTransitDb;
+                getRouterDb = src2.GetRouterDb;
             }
             else
             {
                 throw new Exception("Creating a multimodal requires a transit db an a router db source.");
             }
 
-            processor = new Processors.MultimodalDb.ProcessorMultimodalDbSource(() =>
+            processor = new ProcessorMultimodalDbSource(() =>
             {
                 var transitDb = getTransitDb();
                 var routerDb = getRouterDb();

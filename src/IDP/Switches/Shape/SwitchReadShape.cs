@@ -20,138 +20,83 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using Itinero.IO.Shape;
-using Itinero.Profiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IDP.Processors;
+using IDP.Processors.RouterDb;
+using Itinero.Data.Edges;
+using Itinero.IO.Shape;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Shape
 {
     /// <summary>
     /// Represents a switch to read a shapefile for routing.
     /// </summary>
-    class SwitchReadShape : Switch
+    class SwitchReadShape : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a new switch.
-        /// </summary>
-        public SwitchReadShape(string[] arguments)
-            : base(arguments)
-        {
+        private static readonly string[] _names = {"--read-shape", "--rs"};
 
-        }
+        private static string about = "Read a shapefile as input to do all the data processing."+
+            "To tie together all the edges, the endpoint of each edge should have an identifier. " +
+                                      "If two edges share an endpoint (and thus allow traffic to go from one edge to the other), the identifier for the common endpoint should be the same. " +
+                                      "The attributes which identify the start- and endpoint should be passed explicitly in this switch with `svc` and `tvc`";
 
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
-            {
-                return new string[] { "--rs", "--read-shape" };
-            }
-        }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
-        {
-            if (this.Arguments.Length < 2) { throw new ArgumentException("At least two arguments are expected."); }
-
-            var localShapefile = string.Empty;
-            var vehicles = new List<Vehicle>();
-            var sourceVertexColumn = string.Empty;
-            var targetVertexColumn = string.Empty;
-
-            for (var i = 0; i < this.Arguments.Length; i++)
-            {
-                string key, value;
-                if (SwitchParsers.SplitKeyValue(this.Arguments[i], out key, out value))
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
+            _extraParams =
+                new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
-                    switch (key.ToLower())
-                    {
-                        case "vehicles":
-                        case "vehicle":
-                            string[] vehicleValues;
-                            if (SwitchParsers.SplitValuesArray(value.ToLower(), out vehicleValues))
-                            { // split the values array.
-                                vehicles = new List<Vehicle>(vehicleValues.Length);
-                                for (int v = 0; v < vehicleValues.Length; v++)
-                                {
-                                    Vehicle vehicle;
-                                    if (!Vehicle.TryGet(vehicleValues[v], out vehicle))
-                                    {// assume a filename.
-                                        var vehicleFile = new FileInfo(vehicleValues[v]);
-                                        if (!vehicleFile.Exists)
-                                        {
-                                            throw new SwitchParserException("--read-shape",
-                                                string.Format("Invalid parameter value for command --read-shape: Vehicle profile '{0}' not found.",
-                                                    vehicleValues[v]));
-                                        }
-                                        using (var stream = vehicleFile.OpenRead())
-                                        {
-                                            vehicle = DynamicVehicle.LoadFromStream(stream);
-                                            vehicles.Add(vehicle);
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                        case "file":
-                        case "files":
-                            if (!string.IsNullOrWhiteSpace(value))
-                            {
-                                localShapefile = value;
-                            }
-                            break;
-                        case "source-vertex-column":
-                        case "svc":
-                            if (!string.IsNullOrWhiteSpace(value))
-                            {
-                                sourceVertexColumn = value;
-                            }
-                            break;
-                        case "target-vertex-column":
-                        case "tvc":
-                            if (!string.IsNullOrWhiteSpace(value))
-                            {
-                                targetVertexColumn = value;
-                            }
-                            break;
-                        default:
-                            throw new SwitchParserException("--read-shape",
-                                string.Format("Invalid parameter for command --read-shape: {0} not recognized.", key));
-                    }
-                }
-            }
+                    obl("file", "The input file to read"),
+                    obl("vehicle", "The profile to read. This can be a comma-separated list too."),
+                    obl("svc", "The `source-vertex-column` - the attribute of an edge which identifies one end of the edge."), 
+                    obl("tvc", "The `target-vertex-column` - the attribute of an edge which identifies the other end of the edge.")
+                };
+
+        private const bool _isStable = true;
+
+
+        public SwitchReadShape()
+            : base(_names, about, _extraParams, _isStable)
+        {
+        }
+
+
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
+        {
+            var localShapefile = arguments["file"];
+            var vehicles = arguments.ExtractVehicleArguments();
+            var sourceVertexColumn = arguments.GetOrDefault("svc", "");
+            var targetVertexColumn = arguments.GetOrDefault("tvc", "");
 
             if (vehicles.Count == 0)
             {
-                throw new Exception("At least one vehicle expected.");
+                throw new ArgumentException("At least one vehicle expected.");
             }
+
             if (string.IsNullOrWhiteSpace(sourceVertexColumn))
             {
-                throw new Exception("Source vertex column not defined.");
+                throw new ArgumentException("Source vertex column not defined.");
             }
+
             if (string.IsNullOrWhiteSpace(targetVertexColumn))
             {
-                throw new Exception("Target vertex column not defined.");
+                throw new ArgumentException("Target vertex column not defined.");
             }
-            
-            Func<Itinero.RouterDb> getRouterDb = () =>
+
+            Itinero.RouterDb GetRouterDb()
             {
-                var routerDb = new Itinero.RouterDb(Itinero.Data.Edges.EdgeDataSerializer.MAX_DISTANCE);
+                var routerDb = new Itinero.RouterDb(EdgeDataSerializer.MAX_DISTANCE);
                 var file = new FileInfo(localShapefile);
                 routerDb.LoadFromShape(file.DirectoryName, file.Name, sourceVertexColumn, targetVertexColumn,
                     vehicles.ToArray());
 
                 return routerDb;
-            };
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
-            return 0;
+            }
+
+            return (new ProcessorRouterDbSource(GetRouterDb), 0);
         }
     }
 }

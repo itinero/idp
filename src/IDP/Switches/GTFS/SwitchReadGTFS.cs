@@ -20,48 +20,45 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System.Collections.Generic;
+using System.IO;
 using GTFS;
 using GTFS.IO;
 using IDP.Processors;
-using System;
-using System.Collections.Generic;
-using System.IO;
+using IDP.Processors.GTFS;
 
 namespace IDP.Switches.GTFS
 {
     /// <summary>
     /// Represents a switch to read a GTFS feed.
     /// </summary>
-    class SwitchReadGTFS : Switch
+    class SwitchReadGTFS : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a new switch.
-        /// </summary>
-        public SwitchReadGTFS(string[] arguments)
-            : base(arguments)
-        {
+        private static string[] _names = {"--rg", "--read-gtfs"};
 
-        }
+        private static string _about = "Read a GTFS-datastream to route over public transport networks.";
 
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
+        private static bool _isStable = false;
+
+
+        private static List<(List<string> argName, bool isObligated, string comment, string defaultValue)> extraParams
+            = new List<(List<string> argName, bool isObligated, string comment, string defaultValue)>
             {
-                return new string[] { "--rg", "--read-gtfs" };
-            }
+                SwitchesExtensions.obl("directory", "The directory where the GTFS-feed is saved")
+            };
+
+
+        public SwitchReadGTFS()
+            : base(_names, _about,
+                extraParams,
+                _isStable)
+        {
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
-            
-            var directory = new DirectoryInfo(this.Arguments[0]);
+            var directory = new DirectoryInfo(arguments["directory"]);
             if (!directory.Exists)
             {
                 throw new FileNotFoundException("Directory not found.", directory.FullName);
@@ -71,12 +68,12 @@ namespace IDP.Switches.GTFS
             var reader = new GTFSReader<GTFSFeed>(false);
 
             // build the get GTFS function.
-            Func<global::GTFS.GTFSFeed> getGTFS = () =>
+            GTFSFeed GetGtfs()
             {
                 return reader.Read(new GTFSDirectorySource(directory));
-            };
-            processor = new IDP.Processors.GTFS.ProcessorGTFSSource(getGTFS);
-            return 0;
+            }
+
+            return (new ProcessorGTFSSource(GetGtfs), 0);
         }
     }
 }

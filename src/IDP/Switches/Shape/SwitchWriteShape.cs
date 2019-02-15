@@ -20,74 +20,68 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+using System.Collections.Generic;
+using System.IO;
 using IDP.Processors;
 using IDP.Processors.RouterDb;
 using Itinero.IO.Shape;
 using Itinero.Profiles;
-using System;
-using System.Collections.Generic;
-using System.IO;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Shape
 {
     /// <summary>
     /// A switch to write a shapefile.
     /// </summary>
-    class SwitchWriteShape : Switch
+    class SwitchWriteShape : DocumentedSwitch
     {
-        /// <summary>
-        /// Creates a switch to write a shapefile.
-        /// </summary>
-        public SwitchWriteShape(string[] a)
-            : base(a)
-        {
+        private static readonly string[] _names = {"--write-shape"};
 
-        }
+        private const string _about = "Write the result as shapefile";
 
-        /// <summary>
-        /// Gets the names.
-        /// </summary>
-        public static string[] Names
-        {
-            get
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)> _extraParams =
+            new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             {
-                return new string[] { "--write-shape" };
-            }
+              obl  ("file", "The output file to write to")
+            };
+
+        public SwitchWriteShape()
+            : base(_names, _about, _extraParams, true)
+        {
         }
 
-        /// <summary>
-        /// Parses this command into a processor given the arguments for this switch. Consumes the previous processors and returns how many it consumes.
-        /// </summary>
-        public override int Parse(List<Processor> previous, out Processor processor)
+
+        protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
+            List<Processor> previous)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
-            if (previous.Count < 1) { throw new ArgumentException("Expected at least one processors before this one."); }
+            if (previous.Count < 1)
+            {
+                throw new ArgumentException("Expected at least one processors before this one.");
+            }
 
-            var file = new FileInfo(this.Arguments[0]);
+            var file = new FileInfo(arguments["file"]);
 
-            if (!(previous[previous.Count - 1] is Processors.RouterDb.IProcessorRouterDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorRouterDbSource source))
             {
                 throw new Exception("Expected a router db source.");
             }
 
-            var source = (previous[previous.Count - 1] as Processors.RouterDb.IProcessorRouterDbSource);
-            Func<Itinero.RouterDb> getRouterDb = () =>
+            Itinero.RouterDb GetRouterDb()
             {
                 var routerDb = source.GetRouterDb();
 
                 var profiles = new List<Profile>();
-                foreach(var vehicle in routerDb.GetSupportedVehicles())
+                foreach (var vehicle in routerDb.GetSupportedVehicles())
                 {
                     profiles.Add(vehicle.Fastest());
                 }
-                
+
                 routerDb.WriteToShape(file.FullName, profiles.ToArray());
                 return routerDb;
-            };
+            }
 
-            processor = new Processors.RouterDb.ProcessorRouterDbSource(getRouterDb);
-
-            return 1;
+            return (new ProcessorRouterDbSource(GetRouterDb), 1);
         }
     }
 }

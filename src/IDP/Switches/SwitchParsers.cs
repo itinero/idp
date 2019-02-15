@@ -23,6 +23,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using IDP.Processors;
+using IDP.Switches.GeoJson;
+using IDP.Switches.GTFS;
+using IDP.Switches.Logging;
+using IDP.Switches.MultimodalDb;
+using IDP.Switches.Osm;
+using IDP.Switches.RouterDb;
+using IDP.Switches.Shape;
+using IDP.Switches.TransitDb;
 
 namespace IDP.Switches
 {
@@ -31,56 +40,96 @@ namespace IDP.Switches
     /// </summary>
     static class SwitchParsers
     {
-        public static List<DocumentedSwitch> DocumentedSwitches
-            = new List<DocumentedSwitch>();
+        private static List<(string[] names, Switch @switch)> _switches =
+            new List<(string[] names, Switch @switch)>();
 
-        private static List<Tuple<string[], Func<string[], Switch>>> _switches =
-            new List<Tuple<string[], Func<string[], Switch>>>();
+
+        public static List<(string category, List<DocumentedSwitch>)>     Documented;
 
         /// <summary>
         /// Registers all switches.
         /// </summary>
         public static void RegisterAll()
         {
-            Register(new GeoJson.SwitchWriteGeoJson());
-            Register(new HelpSwitch());
+            // The help function does print in the same order as here
+            // so put the most important switches up top
 
-            
-            Register(Osm.SwitchReadPBF.Names, (a) => new Osm.SwitchReadPBF(a));
-            Register(Osm.SwitchWritePBF.Names, (a) => new Osm.SwitchWritePBF(a));
-            Register(RouterDb.SwitchContractRouterDb.Names, (a) => new RouterDb.SwitchContractRouterDb(a));
-            Register(Osm.SwitchFilterProgress.Names, (a) => new Osm.SwitchFilterProgress(a));
-            Register(RouterDb.SwitchCreateRouterDb.Names, (a) => new RouterDb.SwitchCreateRouterDb(a));
-            Register(RouterDb.SwitchIslandsRouterDb.Names, (a) => new RouterDb.SwitchIslandsRouterDb(a));
-            Register(RouterDb.SwitchElevationRouterDb.Names, (a) => new RouterDb.SwitchElevationRouterDb(a));
-            Register(RouterDb.SwitchReadRouterDb.Names, (a) => new RouterDb.SwitchReadRouterDb(a));
-            Register(RouterDb.SwitchWriteRouterDb.Names, (a) => new RouterDb.SwitchWriteRouterDb(a));
-            Register(GTFS.SwitchReadGTFS.Names, (a) => new GTFS.SwitchReadGTFS(a));
-            Register(TransitDb.SwitchMergeTransitDbs.Names, (a) => new TransitDb.SwitchMergeTransitDbs(a));
-            Register(TransitDb.SwitchReadTransitDb.Names, (a) => new TransitDb.SwitchReadTransitDb(a));
-            Register(TransitDb.SwitchCreateTransitDb.Names, (a) => new TransitDb.SwitchCreateTransitDb(a));
-            Register(TransitDb.SwitchWriteTransitDb.Names, (a) => new TransitDb.SwitchWriteTransitDb(a));
-            Register(TransitDb.SwitchAddTransfersDb.Names, (a) => new TransitDb.SwitchAddTransfersDb(a));
-            Register(MultimodalDb.SwitchCreateMultimodalDb.Names, (a) => new MultimodalDb.SwitchCreateMultimodalDb(a));
-            Register(MultimodalDb.SwitchAddStopLinks.Names, (a) => new MultimodalDb.SwitchAddStopLinks(a));
-            Register(MultimodalDb.SwitchWriteMultimodalDb.Names, (a) => new MultimodalDb.SwitchWriteMultimodalDb(a));
-            Register(Shape.SwitchReadShape.Names, (a) => new Shape.SwitchReadShape(a));
-            Register(Shape.SwitchWriteShape.Names, (a) => new Shape.SwitchWriteShape(a));
-            Register(Logging.SwitchLogging.Names, (a) => new Logging.SwitchLogging(a));
+
+            Documented = new List<(string category, List<DocumentedSwitch>)>
+            {
+                ("Input", new List<DocumentedSwitch>
+                {
+                    new SwitchReadPbf(),
+                    new SwitchReadShape(),
+                    new SwitchReadRouterDb()
+                }),
+
+                ("Data processing", new List<DocumentedSwitch>
+                {
+                    new SwitchCreateRouterDb(),
+                    new SwitchElevationRouterDb(),
+                    new SwitchContractRouterDb()
+                }),
+
+                ("Data analysis", new List<DocumentedSwitch>
+                {
+                    new SwitchIslandsRouterDb()
+                }),
+
+                ("Output", new List<DocumentedSwitch>
+                {
+                    new SwitchWriteRouterDb(),
+                    new SwitchWritePbf(),
+                    new SwitchWriteShape(),
+                    new SwitchWriteGeoJson()
+                }),
+
+                ("Usability", new List<DocumentedSwitch>
+                {
+                    new SwitchFilterProgress(),
+                    new SwitchLogging(),
+                    new HelpSwitch()
+                }),
+
+                ("GTFS and multimodal", new List<DocumentedSwitch>
+                {
+                    new SwitchReadGTFS()
+                })
+            };
+
+
+            foreach (var (_, switches) in Documented)
+            {
+                foreach (var @switch in switches)
+                {
+                    Register(@switch);
+                }
+            }
+
+            // -- Old switches, documentation pending --
+
+
+            Register(SwitchMergeTransitDbs.Names, new SwitchMergeTransitDbs(null));
+            Register(SwitchReadTransitDb.Names, new SwitchReadTransitDb(null));
+            Register(SwitchCreateTransitDb.Names, new SwitchCreateTransitDb(null));
+            Register(SwitchWriteTransitDb.Names, new SwitchWriteTransitDb(null));
+            Register(SwitchAddTransfersDb.Names, new SwitchAddTransfersDb(null));
+            Register(SwitchCreateMultimodalDb.Names, new SwitchCreateMultimodalDb(null));
+            Register(SwitchAddStopLinks.Names, new SwitchAddStopLinks(null));
+            Register(SwitchWriteMultimodalDb.Names, new SwitchWriteMultimodalDb(null));
         }
 
         private static void Register(DocumentedSwitch swtch)
         {
-            Register(swtch.Names, swtch.SetArguments);
-            DocumentedSwitches.Add(swtch);
+            Register(swtch.Names, swtch);
         }
 
         /// <summary>
         /// Registers a new switch.
         /// </summary>
-        private static void Register(string[] names, Func<string[], Switch> create)
+        private static void Register(string[] names, Switch swtch)
         {
-            _switches.Add(new Tuple<string[], Func<string[], Switch>>(names, create));
+            _switches.Add((names, swtch));
         }
 
         /// <summary>
@@ -94,12 +143,12 @@ namespace IDP.Switches
         /// <summary>
         /// Parses the given arguments.
         /// </summary>
-        public static Processors.Processor Parse(string[] args)
+        public static Processor Parse(string[] args)
         {
-            var switches = new List<Switch>();
+            var switches = new List<(Switch, string[] args)>();
             for (var i = 0; i < args.Length;)
             {
-                var s = FindSwitch(args[i]);
+                var swtch = FindSwitch(args[i]);
                 i++;
                 var parameters = new List<string>();
                 while (i < args.Length &&
@@ -109,18 +158,20 @@ namespace IDP.Switches
                     i++;
                 }
 
-                switches.Add(s(parameters.ToArray()));
+                switches.Add((swtch, parameters.ToArray()));
             }
 
-            var processors = new List<Processors.Processor>();
-            for (var i = 0; i < switches.Count; i++)
+            var processors = new List<Processor>();
+            foreach (var t in switches)
             {
-                Processors.Processor newProcessor;
+                Processor newProcessor;
 
                 int p;
                 try
                 {
-                    p = switches[i].Parse(processors, out newProcessor);
+                    var (sw, parameters) = t;
+                    sw.Arguments = parameters;
+                    p = sw.Parse(processors, out newProcessor);
                 }
                 catch (ArgumentException e)
                 {
@@ -162,7 +213,7 @@ namespace IDP.Switches
         /// <summary>
         /// Finds a switch by it's name.
         /// </summary>
-        private static Func<string[], Switch> FindSwitch(string name)
+        private static Switch FindSwitch(string name)
         {
             foreach (var tuple in _switches)
             {
@@ -172,8 +223,16 @@ namespace IDP.Switches
                 }
             }
 
-            throw new Exception(string.Format("Cannot find switch with name: {0}", name));
+
+            var names = "";
+            foreach (var (nms, _) in _switches)
+            {
+                names += nms[0] + "\n";
+            }
+
+            throw new Exception($"Cannot find switch with name: {name}.\nKnown switches are: {names}");
         }
+
 
         /// <summary>
         /// Returns true if the given string contains a key value like 'key=value'.
@@ -239,14 +298,9 @@ namespace IDP.Switches
         /// </summary>
         internal static bool IsTrue(string value)
         {
-            if (!string.IsNullOrWhiteSpace(value) &&
-                (value.ToLowerInvariant() == "yes" ||
-                 value.ToLowerInvariant() == "true"))
-            {
-                return true;
-            }
-
-            return false;
+            return !string.IsNullOrWhiteSpace(value) &&
+                   (value.ToLowerInvariant() == "yes" ||
+                    value.ToLowerInvariant() == "true");
         }
 
         /// <summary>
@@ -276,8 +330,7 @@ namespace IDP.Switches
         /// <returns></returns>
         internal static int? Parse(string value)
         {
-            int val;
-            if (int.TryParse(value, out val))
+            if (int.TryParse(value, out var val))
             {
                 return val;
             }

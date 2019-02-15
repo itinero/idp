@@ -44,7 +44,7 @@ namespace IDP.Processors.Osm
         /// <summary>
         /// Collapses this processor.
         /// </summary>
-        public override int Collapse(List<Processor> processors, int i)
+        public virtual int Collapse(List<Processor> processors, int i)
         {
             if (processors == null) { throw new ArgumentNullException("processors"); }
             if (processors.Count == 0) { throw new ArgumentOutOfRangeException("processors", "There has to be at least on processor there to collapse this target."); }

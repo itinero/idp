@@ -20,10 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using Itinero.Transit.GTFS;
 using System;
 using System.Collections.Generic;
+using IDP.Processors;
+using IDP.Processors.GTFS;
+using IDP.Processors.TransitDb;
+using Itinero.Transit.Data;
+using Itinero.Transit.GTFS;
 
 namespace IDP.Switches.TransitDb
 {
@@ -48,7 +51,7 @@ namespace IDP.Switches.TransitDb
         {
             get
             {
-                return new string[] { "--create-transitdb" };
+                return new[] { "--create-transitdb" };
             }
         }
         /// <summary>
@@ -56,23 +59,22 @@ namespace IDP.Switches.TransitDb
         /// </summary>
         public override int Parse(List<Processor> previous, out Processor processor)
         {
-            if (!(previous[previous.Count - 1] is Processors.GTFS.IProcessorGTFSSource))
+            if (!(previous[previous.Count - 1] is IProcessorGTFSSource source))
             {
                 throw new Exception("Expected a GTFS source.");
             }
 
-            var source = (previous[previous.Count - 1] as Processors.GTFS.IProcessorGTFSSource);
             Func<Itinero.Transit.Data.TransitDb> getTransitDb = () =>
             {
                 var transitDb = new Itinero.Transit.Data.TransitDb();
 
                 transitDb.LoadFrom(source.GetGTFS());
 
-                transitDb.SortConnections(Itinero.Transit.Data.DefaultSorting.DepartureTime, null);
+                transitDb.SortConnections(DefaultSorting.DepartureTime, null);
 
                 return transitDb;
             };
-            processor = new Processors.TransitDb.ProcessorTransitDbSource(getTransitDb);
+            processor = new ProcessorTransitDbSource(getTransitDb);
 
             return 1;
         }

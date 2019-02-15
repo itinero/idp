@@ -20,11 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using IDP.Processors;
-using IDP.Processors.TransitDb;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using IDP.Processors;
+using IDP.Processors.TransitDb;
 
 namespace IDP.Switches.TransitDb
 {
@@ -49,7 +49,7 @@ namespace IDP.Switches.TransitDb
         {
             get
             {
-                return new string[] { "--write-transitdb" };
+                return new[] { "--write-transitdb" };
             }
         }
 
@@ -58,28 +58,28 @@ namespace IDP.Switches.TransitDb
         /// </summary>
         public override int Parse(List<Processor> previous, out Processor processor)
         {
-            if (this.Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
+            if (Arguments.Length != 1) { throw new ArgumentException("Exactly one argument is expected."); }
             if (previous.Count < 1) { throw new ArgumentException("Expected at least one processors before this one."); }
 
-            var file = new FileInfo(this.Arguments[0]);
+            var file = new FileInfo(Arguments[0]);
 
-            if (!(previous[previous.Count - 1] is Processors.TransitDb.IProcessorTransitDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorTransitDbSource source))
             {
                 throw new Exception("Expected a transit db source.");
             }
 
-            var source = (previous[previous.Count - 1] as Processors.TransitDb.IProcessorTransitDbSource);
-            Func<Itinero.Transit.Data.TransitDb> getTransitDb = () =>
+            Itinero.Transit.Data.TransitDb GetTransitDb()
             {
                 var transitDb = source.GetTransitDb();
                 using (var stream = File.Open(file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
                 {
                     transitDb.Serialize(stream);
                 }
-                return transitDb;
-            };
 
-            processor = new Processors.TransitDb.ProcessorTransitDbSource(getTransitDb);
+                return transitDb;
+            }
+
+            processor = new ProcessorTransitDbSource(GetTransitDb);
 
             return 1;
         }

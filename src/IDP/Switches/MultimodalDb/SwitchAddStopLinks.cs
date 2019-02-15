@@ -23,10 +23,10 @@
 using System;
 using System.Collections.Generic;
 using IDP.Processors;
-using Itinero.Transit.Data;
-using Itinero.Osm.Vehicles;
-using Itinero.Algorithms.Search.Hilbert;
+using IDP.Processors.MultimodalDb;
 using Itinero.Profiles;
+using Itinero.Transit.Data;
+// ReSharper disable NotResolvedInText
 
 namespace IDP.Switches.MultimodalDb
 {
@@ -51,7 +51,7 @@ namespace IDP.Switches.MultimodalDb
         {
             get
             {
-                return new string[] { "--add-links" };
+                return new[] { "--add-links" };
             }
         }
 
@@ -63,10 +63,10 @@ namespace IDP.Switches.MultimodalDb
             var profileName = "pedestrian"; // default profile.
             var distance = 100; // default distance 100m.
 
-            for (var i = 0; i < this.Arguments.Length; i++)
+            for (var i = 0; i < Arguments.Length; i++)
             {
                 string key, value;
-                if (SwitchParsers.SplitKeyValue(this.Arguments[i], out key, out value))
+                if (SwitchParsers.SplitKeyValue(Arguments[i], out key, out value))
                 {
                     switch (key.ToLower())
                     {
@@ -76,12 +76,12 @@ namespace IDP.Switches.MultimodalDb
                         case "distance":
                             if (!int.TryParse(value, out distance))
                             {
-                                throw new SwitchParserException("--add-links",
+                                throw new ArgumentException("--add-links",
                                     "Invalid parameter value for command --add-links: distance not a number.");
                             }
                             break;
                         default:
-                            throw new SwitchParserException("--add-links",
+                            throw new ArgumentException("--add-links",
                                 string.Format("Invalid parameter for command --add-links: {0} not recognized.", key));
                     }
                 }
@@ -90,25 +90,24 @@ namespace IDP.Switches.MultimodalDb
             Profile profile;
             if (!Profile.TryGet(profileName, out profile))
             {
-                throw new SwitchParserException("--add-links",
+                throw new ArgumentException("--add-links",
                     string.Format("Invalid parameter value for command --add-links: profile {0} not found.", profileName));
             }
 
-            if (!(previous[previous.Count - 1] is Processors.MultimodalDb.IProcessorMultimodalDbSource))
+            if (!(previous[previous.Count - 1] is IProcessorMultimodalDbSource source))
             {
                 throw new Exception("Expected a multimodal db stream source.");
             }
 
-            var source = (previous[previous.Count - 1] as Processors.MultimodalDb.IProcessorMultimodalDbSource).GetMultimodalDb;
             Func<Itinero.Transit.Data.MultimodalDb> getMultimodalDb = () =>
             {
-                var db = source();
+                var db = source.GetMultimodalDb();
 
                 db.AddStopLinksDb(profile, maxDistance: distance);
 
                 return db;
             };
-            processor = new Processors.MultimodalDb.ProcessorMultimodalDbSource(getMultimodalDb);
+            processor = new ProcessorMultimodalDbSource(getMultimodalDb);
 
             return 1;
         }
