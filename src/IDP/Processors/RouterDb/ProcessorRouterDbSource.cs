@@ -66,7 +66,9 @@ namespace IDP.Processors.RouterDb
         /// </summary>
         public override void Execute()
         {
-            var r = _getRouterdb();
+            // We simply execute the routerDB. It might have side effects (such as printing stuff)
+            // We do not need the result and throw it away
+            _getRouterdb();
         }
     }
 }

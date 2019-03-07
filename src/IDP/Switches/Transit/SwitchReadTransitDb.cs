@@ -22,58 +22,53 @@
 
 using System.Collections.Generic;
 using System.IO;
-using GTFS;
-using GTFS.IO;
 using IDP.Processors;
-using IDP.Processors.GTFS;
+using IDP.Processors.TransitDb;
+using Itinero.Transit.Data;
+using static IDP.Switches.SwitchesExtensions;
 
-namespace IDP.Switches.GTFS
+namespace IDP.Switches.Transit
 {
     /// <summary>
-    /// Represents a switch to read a GTFS feed.
+    /// Represents a switch to read a shapefile for routing.
     /// </summary>
-    class SwitchReadGTFS : DocumentedSwitch
+    class SwitchReadTransitDb : DocumentedSwitch
     {
-        private static string[] _names = {"--rg", "--read-gtfs"};
+        private static readonly string[] _names = {"--read-transit-db", "-read-transit", "--rt"};
 
-        private static string _about = "Read a GTFS-datastream to route over public transport networks.";
-
-        private static bool _isStable = false;
+        private static string about = "Read a transitDB file as input to do all the data processing. A transitDB is a database containing connections between multiple stops";
 
 
-        private static List<(List<string> argName, bool isObligated, string comment, string defaultValue)> extraParams
-            = new List<(List<string> argName, bool isObligated, string comment, string defaultValue)>
-            {
-                SwitchesExtensions.obl("directory", "The directory where the GTFS-feed is saved")
-            };
+        private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
+            _extraParams =
+                new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
+                {
+                    obl("file", "The input file to read"),
+                };
+
+        private const bool _isStable = false;
 
 
-        public SwitchReadGTFS()
-            : base(_names, _about,
-                extraParams,
-                _isStable)
+        public SwitchReadTransitDb()
+            : base(_names, about, _extraParams, _isStable)
         {
         }
+
 
         protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
         {
-            var directory = new DirectoryInfo(arguments["directory"]);
-            if (!directory.Exists)
+            var fileName = arguments["file"];
+
+            TransitDb GetTransitDb()
             {
-                throw new FileNotFoundException("Directory not found.", directory.FullName);
+                using (var stream = File.OpenRead(fileName))
+                {
+                    return TransitDb.ReadFrom(stream);
+                }
             }
 
-            // create the reader.
-            var reader = new GTFSReader<GTFSFeed>(false);
-
-            // build the get GTFS function.
-            GTFSFeed GetGtfs()
-            {
-                return reader.Read(new GTFSDirectorySource(directory));
-            }
-
-            return (new ProcessorGTFSSource(GetGtfs), 0);
+            return (new ProcessorTransitDbSource(GetTransitDb), 0);
         }
     }
 }

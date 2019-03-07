@@ -25,13 +25,11 @@ using System.Collections.Generic;
 using System.Linq;
 using IDP.Processors;
 using IDP.Switches.GeoJson;
-using IDP.Switches.GTFS;
 using IDP.Switches.Logging;
-using IDP.Switches.MultimodalDb;
 using IDP.Switches.Osm;
 using IDP.Switches.RouterDb;
 using IDP.Switches.Shape;
-using IDP.Switches.TransitDb;
+using IDP.Switches.Transit;
 
 namespace IDP.Switches
 {
@@ -47,7 +45,7 @@ namespace IDP.Switches
         public static List<(string category, List<DocumentedSwitch>)>     Documented;
 
         /// <summary>
-        /// Registers all switches.
+        /// Registe    rs all switches.
         /// </summary>
         public static void RegisterAll()
         {
@@ -61,7 +59,8 @@ namespace IDP.Switches
                 {
                     new SwitchReadPbf(),
                     new SwitchReadShape(),
-                    new SwitchReadRouterDb()
+                    new SwitchReadRouterDb(),
+                    new SwitchReadTransitDb()
                 }),
 
                 ("Data processing", new List<DocumentedSwitch>
@@ -73,7 +72,9 @@ namespace IDP.Switches
 
                 ("Data analysis", new List<DocumentedSwitch>
                 {
-                    new SwitchIslandsRouterDb()
+                    new SwitchIslandsRouterDb(),
+                    new SwitchDumpTransitDbLocations()
+                    
                 }),
 
                 ("Output", new List<DocumentedSwitch>
@@ -91,10 +92,6 @@ namespace IDP.Switches
                     new HelpSwitch()
                 }),
 
-                ("GTFS and multimodal", new List<DocumentedSwitch>
-                {
-                    new SwitchReadGTFS()
-                })
             };
 
 
@@ -106,17 +103,6 @@ namespace IDP.Switches
                 }
             }
 
-            // -- Old switches, documentation pending --
-
-
-            Register(SwitchMergeTransitDbs.Names, new SwitchMergeTransitDbs(null));
-            Register(SwitchReadTransitDb.Names, new SwitchReadTransitDb(null));
-            Register(SwitchCreateTransitDb.Names, new SwitchCreateTransitDb(null));
-            Register(SwitchWriteTransitDb.Names, new SwitchWriteTransitDb(null));
-            Register(SwitchAddTransfersDb.Names, new SwitchAddTransfersDb(null));
-            Register(SwitchCreateMultimodalDb.Names, new SwitchCreateMultimodalDb(null));
-            Register(SwitchAddStopLinks.Names, new SwitchAddStopLinks(null));
-            Register(SwitchWriteMultimodalDb.Names, new SwitchWriteMultimodalDb(null));
         }
 
         private static void Register(DocumentedSwitch swtch)
