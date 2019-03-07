@@ -65,6 +65,9 @@ namespace IDP.Switches.Transit
 
             TransitDb GetTransitDb()
             {
+                Itinero.Transit.Logging.Logger.LogAction = 
+                    (origin, level, message, parameters) => 
+                        Console.WriteLine($"[{DateTime.Now:O}] [{level}] [{origin}]: {message}");
                 var tdb = source?.GetTransitDb() ?? new TransitDb();
                 tdb.UseLinkedConnections(curl, lurl, time, time.AddSeconds(duration));
                 return tdb;
