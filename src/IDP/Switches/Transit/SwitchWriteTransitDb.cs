@@ -20,6 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using IDP.Processors;
@@ -32,24 +33,24 @@ namespace IDP.Switches.Transit
     /// <summary>
     /// Represents a switch to read a shapefile for routing.
     /// </summary>
-    class SwitchReadTransitDb : DocumentedSwitch
+    class SwitchWriteTransitDb : DocumentedSwitch
     {
-        private static readonly string[] _names = {"--read-transit-db", "-read-transit", "--rt"};
+        private static readonly string[] _names = {"--write-transit-db", "--write-transit", "--wt"};
 
-        private static string _about = "Read a transitDB file as input to do all the data processing. A transitDB is a database containing connections between multiple stops";
+        private static string _about = "Write a transitDB to disk";
 
 
         private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             _extraParams =
                 new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
-                    obl("file", "The input file to read"),
+                    obl("file", "The output file to write to"),
                 };
 
         private const bool _isStable = false;
 
 
-        public SwitchReadTransitDb()
+        public SwitchWriteTransitDb()
             : base(_names, _about, _extraParams, _isStable)
         {
         }
@@ -60,15 +61,29 @@ namespace IDP.Switches.Transit
         {
             var fileName = arguments["file"];
 
-            TransitDb GetTransitDb()
+            if (previous.Count < 1)
             {
-                using (var stream = File.OpenRead(fileName))
-                {
-                    return TransitDb.ReadFrom(stream);
-                }
+                throw new ArgumentException("Expected at least one processors before this one.");
             }
 
-            return (new ProcessorTransitDbSource(GetTransitDb), 0);
+            if (!(previous[previous.Count - 1] is IProcessorTransitDbSource source))
+            {
+                throw new Exception("Expected a transit db source.");
+            }
+
+            TransitDb GetTransitDb()
+            {
+                var tdb = source.GetTransitDb();
+
+                using (var stream = File.OpenWrite(fileName))
+                {
+                    tdb.Latest.WriteTo(stream);
+                }
+
+                return tdb;
+            }
+
+            return (new ProcessorTransitDbSource(GetTransitDb), 1);
         }
     }
 }
