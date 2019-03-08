@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using IDP.Processors;
 using IDP.Processors.TransitDb;
 using Itinero.Transit.Data;
 using Itinero.Transit.Data.Attributes;
+using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Transit
 {
@@ -16,9 +18,13 @@ namespace IDP.Switches.Transit
 
         private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             _extraParams =
-                new List<(List<string> args, bool isObligated, string comment, string defaultValue)>();
+                new List<(List<string> args, bool isObligated, string comment, string defaultValue)>()
+                {
+                    opt("file", "The file to write the data to, in .csv format")
+                        .SetDefault("")
+                };
 
-        private const bool _isStable = false;
+        private const bool _isStable = true;
 
 
         public SwitchDumpTransitDbConnections
@@ -40,41 +46,49 @@ namespace IDP.Switches.Transit
                 throw new Exception("Expected a transit db source.");
             }
 
+            var writeTo = arguments["file"];
+
             TransitDb Run()
             {
                 var tdb = source.GetTransitDb();
-
-
-                var header = "GlobalId,DepartureStop,DepartureStopName,ArrivalStop,ArrivalStopName," +
-                             "DepartureTime,DepartureDelay,ArrivalTime,ArrivalDelay,TravelTime,TripId";
-                Console.WriteLine(header);
-                
-                
-                var cons = tdb.Latest.ConnectionsDb.GetReader();
-                var dep = tdb.Latest.StopsDb.GetReader();
-                var arr = tdb.Latest.StopsDb.GetReader();
-
-
-                uint index = 0;
-                while (cons.MoveTo(index))
+                using (var outStream =
+                    string.IsNullOrEmpty(writeTo) ? Console.Out : new StreamWriter(File.OpenWrite(writeTo)))
                 {
-                    dep.MoveTo(cons.DepartureStop);
-                    arr.MoveTo(cons.ArrivalStop);
-                    var value = $"{cons.GlobalId}," +
-                                $"{dep.GlobalId}," +
-                                $"{dep.Attributes.Get("name")}," +
-                                $"{arr.GlobalId}," +
-                                $"{arr.Attributes.Get("name")}," +
-                                $"{cons.DepartureTime}," +
-                                $"{cons.DepartureDelay}," +
-                                $"{cons.ArrivalTime}," +
-                                $"{cons.ArrivalDelay}," +
-                                $"{cons.TravelTime}," +
-                                $"{cons.TripId}";
+                    const string header = "GlobalId,DepartureStop,DepartureStopName,ArrivalStop,ArrivalStopName," +
+                                          "DepartureTime,DepartureDelay,ArrivalTime,ArrivalDelay,TravelTime,TripId,TripHeadSign";
+                    outStream.WriteLine(header);
 
-                    Console.WriteLine(value);
 
-                    index++;
+                    var cons = tdb.Latest.ConnectionsDb.GetReader();
+                    var dep = tdb.Latest.StopsDb.GetReader();
+                    var arr = tdb.Latest.StopsDb.GetReader();
+                    var trip = tdb.Latest.TripsDb.GetReader();
+
+                    uint index = 0;
+
+                    while (cons.MoveTo(index))
+                    {
+                        dep.MoveTo(cons.DepartureStop);
+                        arr.MoveTo(cons.ArrivalStop);
+                        trip.MoveTo(cons.TripId);                        
+                        
+                        var value = $"{cons.GlobalId}," +
+                                    $"{dep.GlobalId}," +
+                                    $"{dep.Attributes.Get("name")}," +
+                                    $"{arr.GlobalId}," +
+                                    $"{arr.Attributes.Get("name")}," +
+                                    $"{cons.DepartureTime}," +
+                                    $"{cons.DepartureDelay}," +
+                                    $"{cons.ArrivalTime}," +
+                                    $"{cons.ArrivalDelay}," +
+                                    $"{cons.TravelTime}," +
+                                    $"{trip.GlobalId}," +
+                                    $"{trip.Attributes.Get("headsign")}";
+
+                        outStream.WriteLine(value);
+
+                        index++;
+                    }
                 }
 
                 return tdb;

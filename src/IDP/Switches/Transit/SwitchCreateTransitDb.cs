@@ -16,7 +16,9 @@ namespace IDP.Switches.Transit
         private static string _about =
             "Creates or updates a transit DB based on linked connections. For this, the linked connections source and a timewindow should be specified.\n" +
             "If the previous switch reads or creates a transit db as well, the two transitDbs are merged into a single one.\n\n" +
-            "Note that this switch only downloads the connections and keeps them in memory. To write them to disk, add --write-transit-db too";
+            "Note that this switch only downloads the connections and keeps them in memory. To write them to disk, add --write-transit-db too.\n\n" +
+            "Example usage to create the database for the Belgian SNCB:\n\n" +
+            "        idp --create-transit-db https://graph.irail.be/sncb/connections https://irail.be/stations/NMBS";
 
 
         private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
@@ -30,11 +32,11 @@ namespace IDP.Switches.Transit
                     opt("window-start", "start",
                             "The start of the timewindow to load. Specify 'now' to take the current date and time.")
                         .SetDefault("now"),
-                    opt("window-duration", "duration", "The length of the window to load, in seconds")
+                    opt("window-duration", "duration", "The length of the window to load, in seconds. If zero is specified, no connections will be downloaded.")
                         .SetDefault("3600")
                 };
 
-        private const bool _isStable = false;
+        private const bool _isStable = true;
 
 
         public SwitchCreateTransitDb()

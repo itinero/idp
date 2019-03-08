@@ -34,7 +34,7 @@ namespace IDP.Switches.Transit
     /// </summary>
     class SwitchReadTransitDb : DocumentedSwitch
     {
-        private static readonly string[] _names = {"--read-transit-db", "-read-transit", "--rt"};
+        private static readonly string[] _names = {"--read-transit-db", "--read-transit", "--rt"};
 
         private static string _about = "Read a transitDB file as input to do all the data processing. A transitDB is a database containing connections between multiple stops";
 
@@ -46,7 +46,7 @@ namespace IDP.Switches.Transit
                     obl("file", "The input file to read"),
                 };
 
-        private const bool _isStable = false;
+        private const bool _isStable = true;
 
 
         public SwitchReadTransitDb()

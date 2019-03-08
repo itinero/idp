@@ -55,6 +55,12 @@ All switches are listed below. Click on a switch to get a full overview, includi
   * [--write-pbf](#--write-pbf---wb) Writes the result of the calculations as protobuff-osm file.
   * [--write-shape](#--write-shape) Write the result as shapefile
   * [--write-geojson](#--write-geojson---wg) Write a file as geojson file.
+- [Transit-Db](#Transit-Db)
+  * [--create-transit-db](#--create-transit-db---create-transit---ct) Creates or updates a transit DB based on linked connections.
+  * [--read-transit-db](#--read-transit-db--read-transit---rt) Read a transitDB file as input to do all the data processing.
+  * [--select-time](#--select-time) Filters the transit-db so that only connections departing in the specified time window are kept.
+  * [--dump-locations](#--dump-locations) Writes all stops contained in a transitDB to console
+  * [--dump-connections](#--dump-connections) Writes all connections contained in a transitDB to console
 - [Usability](#Usability)
   * [--progress-report](#--progress-report---progress---pr) If this flag is specified, the progress will be printed to standard out.
   * [--log](#--log) If specified, creates a logfile where all the output will be written to - useful to debug a custom routing profile
@@ -190,6 +196,60 @@ Contraction is able to speed up querying by building an index of _shortcuts_. Ba
 | right | _NA_| Specifies the maximal latitude of the output. Used when specifying a bounding box for the output. | 
 | top, up | _NA_| Specifies the minimal longitude of the output. Used when specifying a bounding box for the output. | 
 | bottom, down | _NA_| Specifies the maximal longitude of the output. Used when specifying a bounding box for the output. | 
+
+### Transit-Db
+
+#### --create-transit-db (--create-transit, --ct)
+
+   Creates or updates a transit DB based on linked connections. For this, the linked connections source and a timewindow should be specified.
+If the previous switch reads or creates a transit db as well, the two transitDbs are merged into a single one.
+
+Note that this switch only downloads the connections and keeps them in memory. To write them to disk, add --write-transit-db too.
+
+Example usage to create the database for the Belgian SNCB:
+
+        idp --create-transit-db https://graph.irail.be/sncb/connections https://irail.be/stations/NMBS
+
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **connections, curl** | _Obligated param_ | The URL where connections can be downloaded | 
+| **locations, lurl** | _Obligated param_ | The URL where the location can be downloaded | 
+| window-start, start | `now`| The start of the timewindow to load. Specify 'now' to take the current date and time. | 
+| window-duration, duration | `3600`| The length of the window to load, in seconds. If zero is specified, no connections will be downloaded. | 
+
+#### --read-transit-db (-read-transit, --rt)
+
+   Read a transitDB file as input to do all the data processing. A transitDB is a database containing connections between multiple stops
+
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **file** | _Obligated param_ | The input file to read | 
+
+#### --select-time
+
+   Filters the transit-db so that only connections departing in the specified time window are kept. This allows to take a small slice out of the transitDB, which can be useful to debug. All locations will be kept.
+
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| **window-start, start** | _Obligated param_ | The start time of the window | 
+| **duration** | _Obligated param_ | The length of the time window. | 
+| allow-empty | `false`| If flagged, the program will not crash if no connections are retained | 
+
+#### --dump-locations
+
+   Writes all stops contained in a transitDB to console
+
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| file | _NA_| The file to write the data to, in .csv format | 
+
+#### --dump-connections
+
+   Writes all connections contained in a transitDB to console
+
+| Parameter  | Default value | Explanation       |
+|----------- | ------------- | ----------------- |
+| file | _NA_| The file to write the data to, in .csv format | 
 
 ### Usability
 

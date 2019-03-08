@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using IDP.Processors;
 using IDP.Processors.TransitDb;
 using Itinero.Transit.Data;
@@ -19,9 +19,11 @@ namespace IDP.Switches.Transit
             _extraParams =
                 new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
+                    opt("file", "The file to write the data to, in .csv format")
+                        .SetDefault("")
                 };
 
-        private const bool _isStable = false;
+        private const bool _isStable = true;
 
 
         public SwitchDumpTransitDbLocations
@@ -43,6 +45,8 @@ namespace IDP.Switches.Transit
                 throw new Exception("Expected a transit db source.");
             }
 
+            var writeTo = arguments["file"];
+            
             TransitDb Run()
             {
                 var tdb = source.GetTransitDb();
@@ -50,42 +54,47 @@ namespace IDP.Switches.Transit
                 var stops = tdb.Latest.StopsDb.GetReader();
 
 
-                var knownAttributes = new List<string>();
-                while (stops.MoveNext())
+                using (var outStream = 
+                    string.IsNullOrEmpty(writeTo) ? Console.Out :
+                        new StreamWriter(File.OpenWrite(writeTo)))
                 {
-                    var attributes = stops.Attributes;
-                    foreach (var attribute in attributes)
+                    var knownAttributes = new List<string>();
+                    while (stops.MoveNext())
                     {
-                        if (!knownAttributes.Contains(attribute.Key))
+                        var attributes = stops.Attributes;
+                        foreach (var attribute in attributes)
                         {
-                            knownAttributes.Add(attribute.Key);
+                            if (!knownAttributes.Contains(attribute.Key))
+                            {
+                                knownAttributes.Add(attribute.Key);
+                            }
                         }
                     }
-                }
 
 
-                var header = "globalId,Latitude,Longitude,internalId";
-                foreach (var knownAttribute in knownAttributes)
-                {
-                    header += "," + knownAttribute;
-                }
-                Console.WriteLine(header);
-
-
-                stops = tdb.Latest.StopsDb.GetReader();
-                while (stops.MoveNext())
-                {
-
-                    var value = $"{stops.GlobalId},{stops.Latitude}, {stops.Longitude},{stops.Id}";
-                   
-                    var attributes = stops.Attributes;
-                    foreach (var attribute in knownAttributes)
+                    var header = "globalId,Latitude,Longitude,internalId";
+                    foreach (var knownAttribute in knownAttributes)
                     {
-                        attributes.TryGetValue(attribute, out var val);
-                        value += $",{val ?? ""}";
+                        header += "," + knownAttribute;
                     }
 
-                    Console.WriteLine(value);
+                    outStream.WriteLine(header);
+
+
+                    stops = tdb.Latest.StopsDb.GetReader();
+                    while (stops.MoveNext())
+                    {
+                        var value = $"{stops.GlobalId},{stops.Latitude}, {stops.Longitude},{stops.Id}";
+
+                        var attributes = stops.Attributes;
+                        foreach (var attribute in knownAttributes)
+                        {
+                            attributes.TryGetValue(attribute, out var val);
+                            value += $",{val ?? ""}";
+                        }
+
+                        outStream.WriteLine(value);
+                    }
                 }
 
                 return tdb;

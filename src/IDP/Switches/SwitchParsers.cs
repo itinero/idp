@@ -60,8 +60,6 @@ namespace IDP.Switches
                     new SwitchReadPbf(),
                     new SwitchReadShape(),
                     new SwitchReadRouterDb(),
-                    new SwitchCreateTransitDb(),
-                    new SwitchReadTransitDb()
                 }),
 
                 ("Data processing", new List<DocumentedSwitch>
@@ -74,8 +72,6 @@ namespace IDP.Switches
                 ("Data analysis", new List<DocumentedSwitch>
                 {
                     new SwitchIslandsRouterDb(),
-                    new SwitchDumpTransitDbLocations(),
-                    new SwitchDumpTransitDbConnections()
                     
                 }),
 
@@ -85,9 +81,21 @@ namespace IDP.Switches
                     new SwitchWritePbf(),
                     new SwitchWriteShape(),
                     new SwitchWriteGeoJson(),
-                    new SwitchWriteTransitDb()
                 }),
 
+                ("Transit-Db", new List<DocumentedSwitch>
+                {
+                    
+                    new SwitchCreateTransitDb(),
+                    new SwitchReadTransitDb(),
+                    new SwitchSelectTimeWindow(),
+                    new SwitchDumpTransitDbLocations(),
+                    new SwitchDumpTransitDbConnections(),
+                    new SwitchWriteTransitDb(),
+                    
+                }),
+                
+                
                 ("Usability", new List<DocumentedSwitch>
                 {
                     new SwitchFilterProgress(),

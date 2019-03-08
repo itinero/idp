@@ -17,8 +17,8 @@
     <PackageReference Include="Itinero.Geo" Version="1.4.0-pre91" />
     <PackageReference Include="Itinero.IO.Osm" Version="1.4.0-pre91" />
     <PackageReference Include="Itinero.IO.Shape" Version="1.4.0-pre91" />
-    <PackageReference Include="Itinero.Transit" Version="0.8.2-pre62" />
-    <PackageReference Include="Itinero.Transit.IO.LC" Version="0.8.2-pre62" />
+    <PackageReference Include="Itinero.Transit" Version="0.8.2-pre63" />
+    <PackageReference Include="Itinero.Transit.IO.LC" Version="0.8.2-pre63" />
     <PackageReference Include="Serilog" Version="2.5.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="3.2.0" />
     <PackageReference Include="SRTM" Version="0.0.3" />
