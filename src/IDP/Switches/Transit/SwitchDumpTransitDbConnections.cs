@@ -45,7 +45,8 @@ namespace IDP.Switches.Transit
                 var tdb = source.GetTransitDb();
 
 
-                var header = "GlobalId,GlobalId,Attributes,GlobalId,Attributes,DepartureTime,DepartureDelay,ArrivalTime,ArrivalDelay,TravelTime,TripId";
+                var header = "GlobalId,DepartureStop,DepartureStopName,ArrivalStop,ArrivalStopName," +
+                             "DepartureTime,DepartureDelay,ArrivalTime,ArrivalDelay,TravelTime,TripId";
                 Console.WriteLine(header);
                 
                 
@@ -60,10 +61,10 @@ namespace IDP.Switches.Transit
                     dep.MoveTo(cons.DepartureStop);
                     arr.MoveTo(cons.ArrivalStop);
                     var value = $"{cons.GlobalId}," +
-                                $"{dep.GlobalId}" +
-                                $"{dep.Attributes.Get("Name")}" +
-                                $"{arr.GlobalId}" +
-                                $"{arr.Attributes.Get("Name")}" +
+                                $"{dep.GlobalId}," +
+                                $"{dep.Attributes.Get("name")}," +
+                                $"{arr.GlobalId}," +
+                                $"{arr.Attributes.Get("name")}," +
                                 $"{cons.DepartureTime}," +
                                 $"{cons.DepartureDelay}," +
                                 $"{cons.ArrivalTime}," +

@@ -49,3 +49,5 @@ packages/*
 
 *.hgt.zip
 .idea/*
+**.csv
+**/.~lock.*.csv#
