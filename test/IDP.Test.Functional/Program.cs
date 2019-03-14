@@ -10,9 +10,9 @@ namespace IDP.Test.Functional
             {
                 "--read-routerdb", 
                 "temp.routerdb", 
-                "--remove-restrictions", 
-                "--write-routerdb", 
-                "temp.1.routerdb"
+                "--dump-profile-speeds", 
+                "car",
+                "car.csv"
             });
         }
     }

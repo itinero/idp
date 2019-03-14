@@ -49,3 +49,5 @@ packages/*
 
 *.hgt.zip
 .idea/*
+
+test/IDP.Test.Functional/*.csv

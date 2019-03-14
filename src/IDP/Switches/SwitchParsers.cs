@@ -74,7 +74,8 @@ namespace IDP.Switches
 
                 ("Data analysis", new List<DocumentedSwitch>
                 {
-                    new SwitchIslandsRouterDb()
+                    new SwitchIslandsRouterDb(),
+                    new SwitchDumpProfileSpeedsRouterDb()
                 }),
 
                 ("Output", new List<DocumentedSwitch>
