@@ -26,9 +26,16 @@ using IDP.Processors;
 
 namespace IDP
 {
-    class Program
+    /// <summary>
+    /// Contains the entry point and parameters handling.
+    /// </summary>
+    public class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// The main entry point of the application.
+        /// </summary>
+        /// <param name="args"></param>
+        public static void Main(string[] args)
         {
             // enable logging.
             OsmSharp.Logging.Logger.LogAction = (origin, level, message, parameters) =>

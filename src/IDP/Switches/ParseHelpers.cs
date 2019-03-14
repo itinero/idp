@@ -11,6 +11,27 @@ namespace IDP.Switches
         {
             return dict.ContainsKey(key) ? dict[key] : deflt;
         }
+        
+        /// <summary>
+        /// Creates a list of vehicle types based on the 'vehicle-types' parameters.
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> ExtractVehicleTypeArguments(this Dictionary<string, string> arguments)
+        {
+            if (!arguments.TryGetValue("vehicle-types", out var vehiclesArg))
+            {
+                return new List<string>();
+            }
+            
+            if (!SwitchParsers.SplitValuesArray(vehiclesArg.ToLower(), out var vehicleTypes))
+            {
+                // No commas found or something
+                vehicleTypes = new string[0];
+            }
+            
+            return new List<string>(vehicleTypes);
+        }
+        
         /// <summary>
         /// Creates a list of vehicles based on the 'vehicle' and 'vehicles' parameters.
         /// Either uses builtins or read from file
@@ -31,7 +52,6 @@ namespace IDP.Switches
             {
                 vehiclesArg = "car";
             }
-
 
             if (!SwitchParsers.SplitValuesArray(vehiclesArg.ToLower(), out var vehicleNames))
             {

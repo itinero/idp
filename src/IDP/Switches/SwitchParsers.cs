@@ -68,7 +68,8 @@ namespace IDP.Switches
                 {
                     new SwitchCreateRouterDb(),
                     new SwitchElevationRouterDb(),
-                    new SwitchContractRouterDb()
+                    new SwitchContractRouterDb(),
+                    new SwitchRemoveRestrictionsRouterDb()
                 }),
 
                 ("Data analysis", new List<DocumentedSwitch>
@@ -261,6 +262,11 @@ namespace IDP.Switches
         /// </summary>
         public static bool SplitValuesArray(string valuesArray, out string[] values)
         {
+            if (string.IsNullOrWhiteSpace(valuesArray))
+            {
+                values = null;
+                return false;
+            }
             values = valuesArray.Split(',');
             return true;
         }
