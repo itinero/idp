@@ -39,6 +39,7 @@ packages/*
 *.routerdb
 *.routerdb.zip
 *.osm.pbf
+*.osm.bin
 *.transitdb
 *.transitdb.zip
 *.multimodaldb
@@ -51,3 +52,4 @@ packages/*
 .idea/*
 
 test/IDP.Test.Functional/*.csv
+test/IDP.Test.Functional/*.lua

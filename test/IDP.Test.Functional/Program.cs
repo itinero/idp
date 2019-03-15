@@ -8,11 +8,12 @@ namespace IDP.Test.Functional
         {
             IDP.Program.Main(new[]
             {
-                "--read-routerdb", 
-                "temp.routerdb", 
-                "--dump-profile-speeds", 
-                "car",
-                "car.csv"
+                "--read-bin", 
+                "source.osm.bin", 
+                "--create-routerdb", 
+                "bigtruck.lua", 
+                "--write-shape",
+                "source"
             });
         }
     }

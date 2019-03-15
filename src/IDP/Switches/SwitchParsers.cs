@@ -61,7 +61,8 @@ namespace IDP.Switches
                 {
                     new SwitchReadPbf(),
                     new SwitchReadShape(),
-                    new SwitchReadRouterDb()
+                    new SwitchReadRouterDb(),
+                    new SwitchReadBin()
                 }),
 
                 ("Data processing", new List<DocumentedSwitch>
@@ -82,6 +83,7 @@ namespace IDP.Switches
                 {
                     new SwitchWriteRouterDb(),
                     new SwitchWritePbf(),
+                    new SwitchWriteBin(),
                     new SwitchWriteShape(),
                     new SwitchWriteGeoJson()
                 }),
