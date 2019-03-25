@@ -23,6 +23,7 @@
 using System;
 using System.Globalization;
 using IDP.Processors;
+using IDP.Switches;
 
 namespace IDP
 {
@@ -44,6 +45,12 @@ namespace IDP
 
             // register switches.
             Switches.SwitchParsers.RegisterAll();
+
+            if (args.Length == 0)
+            {
+                Console.WriteLine("No arguments were given.");
+                args = new[] {"--help"};
+            }
 
             // parses arguments.
             Processor processor;

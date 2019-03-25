@@ -21,8 +21,8 @@ namespace IDP.Switches.Transit
             _extraParams =
                 new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
-                    obl("window-start", "start", "The start time of the window"),
-                    obl("duration", "The length of the time window."),
+                    obl("window-start", "start", "The start time of the window, specified as `YYYY-MM-DD_hh:mm:ss` (e.g. `2019-12-31_23:59:59`)"),
+                    obl("duration","window-end", "Either the length of the time window in seconds or the end of the time window in `YYYY-MM-DD_hh:mm:ss`"),
                     //   opt("interpretation",
                     //           "How the departure times are interpreted. Options are: `actual`, `planned` or `both`. If `planned` is specified, the connection will only be kept if the planned departure time is within the window (thus as if there would not have been a delay). With `actual`, only the actual (with delays) departure time is used. Both will keep the connection if either the actual or planned departure time are within the window.")
                     //      .SetDefault("both"),
@@ -53,8 +53,17 @@ namespace IDP.Switches.Transit
             }
 
 
-            var start = DateTime.Parse(arguments["window-start"]);
-            var duration = int.Parse(arguments["duration"]);
+            var start = DateTime.ParseExact(arguments["window-start"], "yyyy-MM-dd_HH:mm:ss", null);
+            int duration;
+            try
+            {
+                duration = int.Parse(arguments["duration"]);
+            }
+            catch (FormatException)
+            {
+                var endDate = DateTime.ParseExact(arguments["duration"], "yyyy-MM-dd_HH:mm:ss", null);
+                duration = (int) (endDate - start).TotalSeconds;
+            }
             var allowEmpty = bool.Parse(arguments["allow-empty"]);
 
             TransitDb Run()
@@ -99,6 +108,7 @@ namespace IDP.Switches.Transit
                     var depTime =
                         epoch.AddSeconds(conns.DepartureTime);
 
+                        
                     wr.AddOrUpdateConnection(
                         stopIdMapping[conns.DepartureStop],
                         stopIdMapping[conns.ArrivalStop],
@@ -110,6 +120,7 @@ namespace IDP.Switches.Transit
                         newTripId,
                         conns.Mode
                     );
+                    
                     copied++;
                     if ((depTime - start).TotalSeconds > duration)
                     {
@@ -121,7 +132,7 @@ namespace IDP.Switches.Transit
 
                 if (!allowEmpty && copied == 0)
                 {
-                    throw new Exception("Did not copy any ");
+                    throw new Exception("There are no connections in the given timeframe.");
                 }
                 
 

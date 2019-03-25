@@ -8,9 +8,9 @@ using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Transit
 {
-    class SwitchDumpTransitDbLocations : DocumentedSwitch
+    class SwitchDumpTransitDbStops : DocumentedSwitch
     {
-        private static readonly string[] _names = {"--dump-locations"};
+        private static readonly string[] _names = {"--dump-stops"};
 
         private static string _about = "Writes all stops contained in a transitDB to console";
 
@@ -26,7 +26,7 @@ namespace IDP.Switches.Transit
         private const bool _isStable = true;
 
 
-        public SwitchDumpTransitDbLocations
+        public SwitchDumpTransitDbStops
             () :
             base(_names, _about, _extraParams, _isStable)
         {

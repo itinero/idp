@@ -89,7 +89,8 @@ namespace IDP.Switches
                     new SwitchCreateTransitDb(),
                     new SwitchReadTransitDb(),
                     new SwitchSelectTimeWindow(),
-                    new SwitchDumpTransitDbLocations(),
+                    new SwitchSelectStops(),
+                    new SwitchDumpTransitDbStops(),
                     new SwitchDumpTransitDbConnections(),
                     new SwitchWriteTransitDb(),
                     

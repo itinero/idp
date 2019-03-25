@@ -55,7 +55,7 @@ namespace IDP.Switches.Transit
                     string.IsNullOrEmpty(writeTo) ? Console.Out : new StreamWriter(File.OpenWrite(writeTo)))
                 {
                     const string header = "GlobalId,DepartureStop,DepartureStopName,ArrivalStop,ArrivalStopName," +
-                                          "DepartureTime,DepartureDelay,ArrivalTime,ArrivalDelay,TravelTime,TripId,TripHeadSign";
+                                          "DepartureTime,DepartureDelay,ArrivalTime,ArrivalDelay,TravelTime,Mode,TripId,TripHeadSign";
                     outStream.WriteLine(header);
 
 
@@ -82,6 +82,7 @@ namespace IDP.Switches.Transit
                                     $"{cons.ArrivalTime}," +
                                     $"{cons.ArrivalDelay}," +
                                     $"{cons.TravelTime}," +
+                                    $"{cons.Mode},"+
                                     $"{trip.GlobalId}," +
                                     $"{trip.Attributes.Get("headsign")}";
 
