@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Numerics;
 using IDP.Processors;
 using IDP.Processors.TransitDb;
 using Itinero.Transit.Data;
@@ -90,7 +88,7 @@ namespace IDP.Switches.Transit
                     }
                 }
 
-                var epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                var epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
 
                 var copied = 0;
                 do
@@ -109,7 +107,8 @@ namespace IDP.Switches.Transit
                         conns.TravelTime,
                         conns.DepartureDelay,
                         conns.ArrivalDelay,
-                        newTripId
+                        newTripId,
+                        conns.Mode
                     );
                     copied++;
                     if ((depTime - start).TotalSeconds > duration)
