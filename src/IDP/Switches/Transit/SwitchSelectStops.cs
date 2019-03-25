@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using IDP.Processors;
 using IDP.Processors.TransitDb;
-using Itinero.Algorithms.Default;
 using Itinero.Transit;
 using Itinero.Transit.Data;
 using static IDP.Switches.SwitchesExtensions;
@@ -104,8 +103,6 @@ namespace IDP.Switches.Transit
 
 
                 var con = old.Latest.ConnectionsDb.GetReader();
-                var dep = old.Latest.StopsDb.GetReader();
-                var arr = old.Latest.StopsDb.GetReader();
                 var trip = old.Latest.TripsDb.GetReader();
 
                 uint index = 0;
