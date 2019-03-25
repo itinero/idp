@@ -76,7 +76,7 @@ namespace IDP.Switches.Transit
                 var wr = filtered.GetWriter();
 
 
-                var stopIdMapping = new Dictionary<(uint, uint), (uint, uint)>();
+                var stopIdMapping = new Dictionary<LocationId, LocationId>();
 
                 var stops = old.Latest.StopsDb.GetReader();
                 var copied = 0;

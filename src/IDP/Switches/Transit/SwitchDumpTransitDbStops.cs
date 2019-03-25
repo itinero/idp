@@ -84,7 +84,7 @@ namespace IDP.Switches.Transit
                     stops = tdb.Latest.StopsDb.GetReader();
                     while (stops.MoveNext())
                     {
-                        var value = $"{stops.GlobalId},{stops.Latitude}, {stops.Longitude},{stops.Id.tileId},{stops.Id.localId}";
+                        var value = $"{stops.GlobalId},{stops.Latitude}, {stops.Longitude},{stops.Id.LocalTileId},{stops.Id.LocalId}";
 
                         var attributes = stops.Attributes;
                         foreach (var attribute in knownAttributes)

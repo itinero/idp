@@ -64,7 +64,7 @@ namespace IDP.Switches.Transit
             {
                 using (var stream = File.OpenRead(fileName))
                 {
-                    return TransitDb.ReadFrom(stream);
+                    return TransitDb.ReadFrom(stream, 0);
                 }
             }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using IDP.Processors;
 using IDP.Processors.TransitDb;
+using Itinero.Transit;
 using Itinero.Transit.Data;
 using Itinero.Transit.Data.Attributes;
 using static IDP.Switches.SwitchesExtensions;
@@ -77,9 +78,9 @@ namespace IDP.Switches.Transit
                                     $"{dep.Attributes.Get("name")}," +
                                     $"{arr.GlobalId}," +
                                     $"{arr.Attributes.Get("name")}," +
-                                    $"{cons.DepartureTime}," +
+                                    $"{cons.DepartureTime.FromUnixTime():O}," +
                                     $"{cons.DepartureDelay}," +
-                                    $"{cons.ArrivalTime}," +
+                                    $"{cons.ArrivalTime.FromUnixTime():O}," +
                                     $"{cons.ArrivalDelay}," +
                                     $"{cons.TravelTime}," +
                                     $"{cons.Mode},"+
