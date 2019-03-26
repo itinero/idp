@@ -82,7 +82,6 @@ namespace IDP.Switches.Transit
                                     $"{cons.DepartureDelay}," +
                                     $"{cons.ArrivalTime.FromUnixTime():O}," +
                                     $"{cons.ArrivalDelay}," +
-                                    $"{cons.TravelTime}," +
                                     $"{cons.Mode},"+
                                     $"{trip.GlobalId}," +
                                     $"{trip.Attributes.Get("headsign")}";
