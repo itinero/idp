@@ -14,10 +14,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GTFS" Version="2.1.5-pre02" />
-    <PackageReference Include="Itinero" Version="1.4.0-pre104" />
-    <PackageReference Include="Itinero.Geo" Version="1.4.0-pre104" />
-    <PackageReference Include="Itinero.IO.Osm" Version="1.4.0-pre104" />
-    <PackageReference Include="Itinero.IO.Shape" Version="1.4.0-pre104" />
+    <PackageReference Include="Itinero" Version="1.4.0-pre105" />
+    <PackageReference Include="Itinero.Geo" Version="1.4.0-pre105" />
+    <PackageReference Include="Itinero.IO.Osm" Version="1.4.0-pre105" />
+    <PackageReference Include="Itinero.IO.Shape" Version="1.4.0-pre105" />
     <PackageReference Include="Itinero.Transit" Version="0.4.0-alpha" />
     <PackageReference Include="OsmSharp.IO.Binary" Version="0.0.17-alpha" />
     <PackageReference Include="Serilog" Version="2.5.0" />
