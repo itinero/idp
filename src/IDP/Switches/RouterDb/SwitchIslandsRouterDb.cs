@@ -51,7 +51,7 @@ namespace IDP.Switches.RouterDb
             string[] profiles = null;
             if (!string.IsNullOrEmpty(arguments["profile"]))
             {
-                if (!SwitchParsers.SplitValuesArray(arguments["profile"], out profiles))
+                if (!SplitValuesArray(arguments["profile"], out profiles))
                 {
                     profiles = new[] {arguments["profile"]};
                 }

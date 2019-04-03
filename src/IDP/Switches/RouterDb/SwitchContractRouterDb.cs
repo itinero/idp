@@ -48,7 +48,7 @@ namespace IDP.Switches.RouterDb
             }
 
             var profile = args["profile"];
-            var augmented = SwitchParsers.IsTrue(args["augmented"]);
+            var augmented = IsTrue(args["augmented"]);
 
 
 

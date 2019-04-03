@@ -33,7 +33,7 @@ namespace IDP.Switches
             }
 
 
-            if (!SwitchParsers.SplitValuesArray(vehiclesArg.ToLower(), out var vehicleNames))
+            if (!DocumentedSwitch.SplitValuesArray(vehiclesArg.ToLower(), out var vehicleNames))
             {
                 // No commas found or something
                 vehicleNames = new[] {vehiclesArg};

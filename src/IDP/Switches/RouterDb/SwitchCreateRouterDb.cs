@@ -83,13 +83,13 @@ namespace IDP.Switches.RouterDb
             List<Processor> previous)
         {
             // Various options parsing
-            var allCore = SwitchParsers.IsTrue(arguments["allcore"]);
-            var keepWayIds = SwitchParsers.IsTrue(arguments["keepwayids"]);
+            var allCore = IsTrue(arguments["allcore"]);
+            var keepWayIds = IsTrue(arguments["keepwayids"]);
 
             var simplification = new LoadSettings().NetworkSimplificationEpsilon;
             if (arguments.TryGetValue("simplification", out var sArg))
             {
-                var parsedInt = SwitchParsers.Parse(sArg);
+                var parsedInt = Parse(sArg);
                 if (parsedInt != null)
                 {
                     simplification = parsedInt.Value;
@@ -100,7 +100,7 @@ namespace IDP.Switches.RouterDb
 
             var vehicles = arguments.ExtractVehicleArguments();
 
-            var normalize = SwitchParsers.IsTrue(arguments["normalize"]);
+            var normalize = IsTrue(arguments["normalize"]);
 
             // All arguments have been set up!
 

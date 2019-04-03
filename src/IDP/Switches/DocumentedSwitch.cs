@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using IDP.Processors;
 
@@ -95,7 +96,7 @@ namespace IDP.Switches
             // We _translate_ the argument name to the first index in the according list
             foreach (var argument in arguments)
             {
-                if (!SwitchParsers.SplitKeyValue(argument, out var key, out var value)) continue;
+                if (!SplitKeyValue(argument, out var key, out var value)) continue;
                 // The argument is of the format 'file=abc'
 
 
@@ -326,7 +327,61 @@ namespace IDP.Switches
 
             return text;
         }
+        /// <summary>
+        /// Returns true if the given string contains a key value like 'key=value'.
+        /// </summary>
+        public static bool SplitKeyValue(string keyValueString, out string key, out string value)
+        {
+            key = null;
+            value = null;
+            if (keyValueString.Count(x => x == '=') == 1)
+            {
+                // there is only one '=' sign here.
+                int idx = keyValueString.IndexOf('=');
+                if (idx > 0 && idx < keyValueString.Length - 1)
+                {
+                    key = keyValueString.Substring(0, idx);
+                    value = keyValueString.Substring(idx + 1, keyValueString.Length - (idx + 1));
+                    return true;
+                }
+            }
 
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true if the given string contains one or more comma seperated values.
+        /// </summary>
+        public static bool SplitValuesArray(string valuesArray, out string[] values)
+        {
+            values = valuesArray.Split(',');
+            return true;
+        }
+        
+        /// <summary>
+        /// Returns true if the given string value represent true.
+        /// </summary>
+        internal static bool IsTrue(string value)
+        {
+            return !string.IsNullOrWhiteSpace(value) &&
+                   (value.ToLowerInvariant() == "yes" ||
+                    value.ToLowerInvariant() == "true");
+        }
+        
+        /// <summary>
+        /// Parses an integer from the given value.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        internal static int? Parse(string value)
+        {
+            if (int.TryParse(value, out var val))
+            {
+                return val;
+            }
+
+            return null;
+        }
 
     }
 }

@@ -184,7 +184,7 @@ namespace IDP.Switches
             else
             {
                 File.WriteAllText(_arguments["markdown"],
-                    GenerateAllHelp(true, SwitchParsers.IsTrue(_arguments["experimental"])));
+                    GenerateAllHelp(true, DocumentedSwitch.IsTrue(_arguments["experimental"])));
             }
         }
 

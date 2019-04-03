@@ -63,8 +63,8 @@ namespace IDP.Switches.RouterDb
             List<Processor> previous)
         {
             var fileName = arguments["file"];
-            var mapped = (arguments.ContainsKey("mapped") && SwitchParsers.IsTrue(arguments["mapped"]) ||
-                          (arguments.ContainsKey("m") && SwitchParsers.IsTrue(arguments["m"])));
+            var mapped = (arguments.ContainsKey("mapped") && IsTrue(arguments["mapped"]) ||
+                          (arguments.ContainsKey("m") && IsTrue(arguments["m"])));
 
 
             // check if the file exists.
