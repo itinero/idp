@@ -36,17 +36,13 @@ namespace IDP.Switches.Osm
             }
 
             var file = new FileInfo(arguments["file"]);
-            if (!file.Exists)
-            {
-                throw new FileNotFoundException("File not found.", file.FullName);
-            }
 
             if (!(previous[previous.Count - 1] is IProcessorOsmStreamSource source))
             {
                 throw new Exception("Expected an OSM stream source.");
             }
 
-            var pbfTarget = new BinaryOsmStreamTarget(file.OpenRead());
+            var pbfTarget = new BinaryOsmStreamTarget(file.Open(FileMode.Create));
             pbfTarget.RegisterSource(source.Source);
             return (new ProcessorOsmStreamTarget(pbfTarget), 1);
         }

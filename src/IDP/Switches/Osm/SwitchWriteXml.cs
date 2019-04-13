@@ -1,4 +1,4 @@
-﻿// The MIT License (MIT)
+// The MIT License (MIT)
 
 // Copyright (c) 2016 Ben Abelshausen
 
@@ -30,22 +30,22 @@ using static IDP.Switches.SwitchesExtensions;
 
 namespace IDP.Switches.Osm
 {
-    class SwitchWritePbf : DocumentedSwitch
+    class SwitchWriteXml : DocumentedSwitch
     {
-        private static readonly string[] _names = {"--write-pbf", "--wb"};
+        private static readonly string[] _names = {"--write-xml", "--wx"};
 
-        private const string _about = "Writes the result of the calculations as protobuff-osm file. The file format is `.osm.pbf`";
+        private const string _about = "Writes the result of the calculations as osm-xml file. The file format is `.osm`";
 
         private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
             _extraParams
                 = new List<(List<string> args, bool isObligated, string comment, string defaultValue)>
                 {
-                    obl("file", "The file to write the .osm.pbf to")
+                    obl("file", "The file to write the .osm to")
                 };
 
         private const bool _isStable = true;
 
-        public SwitchWritePbf() : base(_names, _about, _extraParams, _isStable)
+        public SwitchWriteXml() : base(_names, _about, _extraParams, _isStable)
         {
         }
 
@@ -64,9 +64,9 @@ namespace IDP.Switches.Osm
                 throw new Exception("Expected an OSM stream source.");
             }
 
-            var pbfTarget = new PBFOsmStreamTarget(file.Open(FileMode.Create));
-            pbfTarget.RegisterSource(source.Source);
-            return (new ProcessorOsmStreamTarget(pbfTarget), 1);
+            var target = new XmlOsmStreamTarget(file.Open(FileMode.Create));
+            target.RegisterSource(source.Source);
+            return (new ProcessorOsmStreamTarget(target), 1);
         }
     }
 }

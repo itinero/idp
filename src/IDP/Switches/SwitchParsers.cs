@@ -82,6 +82,7 @@ namespace IDP.Switches
 
                 ("Output", new List<DocumentedSwitch>
                 {
+                    new SwitchWriteXml(),
                     new SwitchWriteRouterDb(),
                     new SwitchWritePbf(),
                     new SwitchWriteBin(),
