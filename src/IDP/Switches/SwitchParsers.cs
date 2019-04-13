@@ -59,6 +59,7 @@ namespace IDP.Switches
             {
                 ("Input", new List<DocumentedSwitch>
                 {
+                    new SwitchReadXml(),
                     new SwitchReadPbf(),
                     new SwitchReadShape(),
                     new SwitchReadRouterDb(),
