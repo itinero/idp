@@ -4,21 +4,24 @@ using IDP.Processors;
 using IDP.Processors.TransitDb;
 using Itinero.Transit.Data;
 using Itinero.Transit.IO.LC;
+using Itinero.Transit.Logging;
 
 namespace IDP.Switches.Transit
 {
     using static SwitchesExtensions;
 
-    internal class SwitchCreateTransitDb : DocumentedSwitch
+    internal class SwitchCreateTransitDbLC : DocumentedSwitch
     {
-        private static readonly string[] _names = {"--create-transit-db", "--create-transit", "--ct"};
+        private static readonly string[] _names =
+            {"--create-transit-db-with-linked-connections", "--create-transit-lc", "--ctlc"};
 
         private static string _about =
-            "Creates or updates a transit DB based on linked connections. For this, the linked connections source and a timewindow should be specified.\n" +
+            "Creates a transit DB based on linked connections (or adds them to an already existing db). For this, the linked connections source and a timewindow should be specified.\n" +
             "If the previous switch reads or creates a transit db as well, the two transitDbs are merged into a single one.\n\n" +
             "Note that this switch only downloads the connections and keeps them in memory. To write them to disk, add --write-transit-db too.\n\n" +
-            "Example usage to create the database for the Belgian SNCB:\n\n" +
+            "Example usage to create the database for the Belgian Railway (SNCB/NMBS):\n\n" +
             "        idp --create-transit-db https://graph.irail.be/sncb/connections https://irail.be/stations/NMBS";
+
 
 
         private static readonly List<(List<string> args, bool isObligated, string comment, string defaultValue)>
@@ -36,14 +39,15 @@ namespace IDP.Switches.Transit
                         .SetDefault("3600")
                 };
 
+
         private const bool _isStable = true;
+        
+  
 
-
-        public SwitchCreateTransitDb()
+        public SwitchCreateTransitDbLC()
             : base(_names, _about, _extraParams, _isStable)
         {
         }
-
 
         protected override (Processor, int nrOfUsedProcessors) Parse(Dictionary<string, string> arguments,
             List<Processor> previous)
@@ -67,7 +71,7 @@ namespace IDP.Switches.Transit
 
             TransitDb GetTransitDb()
             {
-                Itinero.Transit.Logging.Logger.LogAction = 
+                Logger.LogAction = 
                     (origin, level, message, parameters) => 
                         Console.WriteLine($"[{DateTime.Now:O}] [{level}] [{origin}]: {message}");
                 var tdb = source?.GetTransitDb() ?? new TransitDb();
@@ -78,4 +82,6 @@ namespace IDP.Switches.Transit
             return (new ProcessorTransitDbSource(GetTransitDb), 0);
         }
     }
+
+ 
 }

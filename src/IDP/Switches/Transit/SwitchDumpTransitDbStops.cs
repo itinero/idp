@@ -72,7 +72,7 @@ namespace IDP.Switches.Transit
                     }
 
 
-                    var header = "globalId,Latitude,Longitude,tileId,internalId";
+                    var header = "globalId,Latitude,Longitude,tileId_internalId";
                     foreach (var knownAttribute in knownAttributes)
                     {
                         header += "," + knownAttribute;
@@ -84,7 +84,7 @@ namespace IDP.Switches.Transit
                     stops = tdb.Latest.StopsDb.GetReader();
                     while (stops.MoveNext())
                     {
-                        var value = $"{stops.GlobalId},{stops.Latitude}, {stops.Longitude},{stops.Id.LocalTileId},{stops.Id.LocalId}";
+                        var value = $"{stops.GlobalId},{stops.Latitude}, {stops.Longitude},{stops.Id.LocalTileId}_{stops.Id.LocalId}";
 
                         var attributes = stops.Attributes;
                         foreach (var attribute in knownAttributes)

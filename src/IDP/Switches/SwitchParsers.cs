@@ -86,7 +86,8 @@ namespace IDP.Switches
                 ("Transit-Db", new List<DocumentedSwitch>
                 {
                     
-                    new SwitchCreateTransitDb(),
+                    new SwitchCreateTransitDbLC(),
+                    new SwitchCreateTransitDbOSM(),
                     new SwitchReadTransitDb(),
                     new SwitchSelectTimeWindow(),
                     new SwitchSelectStops(),
