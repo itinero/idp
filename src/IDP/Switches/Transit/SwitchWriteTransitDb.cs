@@ -35,7 +35,7 @@ namespace IDP.Switches.Transit
     /// </summary>
     class SwitchWriteTransitDb : DocumentedSwitch
     {
-        private static readonly string[] _names = {"--write-transit-db", "--write-transit", "--wt"};
+        private static readonly string[] _names = {"--write-transit-db","--write-transitdb", "--write-transit", "--wt"};
 
         private static string _about = "Write a transitDB to disk";
 

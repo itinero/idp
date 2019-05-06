@@ -80,7 +80,9 @@ namespace IDP.Switches.Transit
 
                 if (arg.StartsWith("https://www.openstreetmap.org/relation/"))
                 {
-                    arg = arg.Substring("https://www.openstreetmap.org/relation/".Length);
+                    arg = arg.Substring("https://www.openstreetmap.org/relation/".Length)
+                        .Split('?')[0];
+                    
                 }
                 if (arg.StartsWith("http://www.openstreetmap.org/relation/"))
                 {

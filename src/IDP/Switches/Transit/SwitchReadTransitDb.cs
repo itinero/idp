@@ -34,7 +34,7 @@ namespace IDP.Switches.Transit
     /// </summary>
     class SwitchReadTransitDb : DocumentedSwitch
     {
-        private static readonly string[] _names = {"--read-transit-db", "--read-transit", "--rt"};
+        private static readonly string[] _names = {"--read-transit-db", "--read-transit","--read-tdb", "--rt"};
 
         private static string _about = "Read a transitDB file as input to do all the data processing. A transitDB is a database containing connections between multiple stops";
 
