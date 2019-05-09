@@ -77,31 +77,7 @@ namespace IDP.Switches.Transit
                 var tdb = source?.GetTransitDb() ?? new TransitDb();
 
 
-
-                if (arg.StartsWith("https://www.openstreetmap.org/relation/"))
-                {
-                    arg = arg.Substring("https://www.openstreetmap.org/relation/".Length)
-                        .Split('?')[0];
-                    
-                }
-                if (arg.StartsWith("http://www.openstreetmap.org/relation/"))
-                {
-                    arg = arg.Substring("http://www.openstreetmap.org/relation/".Length);
-                }
-                
-
-                if (long.TryParse(arg, out var id))
-                {
-                    tdb.UseOsmRoute(id, start, end);
-                }
-                else if (arg.ToLower().StartsWith("http"))
-                {
-                    tdb.UseOsmRoute(new Uri(arg), start, end);
-                }
-                else
-                {
-                    tdb.UseOsmRoute(arg, start, end);
-                }    
+                tdb.UseOsmRoute(arg, start, end);
 
                 return tdb;
             }
