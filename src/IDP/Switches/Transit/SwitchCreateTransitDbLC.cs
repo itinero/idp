@@ -56,6 +56,7 @@ namespace IDP.Switches.Transit
             var lurl = arguments["locations"];
             var wStart = arguments["window-start"];
             var time = wStart.Equals("now") ? DateTime.Now : DateTime.Parse(wStart);
+            time = time.ToUniversalTime();
             var duration = int.Parse(arguments["window-duration"]);
 
             IProcessorTransitDbSource source  = null;

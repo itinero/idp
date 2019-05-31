@@ -55,6 +55,7 @@ namespace IDP.Switches.Transit
             var durationSeconds = int.Parse(arguments["window-duration"]);
 
             var start = wStart.Equals("now") ? DateTime.Now : DateTime.Parse(wStart);
+            start = start.ToUniversalTime();
             var end = start.AddSeconds(durationSeconds);
             var arg = arguments["relation"];
 

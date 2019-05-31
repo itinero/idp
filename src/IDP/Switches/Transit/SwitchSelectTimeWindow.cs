@@ -54,6 +54,7 @@ namespace IDP.Switches.Transit
 
 
             var start = DateTime.ParseExact(arguments["window-start"], "yyyy-MM-dd_HH:mm:ss", null);
+            start = start.ToUniversalTime();
             int duration;
             try
             {
@@ -62,6 +63,7 @@ namespace IDP.Switches.Transit
             catch (FormatException)
             {
                 var endDate = DateTime.ParseExact(arguments["duration"], "yyyy-MM-dd_HH:mm:ss", null);
+                endDate = endDate.ToUniversalTime();
                 duration = (int) (endDate - start).TotalSeconds;
             }
             var allowEmpty = bool.Parse(arguments["allow-empty"]);
