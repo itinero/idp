@@ -23,9 +23,24 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     - name: Publish Windows
       run: cd ./src/IDP/ && dotnet publish -c release -r win10-x64
-    - name: Archive Release
+    - name: Zip Windows Release
       uses: thedoctor0/zip-release@master
       with:
         filename: 'idp-win10-x64.zip'
         path: ./src/IDP/bin/release/netcoreapp3.1/win10-x64/publish/
+    - name: Publish Linux
+      run: cd ./src/IDP/ && dotnet publish -c release -r linux-x64
+    - name: Zip Linux Release
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'idp-linux-x64.zip'
+        path: ./src/IDP/bin/release/netcoreapp3.1/linux-x64/publish/
+    - name: OSX
+      run: cd ./src/IDP/ && dotnet publish -c release -r osx.10.11-x64
+    - name: Zip Linux Release
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'idp-osx.10.11-x64.zip'
+        path: ./src/IDP/bin/release/netcoreapp3.1/osx.10.11-x64/publish/
+    
     
