@@ -1,8 +1,10 @@
-name: Prerelease
+name: Release
 
 on:
   push:
-    branches: [ develop ]
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
     
 jobs:
   build:
@@ -11,6 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -48,8 +53,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: test
-        release_name: Release ${{ github.ref }}
+        tag_name: ${{ steps.vars.outputs.tag }}
+        release_name: Release ${{ steps.vars.outputs.tag }}
         draft: false
         prerelease: false    
     - name: Upload Windows Asset
