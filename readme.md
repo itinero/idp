@@ -36,7 +36,6 @@ Adding elevation from SRTM can be done using:
 
 `idp --read-pbf path/to/some-file.osm.pbf --pr --create-routerdb vehicles=bicycle --elevation --write-routerdb some-file.routerdb`
 
-
 - contract: adds a contracted version of the routing graph to the routerdb.
 
 ### Related projects
