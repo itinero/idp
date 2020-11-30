@@ -22,7 +22,7 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: Publish Windows
-      run: dotnet publish -c release -r win10-x64
+      run: cd ./src/IDP/ && dotnet publish -c release -r win10-x64
     - name: Archive Release
       uses: thedoctor0/zip-release@master
       with:
