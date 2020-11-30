@@ -21,3 +21,11 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Publish Windows
+      run: dotnet publish -c release -r win10-x64
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'idp-win10-x64.zip'
+        path: ./src/IDP/bin/release/netcoreapp3.1/win10-x64/publish/
+    
